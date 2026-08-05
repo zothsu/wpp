@@ -32,7 +32,7 @@ const { items, defaultValue } = Astro.props;
 		items.map((item, idx) => (
 			<StarwindAccordionItem value={`item-${idx + 1}`}>
 				<h3>
-					<AccordionTrigger class="font-heading text-xl font-semibold">
+					<AccordionTrigger class="text-xl font-semibold">
 						{item.title}
 					</AccordionTrigger>
 				</h3>
