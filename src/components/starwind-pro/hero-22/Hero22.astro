@@ -1,0 +1,168 @@
+---
+import IconArrowRight from "@tabler/icons/outline/arrow-right.svg";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+import { Image } from "@/components/starwind/image";
+
+export interface ArchitectureHero22Image {
+  /** Image source URL */
+  src: string;
+  /** Accessible image description */
+  alt: string;
+  /** Intrinsic width, required for local /public images */
+  width?: number;
+  /** Intrinsic height, required for local /public images */
+  height?: number;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Optional eyebrow shown above the heading */
+  eyebrow?: string;
+  /** Main hero heading */
+  heading?: string;
+  /** Supporting hero copy */
+  description?: string;
+  /** Primary button text */
+  primaryButtonText?: string;
+  /** Primary button href */
+  primaryButtonHref?: string;
+  /** Secondary inline link text */
+  secondaryLinkText?: string;
+  /** Secondary inline link href */
+  secondaryLinkHref?: string;
+  /** Main architecture image */
+  image?: ArchitectureHero22Image;
+}
+
+const hero22Styles = tv({
+  base: "@container mx-auto w-full max-w-7xl bg-background px-4 py-4 text-foreground",
+});
+
+const defaultImage: ArchitectureHero22Image = {
+  src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1800&h=1180&fit=crop",
+  alt: "Sunlit architectural interior with polished floors and refined detailing",
+};
+
+const {
+  eyebrow,
+  heading = "Rooms drawn around light",
+  description,
+  primaryButtonText = "View selected work",
+  primaryButtonHref = "#",
+  secondaryLinkText,
+  secondaryLinkHref = "#",
+  image = defaultImage,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={hero22Styles({ class: className })} {...rest}>
+  <div class="bg-background relative @xl:min-h-[48rem]">
+    <div
+      class="bg-muted ring-primary/40 border-primary/40 relative h-[24rem] overflow-hidden rounded-4xl border ring-1 @md:h-[30rem] @xl:absolute @xl:inset-0 @xl:h-auto"
+    >
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        class="absolute inset-0 size-full object-cover"
+        loading="eager"
+      />
+      <div
+        class="from-background/40 via-background/5 to-background/20 absolute inset-0 bg-linear-to-br"
+      >
+      </div>
+    </div>
+
+    <div class="relative @xl:flex @xl:min-h-[48rem] @xl:w-[30rem] @xl:flex-col @3xl:w-[34rem]">
+      <!-- top element -->
+      <div
+        class="bg-background pointer-events-none relative hidden w-68 flex-1 rounded-t-4xl @xl:block @3xl:w-80"
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          class="text-background pointer-events-none absolute -right-8 bottom-0 hidden size-8 -scale-x-100 @xl:block"
+          aria-hidden="true"
+        >
+          <path d="M0 200A200 200 0 0 0 200 0V200H0Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <!-- center content section -->
+      <div
+        class="bg-background relative flex w-full flex-col justify-center pt-8 @xl:rounded-tr-4xl @xl:px-10 @xl:py-12 @3xl:px-12"
+      >
+        {
+          eyebrow && (
+            <p class="text-primary-accent text-xs font-medium tracking-[0.24em] uppercase">
+              {eyebrow}
+            </p>
+          )
+        }
+        <h1
+          class:list={[
+            "font-heading text-4xl font-light tracking-tight text-balance @xl:text-6xl @4xl:text-7xl",
+            eyebrow ? "mt-5" : "mt-0",
+          ]}
+        >
+          {heading}
+        </h1>
+        {
+          description && (
+            <p class="text-muted-foreground mt-7 max-w-sm text-sm leading-normal text-pretty @xl:text-base">
+              {description}
+            </p>
+          )
+        }
+
+        <div class="mt-8 flex flex-col gap-4 @md:flex-row @md:items-center">
+          <Button href={primaryButtonHref} variant="primary" class="group">
+            {primaryButtonText}
+            <IconArrowRight class="transition-transform group-hover:translate-x-1" />
+          </Button>
+          {
+            secondaryLinkText && (
+              <Button href={secondaryLinkHref} variant="ghost" class="group">
+                {secondaryLinkText}
+                <IconArrowRight class="transition-transform group-hover:translate-x-1" />
+              </Button>
+            )
+          }
+        </div>
+        <!-- decorative pieces -->
+        <div
+          class="bg-background pointer-events-none absolute right-0 bottom-0 hidden h-[45%] w-20 translate-x-full rounded-r-4xl @xl:block"
+          aria-hidden="true"
+        >
+        </div>
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          class="text-background pointer-events-none absolute -right-8 bottom-[45%] hidden size-8 -scale-x-100 @xl:block"
+          aria-hidden="true"
+        >
+          <path d="M0 200A200 200 0 0 0 200 0V200H0Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <!-- bottom element -->
+      <div
+        class="bg-background pointer-events-none relative hidden w-40 flex-1 rounded-b-4xl @xl:block @3xl:w-56"
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          class="text-background pointer-events-none absolute top-0 -right-8 hidden size-8 rotate-180 @xl:block"
+          aria-hidden="true"
+        >
+          <path d="M0 200A200 200 0 0 0 200 0V200H0Z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>

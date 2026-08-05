@@ -1,0 +1,39 @@
+---
+import IconArrowRight from "@tabler/icons/outline/arrow-right.svg";
+
+const themes = [
+	"Emotional Safety and Confidence",
+	"Ability to Clearly Communicate",
+	"Ability to Care for Oneself",
+	"Social Skills",
+	"Executive Functioning",
+	"Anti-Bias Mindset",
+];
+---
+
+<section class="@container mx-auto max-w-4xl px-4 py-16">
+	<h2 class="font-heading text-3xl font-semibold tracking-tight @xl:text-4xl">How We Teach</h2>
+	<p class="text-muted-foreground mt-4 text-pretty @xl:text-lg">
+		At Wild Pear, our goal is to meet children where they are at developmentally and encourage them
+		to move forward in their own unique way. Our curriculum is rooted in long stretches of
+		uninterrupted play and guided by child interest, woven together across several major themes.
+	</p>
+
+	<ul class="mt-8 grid gap-3 @md:grid-cols-2">
+		{
+			themes.map((theme) => (
+				<li class="border-border bg-muted/40 rounded-lg border px-4 py-3 text-sm font-medium">
+					{theme}
+				</li>
+			))
+		}
+	</ul>
+
+	<a
+		href="/our-approach"
+		class="group mt-8 inline-flex items-center gap-3 font-heading text-4xl text-orange-400 underline underline-offset-4 hover:text-orange-300"
+	>
+		Read the Full Approach
+		<IconArrowRight class="size-8 transition-transform group-hover:translate-x-1" />
+	</a>
+</section>

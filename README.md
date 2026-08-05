@@ -38,6 +38,40 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## 🗺️ Sitemap
+
+| Route                        | Page                              | Notes                                          |
+| :---------------------------- | :--------------------------------- | :---------------------------------------------- |
+| `/`                           | Home                                |                                                 |
+| `/learn-about-us`             | Learn About Us                     | Hero (hero-22)                                 |
+| `/programs`                   | Our Programs                       | Programs grid + Schedule a Tour form           |
+| `/our-approach`                | Our Approach                       |                                                 |
+| `/who-we-are`                 | Who We Are                         |                                                 |
+| `/enrollment-information`     | Enrollment Information             |                                                 |
+| `/enrolled-students`          | Enrolled Students                  |                                                 |
+| `/privacy`                    | Privacy Policy                     |                                                 |
+| `/terms`                      | Terms                              |                                                 |
+| `/programs/infant-toddler`    | Infant/Toddler program detail      | Linked from nav & program cards, not built yet |
+| `/programs/preschool`         | Preschool program detail           | Linked from nav & program cards, not built yet |
+| `/programs/summer-camp`       | School Age Summer Camp detail      | Linked from nav & program cards, not built yet |
+
+### Learn About Us hero — headline options
+
+The hero on `/learn-about-us` currently uses **"Rooted in nature, ready for the world."** Other options brainstormed for this spot (theme: baby-led care, emotional intelligence, outdoor play, play builds the brain), kept here so they aren't lost:
+
+1. Rooted in nature, ready for the world *(in use)*
+2. Where little ones lead, and we follow
+3. Growing minds, one adventure at a time
+4. Nurturing how they feel, not just what they know
+5. Outside isn't a break from learning — it is the learning
+6. Play is how the brain builds itself
+7. Baby-led care for a bigger, braver world
+8. Every child's pace is the right pace here
+9. Feelings first, foundations for life
+10. Muddy hands, growing minds
+11. Following your child's lead, every step of the way
+12. Where curiosity gets to run outside
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

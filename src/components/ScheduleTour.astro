@@ -1,0 +1,27 @@
+---
+import Contact3, { type ServiceOption } from "./starwind-pro/contact-03/Contact3.astro";
+
+const programInterestOptions: ServiceOption[] = [
+	{ value: "infant-toddler", label: "Infant/Toddler" },
+	{ value: "preschool", label: "Preschool" },
+	{ value: "summer-camp", label: "School Age Summer Camp" },
+	{ value: "no-program", label: "No Program / Not Sure Yet" },
+];
+
+const tourAddress = "9411 SE Wichita Ave, Portland, OR";
+const tourMapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(tourAddress)}&output=embed`;
+---
+
+<section class="pb-16">
+	<Contact3
+		badge="Schedule a Tour"
+		heading="Schedule a Tour"
+		description="Let us know a bit about your family and we'll reach out to set up a time to show you around."
+		address={tourAddress}
+		mapEmbedUrl={tourMapEmbedUrl}
+		services={programInterestOptions}
+		serviceLabel="Program(s) of Interest"
+		serviceMultiple
+		messagePlaceholder="Let us know the best time for you to come by for a tour."
+	/>
+</section>
