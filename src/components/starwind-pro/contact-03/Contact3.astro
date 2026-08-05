@@ -40,16 +40,8 @@ interface Props extends HTMLAttributes<"section"> {
   email?: string;
   /** Map embed URL (Google Maps, OpenStreetMap, etc.) */
   mapEmbedUrl?: string;
-  /** Service options for dropdown (or checkboxes, if serviceMultiple is true) */
+  /** Service options for dropdown */
   services?: ServiceOption[];
-  /** Label for the service field */
-  serviceLabel?: string;
-  /** Placeholder for the service select field (ignored when serviceMultiple is true) */
-  servicePlaceholder?: string;
-  /** Render the service field as a checkbox group allowing multiple selections */
-  serviceMultiple?: boolean;
-  /** Placeholder for the message textarea */
-  messagePlaceholder?: string;
 }
 
 const sectionStyles = tv({
@@ -60,15 +52,11 @@ const {
   badge = "Find Us",
   heading = "Visit Our Location",
   description = "Stop by our office or send us a message. We're here to help with all your needs.",
-  address = "",
-  phone = "",
-  email = "",
+  address = "123 Main Street, Anytown, ST 12345",
+  phone = "(555) 123-4567",
+  email = "contact@business.com",
   mapEmbedUrl = "",
   services = [],
-  serviceLabel = "Service Type",
-  servicePlaceholder = "Select a service",
-  serviceMultiple = false,
-  messagePlaceholder = "How can we help you?",
   class: className,
   ...rest
 } = Astro.props;
@@ -77,7 +65,12 @@ const {
 <section class={sectionStyles({ class: className })} {...rest}>
   <!-- Header -->
   <div class="mb-12 text-center">
-    <h2 class="font-heading text-3xl font-bold tracking-tight @xl:text-4xl @3xl:text-5xl">
+    <span
+      class="border-primary/30 text-primary-accent mb-4 inline-block border-b-2 pb-1 text-sm font-bold tracking-[0.2em] uppercase"
+    >
+      {badge}
+    </span>
+    <h2 class="font-heading mt-4 text-3xl font-bold tracking-tight @xl:text-4xl @3xl:text-5xl">
       {heading}
     </h2>
     <p class="text-muted-foreground mx-auto mt-4 max-w-2xl text-lg">
@@ -116,30 +109,24 @@ const {
         }
 
         <!-- Floating Contact Cards -->
-        {
-          (phone || email) && (
-            <div class="absolute right-4 bottom-4 left-4 flex flex-wrap gap-3 @xl:right-6 @xl:bottom-6 @xl:left-6">
-              {phone && (
-                <a
-                  href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
-                  class="bg-background/95 hover:bg-background flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg backdrop-blur-sm transition-colors"
-                >
-                  <IconPhone class="text-primary-accent size-4" />
-                  <span class="text-sm font-medium">{phone}</span>
-                </a>
-              )}
-              {email && (
-                <a
-                  href={`mailto:${email}`}
-                  class="bg-background/95 hover:bg-background flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg backdrop-blur-sm transition-colors"
-                >
-                  <IconMail class="text-primary-accent size-4" />
-                  <span class="text-sm font-medium">{email}</span>
-                </a>
-              )}
-            </div>
-          )
-        }
+        <div
+          class="absolute right-4 bottom-4 left-4 flex flex-wrap gap-3 @xl:right-6 @xl:bottom-6 @xl:left-6"
+        >
+          <a
+            href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
+            class="bg-background/95 hover:bg-background flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg backdrop-blur-sm transition-colors"
+          >
+            <IconPhone class="text-primary-accent size-4" />
+            <span class="text-sm font-medium">{phone}</span>
+          </a>
+          <a
+            href={`mailto:${email}`}
+            class="bg-background/95 hover:bg-background flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg backdrop-blur-sm transition-colors"
+          >
+            <IconMail class="text-primary-accent size-4" />
+            <span class="text-sm font-medium">{email}</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -181,39 +168,23 @@ const {
             </div>
 
             {
-              services.length > 0 &&
-                (serviceMultiple ? (
-                  <fieldset class="flex flex-col gap-2">
-                    <legend class="mb-1 text-sm font-medium">{serviceLabel}</legend>
-                    {services.map((service) => (
-                      <label class="flex items-center gap-2 text-sm">
-                        <input
-                          type="checkbox"
-                          name="service"
-                          value={service.value}
-                          class="border-input accent-primary size-4 rounded"
-                        />
-                        {service.label}
-                      </label>
-                    ))}
-                  </fieldset>
-                ) : (
-                  <div class="flex flex-col gap-1">
-                    <Label for="contact-service-03">{serviceLabel}</Label>
-                    <Select id="contact-service-03" name="service">
-                      <SelectTrigger class="w-full">
-                        <SelectValue placeholder={servicePlaceholder} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          {services.map((service) => (
-                            <SelectItem value={service.value}>{service.label}</SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                ))
+              services.length > 0 && (
+                <div class="flex flex-col gap-1">
+                  <Label for="contact-service-03">Service Type</Label>
+                  <Select id="contact-service-03" name="service">
+                    <SelectTrigger class="w-full">
+                      <SelectValue placeholder="Select a service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {services.map((service) => (
+                          <SelectItem value={service.value}>{service.label}</SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+              )
             }
 
             <div class="flex flex-1 flex-col gap-1">
@@ -221,7 +192,7 @@ const {
               <Textarea
                 id="contact-message-03"
                 name="message"
-                placeholder={messagePlaceholder}
+                placeholder="How can we help you?"
                 class="min-h-[100px] resize-none"
                 required
               />
@@ -235,14 +206,12 @@ const {
   </div>
 
   <!-- Address Bar -->
-  {
-    address && (
-      <div class="bg-muted/50 mt-8 flex flex-wrap items-center justify-center gap-2 rounded-xl border px-6 py-4 text-center">
-        <IconMapPin class="text-primary-accent size-5" />
-        <span class="text-foreground font-medium">{address}</span>
-      </div>
-    )
-  }
+  <div
+    class="bg-muted/50 mt-8 flex flex-wrap items-center justify-center gap-2 rounded-xl border px-6 py-4 text-center"
+  >
+    <IconMapPin class="text-primary-accent size-5" />
+    <span class="text-foreground font-medium">{address}</span>
+  </div>
 </section>
 
 <script>

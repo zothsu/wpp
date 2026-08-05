@@ -1,7 +1,7 @@
 ---
 import Accordion, { type AccordionItem } from "../components/Accordion.astro";
 import Background4 from "../components/starwind-pro/background-04/Background4.astro";
-import Contact3, { type ServiceOption } from "../components/starwind-pro/contact-03/Contact3.astro";
+import FormTourRequest, { type ServiceOption } from "../components/form-tourRequest.astro";
 import Faq1, { type FaqItem } from "../components/starwind-pro/faq-01/Faq1.astro";
 import AboutLayout from "../layouts/AboutLayout.astro";
 import { Button } from "@/components/starwind/button";
@@ -198,7 +198,7 @@ const tourMapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(tou
 				</div>
 			</div>
 
-			<Contact3
+			<FormTourRequest
 				badge="Schedule a Tour"
 				heading="Schedule a Tour"
 				description="Let us know a bit about your family and we'll reach out to set up a time to show you around."
