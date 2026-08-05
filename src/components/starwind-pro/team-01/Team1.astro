@@ -60,9 +60,11 @@ const {
       >
         {heading}
       </h2>
-      <p class="text-muted-foreground mx-auto max-w-2xl text-pretty @2xl:text-lg">
-        {description}
-      </p>
+      {description && (
+        <p class="text-muted-foreground mx-auto max-w-2xl text-pretty @2xl:text-lg">
+          {description}
+        </p>
+      )}
     </div>
 
     <!-- Team Grid -->
