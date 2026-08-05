@@ -41,29 +41,31 @@ const programs: Program[] = [
     </p>
   </div>
 
-  <div class="mt-12 grid gap-6 @xl:grid-cols-3">
+  <ul class="mt-12 grid gap-6 @xl:grid-cols-3">
     {
       programs.map((program) => (
-        <a
-          href={program.href}
-          class="group relative block aspect-3/4 overflow-hidden rounded-2xl"
-        >
-          <Image
-            src={program.image}
-            alt={program.title}
-            width={800}
-            height={1067}
-            class="size-full object-cover"
-          />
-          <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-          <div class="absolute inset-x-0 bottom-0 p-6">
-            <p class="text-sm font-medium text-white/70">{program.tagline}</p>
-            <h3 class="mt-2 text-xl font-semibold text-white">
-              {program.title}
-            </h3>
-          </div>
-        </a>
+        <li>
+          <a
+            href={program.href}
+            class="group relative block aspect-3/4 overflow-hidden rounded-2xl"
+          >
+            <Image
+              src={program.image}
+              alt={program.title}
+              width={800}
+              height={1067}
+              class="size-full object-cover"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+            <div class="absolute inset-x-0 bottom-0 p-6">
+              <p class="text-sm font-medium text-white/70">{program.tagline}</p>
+              <h3 class="mt-2 text-xl font-semibold text-white">
+                {program.title}
+              </h3>
+            </div>
+          </a>
+        </li>
       ))
     }
-  </div>
+  </ul>
 </section>
