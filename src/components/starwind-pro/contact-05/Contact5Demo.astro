@@ -1,0 +1,18 @@
+---
+import Contact5, { type BusinessHours } from "./Contact5.astro";
+
+const businessHours: BusinessHours[] = [
+  { day: "Monday - Friday", hours: "7:00 AM - 6:00 PM" },
+  { day: "Saturday", hours: "8:00 AM - 4:00 PM" },
+  { day: "Sunday", hours: "Closed", closed: true },
+];
+---
+
+<Contact5
+  heading="Ready to Get Started?"
+  description="Whether you need routine maintenance or emergency repairs, our licensed technicians are here to help."
+  phone="(555) 789-0123"
+  email="service@premiumhvac.com"
+  businessHours={businessHours}
+  emergencyText="24/7 Emergency Service - Call Anytime"
+/>

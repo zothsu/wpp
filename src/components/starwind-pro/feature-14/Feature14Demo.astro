@@ -1,0 +1,53 @@
+---
+import Feature14, { type TimelineStep } from "./Feature14.astro";
+
+const steps: TimelineStep[] = [
+  {
+    number: "01",
+    badge: "Setup",
+    title: "Initialize your project",
+    description:
+      "Get started in seconds with our CLI tool. Choose from pre-configured templates or start from scratch with a minimal setup.",
+    features: [
+      "One-command initialization",
+      "Pre-built templates",
+      "Automatic dependency management",
+    ],
+  },
+  {
+    number: "02",
+    badge: "Build",
+    title: "Develop with confidence",
+    description:
+      "Build your application using modern tools and best practices. Hot reload, TypeScript support, and comprehensive error messages keep you productive.",
+    features: [
+      "Hot module replacement",
+      "TypeScript & JSX support",
+      "Built-in linting and formatting",
+    ],
+  },
+  {
+    number: "03",
+    badge: "Test",
+    title: "Ensure quality",
+    description:
+      "Run automated tests, check accessibility, and validate performance. Catch issues before they reach production.",
+    features: ["Unit & integration testing", "Accessibility audits", "Performance benchmarks"],
+  },
+  {
+    number: "04",
+    badge: "Deploy",
+    title: "Ship to production",
+    description:
+      "Deploy with a single command. Automatic optimization, edge caching, and zero-downtime updates ensure a smooth launch.",
+    features: ["One-click deployment", "Automatic optimization", "Global CDN distribution"],
+  },
+];
+---
+
+<Feature14
+  tagline="How It Works"
+  heading="From idea to production in four simple steps"
+  description="Our streamlined workflow helps you move faster without sacrificing quality. Follow these steps to bring your vision to life."
+  steps={steps}
+/>

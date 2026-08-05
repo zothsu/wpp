@@ -17,6 +17,8 @@ export const button = tv({
         "bg-secondary text-secondary-foreground hover:bg-secondary/90 focus-visible:ring-secondary/50",
       outline:
         "dark:border-input focus-visible:ring-outline/50 bg-background dark:bg-input/30 focus-visible:border-outline hover:bg-muted dark:hover:bg-input/50 hover:text-foreground border shadow-xs",
+      accent:
+        "border-primary-accent/60 bg-primary-accent/10 hover:bg-primary-accent/20 focus-visible:ring-primary-accent/50 border",
       ghost: "hover:bg-muted hover:text-foreground focus-visible:ring-outline/50",
       info: "bg-info text-info-foreground hover:bg-info/90 focus-visible:ring-info/50",
       success:

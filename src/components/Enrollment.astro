@@ -1,0 +1,48 @@
+---
+import Feature14, { type TimelineStep } from "./starwind-pro/feature-14/Feature14.astro";
+import StillHaveQuestions from "./forms-questionGeneral.astro";
+
+const steps: TimelineStep[] = [
+	{
+		number: "01",
+		badge: "Learn",
+		title: 'Read About "Our Approach"',
+		href: "/our-approach",
+		description:
+			"It's important to feel comfortable with where your child is receiving care and the kind of care they get.",
+		features: ["Food", "Outside time", "Emotionally cognizant care"],
+	},
+	{
+		number: "02",
+		badge: "Tour",
+		title: "Schedule a Tour",
+		description:
+			"Come visit us and see if we resonate with what you have in mind for your child's care.",
+		features: [
+			"Group tours held in early spring (April)",
+			"Meet our teachers, and we'll meet your child too",
+			"See the classrooms and yard",
+		],
+	},
+	{
+		number: "03",
+		badge: "Enroll",
+		title: "Submit Your Application",
+		description:
+			"After the tour, you'll be given the URL for our application. Submit it, and you're enrolled!",
+		features: [
+			"Application link shared after your tour",
+			"A $500 deposit holds your slot",
+			"Enrolled based on age as of September 1st",
+		],
+	},
+];
+---
+
+<Feature14
+	tagline="How to Enroll"
+	heading="3 Steps to Enroll at Wild Pear"
+	description="From getting to know us to your child's first day of care, here's what the enrollment process looks like."
+	steps={steps}
+/>
+<StillHaveQuestions />

@@ -11,8 +11,8 @@
   --card-foreground: var(--color-neutral-950);
   --popover: var(--color-white);
   --popover-foreground: var(--color-neutral-950);
-  --primary: #3f6edb;
-  --primary-foreground: var(--color-neutral-50);
+  --primary: var(--color-orange-400);
+  --primary-foreground: var(--color-neutral-950);
   --primary-accent: var(--color-orange-400);
   --secondary: var(--color-neutral-200);
   --secondary-foreground: var(--color-neutral-950);
@@ -55,8 +55,8 @@
   --card-foreground: var(--color-orange-50);
   --popover: var(--color-neutral-900);
   --popover-foreground: var(--color-neutral-50);
-  --primary: var(--color-lime-900);
-  --primary-foreground: var(--color-neutral-50);
+  --primary: var(--color-orange-400);
+  --primary-foreground: var(--color-neutral-950);
   --primary-accent: var(--color-orange-400);
   --secondary: var(--color-neutral-800);
   --secondary-foreground: var(--color-neutral-50);

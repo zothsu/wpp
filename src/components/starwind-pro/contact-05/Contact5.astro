@@ -1,0 +1,268 @@
+---
+import IconCalendar from "@tabler/icons/outline/calendar.svg";
+import IconClock from "@tabler/icons/outline/clock.svg";
+import IconMail from "@tabler/icons/outline/mail.svg";
+import IconPhone from "@tabler/icons/outline/phone.svg";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+import { Input } from "@/components/starwind/input";
+import { Label } from "@/components/starwind/label";
+import { RadioGroup, RadioGroupItem } from "@/components/starwind/radio-group";
+import { Textarea } from "@/components/starwind/textarea";
+
+/** Business hours for a day */
+export interface BusinessHours {
+  day: string;
+  hours: string;
+  closed?: boolean;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Section heading */
+  heading?: string;
+  /** Section description */
+  description?: string;
+  /** Business phone */
+  phone?: string;
+  /** Business email */
+  email?: string;
+  /** Business hours */
+  businessHours?: BusinessHours[];
+  /** Emergency availability text */
+  emergencyText?: string;
+}
+
+const sectionStyles = tv({
+  base: "@container mx-auto w-full max-w-7xl px-4 py-24",
+});
+
+const {
+  heading = "Contact Our Team",
+  description = "We're ready to help with your project. Reach out today.",
+  phone = "(555) 123-4567",
+  email = "contact@business.com",
+  businessHours = [],
+  emergencyText = "24/7 Emergency Service Available",
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={sectionStyles({ class: className })} {...rest}>
+  <div class="overflow-hidden rounded-3xl border">
+    <div class="grid @3xl:grid-cols-5">
+      <!-- Left Column - Dark Info Panel -->
+      <div class="bg-foreground text-background p-8 @xl:p-10 @3xl:col-span-2 @3xl:p-12">
+        <h2 class="font-heading text-2xl font-bold tracking-tight @xl:text-3xl">
+          {heading}
+        </h2>
+        <p class="text-background/70 mt-3 text-pretty">
+          {description}
+        </p>
+
+        <!-- Contact Methods -->
+        <div class="mt-10 space-y-6">
+          <a
+            href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
+            class="hover:bg-background/10 flex items-center gap-4 rounded-xl p-3 transition-colors"
+          >
+            <div class="bg-background/10 flex size-12 items-center justify-center rounded-xl">
+              <IconPhone class="size-5" />
+            </div>
+            <div>
+              <p class="text-background/60 text-sm">Call Us</p>
+              <p class="font-semibold">{phone}</p>
+            </div>
+          </a>
+
+          <a
+            href={`mailto:${email}`}
+            class="hover:bg-background/10 flex items-center gap-4 rounded-xl p-3 transition-colors"
+          >
+            <div class="bg-background/10 flex size-12 items-center justify-center rounded-xl">
+              <IconMail class="size-5" />
+            </div>
+            <div>
+              <p class="text-background/60 text-sm">Email Us</p>
+              <p class="font-semibold">{email}</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Business Hours -->
+        {
+          businessHours.length > 0 && (
+            <div class="mt-10">
+              <div class="mb-4 flex items-center gap-2">
+                <IconClock class="text-background/60 size-5" />
+                <h3 class="font-semibold">Business Hours</h3>
+              </div>
+              <div class="flex flex-col gap-1">
+                {businessHours.map((item) => (
+                  <div class="flex justify-between text-sm">
+                    <span class="text-background/70">{item.day}</span>
+                    <span class:list={[item.closed ? "text-background/40" : ""]}>
+                      {item.closed ? "Closed" : item.hours}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        <!-- Emergency Banner -->
+        {
+          emergencyText && (
+            <div class="mt-10 flex items-center gap-3 rounded-xl bg-green-300/20 p-4 text-green-200 dark:text-green-950">
+              <IconCalendar class="size-5 shrink-0" />
+              <span class="text-sm font-medium">{emergencyText}</span>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Right Column - Form -->
+      <div class="bg-background p-8 @xl:p-10 @3xl:col-span-3 @3xl:p-12">
+        <h3 class="font-heading text-foreground mb-6 text-xl font-semibold">Send Us a Message</h3>
+
+        <form class="@container/form space-y-5" id="contact-form-05" name="contact-form">
+          <div class="grid gap-5 @md/form:grid-cols-2">
+            <div class="flex flex-col gap-1">
+              <Label for="contact-name-05">Full Name</Label>
+              <Input id="contact-name-05" name="name" type="text" placeholder="John Doe" required />
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="contact-phone-05">Phone Number</Label>
+              <Input
+                id="contact-phone-05"
+                name="phone"
+                type="tel"
+                placeholder="(555) 123-4567"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-email-05">Email Address</Label>
+            <Input
+              id="contact-email-05"
+              name="email"
+              type="email"
+              placeholder="john@example.com"
+              required
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <Label>Preferred Contact Method</Label>
+            <RadioGroup
+              name="contactMethod"
+              defaultValue="phone"
+              orientation="horizontal"
+              legend="Preferred contact method"
+              class="flex flex-wrap gap-4"
+            >
+              <div class="flex items-center gap-2">
+                <RadioGroupItem id="contact-method-phone-05" value="phone" name="contactMethod" />
+                <Label for="contact-method-phone-05" class="cursor-pointer font-normal">
+                  Phone
+                </Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <RadioGroupItem id="contact-method-email-05" value="email" name="contactMethod" />
+                <Label for="contact-method-email-05" class="cursor-pointer font-normal">
+                  Email
+                </Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <RadioGroupItem id="contact-method-text-05" value="text" name="contactMethod" />
+                <Label for="contact-method-text-05" class="cursor-pointer font-normal">
+                  Text Message
+                </Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <Label>Best Time to Reach You</Label>
+            <RadioGroup
+              name="bestTime"
+              defaultValue="anytime"
+              orientation="horizontal"
+              legend="Best time to reach you"
+              class="flex flex-wrap gap-4"
+            >
+              <div class="flex items-center gap-2">
+                <RadioGroupItem id="contact-time-morning-05" value="morning" name="bestTime" />
+                <Label for="contact-time-morning-05" class="cursor-pointer font-normal">
+                  Morning
+                </Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <RadioGroupItem id="contact-time-afternoon-05" value="afternoon" name="bestTime" />
+                <Label for="contact-time-afternoon-05" class="cursor-pointer font-normal">
+                  Afternoon
+                </Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <RadioGroupItem id="contact-time-evening-05" value="evening" name="bestTime" />
+                <Label for="contact-time-evening-05" class="cursor-pointer font-normal">
+                  Evening
+                </Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <RadioGroupItem id="contact-time-anytime-05" value="anytime" name="bestTime" />
+                <Label for="contact-time-anytime-05" class="cursor-pointer font-normal">
+                  Anytime
+                </Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-message-05">How Can We Help?</Label>
+            <Textarea
+              id="contact-message-05"
+              name="message"
+              placeholder="Describe your project or question..."
+              rows={4}
+              required
+            />
+          </div>
+
+          <Button variant="primary" type="submit" class="w-full"> Send Message </Button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function handleFormSubmit() {
+    const form = document.querySelector("#contact-form-05") as HTMLFormElement;
+
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const formValues = Object.fromEntries(formData.entries());
+
+        // demo form data logging
+        console.log("Contact form:", formValues);
+
+        // You can add additional logic here like:
+        // - Form validation
+        // - API submission
+        // - Success/error handling
+      });
+    }
+  }
+
+  handleFormSubmit();
+
+  document.addEventListener("astro:after-swap", handleFormSubmit);
+</script>

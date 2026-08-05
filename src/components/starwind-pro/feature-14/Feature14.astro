@@ -1,0 +1,160 @@
+---
+import IconCheck from "@tabler/icons/outline/check.svg";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Badge } from "@/components/starwind/badge";
+
+export interface TimelineStep {
+  number: string;
+  badge: string;
+  title: string;
+  /** Optional href - when set, the title becomes a link */
+  href?: string;
+  description: string;
+  features: string[];
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Section tagline */
+  tagline?: string;
+  /** Section heading */
+  heading?: string;
+  /** Section description */
+  description?: string;
+  /** Array of timeline steps */
+  steps?: TimelineStep[];
+}
+
+const feature14Styles = tv({
+  base: "@container mx-auto w-full max-w-5xl px-4 py-24",
+});
+
+const {
+  tagline = "How It Works",
+  heading = "From idea to production in four simple steps",
+  description = "Our streamlined workflow helps you move faster without sacrificing quality. Follow these steps to bring your vision to life.",
+  steps = [
+    {
+      number: "01",
+      badge: "Setup",
+      title: "Initialize your project",
+      description:
+        "Get started in seconds with our CLI tool. Choose from pre-configured templates or start from scratch with a minimal setup.",
+      features: [
+        "One-command initialization",
+        "Pre-built templates",
+        "Automatic dependency management",
+      ],
+    },
+    {
+      number: "02",
+      badge: "Build",
+      title: "Develop with confidence",
+      description:
+        "Build your application using modern tools and best practices. Hot reload, TypeScript support, and comprehensive error messages keep you productive.",
+      features: [
+        "Hot module replacement",
+        "TypeScript & JSX support",
+        "Built-in linting and formatting",
+      ],
+    },
+    {
+      number: "03",
+      badge: "Test",
+      title: "Ensure quality",
+      description:
+        "Run automated tests, check accessibility, and validate performance. Catch issues before they reach production.",
+      features: ["Unit & integration testing", "Accessibility audits", "Performance benchmarks"],
+    },
+    {
+      number: "04",
+      badge: "Deploy",
+      title: "Ship to production",
+      description:
+        "Deploy with a single command. Automatic optimization, edge caching, and zero-downtime updates ensure a smooth launch.",
+      features: ["One-click deployment", "Automatic optimization", "Global CDN distribution"],
+    },
+  ],
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={feature14Styles({ class: className })} {...rest}>
+  <div class="mb-20 text-center">
+    <div class="mb-6 flex justify-center">
+      <Badge size="lg" class="bg-primary-accent/10 text-primary-accent text-sm @2xl:text-base">
+        {tagline}
+      </Badge>
+    </div>
+    <h2 class="font-heading mb-4 text-3xl font-semibold tracking-tight @xl:text-4xl @3xl:text-5xl">
+      {heading}
+    </h2>
+    <p class="text-muted-foreground mx-auto max-w-2xl text-pretty @lg:text-lg">
+      {description}
+    </p>
+  </div>
+
+  <div class="relative">
+    {/* Progress Line */}
+    <div
+      class="bg-border absolute top-8 left-6 h-full w-px @lg:left-1/2 @lg:-translate-x-1/2"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="space-y-12 @lg:space-y-16">
+      {
+        steps.map((step, index) => {
+          const isLeft = index % 2 === 0;
+          return (
+            <div class:list={["relative @lg:grid @lg:grid-cols-2 @lg:gap-12"]}>
+              {/* Number Badge - alternates sides on large screens */}
+              <div
+                class:list={[
+                  "bg-background border-border absolute top-0 left-0 flex size-12 items-center justify-center rounded-full border-2 @lg:left-1/2 @lg:-translate-x-1/2",
+                ]}
+              >
+                <span class="text-muted-foreground text-base font-bold">{step.number}</span>
+              </div>
+
+              {/* Content - alternates sides on large screens */}
+              <div
+                class:list={[
+                  "ml-20 @lg:ml-0",
+                  { "@lg:col-start-1 @lg:pr-12": isLeft },
+                  { "@lg:col-start-2 @lg:pl-12": !isLeft },
+                ]}
+              >
+                <Badge variant="outline" class="mt-3 mb-3">
+                  {step.badge}
+                </Badge>
+                <h3 class="font-heading mb-3 text-xl font-semibold @lg:text-2xl">
+                  {step.href ? (
+                    <a href={step.href} class="hover:text-primary-accent underline-offset-4 hover:underline">
+                      {step.title}
+                    </a>
+                  ) : (
+                    step.title
+                  )}
+                </h3>
+                <p class="text-muted-foreground mb-4 text-sm leading-relaxed">{step.description}</p>
+                <ul class="space-y-2">
+                  {step.features.map((feature) => (
+                    <li class="flex items-center gap-2">
+                      <div class="bg-primary-accent/10 flex size-4 shrink-0 items-center justify-center rounded-full">
+                        <IconCheck class="text-primary-accent size-3" aria-hidden="true" />
+                      </div>
+                      <span class="text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

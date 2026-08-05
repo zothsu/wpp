@@ -99,11 +99,7 @@ const {
         <Button href={primaryButtonHref}>{primaryButtonText}</Button>
         {
           secondaryButtonText && (
-            <Button
-              variant="outline"
-              href={secondaryButtonHref}
-              class="border-orange-400/60 bg-orange-400/10 hover:bg-orange-400/20 dark:border-orange-400/60 dark:bg-orange-400/10 dark:hover:bg-orange-400/20"
-            >
+            <Button variant="accent" href={secondaryButtonHref}>
               {secondaryButtonText}
             </Button>
           )

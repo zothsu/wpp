@@ -63,6 +63,14 @@
     {
       "name": "select",
       "version": "1.9.0"
+    },
+    {
+      "name": "badge",
+      "version": "1.4.3"
+    },
+    {
+      "name": "radio-group",
+      "version": "1.2.6"
     }
   ]
 }
