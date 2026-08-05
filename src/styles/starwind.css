@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource/patrick-hand";
+@import "@fontsource/gochi-hand";
 @plugin "@tailwindcss/forms";
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -34,7 +34,7 @@
   --outline: var(--color-neutral-400);
   --radius: 0.625rem;
   --spacing: 0.25rem;
-  --font-heading: "Patrick Hand", var(--font-sans);
+  --font-heading: "Gochi Hand", var(--font-sans);
   --font-mono: "JetBrains Mono Variable", monospace;
 
   /* sidebar variables */
