@@ -8,6 +8,10 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Styling
+
+Prefer changing global styles (e.g. CSS variables in `src/styles/starwind.css`, theme tokens) over hardcoding one-off style changes to individual elements/components. If a change should apply broadly, fix it at the source rather than patching each usage.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
