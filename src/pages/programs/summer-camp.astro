@@ -1,0 +1,76 @@
+---
+import Accordion, { type AccordionItem } from "../../components/Accordion.astro";
+import AboutLayout from "../../layouts/AboutLayout.astro";
+import ScheduleTour from "../../components/ScheduleTour.astro";
+
+const sections: AccordionItem[] = [
+	{
+		title: "Cost & Schedule",
+		content: [
+			{
+				type: "list",
+				items: [
+					"Each week costs $350 and runs Monday-Friday, 8:30-3:00, with the exception of closures on July 3rd and July 10th.",
+					"Free, flexible drop-off starts at 7:30 each morning, and a free morning snack is provided every day.",
+					"Optional aftercare is available from 3:00-5:00 every day camp is open, and includes an afternoon snack. Aftercare costs $175 per week, or $50 for a single afternoon.",
+					"Families wishing to use DHS/ERDC will need to pay for camp at the time of reservation; we will reimburse you after DHS pays us.",
+				],
+			},
+		],
+	},
+	{
+		title: "Cancellation Policy",
+		content: [
+			{
+				type: "p",
+				text: "We understand that sometimes plans change. You can cancel your camp enrollment for a full refund before May 1st. After that, you can cancel 6 weeks before camp for a 50% refund. We are unable to offer refunds for cancellations made less than 6 weeks before the start date, due to staffing commitments.",
+			},
+		],
+	},
+	{
+		title: "What to Expect",
+		content: [
+			{
+				type: "p",
+				text: "Camps will be offered for nine weeks this summer. Each week, children will be outside all day and will have abundant opportunities to choose their own adventures: arts and crafts, building and tinkering, games and puzzles, gardening and food projects, sports and water play, and just enjoying being a kid outside in the summer. Each week also has its own theme, giving us a chance for some exciting, focused exploration of a particular topic.",
+			},
+		],
+	},
+	{
+		title: "Registration",
+		content: [
+			{
+				type: "p",
+				text: "Summer 2026 School Age Camp registration opens March 1st. Each camp's sign-up page, along with the School Age Summer Camp Handbook and enrollment form, will be linked here once registration is live.",
+			},
+			{
+				type: "p",
+				text: "Please note: the \"Younger Sibling Camp\" and \"Junior Camp Counselor\" programs are only available to currently enrolled Wild Pear children (siblings) or Wild Pear alumni (counselors). Both the School Age K/1 and 2-5 sign-ups are open to everyone: current families, alumni, and new friends!",
+			},
+		],
+	},
+];
+---
+
+<AboutLayout title="School Age Summer Camp | Wild Pear Preschool & Summer Camp">
+	<section class="mx-auto max-w-3xl px-4 py-16">
+		<span class="text-primary-accent text-sm font-semibold tracking-widest uppercase">
+			Ages 6-18
+		</span>
+		<h1 class="mt-3 text-4xl font-semibold">School Age Summer Camp</h1>
+		<div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+			<p>
+				Are you looking for fun, safe, outdoor camp-style care for your child? Wild Pear is
+				thrilled to offer weekly science, art, and nature-based camps throughout the summer. Kids
+				have plenty of time to play and enjoy their days while also diving into hands-on
+				exploration of a variety of exciting topics.
+			</p>
+		</div>
+
+		<div class="mt-8">
+			<Accordion items={sections} defaultValue="item-1" />
+		</div>
+	</section>
+
+	<ScheduleTour />
+</AboutLayout>

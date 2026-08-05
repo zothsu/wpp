@@ -1,5 +1,4 @@
 ---
-import IconArrowRight from "@tabler/icons/outline/arrow-right.svg";
 import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
 
@@ -121,15 +120,15 @@ const {
         }
 
         <div class="mt-8 flex flex-col gap-4 @md:flex-row @md:items-center">
-          <Button href={primaryButtonHref} variant="primary" class="group">
-            {primaryButtonText}
-            <IconArrowRight class="transition-transform group-hover:translate-x-1" />
-          </Button>
+          <Button href={primaryButtonHref}>{primaryButtonText}</Button>
           {
             secondaryLinkText && (
-              <Button href={secondaryLinkHref} variant="ghost" class="group">
+              <Button
+                variant="outline"
+                href={secondaryLinkHref}
+                class="border-orange-400/60 bg-orange-400/10 hover:bg-orange-400/20 dark:border-orange-400/60 dark:bg-orange-400/10 dark:hover:bg-orange-400/20"
+              >
                 {secondaryLinkText}
-                <IconArrowRight class="transition-transform group-hover:translate-x-1" />
               </Button>
             )
           }
