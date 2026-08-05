@@ -1,0 +1,29 @@
+---
+import AboutLayout from "../layouts/AboutLayout.astro";
+import Team1, { type TeamMember } from "../components/starwind-pro/team-01/Team1.astro";
+
+const members: TeamMember[] = [
+	{
+		name: "Jeanise Suihkonen",
+		role: "Director",
+		bio: "Associate's Degree in Early Education and a Master Trainer for OCCD, with certifications in Infant and Child First Aid/CPR and a Food Handler's License.",
+		image: "/images/jeanie.png",
+		socials: [],
+	},
+	{
+		name: "Susan Nasiombe",
+		role: "Director",
+		bio: "Bachelor's Degree in Elementary Education and a Master's Degree in Education, Leadership and Management with a focus on Social Justice Education, with certifications in Infant and Child First Aid/CPR and a Food Handler's License.",
+		image: "/images/susan.png",
+		socials: [],
+	},
+];
+---
+
+<AboutLayout title="Who We Are | Wild Pear Preschool & Summer Camp">
+	<Team1
+		heading="Who We Are"
+		description="Wild Pear is led by two educators who bring their combined experience in early education, leadership, and social justice to every part of our program."
+		members={members}
+	/>
+</AboutLayout>

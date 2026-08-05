@@ -1,0 +1,131 @@
+---
+/**
+ * Legal Page 2 - Sidebar TOC
+ *
+ * A legal page with a sticky table of contents sidebar, ideal for long documents.
+ *
+ * Usage:
+ * 1. Use the starwind cli to add this component: `npx starwind@latest add @starwind-pro/legal-page-02`
+ * 2. Import the `LegalPage2` component and pass your page data + slot content
+ *
+ * Props:
+ * - title: string (required)
+ * - description: string (required)
+ * - pubDate: string (required)
+ * - updatedDate?: string
+ * - <slot /> for rendered content
+ */
+import LegalPage2 from "./LegalPage2.astro";
+---
+
+<div class="h-[80vh] w-full overflow-y-auto">
+  <LegalPage2
+    title="Terms of Service"
+    description="Please read these Terms of Service carefully before using our platform. By accessing or using our services, you agree to be bound by these terms."
+    pubDate="Jan 1, 2026"
+    updatedDate="Feb 5, 2026"
+  >
+    <h2>Acceptance of Terms</h2>
+    <p>
+      By accessing and using this service, you accept and agree to be bound by the terms and
+      provisions of this agreement. If you do not agree to abide by these terms, please do not use
+      this service.
+    </p>
+
+    <h2>Description of Service</h2>
+    <p>
+      We provide a web-based platform that enables users to access pre-built UI components and
+      blocks for their web development projects. The service includes component libraries,
+      documentation, and related tools.
+    </p>
+
+    <h3>Service Availability</h3>
+    <p>
+      We strive to maintain 99.9% uptime but do not guarantee uninterrupted access. We may
+      temporarily suspend the service for maintenance, updates, or other operational needs.
+    </p>
+
+    <h2>User Accounts</h2>
+    <p>
+      To access certain features of the service, you must register for an account. You agree to
+      provide accurate, current, and complete information during the registration process and to
+      update such information to keep it accurate, current, and complete.
+    </p>
+    <p>
+      You are responsible for safeguarding the password you use to access the service and for any
+      activities or actions under your password. You must notify us immediately upon becoming aware
+      of any breach of security or unauthorized use of your account.
+    </p>
+
+    <h2>License and Usage Rights</h2>
+    <p>
+      Subject to your compliance with these Terms, we grant you a limited, non-exclusive,
+      non-transferable license to use the components and blocks provided through the service in your
+      own projects.
+    </p>
+    <ul>
+      <li>You may use components in unlimited personal and commercial projects</li>
+      <li>You may modify the source code to suit your project needs</li>
+      <li>You may not redistribute the components as a standalone library or template</li>
+      <li>You may not share your account credentials with others</li>
+    </ul>
+
+    <h3>Restrictions</h3>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Resell, redistribute, or sublicense the components as a competing product</li>
+      <li>Remove or alter any proprietary notices or labels on the components</li>
+      <li>Use the service for any unlawful purpose</li>
+      <li>Attempt to reverse engineer or extract source code beyond what is provided</li>
+    </ul>
+
+    <h2>Payment Terms</h2>
+    <p>
+      Certain features of the service require payment. All fees are non-refundable except as
+      required by law or as explicitly stated in our Refund Policy. Prices are subject to change
+      with reasonable notice.
+    </p>
+
+    <h2>Intellectual Property</h2>
+    <p>
+      The service and its original content, features, and functionality are and will remain the
+      exclusive property of the company. The service is protected by copyright, trademark, and other
+      laws. Our trademarks may not be used without prior written consent.
+    </p>
+
+    <h2>Limitation of Liability</h2>
+    <p>
+      In no event shall the company, its directors, employees, partners, agents, suppliers, or
+      affiliates be liable for any indirect, incidental, special, consequential, or punitive
+      damages, including without limitation, loss of profits, data, use, goodwill, or other
+      intangible losses.
+    </p>
+
+    <h2>Termination</h2>
+    <p>
+      We may terminate or suspend your account immediately, without prior notice or liability, for
+      any reason whatsoever, including without limitation if you breach these Terms. Upon
+      termination, your right to use the service will immediately cease.
+    </p>
+
+    <h2>Governing Law</h2>
+    <p>
+      These Terms shall be governed and construed in accordance with the laws of the jurisdiction in
+      which the company is established, without regard to its conflict of law provisions.
+    </p>
+
+    <h2>Changes to Terms</h2>
+    <p>
+      We reserve the right to modify or replace these Terms at any time. If a revision is material,
+      we will try to provide at least 30 days notice prior to any new terms taking effect. What
+      constitutes a material change will be determined at our sole discretion.
+    </p>
+
+    <h2>Contact Information</h2>
+    <p>
+      If you have any questions about these Terms, please contact us at <a
+        href="mailto:legal@example.com">legal@example.com</a
+      >.
+    </p>
+  </LegalPage2>
+</div>

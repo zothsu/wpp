@@ -1,0 +1,103 @@
+---
+import Background9 from "../components/starwind-pro/background-09/Background9.astro";
+import Contact3, { type ServiceOption } from "../components/starwind-pro/contact-03/Contact3.astro";
+import AboutLayout from "../layouts/AboutLayout.astro";
+import { Image } from "@/components/starwind/image";
+
+interface Program {
+	image: string;
+	title: string;
+	tagline: string;
+	href: string;
+}
+
+const programInterestOptions: ServiceOption[] = [
+	{ value: "infant-toddler", label: "Infant/Toddler" },
+	{ value: "preschool", label: "Preschool" },
+	{ value: "summer-camp", label: "School Age Summer Camp" },
+	{ value: "no-program", label: "No Program / Not Sure Yet" },
+];
+
+const tourAddress = "9411 SE Wichita Ave, Portland, OR";
+const tourMapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(tourAddress)}&output=embed`;
+
+const programs: Program[] = [
+	{
+		image: "/images/todler.jpg",
+		title: "Infant/Toddler",
+		tagline: "Ages 0–2",
+		href: "/programs/infant-toddler",
+	},
+	{
+		image: "/images/kristin-brown-3kBtYrZ0-hw-unsplash.jpg",
+		title: "Preschool",
+		tagline: "Ages 3–5",
+		href: "/programs/preschool",
+	},
+	{
+		image: "/images/alexandr-podvalny-bh476ojZw2g-unsplash.jpg",
+		title: "School Age Summer Camp",
+		tagline: "Ages 6+",
+		href: "/programs/summer-camp",
+	},
+];
+---
+
+<AboutLayout title="Learn About Us | Wild Pear Preschool & Summer Camp">
+	<div class="relative">
+		<Background9 colorScheme="forest" />
+
+		<section class="@container relative z-10 mx-auto max-w-6xl px-4 py-24">
+			<div class="max-w-2xl">
+				<span class="text-primary-accent text-sm font-semibold tracking-widest uppercase">
+					Our Programs
+				</span>
+				<h2 class="font-heading mt-3 text-3xl font-semibold tracking-tight @xl:text-4xl">
+					Our Programs
+				</h2>
+				<p class="text-muted-foreground mt-4 text-pretty @xl:text-lg">
+					From infants through school age, every program at Wild Pear is rooted in outdoor
+					exploration and hands-on discovery.
+				</p>
+			</div>
+
+			<div class="mt-12 grid gap-6 @xl:grid-cols-3">
+				{
+					programs.map((program) => (
+						<a
+							href={program.href}
+							class="group relative block aspect-3/4 overflow-hidden rounded-2xl"
+						>
+							<Image
+								src={program.image}
+								alt={program.title}
+								width={800}
+								height={1067}
+								class="size-full object-cover"
+							/>
+							<div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+							<div class="absolute inset-x-0 bottom-0 p-6">
+								<p class="text-sm font-medium text-white/70">{program.tagline}</p>
+								<h3 class="font-heading mt-2 text-xl font-semibold text-white">{program.title}</h3>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="relative z-10 pb-16">
+			<Contact3
+				badge="Schedule a Tour"
+				heading="Schedule a Tour"
+				description="Let us know a bit about your family and we'll reach out to set up a time to show you around."
+				address={tourAddress}
+				mapEmbedUrl={tourMapEmbedUrl}
+				services={programInterestOptions}
+				serviceLabel="Program(s) of Interest"
+				serviceMultiple
+				messagePlaceholder="Let us know the best time for you to come by for a tour."
+			/>
+		</section>
+	</div>
+</AboutLayout>

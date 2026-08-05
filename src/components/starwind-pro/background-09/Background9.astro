@@ -1,0 +1,116 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+type ColorScheme = "northern" | "sunset" | "ocean" | "forest";
+
+interface Props extends HTMLAttributes<"div"> {
+  /** Enable animation */
+  animated?: boolean;
+  /** Color scheme */
+  colorScheme?: ColorScheme;
+  /** Opacity of the aurora (0-1) */
+  opacity?: number;
+}
+
+const patternStyles = tv({
+  base: "pointer-events-none absolute inset-0 overflow-hidden",
+});
+
+const colorSchemes: Record<ColorScheme, { from: string; via: string; to: string }> = {
+  northern: { from: "from-emerald-500", via: "via-cyan-500", to: "to-purple-500" },
+  sunset: { from: "from-orange-500", via: "via-rose-500", to: "to-purple-600" },
+  ocean: { from: "from-blue-600", via: "via-cyan-400", to: "to-teal-500" },
+  forest: { from: "from-green-600", via: "via-emerald-400", to: "to-lime-500" },
+};
+
+const {
+  animated = true,
+  colorScheme = "northern",
+  opacity = 0.3,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const colors = colorSchemes[colorScheme];
+---
+
+<div class={patternStyles({ class: className })} aria-hidden="true" {...rest}>
+  <div
+    class:list={[
+      "absolute -top-1/2 left-0 h-full w-[200%] bg-linear-to-r blur-3xl",
+      colors.from,
+      colors.via,
+      colors.to,
+      animated && "animate-aurora-wave-1",
+    ]}
+    style={`opacity: ${opacity}`}
+  >
+  </div>
+  <div
+    class:list={[
+      "absolute top-0 left-1/4 h-full w-[150%] bg-linear-to-r blur-3xl",
+      colors.to,
+      colors.via,
+      colors.from,
+      animated && "animate-aurora-wave-2",
+    ]}
+    style={`opacity: ${opacity * 0.7}`}
+  >
+  </div>
+  <div
+    class:list={[
+      "absolute top-1/4 -left-1/4 h-full w-[180%] bg-linear-to-r blur-3xl",
+      colors.via,
+      colors.from,
+      colors.to,
+      animated && "animate-aurora-wave-3",
+    ]}
+    style={`opacity: ${opacity * 0.5}`}
+  >
+  </div>
+</div>
+
+<style>
+  @keyframes aurora-wave-1 {
+    0%,
+    100% {
+      transform: translateX(-25%) rotate(-5deg) scaleY(1);
+    }
+    50% {
+      transform: translateX(0%) rotate(5deg) scaleY(1.2);
+    }
+  }
+
+  @keyframes aurora-wave-2 {
+    0%,
+    100% {
+      transform: translateX(0%) rotate(3deg) scaleY(1.1);
+    }
+    50% {
+      transform: translateX(-20%) rotate(-3deg) scaleY(0.9);
+    }
+  }
+
+  @keyframes aurora-wave-3 {
+    0%,
+    100% {
+      transform: translateX(-10%) rotate(-2deg) scaleY(0.9);
+    }
+    50% {
+      transform: translateX(15%) rotate(4deg) scaleY(1.15);
+    }
+  }
+
+  .animate-aurora-wave-1 {
+    animation: aurora-wave-1 15s ease-in-out infinite;
+  }
+
+  .animate-aurora-wave-2 {
+    animation: aurora-wave-2 18s ease-in-out infinite;
+  }
+
+  .animate-aurora-wave-3 {
+    animation: aurora-wave-3 20s ease-in-out infinite;
+  }
+</style>

@@ -1,0 +1,214 @@
+---
+import Accordion, { type AccordionItem } from "../components/Accordion.astro";
+import Background4 from "../components/starwind-pro/background-04/Background4.astro";
+import Contact3, { type ServiceOption } from "../components/starwind-pro/contact-03/Contact3.astro";
+import Faq1, { type FaqItem } from "../components/starwind-pro/faq-01/Faq1.astro";
+import AboutLayout from "../layouts/AboutLayout.astro";
+import { Button } from "@/components/starwind/button";
+
+const approachThemes: AccordionItem[] = [
+	{
+		title: "Emotional Safety and Confidence",
+		content: [
+			{
+				type: "p",
+				text: "We believe that first and foremost, young children are doing the critical work of figuring out who they are and what the world is about — and that comes with a whole bunch of feelings! Teachers help guide children to safely feel and release emotions through movement, sensory experiences, and communication. Supporting the natural development of children's emotional intelligence, we help children begin to discover the causes of emotions and gain valuable strategies to regulate themselves while riding the waves of big feelings. As children are able, we offer them more language so they are able to clearly identify, name, and communicate their feelings. We also foster the important skill of perspective taking and compassion, which can help build the brain connections needed for true empathy.",
+			},
+		],
+	},
+	{
+		title: "Ability to Clearly Communicate",
+		content: [
+			{
+				type: "p",
+				text: "Communication is one of our best tools to connect to others, and naturally children are eager to develop their skill set! We expose children to a wide variety of words and signs that can help them express their needs, emotions, and ideas, while also aiding them in understanding the needs, emotions, and ideas of others. Communication skills are useful as children are better able to understand and follow directions, report events accurately, and engage in relationship-building conversations.",
+			},
+			{
+				type: "p",
+				text: "We also want to encourage children to make use of sign language, symbols, body language, and both verbal and written words. While traditional early literacy focuses on mastery of the alphabet and phonetics, communication literacy uses a rich array of literary forms to help children connect with the art of expression and encourages them to view literacy as a tool for communication.",
+			},
+		],
+	},
+	{
+		title: "Ability to Care for Oneself",
+		content: [
+			{
+				type: "p",
+				text: "Our children live in a world that often undervalues and underestimates them. To counter this, we want to help children develop agency, assertiveness, and demonstrate active participation in their own lives. Of course, there are still many elements of their school day that will be out of their control, but with a growing capacity for self-awareness, self-advocacy, and bodily autonomy, they are better equipped to navigate the parts of their day they DO have control over. From the very earliest years, we invite children to have an active responsibility in their own feeding, diapering/toileting, resting, and dressing/gearing up for outside time. The level of confidence and capability they demonstrate when they are trusted and encouraged to take care of themselves is truly amazing.",
+			},
+		],
+	},
+	{
+		title: "Social Skills",
+		content: [
+			{
+				type: "p",
+				text: "One of the unique offerings of group care is the opportunity for children to learn and grow alongside their age mates. This creates the perfect storm for children to experiment with various social ways of being and experience the experimenting of others. Children can gain momentum in their own skill development from the positive peer pressure of other children learning the same skills around them. It is wonderful to watch children move from independent and onlooker play into side-by-side play, associative play, and eventually cooperative play! Before they can truly play with others, children need to know how to invite others to play with them and join in the play of others. Explicitly teaching children how to ask questions (\"Who can I be in your game?\") and offer ideas (\"I'm building the road, you can build the house.\") helps children find ways to join together without disrupting the flow of the play.",
+			},
+			{
+				type: "p",
+				text: "And of course, where there are people, there will be conflict. Learning to appropriately and confidently engage in conflict is a critical first step towards conflict resolution. Teachers support children through this process, ensuring physical and emotional safety and offering nudges when the process gets stuck. Neutral observations (\"You were playing with that ball and now she's holding it\") and open-ended questions (\"I wonder what her plan is?\") can often be enough to get the process back in motion.",
+			},
+			{
+				type: "p",
+				text: "Because we want children to think and advocate for themselves, this is also a perfect time to introduce children to the ideas of asking for consent and setting personal boundaries. We try to model consent through our own behaviors (asking if we can hug a child when they are having a big feeling), and by acknowledging their frustration when we are not able to honor their boundaries (\"You don't want me to wash your face, and also your face needs to be clean before you go play. That is frustrating, I hear you saying no. I'm going to gently wipe your cheeks and then your mouth, and then we'll be done.\"). We also give words to behaviors that are often used to establish boundaries (\"I see you backing up, do you want more space?\" or \"I saw her push you away, I wonder if she didn't want that hug. Try asking before you hug her.\").",
+			},
+			{
+				type: "p",
+				text: "Creating a caring community is also part of the important social work we do at school. We ask children to consider what it means to be a good friend. How do friends treat one another? We also encourage children to seek out ways to support, help, and care for one another throughout the day (\"You had all the play dough and gave some to her so she could play too? How generous, look at how happy you made her!\" or \"Did someone sitting next to you spill their milk? How kind of you to grab them a towel!\"). Finding ways to acknowledge and celebrate kindness, generosity, patience, and gentleness helps children value and emulate these behaviors as well. This also means working together to take care of our classroom, the play yards, and the materials. We call this working together in unity!",
+			},
+		],
+	},
+	{
+		title: "Executive Functioning",
+		content: [
+			{
+				type: "p",
+				text: "Research on brain development shows us that the prefrontal cortex of our brain — the part responsible for connecting our feelings, instincts, and thinking in a way that allows us to plan, make decisions, and think critically — begins to develop around age 4 and continues until our early twenties! The tricky thing about most executive functioning skills is that they often aren't intuitively developed but take hold much faster when explicitly taught and practiced. At Wild Pear, we want to allow as much opportunity and space to practice these executive functioning skills as possible, knowing that it can be an essential foundation for their continued development later on. These skills include focus and self-control, making connections, critical thinking, taking on challenges, and self-directed engaged learning.",
+			},
+		],
+	},
+	{
+		title: "Anti-Bias Mindset",
+		content: [
+			{
+				type: "p",
+				text: "There is a lot of work to do in order to dismantle the systems of injustice that exist in society. This work can begin with even the youngest children by developing an anti-bias mindset. The four goals of early anti-bias work are:",
+			},
+			{
+				type: "list",
+				items: [
+					"Each child will demonstrate self-awareness, confidence, family pride, and positive social identities.",
+					"Each child will express comfort and joy with human diversity, accurate language for human differences, and deep caring human connections.",
+					"Each child will increasingly recognize unfairness, have language to describe unfairness, and understand that unfairness hurts.",
+					"Each child will demonstrate empowerment and the skills to act, with others or alone, against prejudice and/or discriminatory actions.",
+				],
+			},
+			{
+				type: "p",
+				text: "We work towards meeting these goals in many ways, including acknowledging and celebrating the differences and similarities of individuals and families in our community, reading and discussing books that show diversity, injustice, and activism, and making sure the materials children are exposed to reflect the diversity of the world we live in. We also interrupt and challenge play and attitudes that reinforce stereotypes or hurtful social constructs.",
+			},
+		],
+	},
+	{
+		title: "Enjoyment of Being Outside",
+		content: [
+			{
+				type: "p",
+				text: "We consider ourselves to be a nature school due to our heavy focus on plants, animals, climate, the Earth's environment, and how it is all interdependent. We connect to these ideas in many ways throughout our day, and while our indoor classroom is certainly reflective of this learning, our outdoor classroom is even richer.",
+			},
+			{
+				type: "p",
+				text: "Outdoor classroom: For us, this is literally using outside space as learning space. Each day we dress for the weather and head out to play, believing in the wisdom of explorer Ranulph Fiennes, who said, \"There is no bad weather, only inappropriate clothing.\" Our incredible yard is our primary outdoor learning space. At times, our outdoor learning might be structured and specifically aligned with learning that has been happening in our indoor classroom. Most of the time, children are encouraged to discover and play at will while teachers observe their work. Outside learning is then expanded upon later in our indoor environment.",
+			},
+			{
+				type: "p",
+				text: "We take both a large- and small-scale approach to outdoor learning. Children develop a deeper understanding around very basic natural elements (such as wood, rock, fire, metal, water, sand, soil, etc.) while also marveling at the complexity and interconnectedness of living things and the environment. Children begin to find patterns as we return again and again to the ever-broadening concepts of ecosystems, food chains, natural communities, seasons, and life cycles. We also directly address the pertinent issues of environmental justice and global climate change.",
+			},
+			{
+				type: "p",
+				text: "We love to explore animal and plant life while we are outside. Our expansive greenhouse, many garden beds, laying chickens, and fruiting trees allow for year-round hands-on experience in farming and gardening.",
+			},
+		],
+	},
+];
+
+const faqs: FaqItem[] = [
+	{
+		title: "What is your approach to discipline? Do you use time-outs or punishment?",
+		content:
+			"We believe that there is no such thing as a \"bad kid\" or even \"bad behavior.\" Instead, we view all behaviors as attempts by the child to get their needs met. It's from this perspective that we are able to creatively partner with children to shift their behaviors towards actions and expressions that are safe, effective, and appropriate for a school setting. We will not ever use corporal punishment, verbal assault, shaming, guilting, coercing, threatening, or isolation in an attempt to change a child's behavior. We don't even see a need to use time-out or bribes at school.",
+	},
+	{
+		title: "How do you help a child work through big behavior challenges?",
+		content:
+			"We make sure children develop a strong understanding of the ways to express needs and feelings, and help them learn to be aware of the needs of others. We discuss the natural consequences of their chosen actions and help them develop plans to avoid unwanted reactions while reaching their desired outcomes. There are discussions and reminders daily about what kinds of behaviors are expected and appropriate for our school setting. If a child is really struggling, we may invite them to process their feelings in a safe space, away from other children or particular activities, or perhaps very close to a teacher. When the child is ready and able, we will debrief what happened and make a plan to avoid it in the future.",
+	},
+	{
+		title: "How do you handle conflicts between children?",
+		content:
+			'Teachers will be in very close proximity but will only intervene if it begins to feel physically or emotionally unsafe. Our goal will always be to allow children to fully express their feelings and needs to one another, and to collaborate in reaching a solution that works for them. We will also advocate for restorative justice, which at this level often means refraining from requiring children to apologize and instead encouraging children to ask some basic questions of one another: "Are you ok?", "What do you need to feel better?", and "Did that fix it?" In the unlikely case that a child\'s behavior is regularly unsafe and/or requires excessive amounts of teacher attention, the child\'s behavior will be closely documented and their family will be asked to become involved in helping to resolve the situation.',
+	},
+	{
+		title: "Is risky play (climbing, rough-housing, exploring) safe for my child?",
+		content:
+			"Perhaps one of the children's most savored parts of being outside at our school is the freedom and space it provides. Of course, as children run and throw, climb, jump, and rough-house, they will be experiencing risk. This element of risky play sometimes scares caregivers, but we believe that experiencing and learning to assess and navigate risk is a critical part of being in this world. So instead of attempting to eliminate risk, we seek to mitigate it through providing more information, adult support and supervision, and scaffolded experiences — while always making sure that risky experiences do not turn into hazardous or highly dangerous situations.",
+	},
+];
+
+const programInterestOptions: ServiceOption[] = [
+	{ value: "infant-toddler", label: "Infant/Toddler" },
+	{ value: "preschool", label: "Preschool" },
+	{ value: "summer-camp", label: "School Age Summer Camp" },
+	{ value: "no-program", label: "No Program / Not Sure Yet" },
+];
+
+const tourAddress = "9411 SE Wichita Ave, Portland, OR";
+const tourMapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(tourAddress)}&output=embed`;
+---
+
+<AboutLayout title="Our Approach to Learning | Wild Pear Preschool & Summer Camp">
+	<div class="relative">
+		<Background4 color1="green-600" color2="orange-500" color3="stone-600" />
+
+		<section class="relative z-10 mx-auto max-w-3xl px-4 py-16">
+			<h1 class="font-heading text-4xl font-semibold">Our Approach to Learning</h1>
+			<div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+				<p>
+					At Wild Pear, our goal is to meet children where they are at developmentally and
+					encourage them to move forward in their own unique way.
+				</p>
+				<p>
+					Providing time away from a "plugged in" life, we offer space and time for holistic,
+					multifaceted education.
+				</p>
+				<p>
+					Our curriculum is rooted in long stretches of uninterrupted play and guided by child
+					interest. We center around seven major themes which often overlap and are woven
+					together throughout our days and across our school year. Respecting children and their
+					play, we acknowledge it as real work and are honored to do our work alongside them.
+					Continue reading to learn more about our central themes.
+				</p>
+			</div>
+
+			<div class="mt-8">
+				<Accordion items={approachThemes} />
+			</div>
+		</section>
+
+		<Faq1
+			id="faq"
+			heading="Frequently Asked Questions"
+			description="Answers to the questions we hear most from Wild Pear families."
+			items={faqs}
+			class="relative z-10 max-w-3xl py-16"
+		/>
+
+		<section id="enrollment-information" class="relative z-10 pb-16">
+			<div
+				class="mx-auto flex max-w-3xl flex-col items-start gap-4 px-4 @lg:flex-row @lg:items-center"
+			>
+				<Button href="/enrollment-information" size="lg" class="shrink-0">
+					Enrollment Information
+				</Button>
+				<div class="border-primary-accent bg-muted rounded-lg border-l-4 p-4">
+					<p class="font-medium text-pretty">
+						We are currently enrolling for full time and part time slots. Schedule a tour below.
+					</p>
+				</div>
+			</div>
+
+			<Contact3
+				badge="Schedule a Tour"
+				heading="Schedule a Tour"
+				description="Let us know a bit about your family and we'll reach out to set up a time to show you around."
+				address={tourAddress}
+				mapEmbedUrl={tourMapEmbedUrl}
+				services={programInterestOptions}
+				serviceLabel="Program(s) of Interest"
+				serviceMultiple
+				messagePlaceholder="Let us know the best time for you to come by for a tour."
+			/>
+		</section>
+	</div>
+</AboutLayout>

@@ -1,0 +1,59 @@
+---
+import Navbar4, { type NavLink } from "./Navbar4.astro";
+
+const links: NavLink[] = [
+  {
+    label: "Products",
+    children: [
+      { label: "Analytics", href: "#analytics" },
+      { label: "Automation", href: "#automation" },
+      { label: "Security", href: "#security" },
+    ],
+  },
+  {
+    label: "Solutions",
+    children: [
+      { label: "Enterprise", href: "#enterprise" },
+      { label: "Startups", href: "#startups" },
+    ],
+  },
+  { label: "Pricing", href: "#pricing" },
+];
+---
+
+<!-- Scrollable container for sticky navbar demo -->
+<div
+  class="from-muted via-background to-background h-[60vh] w-full overflow-y-auto overscroll-contain bg-linear-to-br"
+>
+  <Navbar4
+    siteName="Starwind Pro"
+    links={links}
+    ctaText="Sign Up"
+    ctaHref="#sign-up"
+    secondaryText="Login"
+    secondaryHref="#login"
+  />
+
+  <!-- Demo content to demonstrate scrolling behavior -->
+  <div class="space-y-8 px-4 py-12">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="font-heading text-3xl font-bold">Navbar 4 Demo</h1>
+      <p class="text-muted-foreground mt-4 text-pretty">
+        This navbar features a left-side sheet menu for mobile and dropdowns for desktop. Scroll
+        down to see the sticky behavior.
+      </p>
+    </div>
+
+    {
+      Array.from({ length: 6 }).map((_, i) => (
+        <div class="bg-muted/50 mx-auto max-w-2xl rounded-lg p-6">
+          <h3 class="font-semibold">Section {i + 1}</h3>
+          <p class="text-muted-foreground mt-2 text-sm">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</div>

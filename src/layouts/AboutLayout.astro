@@ -1,0 +1,50 @@
+---
+import "../styles/starwind.css";
+import Navbar4, { type NavLink } from "../components/starwind-pro/navbar-04/Navbar4.astro";
+import SectionSwitcher from "../components/SectionSwitcher.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import IconPear from "../icons/pear.svg";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const links: NavLink[] = [
+	{
+		label: "Our Programs",
+		href: "/learn-about-us",
+		children: [
+			{ label: "Infant/Toddler", href: "/programs/infant-toddler" },
+			{ label: "Preschool", href: "/programs/preschool" },
+			{ label: "School Age Summer Camp", href: "/programs/summer-camp" },
+		],
+	},
+	{ label: "Our Approach", href: "/our-approach" },
+	{ label: "Who We Are", href: "/who-we-are" },
+];
+---
+
+<html lang="en" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Navbar4 siteName="Wild Pear" links={links} ctaText="Enroll Now" ctaHref="/enrolled-students">
+			<a href="/" slot="logo" class="flex items-center gap-2 text-lg font-semibold">
+				<IconPear class="size-6" />
+				Wild Pear
+			</a>
+			<SectionSwitcher current="about" id="section-switcher-desktop" slot="section-switcher" />
+			<SectionSwitcher current="about" id="section-switcher-mobile" slot="section-switcher-mobile" />
+		</Navbar4>
+		<slot />
+		<SiteFooter />
+	</body>
+</html>

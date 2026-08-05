@@ -1,0 +1,133 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Prose } from "@/components/starwind/prose";
+import { Separator } from "@/components/starwind/separator";
+
+interface Props extends HTMLAttributes<"article"> {
+  /** Legal page title */
+  title: string;
+  /** Brief description or subtitle */
+  description: string;
+  /** Publication date string */
+  pubDate: string;
+  /** Last updated date string */
+  updatedDate?: string;
+}
+
+const sectionStyles = tv({
+  base: "@container mx-auto w-full max-w-6xl px-4 py-24",
+});
+
+const { title, description, pubDate, updatedDate, class: className, ...rest } = Astro.props;
+---
+
+<article class={sectionStyles({ class: className })} {...rest}>
+  <!-- Header -->
+  <header class="max-w-3xl">
+    <h1 class="font-heading text-3xl font-bold tracking-tight @xl:text-4xl @3xl:text-5xl">
+      {title}
+    </h1>
+
+    <p class="text-muted-foreground mt-4 text-lg text-pretty">
+      {description}
+    </p>
+
+    <div class="text-muted-foreground mt-4 flex items-center gap-1.5 text-sm">
+      <span>Effective</span>
+      <time datetime={pubDate}>{pubDate}</time>
+      {
+        updatedDate && (
+          <>
+            <span>&middot;</span>
+            <span>
+              Updated <time datetime={updatedDate}>{updatedDate}</time>
+            </span>
+          </>
+        )
+      }
+    </div>
+  </header>
+
+  <Separator class="mt-8" />
+
+  <!-- Content + TOC layout -->
+  <div class="mt-10 grid gap-12 @3xl:grid-cols-[1fr_220px]">
+    <!-- Main content -->
+    <div class="min-w-0" id="legal-page-02-content">
+      <Prose class="max-w-none">
+        <slot />
+      </Prose>
+    </div>
+
+    <!-- Sticky TOC sidebar -->
+    <aside class="hidden @3xl:block">
+      <nav class="sticky top-24" aria-label="Table of contents" id="legal-page-02-toc">
+        <p class="text-sm font-semibold tracking-wide uppercase">On this page</p>
+        <ul class="mt-3 space-y-2 text-sm" id="legal-page-02-toc-list">
+          <!-- Populated by client-side script -->
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</article>
+
+<script>
+  function initLegalPage02Toc() {
+    const content = document.getElementById("legal-page-02-content");
+    const tocList = document.getElementById("legal-page-02-toc-list");
+    if (!content || !tocList) return;
+
+    // Clear existing TOC entries
+    tocList.innerHTML = "";
+
+    // Scan for headings in the prose content
+    const headings = content.querySelectorAll<HTMLHeadingElement>("h2, h3");
+    if (headings.length === 0) return;
+
+    // Ensure each heading has an ID
+    headings.forEach((heading, index) => {
+      if (!heading.id) {
+        heading.id = `legal-02-heading-${index}`;
+      }
+
+      const li = document.createElement("li");
+      if (heading.tagName === "H3") {
+        li.classList.add("pl-4");
+      }
+
+      const a = document.createElement("a");
+      a.href = `#${heading.id}`;
+      a.textContent = heading.textContent;
+      a.className =
+        "text-muted-foreground hover:text-foreground data-[active]:text-foreground transition-colors data-[active]:font-medium";
+      a.setAttribute("data-toc-link", "");
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    // Set up intersection observer for active heading tracking
+    const links = tocList.querySelectorAll<HTMLAnchorElement>("[data-toc-link]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            links.forEach((link) => link.removeAttribute("data-active"));
+            const activeLink = tocList.querySelector<HTMLAnchorElement>(
+              `[href="#${entry.target.id}"]`,
+            );
+            activeLink?.setAttribute("data-active", "");
+          }
+        }
+      },
+      { rootMargin: "0px 0px -70% 0px", threshold: 0 },
+    );
+
+    headings.forEach((heading) => observer.observe(heading));
+  }
+
+  initLegalPage02Toc();
+  document.addEventListener("astro:after-swap", initLegalPage02Toc);
+</script>

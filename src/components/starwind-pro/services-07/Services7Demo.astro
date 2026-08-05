@@ -1,0 +1,51 @@
+---
+import Services7, { type Service } from "./Services7.astro";
+
+const services: Service[] = [
+  {
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=533&fit=crop",
+    title: "Landscape Design",
+    tagline: "Transform Your Outdoor Space",
+    href: "#",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=533&fit=crop",
+    title: "Lawn Maintenance",
+    tagline: "Weekly & Bi-Weekly Care",
+    href: "#",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&h=533&fit=crop",
+    title: "Tree Services",
+    tagline: "Trimming & Removal",
+    href: "#",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1598902108854-10e335adac99?w=400&h=533&fit=crop",
+    title: "Irrigation Systems",
+    tagline: "Smart Watering Solutions",
+    href: "#",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=533&fit=crop",
+    title: "Hardscaping",
+    tagline: "Patios, Walkways & More",
+    href: "#",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=400&h=533&fit=crop",
+    title: "Seasonal Cleanup",
+    tagline: "Spring & Fall Services",
+    href: "#",
+  },
+];
+---
+
+<Services7
+  badge="Landscaping Services"
+  heading="Create Your Dream Outdoor Space"
+  description="From design to maintenance, we provide comprehensive landscaping services that enhance your property's beauty and value."
+  services={services}
+  ctaText="View All Services"
+  ctaHref="#"
+/>

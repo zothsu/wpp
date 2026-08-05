@@ -1,0 +1,28 @@
+---
+/**
+ * Aurora Waves Background
+ *
+ * Mesmerizing aurora borealis-inspired gradient waves with optional animation.
+ * Creates a magical, atmospheric effect perfect for hero sections and landing pages.
+ *
+ * Usage:
+ * 1. Use the starwind cli to add this component to your project `npx starwind@latest add @starwind-pro/background-09`
+ * 2. Import the `Background9` component and position it absolutely within a relative container
+ *
+ * Props:
+ * - animated: boolean (default: true) - Enable wave animation
+ * - colorScheme: "northern" | "sunset" | "ocean" | "forest" (default: "northern") - Color scheme preset
+ * - opacity: number (default: 0.3) - Opacity of the aurora (0-1)
+ * - class: string - Additional CSS classes
+ */
+import Background9 from "./Background9.astro";
+---
+
+<div class="bg-background relative flex min-h-[500px] w-full items-center justify-center">
+  <Background9 colorScheme="northern" animated={true} />
+  <div class="relative z-10 text-center">
+    <h2 class="text-foreground text-2xl font-semibold">Aurora Waves</h2>
+    <p class="text-muted-foreground mt-2">Mesmerizing aurora borealis-inspired gradient waves</p>
+    <p class="text-muted-foreground mt-4 text-sm">Customize animation, color scheme, and opacity</p>
+  </div>
+</div>

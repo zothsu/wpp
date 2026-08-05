@@ -1,0 +1,80 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+interface Props extends HTMLAttributes<"div"> {
+  /** Blur intensity */
+  blur?: "sm" | "md" | "lg" | "xl";
+  /** Opacity of the gradient blobs (0-1) */
+  opacity?: number;
+  /** First blob color (Tailwind bg class without 'bg-' prefix, e.g., 'purple-500') */
+  color1?: string;
+  /** Second blob color */
+  color2?: string;
+  /** Third blob color */
+  color3?: string;
+}
+
+const patternStyles = tv({
+  base: "pointer-events-none absolute inset-0 overflow-hidden @container/pattern",
+});
+
+const blurMap = {
+  sm: "blur-2xl",
+  md: "blur-3xl",
+  lg: "blur-[140px]",
+  xl: "blur-[180px]",
+};
+
+const {
+  blur = "lg",
+  opacity = 0.3,
+  color1 = "purple-500",
+  color2 = "blue-500",
+  color3 = "cyan-500",
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<div class={patternStyles({ class: className })} aria-hidden="true" {...rest}>
+  <!-- Top Left Blob -->
+  <div
+    class:list={[
+      "absolute -top-[35%] -left-[35%] aspect-square w-[90%] max-w-[800px] rounded-full",
+      "@xl:-top-[25%] @xl:-left-[20%] @xl:w-[70%]",
+      "@4xl:-top-[30%] @4xl:-left-[25%] @4xl:w-[50%]",
+      "@7xl:-top-[50%] @7xl:-left-[20%] @7xl:w-[40%]",
+      blurMap[blur],
+    ]}
+    style={`opacity: ${opacity}; background-color: var(--color-${color1})`}
+  >
+  </div>
+  <!-- Middle Right Blob -->
+  <div
+    class:list={[
+      "absolute top-[10%] -right-[55%] aspect-square w-full max-w-[900px] rounded-full",
+      "@xl:top-[15%] @xl:-right-[35%] @xl:w-[85%]",
+      "@4xl:top-[10%] @4xl:-right-[40%] @4xl:w-[60%]",
+      "@7xl:top-[10%] @7xl:-right-[35%] @7xl:w-[50%]",
+      blurMap[blur],
+    ]}
+    style={`opacity: ${opacity}; background-color: var(--color-${color2})`}
+  >
+  </div>
+  <!-- Bottom Center-Left Blob -->
+  <div
+    class:list={[
+      "absolute -bottom-[45%] left-[-35%] aspect-square w-[80%] max-w-[700px] rounded-full",
+      "@xl:-bottom-[30%] @xl:left-[-20%] @xl:w-[65%]",
+      "@4xl:-bottom-[35%] @4xl:left-[-15%] @4xl:w-[50%]",
+      "@7xl:-bottom-[55%] @7xl:-left-[5%] @7xl:w-[50%]",
+      blurMap[blur],
+    ]}
+    style={`opacity: ${opacity}; background-color: var(--color-${color3})`}
+  >
+  </div>
+
+  <!-- Central Darkening Mask (Vignette) -->
+  <!-- <div class="via-background/20 to-background absolute inset-0 bg-radial from-transparent"></div> -->
+</div>

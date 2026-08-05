@@ -1,0 +1,183 @@
+---
+// put the following script in the <head> of each page of your site
+// this ensures it is run early to eliminate any flashes of incorrect color theme
+
+/* 
+<script is:inline>
+  function initTheme() {
+    const colorTheme = localStorage.getItem("colorTheme");
+    if (!colorTheme) {
+      // if no color theme yet, use the users preferences
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("colorTheme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("colorTheme", "light");
+      }
+    } else {
+      // assign the theme based on the value in local storage
+      if (colorTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else if (colorTheme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else if (colorTheme === "system") {
+        // use system preference
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", prefersDark);
+      }
+    }
+  }
+
+  // runs on initial page load
+  initTheme();
+
+  // runs on view transitions navigation
+  document.addEventListener("astro:after-swap", initTheme);
+</script>
+*/
+
+import DeviceDesktop from "@tabler/icons/outline/device-desktop.svg";
+import Moon from "@tabler/icons/outline/moon.svg";
+import Sun from "@tabler/icons/outline/sun.svg";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/starwind/select";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props as Props;
+---
+
+<Select id="theme-select" name="theme" class="theme-select" data-theme-select>
+  <SelectTrigger size="sm" class:list={["w-full min-w-[90px]", className]}>
+    <SelectValue placeholder="" />
+  </SelectTrigger>
+  <SelectContent size="sm">
+    <SelectItem value="light">
+      <div class="flex items-center gap-2">
+        <Sun class="size-4" />
+        <span>Light</span>
+      </div>
+    </SelectItem>
+    <SelectItem value="dark">
+      <div class="flex items-center gap-2">
+        <Moon class="size-4" />
+        <span>Dark</span>
+      </div>
+    </SelectItem>
+    <SelectItem value="system">
+      <div class="flex items-center gap-2">
+        <DeviceDesktop class="size-4" />
+        <span>System</span>
+      </div>
+    </SelectItem>
+  </SelectContent>
+</Select>
+
+<script>
+  import type { SelectChangeEvent } from "@/components/starwind/select/SelectTypes";
+
+  function initThemeSelect() {
+    const themeSelect = document.querySelector<HTMLElement>("[data-theme-select]");
+    if (!themeSelect) return;
+
+    let isInitializing = true;
+    let isSyncingFromExternal = false;
+
+    // Get initial theme from localStorage or default to light
+    const savedTheme = localStorage.getItem("colorTheme") || "light";
+
+    // Listen for user selection changes - add listener BEFORE setting initial value
+    themeSelect.addEventListener("starwind-select:change", (event: Event) => {
+      // first time this fires we will ignore it
+      if (isInitializing) {
+        isInitializing = false;
+        return;
+      }
+      // Don't apply theme when syncing from external theme:change
+      if (isSyncingFromExternal) {
+        isSyncingFromExternal = false;
+        return;
+      }
+
+      const { value } = (event as SelectChangeEvent).detail;
+
+      if (value === "dark") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("colorTheme", "dark");
+      } else if (value === "light") {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("colorTheme", "light");
+      } else if (value === "system") {
+        // Use system preference
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", prefersDark);
+        localStorage.setItem("colorTheme", "system");
+      }
+
+      // Dispatch custom event to sync other theme toggles
+      document.dispatchEvent(
+        new CustomEvent("theme:change", {
+          detail: { theme: value },
+        }),
+      );
+    });
+
+    // Listen for theme changes from other toggles
+    document.addEventListener("theme:change", (event: Event) => {
+      // Ignore events during initialization
+      if (isInitializing) return;
+
+      const { theme } = (event as CustomEvent).detail;
+      const currentTheme = localStorage.getItem("colorTheme");
+
+      // Don't update if currently set to "system" - preserve that setting
+      // Only sync if the incoming theme is light/dark and we're not on system
+      if ((theme === "light" || theme === "dark") && currentTheme !== "system") {
+        // Set flag to prevent the starwind-select:change handler from re-dispatching theme:change
+        isSyncingFromExternal = true;
+        document.dispatchEvent(
+          new CustomEvent("starwind-select:select", {
+            detail: {
+              selectId: "theme-select",
+              value: theme,
+            },
+          }),
+        );
+      }
+    });
+
+    // Set initial value programmatically
+    document.dispatchEvent(
+      new CustomEvent("starwind-select:select", {
+        detail: {
+          selectId: "theme-select",
+          value: savedTheme,
+        },
+      }),
+    );
+
+    // Listen for system theme changes when in system mode
+    const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    systemThemeQuery.addEventListener("change", (e) => {
+      const currentTheme = localStorage.getItem("colorTheme");
+      if (currentTheme === "system") {
+        document.documentElement.classList.toggle("dark", e.matches);
+      }
+    });
+  }
+
+  // runs on initial page load
+  initThemeSelect();
+
+  // runs on view transitions navigation
+  document.addEventListener("astro:after-swap", initThemeSelect);
+</script>

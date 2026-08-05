@@ -1,0 +1,36 @@
+---
+/**
+ * Gradient Mesh Background
+ *
+ * Blurred gradient blobs that create a modern, dynamic atmosphere.
+ * Features three customizable color blobs with responsive positioning.
+ *
+ * Usage:
+ * 1. Use the starwind cli to add this component to your project `npx starwind@latest add @starwind-pro/background-04`
+ * 2. Import the `Background4` component and position it absolutely within a relative container
+ *
+ * Props:
+ * - blur: "sm" | "md" | "lg" | "xl" (default: "lg") - Blur intensity of the gradient blobs
+ * - opacity: number (default: 0.3) - Opacity of the gradient blobs (0-1)
+ * - color1: string (default: "purple-500") - First blob color (Tailwind color without 'bg-' prefix)
+ * - color2: string (default: "blue-500") - Second blob color
+ * - color3: string (default: "cyan-500") - Third blob color
+ * - class: string - Additional CSS classes
+ */
+import Background4 from "./Background4.astro";
+---
+
+<div
+  class="bg-background @container relative flex min-h-[500px] w-full items-center justify-center"
+>
+  <Background4 />
+  <div
+    class="relative z-10 flex h-full w-full flex-col items-center justify-center text-center @2xl:min-h-[600px]"
+  >
+    <h2 class="text-foreground text-2xl font-semibold">Gradient Mesh</h2>
+    <p class="text-muted-foreground mt-2">Blurred gradient blobs for a modern, dynamic feel</p>
+    <p class="text-muted-foreground mt-4 text-sm">
+      Customize blur intensity, opacity, and blob colors
+    </p>
+  </div>
+</div>

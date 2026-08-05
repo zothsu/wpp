@@ -1,0 +1,41 @@
+---
+import IconPear from "../icons/pear.svg";
+import Footer3, { type FooterColumn } from "./starwind-pro/footer-03/Footer3.astro";
+
+const columns: FooterColumn[] = [
+	{
+		title: "Learn About Us",
+		links: [
+			{ label: "Our Approach to Learning", href: "/our-approach" },
+			{ label: "FAQ", href: "/our-approach#faq" },
+			{ label: "Enrollment Information", href: "/enrollment-information" },
+			{ label: "Who We Are", href: "/who-we-are" },
+		],
+	},
+	{
+		title: "Our Programs",
+		links: [
+			{ label: "Infant/Toddler", href: "/programs/infant-toddler" },
+			{ label: "Preschool", href: "/programs/preschool" },
+			{ label: "School Age Summer Camp", href: "/programs/summer-camp" },
+		],
+	},
+	{
+		title: "Currently Enrolled Student(s)",
+		links: [
+			{ label: "Family Handbook", href: "/handbook" },
+			{ label: "Forms", href: "/forms" },
+			{ label: "Calendar", href: "/enrolled-students" },
+			{ label: "Resources", href: "/resources" },
+		],
+	},
+];
+---
+
+<Footer3
+	companyName="Wild Pear Preschool & Summer Camp"
+	description="Your family will be accepted and valued at Wild Pear Preschool regardless of you or your child's race, religion, gender, ability, orientation, class, country of origin, immigration status, language, or education level. We respect all family structures; whether you are connected by blood, or law, or love alone, you are welcome here."
+	logoIcon={IconPear}
+	columns={columns}
+	socialLinks={[]}
+/>
