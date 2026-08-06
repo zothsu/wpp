@@ -1,0 +1,34 @@
+---
+import Feature8, { type AccordionItemData } from "./Feature8.astro";
+
+const accordionItems: AccordionItemData[] = [
+  {
+    value: "item-1",
+    question: "Advanced collaboration tools",
+    answer:
+      "Work seamlessly with your team using real-time collaboration features, shared workspaces, and instant communication tools that keep everyone aligned and productive.",
+  },
+  {
+    value: "item-2",
+    question: "Powerful automation capabilities",
+    answer:
+      "Automate repetitive tasks and streamline your workflows with our intelligent automation engine. Save time and reduce errors while focusing on what matters most.",
+  },
+  {
+    value: "item-3",
+    question: "Enterprise-grade security",
+    answer:
+      "Rest easy knowing your data is protected with bank-level encryption, regular security audits, and compliance with industry standards including SOC 2 and GDPR.",
+  },
+];
+---
+
+<Feature8
+  heading="Everything you need to succeed"
+  description="Discover how our platform empowers teams to work smarter and achieve more with powerful features designed for modern workflows."
+  image={{
+    src: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop",
+    alt: "Team working together",
+  }}
+  accordionItems={accordionItems}
+/>

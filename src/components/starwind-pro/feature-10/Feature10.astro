@@ -1,0 +1,121 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { AspectRatio } from "@/components/starwind/aspect-ratio";
+import { Image } from "@/components/starwind/image";
+import { Video } from "@/components/starwind/video";
+
+export interface VideoSource {
+  /** Video URL or imported asset path */
+  url: string;
+  /** Video title for accessibility */
+  title?: string;
+}
+
+export interface ImageSource {
+  src: string;
+  alt: string;
+  /** Intrinsic width, required for local /public images */
+  width?: number;
+  /** Intrinsic height, required for local /public images */
+  height?: number;
+}
+
+export interface FeatureSection {
+  heading: string;
+  description: string;
+  /** Either an image or a video may be supplied; image takes priority if both are set */
+  image?: ImageSource;
+  video?: string | VideoSource;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Array of feature sections with videos */
+  sections?: FeatureSection[];
+}
+
+const feature10Styles = tv({
+  base: "@container mx-auto w-full max-w-7xl px-4 py-24",
+});
+
+const {
+  sections = [
+    {
+      heading: "Streamline your workflow",
+      description:
+        "Watch how our intuitive interface helps you accomplish more in less time. From setup to execution, every feature is designed with your productivity in mind.",
+      video: {
+        url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        title: "Workflow Demo",
+      },
+    },
+    {
+      heading: "Collaborate with your team",
+      description:
+        "See real-time collaboration in action. Share ideas, provide feedback, and work together seamlessly with tools built for modern teams.",
+      video: {
+        url: "https://www.youtube.com/watch?v=RfU_DsmvYFs",
+        title: "Cosmic Themes Demo",
+      },
+    },
+  ],
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={feature10Styles({ class: className })} {...rest}>
+  <div class="space-y-24 @lg:space-y-32">
+    {
+      sections.map((section, index) => {
+        const isEven = index % 2 === 0;
+        const video = section.video;
+        const videoSrc = video ? (typeof video === "string" ? video : video.url) : "";
+        const videoTitle = video
+          ? typeof video === "string"
+            ? "Video player"
+            : video.title || "Video player"
+          : "Video player";
+
+        return (
+          <div class="@container grid gap-12 @3xl:grid-cols-2 @3xl:items-center @3xl:gap-16">
+            {/* Content */}
+            <div class:list={[{ "@3xl:order-last": isEven }]}>
+              <h2 class="font-heading mb-4 text-3xl font-semibold tracking-tight @sm:text-4xl">
+                {section.heading}
+              </h2>
+              <p class="text-muted-foreground text-pretty @sm:text-lg">{section.description}</p>
+            </div>
+
+            {/* Media */}
+            <div class:list={[{ "@3xl:order-first": isEven }]}>
+              {section.image ? (
+                <AspectRatio ratio={4 / 3} class="overflow-hidden rounded-xl border">
+                  <Image
+                    src={section.image.src}
+                    alt={section.image.alt}
+                    width={section.image.width}
+                    height={section.image.height}
+                    class="size-full object-cover"
+                    loading="lazy"
+                  />
+                </AspectRatio>
+              ) : (
+                <div class="overflow-hidden rounded-xl border">
+                  <Video src={videoSrc} title={videoTitle} />
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .glass-shadow {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+</style>

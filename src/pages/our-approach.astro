@@ -1,116 +1,69 @@
 ---
-import Accordion, { type AccordionItem } from "../components/Accordion.astro";
 import Background4 from "../components/starwind-pro/background-04/Background4.astro";
+import Cta10 from "../components/starwind-pro/cta-10/Cta10.astro";
 import FormTourRequest, { type ServiceOption } from "../components/form-tourRequest.astro";
-import Faq1 from "../components/starwind-pro/faq-01/Faq1.astro";
+import Feature8 from "../components/starwind-pro/feature-08/Feature8.astro";
+import Feature10, { type FeatureSection } from "../components/starwind-pro/feature-10/Feature10.astro";
 import { faqs } from "../data/faqs";
 import AboutLayout from "../layouts/AboutLayout.astro";
-import { Button } from "@/components/starwind/button";
 
-const approachThemes: AccordionItem[] = [
+const faqAccordionItems = faqs.map((item, idx) => ({
+	value: `faq-${idx + 1}`,
+	question: item.title,
+	answer: item.content,
+}));
+
+// TODO: placeholder image for all 7 themes - swap each for a real
+// Wild Pear classroom/outdoor photo.
+const placeholderImage = {
+	src: "/images/temp1.jpg",
+	alt: "Placeholder image - swap for real photo",
+	width: 1024,
+	height: 693,
+};
+
+const approachThemes: FeatureSection[] = [
 	{
-		title: "Emotional Safety and Confidence",
-		content: [
-			{
-				type: "p",
-				text: "We believe that first and foremost, young children are doing the critical work of figuring out who they are and what the world is about — and that comes with a whole bunch of feelings! Teachers help guide children to safely feel and release emotions through movement, sensory experiences, and communication. Supporting the natural development of children's emotional intelligence, we help children begin to discover the causes of emotions and gain valuable strategies to regulate themselves while riding the waves of big feelings. As children are able, we offer them more language so they are able to clearly identify, name, and communicate their feelings. We also foster the important skill of perspective taking and compassion, which can help build the brain connections needed for true empathy.",
-			},
-		],
+		heading: "Emotional Safety and Confidence",
+		description:
+			"Young children are doing the critical work of figuring out who they are and what the world is about — and that comes with a lot of feelings! Teachers help guide children to safely feel and release emotions through movement, sensory experiences, and communication, building the emotional intelligence, self-regulation, perspective-taking, and empathy that comes from truly understanding our feelings.",
+		image: placeholderImage,
 	},
 	{
-		title: "Ability to Clearly Communicate",
-		content: [
-			{
-				type: "p",
-				text: "Communication is one of our best tools to connect to others, and naturally children are eager to develop their skill set! We expose children to a wide variety of words and signs that can help them express their needs, emotions, and ideas, while also aiding them in understanding the needs, emotions, and ideas of others. Communication skills are useful as children are better able to understand and follow directions, report events accurately, and engage in relationship-building conversations.",
-			},
-			{
-				type: "p",
-				text: "We also want to encourage children to make use of sign language, symbols, body language, and both verbal and written words. While traditional early literacy focuses on mastery of the alphabet and phonetics, communication literacy uses a rich array of literary forms to help children connect with the art of expression and encourages them to view literacy as a tool for communication.",
-			},
-		],
+		heading: "Ability to Clearly Communicate",
+		description:
+			"Communication is one of our best tools to connect with others, and children are eager to develop their skill set. We expose children to a wide variety of words, signs, symbols, and body language so they can express their needs, emotions, and ideas — and understand others' — building skills useful for following directions, reporting events, and building relationships.",
+		image: placeholderImage,
 	},
 	{
-		title: "Ability to Care for Oneself",
-		content: [
-			{
-				type: "p",
-				text: "Our children live in a world that often undervalues and underestimates them. To counter this, we want to help children develop agency, assertiveness, and demonstrate active participation in their own lives. Of course, there are still many elements of their school day that will be out of their control, but with a growing capacity for self-awareness, self-advocacy, and bodily autonomy, they are better equipped to navigate the parts of their day they DO have control over. From the very earliest years, we invite children to have an active responsibility in their own feeding, diapering/toileting, resting, and dressing/gearing up for outside time. The level of confidence and capability they demonstrate when they are trusted and encouraged to take care of themselves is truly amazing.",
-			},
-		],
+		heading: "Ability to Care for Oneself",
+		description:
+			"We help children develop agency, assertiveness, and active participation in their own lives. From the earliest years, children take an active role in their own feeding, diapering/toileting, resting, and dressing — building the self-awareness, self-advocacy, and bodily autonomy that comes from being trusted and encouraged to take care of themselves.",
+		image: placeholderImage,
 	},
 	{
-		title: "Social Skills",
-		content: [
-			{
-				type: "p",
-				text: "One of the unique offerings of group care is the opportunity for children to learn and grow alongside their age mates. This creates the perfect storm for children to experiment with various social ways of being and experience the experimenting of others. Children can gain momentum in their own skill development from the positive peer pressure of other children learning the same skills around them. It is wonderful to watch children move from independent and onlooker play into side-by-side play, associative play, and eventually cooperative play! Before they can truly play with others, children need to know how to invite others to play with them and join in the play of others. Explicitly teaching children how to ask questions (\"Who can I be in your game?\") and offer ideas (\"I'm building the road, you can build the house.\") helps children find ways to join together without disrupting the flow of the play.",
-			},
-			{
-				type: "p",
-				text: "And of course, where there are people, there will be conflict. Learning to appropriately and confidently engage in conflict is a critical first step towards conflict resolution. Teachers support children through this process, ensuring physical and emotional safety and offering nudges when the process gets stuck. Neutral observations (\"You were playing with that ball and now she's holding it\") and open-ended questions (\"I wonder what her plan is?\") can often be enough to get the process back in motion.",
-			},
-			{
-				type: "p",
-				text: "Because we want children to think and advocate for themselves, this is also a perfect time to introduce children to the ideas of asking for consent and setting personal boundaries. We try to model consent through our own behaviors (asking if we can hug a child when they are having a big feeling), and by acknowledging their frustration when we are not able to honor their boundaries (\"You don't want me to wash your face, and also your face needs to be clean before you go play. That is frustrating, I hear you saying no. I'm going to gently wipe your cheeks and then your mouth, and then we'll be done.\"). We also give words to behaviors that are often used to establish boundaries (\"I see you backing up, do you want more space?\" or \"I saw her push you away, I wonder if she didn't want that hug. Try asking before you hug her.\").",
-			},
-			{
-				type: "p",
-				text: "Creating a caring community is also part of the important social work we do at school. We ask children to consider what it means to be a good friend. How do friends treat one another? We also encourage children to seek out ways to support, help, and care for one another throughout the day (\"You had all the play dough and gave some to her so she could play too? How generous, look at how happy you made her!\" or \"Did someone sitting next to you spill their milk? How kind of you to grab them a towel!\"). Finding ways to acknowledge and celebrate kindness, generosity, patience, and gentleness helps children value and emulate these behaviors as well. This also means working together to take care of our classroom, the play yards, and the materials. We call this working together in unity!",
-			},
-		],
+		heading: "Social Skills",
+		description:
+			"Group care gives children the chance to learn and grow alongside their age mates, moving from independent and onlooker play into side-by-side, associative, and eventually cooperative play. We explicitly teach children how to invite others into play, navigate conflict, ask for consent, set personal boundaries, and build a caring community together.",
+		image: placeholderImage,
 	},
 	{
-		title: "Executive Functioning",
-		content: [
-			{
-				type: "p",
-				text: "Research on brain development shows us that the prefrontal cortex of our brain — the part responsible for connecting our feelings, instincts, and thinking in a way that allows us to plan, make decisions, and think critically — begins to develop around age 4 and continues until our early twenties! The tricky thing about most executive functioning skills is that they often aren't intuitively developed but take hold much faster when explicitly taught and practiced. At Wild Pear, we want to allow as much opportunity and space to practice these executive functioning skills as possible, knowing that it can be an essential foundation for their continued development later on. These skills include focus and self-control, making connections, critical thinking, taking on challenges, and self-directed engaged learning.",
-			},
-		],
+		heading: "Executive Functioning",
+		description:
+			"The prefrontal cortex — responsible for connecting our feelings, instincts, and thinking — begins developing around age 4 and continues into our early twenties. We give children ample opportunity and space to practice focus and self-control, making connections, critical thinking, taking on challenges, and self-directed engaged learning, building an essential foundation for their continued development.",
+		image: placeholderImage,
 	},
 	{
-		title: "Anti-Bias Mindset",
-		content: [
-			{
-				type: "p",
-				text: "There is a lot of work to do in order to dismantle the systems of injustice that exist in society. This work can begin with even the youngest children by developing an anti-bias mindset. The four goals of early anti-bias work are:",
-			},
-			{
-				type: "list",
-				items: [
-					"Each child will demonstrate self-awareness, confidence, family pride, and positive social identities.",
-					"Each child will express comfort and joy with human diversity, accurate language for human differences, and deep caring human connections.",
-					"Each child will increasingly recognize unfairness, have language to describe unfairness, and understand that unfairness hurts.",
-					"Each child will demonstrate empowerment and the skills to act, with others or alone, against prejudice and/or discriminatory actions.",
-				],
-			},
-			{
-				type: "p",
-				text: "We work towards meeting these goals in many ways, including acknowledging and celebrating the differences and similarities of individuals and families in our community, reading and discussing books that show diversity, injustice, and activism, and making sure the materials children are exposed to reflect the diversity of the world we live in. We also interrupt and challenge play and attitudes that reinforce stereotypes or hurtful social constructs.",
-			},
-		],
+		heading: "Anti-Bias Mindset",
+		description:
+			"There is a lot of work to do to dismantle the systems of injustice that exist in society, and that work can begin with even the youngest children by developing an anti-bias mindset — building self-awareness and positive social identities alongside comfort and joy with human diversity. We celebrate the differences and similarities within our community, read and discuss books that reflect the world's diversity, and interrupt play and attitudes that reinforce stereotypes or hurtful social constructs.",
+		image: placeholderImage,
 	},
 	{
-		title: "Enjoyment of Being Outside",
-		content: [
-			{
-				type: "p",
-				text: "We consider ourselves to be a nature school due to our heavy focus on plants, animals, climate, the Earth's environment, and how it is all interdependent. We connect to these ideas in many ways throughout our day, and while our indoor classroom is certainly reflective of this learning, our outdoor classroom is even richer.",
-			},
-			{
-				type: "p",
-				text: "Outdoor classroom: For us, this is literally using outside space as learning space. Each day we dress for the weather and head out to play, believing in the wisdom of explorer Ranulph Fiennes, who said, \"There is no bad weather, only inappropriate clothing.\" Our incredible yard is our primary outdoor learning space. At times, our outdoor learning might be structured and specifically aligned with learning that has been happening in our indoor classroom. Most of the time, children are encouraged to discover and play at will while teachers observe their work. Outside learning is then expanded upon later in our indoor environment.",
-			},
-			{
-				type: "p",
-				text: "We take both a large- and small-scale approach to outdoor learning. Children develop a deeper understanding around very basic natural elements (such as wood, rock, fire, metal, water, sand, soil, etc.) while also marveling at the complexity and interconnectedness of living things and the environment. Children begin to find patterns as we return again and again to the ever-broadening concepts of ecosystems, food chains, natural communities, seasons, and life cycles. We also directly address the pertinent issues of environmental justice and global climate change.",
-			},
-			{
-				type: "p",
-				text: "We love to explore animal and plant life while we are outside. Our expansive greenhouse, many garden beds, laying chickens, and fruiting trees allow for year-round hands-on experience in farming and gardening.",
-			},
-		],
+		heading: "Enjoyment of Being Outside",
+		description:
+			"We consider ourselves a nature school, and while our indoor classroom reflects that focus, our outdoor classroom is even richer. Every day, rain or shine, we dress for the weather and head outside — exploring wood, rock, water, and soil, discovering ecosystems and life cycles, and tending our greenhouse, garden beds, laying hens, and fruiting trees.",
+		image: placeholderImage,
 	},
 ];
 
@@ -145,37 +98,36 @@ const tourMapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(tou
 					interest. We center around seven major themes which often overlap and are woven
 					together throughout our days and across our school year. Respecting children and their
 					play, we acknowledge it as real work and are honored to do our work alongside them.
-					Continue reading to learn more about our central themes.
+					Continue below to learn more about our central themes.
 				</p>
-			</div>
-
-			<div class="mt-8">
-				<Accordion items={approachThemes} />
 			</div>
 		</section>
 
-		<Faq1
+		<Feature10 sections={approachThemes} class="relative z-10" />
+
+		<Feature8
 			id="faq"
 			heading="Frequently Asked Questions"
 			description="Answers to the questions we hear most from Wild Pear families."
-			items={faqs}
-			class="relative z-10 max-w-3xl py-16"
+			image={{
+				src: "/images/temp1.jpg",
+				alt: "Hands holding illustrated question marks",
+				width: 1024,
+				height: 693,
+			}}
+			accordionItems={faqAccordionItems}
+			class="relative z-10"
 		/>
 
-		<section id="enrollment-information" class="relative z-10 pb-16">
-			<div
-				class="mx-auto flex max-w-3xl flex-col items-start gap-4 px-4 @lg:flex-row @lg:items-center"
-			>
-				<Button href="/enrollment-information" size="lg" class="shrink-0">
-					Enrollment Information
-				</Button>
-				<div class="border-primary-accent bg-muted rounded-lg border-l-4 p-4">
-					<p class="font-medium text-pretty">
-						We are currently enrolling for full time and part time slots. Schedule a tour below.
-					</p>
-				</div>
-			</div>
+		<Cta10
+			id="enrollment-information"
+			title="We're Currently Enrolling"
+			description="Full time and part time slots are available. Learn more about our enrollment process."
+			primaryButton={{ text: "Enrollment Information", href: "/enrollment-information" }}
+			class="relative z-10"
+		/>
 
+		<section class="relative z-10 pb-16">
 			<FormTourRequest
 				badge="Schedule a Tour"
 				heading="Schedule a Tour"

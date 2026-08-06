@@ -2,3 +2,9 @@
 
 - [ ] Reformat `/programs` page alignment to right OR center, not both
 - [ ] Reconcile enrollment step order: the "How to Enroll" 3-step timeline (Enrollment.astro) says Learn -> Tour -> Application (application comes after the tour). The detailed policy text on `/enrollment-information` says the formal order is Application (with $20 fee) -> Tour -> Enrollment offer (application comes before the tour). Decide which is accurate and update the other.
+- [ ] Build the placeholder pages linked from nav/footer that currently 404: `/forms` (+ `/forms/enrollment`, `/forms/other`), `/resources` (+ `/resources/videos`, `/resources/tax-info`), `/handbook` (Family Handbook).
+
+## Photos needing replacement
+
+- [ ] `/our-approach` FAQ section (`temp1.jpg`) — unlicensed iStock preview image (visible "Credit: cienpies" watermark), used as a placeholder for the Feature8 question-marks graphic.
+- [ ] `/our-approach` "Our Approach to Learning" 7-theme section (Feature10) — all 7 themes reuse the same `temp1.jpg` placeholder image right now. Needs 7 distinct, real Wild Pear classroom/outdoor photos, one per theme (Emotional Safety, Communication, Self-Care, Social Skills, Executive Functioning, Anti-Bias, Outside Time).

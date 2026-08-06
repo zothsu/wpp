@@ -1,0 +1,26 @@
+---
+import Feature10, { type FeatureSection } from "./Feature10.astro";
+
+const sections: FeatureSection[] = [
+  {
+    heading: "Streamline your workflow",
+    description:
+      "Watch how our intuitive interface helps you accomplish more in less time. From setup to execution, every feature is designed with your productivity in mind.",
+    video: {
+      url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      title: "Workflow Demo",
+    },
+  },
+  {
+    heading: "Collaborate with your team",
+    description:
+      "See real-time collaboration in action. Share ideas, provide feedback, and work together seamlessly with tools built for modern teams.",
+    video: {
+      url: "https://www.youtube.com/watch?v=RfU_DsmvYFs",
+      title: "Cosmic Themes Demo",
+    },
+  },
+];
+---
+
+<Feature10 sections={sections} />

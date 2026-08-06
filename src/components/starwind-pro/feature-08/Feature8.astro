@@ -1,0 +1,111 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/starwind/accordion";
+import { AspectRatio } from "@/components/starwind/aspect-ratio";
+import { Image } from "@/components/starwind/image";
+
+export interface AccordionItemData {
+  value: string;
+  question: string;
+  answer: string;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Section heading */
+  heading?: string;
+  /** Section description */
+  description?: string;
+  /** Image configuration */
+  image?: {
+    src: string;
+    alt: string;
+    /** Intrinsic width, required for local /public images */
+    width?: number;
+    /** Intrinsic height, required for local /public images */
+    height?: number;
+  };
+  /** Accordion items */
+  accordionItems?: AccordionItemData[];
+}
+
+const feature8Styles = tv({
+  base: "@container mx-auto w-full max-w-7xl px-4 py-24",
+});
+
+const {
+  heading = "Everything you need to succeed",
+  description = "Discover how our platform empowers teams to work smarter and achieve more with powerful features designed for modern workflows.",
+  image = {
+    src: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop",
+    alt: "Team working together",
+  },
+  accordionItems = [
+    {
+      value: "item-1",
+      question: "Advanced collaboration tools",
+      answer:
+        "Work seamlessly with your team using real-time collaboration features, shared workspaces, and instant communication tools that keep everyone aligned and productive.",
+    },
+    {
+      value: "item-2",
+      question: "Powerful automation capabilities",
+      answer:
+        "Automate repetitive tasks and streamline your workflows with our intelligent automation engine. Save time and reduce errors while focusing on what matters most.",
+    },
+    {
+      value: "item-3",
+      question: "Enterprise-grade security",
+      answer:
+        "Rest easy knowing your data is protected with bank-level encryption, regular security audits, and compliance with industry standards including SOC 2 and GDPR.",
+    },
+  ],
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={feature8Styles({ class: className })} {...rest}>
+  <div class="grid gap-12 @3xl:grid-cols-2 @3xl:items-center @3xl:gap-16">
+    {/* Image - Left Side */}
+    <div class="@container">
+      <AspectRatio ratio={4 / 3} class="overflow-hidden rounded-2xl border">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          class="size-full object-cover"
+          loading="lazy"
+        />
+      </AspectRatio>
+    </div>
+
+    {/* Content - Right Side */}
+    <div class="@container">
+      <h2 class="font-heading mb-4 text-4xl font-semibold tracking-tight @md:text-5xl">
+        {heading}
+      </h2>
+      <p class="text-muted-foreground mb-8 text-pretty @md:text-lg">
+        {description}
+      </p>
+
+      <Accordion type="single">
+        {
+          accordionItems.map((item) => (
+            <AccordionItem value={item.value}>
+              <AccordionTrigger>{item.question}</AccordionTrigger>
+              <AccordionContent>{item.answer}</AccordionContent>
+            </AccordionItem>
+          ))
+        }
+      </Accordion>
+    </div>
+  </div>
+</section>

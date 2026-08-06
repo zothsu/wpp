@@ -71,6 +71,14 @@
     {
       "name": "radio-group",
       "version": "1.2.6"
+    },
+    {
+      "name": "aspect-ratio",
+      "version": "1.0.3"
+    },
+    {
+      "name": "video",
+      "version": "1.0.2"
     }
   ]
 }
