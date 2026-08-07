@@ -8,7 +8,7 @@ Tracks working sessions on this project — when, how long, and what got done �
 | :--------- | :------------------- | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-08-04 | ~11:33 PM             | not tracked          | Initial project scaffold: Astro + Starwind UI setup, base pages (home, learn-about-us, our-approach, who-we-are, enrollment, privacy, terms), starter content/images. ("initial commit, day 1")            |
 | 2026-08-05 | ~11:20 AM – 4:35 PM   | ~5 hrs               | See breakdown below.                                                                                                                                                                                        |
-| 2026-08-06 | ~1:00 PM – 5:30 PM    | ~4 hrs                | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-06 | ~1:00 PM – 5:30 PM, ~8:00 PM – 10:00 PM | ~6.5 hrs | See breakdown below.                                                                                                                                                                                        |
 
 ## 2026-08-05 session detail
 
@@ -38,3 +38,11 @@ Tracks working sessions on this project — when, how long, and what got done �
 - Fixed a site-wide anchor-scroll bug (jump-to-section links landing behind the sticky nav) with a single `scroll-padding-top` rule.
 - Caught and corrected a program-naming mistake: there is no "Kindergarten" class at Wild Pear — renamed that handbook to Infant & Toddler (Sprouts) and updated the hub, nav, and program-page CTA links accordingly.
 - Linked each program page's CTA directly to its own handbook instead of the generic hub; moved "Still have questions?" to the end of the enrollment info page.
+- Rebuilt all three program pages with `@starwind-pro/service-page-06` (flattened prose sections plus a sticky sidebar with photo, quick facts, and a CTA) in place of the accordion; wired the shader-silk-ribbon background into `AboutLayout` and `EnrolledLayout` as well.
+- Brought `README.md`'s sitemap up to date (it was missing `/contact`, `/tuition`, and the whole handbook section, and still flagged the program pages as unbuilt).
+- Renamed `/handbook` to `/handbooks` throughout (hub, all three sub-pages, footer label, program CTAs, README) for consistency.
+- Changed program page sidebar CTAs from "View the Handbook" to "Request a Tour," linking to the existing tour form at the bottom of the page instead of duplicating the handbook link.
+- Built `/resources` as a link directory (`@starwind-pro/blog-02`) covering all 18 links from the old site's resources page, tagged with pill categories (Handbook, Official, App, Instagram, Pinterest, Inspo). Added a build-time utility that fetches each external link's `og:image` and caches results locally, with placeholder art for anything that doesn't resolve one (Instagram/Pinterest reliably don't). Wired `/resources` directly into the enrolled-family nav, removing the old unbuilt Videos/Tax Info dropdown.
+- Fixed rounded-corner mismatches on Hero22, Feature8, and Feature10 (outer section wasn't rounded to match the inner image frame/panels).
+- Gave Hero22 a dedicated mobile layout — heading/description, then image, then buttons — instead of the default stacked order, since the desktop "notch" composition couldn't be reordered with simple flex `order` alone; the eyebrow text also now wraps onto two lines on mobile.
+- Fixed a real bug on the homepage hero (Hero11): the background image wasn't filling the section on shorter viewports because it relied on a percentage height against a parent that only had `min-height` set, so it silently fell back to a fixed 500px floor. Switched it to absolutely fill the section instead.
