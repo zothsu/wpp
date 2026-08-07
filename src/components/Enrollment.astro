@@ -4,13 +4,6 @@ import IconClipboardCheck from "@tabler/icons/outline/clipboard-check.svg";
 import IconMapPin from "@tabler/icons/outline/map-pin.svg";
 
 import Services8, { type ProcessStep } from "./starwind-pro/services-08/Services8.astro";
-import StillHaveQuestions from "./forms-questionGeneral.astro";
-
-interface Props {
-	showQuestions?: boolean;
-}
-
-const { showQuestions = true } = Astro.props;
 
 const steps: ProcessStep[] = [
 	{
@@ -41,4 +34,3 @@ const steps: ProcessStep[] = [
 	description="From getting to know us to your child's first day of care, here's what the enrollment process looks like."
 	steps={steps}
 />
-{showQuestions && <StillHaveQuestions />}
