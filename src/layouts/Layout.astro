@@ -1,6 +1,7 @@
 ---
 import "../styles/starwind.css";
 import SiteFooter from "../components/SiteFooter.astro";
+import ShaderAuroraVeil from "../components/starwind-pro/shader-aurora-veil/ShaderAuroraVeil.astro";
 
 interface Props {
 	title: string;
@@ -19,6 +20,10 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<ShaderAuroraVeil
+			primaryVeilColor="var(--color-primary)"
+			secondaryVeilColor="var(--color-primary-accent)"
+		/>
 		<slot />
 		<SiteFooter />
 	</body>

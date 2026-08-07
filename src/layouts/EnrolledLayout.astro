@@ -3,6 +3,7 @@ import "../styles/starwind.css";
 import Navbar4, { type NavLink } from "../components/starwind-pro/navbar-04/Navbar4.astro";
 import SectionSwitcher from "../components/SectionSwitcher.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import ShaderAuroraVeil from "../components/starwind-pro/shader-aurora-veil/ShaderAuroraVeil.astro";
 
 interface Props {
 	title: string;
@@ -33,6 +34,10 @@ const links: NavLink[] = [
 		<title>{title}</title>
 	</head>
 	<body>
+		<ShaderAuroraVeil
+			primaryVeilColor="var(--color-primary)"
+			secondaryVeilColor="var(--color-primary-accent)"
+		/>
 		<Navbar4 siteName="Wild Pear" links={links} ctaText="Contact" ctaHref="/contact">
 			<SectionSwitcher current="enrolled" id="section-switcher-desktop" slot="section-switcher" />
 			<SectionSwitcher
