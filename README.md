@@ -40,20 +40,30 @@ All commands are run from the root of the project, from a terminal:
 
 ## 🗺️ Sitemap
 
-| Route                        | Page                              | Notes                                          |
-| :---------------------------- | :--------------------------------- | :---------------------------------------------- |
-| `/`                           | Home                                |                                                 |
-| `/learn-about-us`             | Learn About Us                     | Hero (hero-22)                                 |
-| `/programs`                   | Our Programs                       | Programs grid + Schedule a Tour form           |
-| `/our-approach`                | Our Approach                       |                                                 |
-| `/who-we-are`                 | Who We Are                         |                                                 |
-| `/enrollment-information`     | Enrollment Information             |                                                 |
-| `/enrolled-students`          | Enrolled Students                  |                                                 |
-| `/privacy`                    | Privacy Policy                     |                                                 |
-| `/terms`                      | Terms                              |                                                 |
-| `/programs/infant-toddler`    | Infant/Toddler program detail      | Linked from nav & program cards, not built yet |
-| `/programs/preschool`         | Preschool program detail           | Linked from nav & program cards, not built yet |
-| `/programs/summer-camp`       | School Age Summer Camp detail      | Linked from nav & program cards, not built yet |
+| Route                       | Page                                | Notes                                          |
+| :--------------------------- | :------------------------------------ | :----------------------------------------------- |
+| `/`                          | Home                                  |                                                 |
+| `/learn-about-us`            | Learn About Us                        | Hero (hero-22)                                 |
+| `/our-approach`              | Our Approach                          |                                                 |
+| `/who-we-are`                | Who We Are                            |                                                 |
+| `/programs`                  | Our Programs                          | Programs grid + Schedule a Tour form           |
+| `/programs/infant-toddler`   | Infant/Toddler program detail         | ServicePage6                                   |
+| `/programs/preschool`        | Preschool program detail              | ServicePage6                                   |
+| `/programs/summer-camp`      | School Age Summer Camp detail         | ServicePage6                                   |
+| `/enrollment-information`    | Enrollment Information                |                                                 |
+| `/contact`                   | Contact                               |                                                 |
+| `/tuition`                   | Tuition                               | Enrolled-family layout                         |
+| `/enrolled-students`         | Enrolled Students                     |                                                 |
+| `/handbook`                  | Family Handbooks hub                  |                                                 |
+| `/handbook/preschool`        | Preschool Handbook                    |                                                 |
+| `/handbook/infant-toddler`   | Infant & Toddler (Sprouts) Handbook   |                                                 |
+| `/handbook/summer-camp`      | School Age Summer Camp Handbook       |                                                 |
+| `/privacy`                   | Privacy Policy                        |                                                 |
+| `/terms`                     | Terms                                 |                                                 |
+| `/forms/enrollment`          | Enrollment Forms                      | Linked from nav/footer, not built yet (404)    |
+| `/forms/other`               | Other Forms                           | Linked from nav/footer, not built yet (404)    |
+| `/resources/videos`          | Video Resources                       | Linked from nav/footer, not built yet (404)    |
+| `/resources/tax-info`        | Tax Info                              | Linked from nav/footer, not built yet (404)    |
 
 ### Learn About Us hero — headline options
 
