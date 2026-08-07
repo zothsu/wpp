@@ -9,6 +9,7 @@ Tracks working sessions on this project — when, how long, and what got done �
 | 2026-08-04 | ~11:33 PM             | not tracked          | Initial project scaffold: Astro + Starwind UI setup, base pages (home, learn-about-us, our-approach, who-we-are, enrollment, privacy, terms), starter content/images. ("initial commit, day 1")            |
 | 2026-08-05 | ~11:20 AM – 4:35 PM   | ~5 hrs               | See breakdown below.                                                                                                                                                                                        |
 | 2026-08-06 | ~1:00 PM – 5:30 PM, ~8:00 PM – 10:00 PM | ~6.5 hrs | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-07 | ~9:45 AM – (in progress) | TBD | See breakdown below.                                                                                                                                                                                        |
 
 ## 2026-08-05 session detail
 
@@ -46,3 +47,8 @@ Tracks working sessions on this project — when, how long, and what got done �
 - Fixed rounded-corner mismatches on Hero22, Feature8, and Feature10 (outer section wasn't rounded to match the inner image frame/panels).
 - Gave Hero22 a dedicated mobile layout — heading/description, then image, then buttons — instead of the default stacked order, since the desktop "notch" composition couldn't be reordered with simple flex `order` alone; the eyebrow text also now wraps onto two lines on mobile.
 - Fixed a real bug on the homepage hero (Hero11): the background image wasn't filling the section on shorter viewports because it relied on a percentage height against a parent that only had `min-height` set, so it silently fell back to a fixed 500px floor. Switched it to absolutely fill the section instead.
+
+## 2026-08-07 session detail
+
+- Made the site footer full-viewport height sitewide (global style fix on Footer3, not a homepage-only override) and gave the footer's brand title a mobile-only line break on "&" so "Wild Pear Preschool & Summer Camp" wraps cleanly on small screens.
+- Trialed the `@starwind-pro/shader-glass-aurora` animated background in place of the shader-silk-ribbon; decided against it and fully uninstalled both shader components plus the shared shader-runtime utility, reverting all three layouts to their plain pre-shader structure.
