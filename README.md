@@ -54,10 +54,10 @@ All commands are run from the root of the project, from a terminal:
 | `/contact`                   | Contact                               |                                                 |
 | `/tuition`                   | Tuition                               | Enrolled-family layout                         |
 | `/enrolled-students`         | Enrolled Students                     |                                                 |
-| `/handbook`                  | Family Handbooks hub                  |                                                 |
-| `/handbook/preschool`        | Preschool Handbook                    |                                                 |
-| `/handbook/infant-toddler`   | Infant & Toddler (Sprouts) Handbook   |                                                 |
-| `/handbook/summer-camp`      | School Age Summer Camp Handbook       |                                                 |
+| `/handbooks`                 | Family Handbooks hub                  |                                                 |
+| `/handbooks/preschool`       | Preschool Handbook                    |                                                 |
+| `/handbooks/infant-toddler`  | Infant & Toddler (Sprouts) Handbook   |                                                 |
+| `/handbooks/summer-camp`     | School Age Summer Camp Handbook       |                                                 |
 | `/privacy`                   | Privacy Policy                        |                                                 |
 | `/terms`                     | Terms                                 |                                                 |
 | `/forms/enrollment`          | Enrollment Forms                      | Linked from nav/footer, not built yet (404)    |
