@@ -56,12 +56,11 @@ const {
 
 <section class={hero11Styles({ class: className })} {...rest}>
   <!-- Background Image -->
-  <div class="relative min-h-full">
-    <!-- you may need to adjust the "min-h-[500px]" class here depending on your content overlay size -->
+  <div class="absolute inset-0">
     <img
       src={backgroundImage.src}
       alt={backgroundImage.alt}
-      class="h-full min-h-[500px] w-full object-cover"
+      class="size-full min-h-[500px] object-cover"
     />
     <div class="absolute inset-0 h-full w-full bg-black/50"></div>
   </div>

@@ -59,7 +59,67 @@ const {
 ---
 
 <section class={hero22Styles({ class: className })} {...rest}>
-  <div class="bg-background relative @xl:min-h-[48rem]">
+  <!-- Mobile layout: heading/description, then image, then buttons -->
+  <div class="flex flex-col gap-6 @xl:hidden">
+    <div>
+      {
+        eyebrow && (
+          <p class="text-primary-accent text-xs font-medium tracking-[0.24em] uppercase">
+            {eyebrow.includes("&") ? (
+              <>
+                {eyebrow.split("&")[0].trim()}
+                <br />
+                {`&${eyebrow.split("&")[1]}`}
+              </>
+            ) : (
+              eyebrow
+            )}
+          </p>
+        )
+      }
+      <h1 class:list={["font-heading text-4xl font-light tracking-tight text-balance", eyebrow ? "mt-5" : "mt-0"]}>
+        {heading}
+      </h1>
+      {
+        description && (
+          <p class="text-muted-foreground mt-7 max-w-sm text-sm leading-normal text-pretty">
+            {description}
+          </p>
+        )
+      }
+    </div>
+
+    <div
+      class="bg-muted ring-primary/40 border-primary/40 relative h-[24rem] overflow-hidden rounded-4xl border ring-1 @md:h-[30rem]"
+    >
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        class="absolute inset-0 size-full object-cover"
+        loading="eager"
+      />
+      <div
+        class="from-background/40 via-background/5 to-background/20 absolute inset-0 bg-linear-to-br"
+      >
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 @md:flex-row @md:items-center">
+      <Button href={primaryButtonHref}>{primaryButtonText}</Button>
+      {
+        secondaryLinkText && (
+          <Button variant="accent" href={secondaryLinkHref}>
+            {secondaryLinkText}
+          </Button>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- Desktop layout: image as background, text card overlapping in an organic notch -->
+  <div class="bg-background relative hidden @xl:block @xl:min-h-[48rem]">
     <div
       class="bg-muted ring-primary/40 border-primary/40 relative h-[24rem] overflow-hidden rounded-4xl border ring-1 @md:h-[30rem] @xl:absolute @xl:inset-0 @xl:h-auto"
     >
