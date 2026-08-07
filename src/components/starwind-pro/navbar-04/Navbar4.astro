@@ -89,7 +89,7 @@ const {
           <SheetHeader>
             <SheetTitle class="text-left">
               <slot name="logo">
-                <span class="text-xl font-semibold">{siteName}</span>
+                <span class="font-heading text-2xl font-semibold">{siteName}</span>
               </slot>
             </SheetTitle>
             <Separator class="mt-2" />
@@ -173,9 +173,9 @@ const {
     </div>
 
     <!-- Logo / Site Name -->
-    <div class="mr-auto flex shrink-0 items-baseline">
+    <div class="mr-auto flex shrink-0 items-center">
       <slot name="logo">
-        <a href="/" class="text-lg font-semibold">
+        <a href="/" class="font-heading text-2xl font-semibold">
           {siteName}
         </a>
       </slot>
