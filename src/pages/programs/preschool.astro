@@ -1,133 +1,196 @@
 ---
-import Accordion, { type AccordionItem } from "../../components/Accordion.astro";
 import AboutLayout from "../../layouts/AboutLayout.astro";
 import Cta10 from "../../components/starwind-pro/cta-10/Cta10.astro";
 import ScheduleTour from "../../components/ScheduleTour.astro";
-
-const sections: AccordionItem[] = [
-	{
-		title: "Learning Space",
-		content: [
-			{
-				type: "p",
-				text: "We have two indoor classroom spaces: the daylight basement and the main floor living/dining room. Our outdoor covered area is home to our parent sign-in space, hooks for the children's backpacks and gear, along with the tables and hand-washing space where we eat our meals and snacks year-round. We also have a fenced space we call \"the upper yard,\" measuring just over 500 square feet, that includes a massive sandbox and several covered spaces. At times we've used this space as an outdoor classroom for focused activities, and other times for open-ended free play. Our fully fenced \"lower yard\" spans about half an acre and provides ample space for children to run, dig, climb, build, and slide. We have five garden boxes and several fruiting trees in the lower yard, along with our friendly laying hens. All of this borders Johnson Creek, which we can see and hear while we play.",
-			},
-			{
-				type: "p",
-				text: "Families who have been with us for years can tell you that our space is constantly evolving and adapting — being transformed by the children, and for the children, as their needs and interests grow and change. We also modify things as the weather changes throughout the year.",
-			},
-		],
-	},
-	{
-		title: "Daily Schedule",
-		content: [
-			{
-				type: "p",
-				text: "Our schedule is meant to provide children with a reliable rhythm during their time with us. This allows children to know what to expect ahead of time and focus on the learning at hand. We also know that children's needs and focused learning fluctuate, so you may find that we make modifications.",
-			},
-			{
-				type: "table",
-				headers: ["Time", "Activity"],
-				rows: [
-					["7:30", "Open, before care available"],
-					["8:30", "All children have arrived! Breakfast"],
-					["8:50", "Welcome circle, classroom work"],
-					["10:00", "Outdoor learning"],
-					["12:00", "Lunch"],
-					["12:45", "Rest"],
-					["3:30", "Snack"],
-					["3:45", "Afternoon play"],
-					["5:30", "Closed"],
-				],
-			},
-			{
-				type: "p",
-				text: "With the exception of planned appointments and true emergencies, we expect all children to be at school, ready to learn, and transitioned into the group by 8:30. We also ask that pick-ups happen before or after the lunch/rest period so we can focus all our energy on smooth transitions and a peaceful rest time from 12-3.",
-			},
-		],
-	},
-	{
-		title: "Meals",
-		content: [
-			{
-				type: "p",
-				text: "While at school, children are served breakfast, lunch, and an afternoon snack. These meals are included with tuition, and per USDA food program guidelines, each meal includes an age-appropriate portion of various food groups.",
-			},
-			{
-				type: "p",
-				text: "The food is cooked onsite by the teachers, and seasonal, local, and organic food is prioritized, as well as food grown onsite. We eat \"family style,\" and children assist in setting the table, serving themselves, and clearing their place when they're finished eating. Meals are a social time, when teachers eat with children and everyone is encouraged to enjoy the food and time together.",
-			},
-			{
-				type: "p",
-				text: "During meals, children are all asked to join the group at the table and put some of each type of food on their plates. However, children always get to decide which foods they try and how much they eat. At each meal we learn about the foods being served, including the nutritional benefit of choosing to eat it. We always encourage children to listen to their bodies, especially when it comes to eating and feeling full. Everyone clears their own space after meals: composting uneaten food, stacking dirty dishes, cleaning up spills, and washing their hands and faces.",
-			},
-			{
-				type: "p",
-				text: "We will work together with families to make a plan for a child that has a dietary restriction due to allergies, medical conditions, or moral or religious exemptions.",
-			},
-		],
-	},
-	{
-		title: "Rest Time",
-		content: [
-			{
-				type: "p",
-				text: "Engaged learning can be exhausting, and a mid-day rest is the way we honor the hard work our bodies and brains do during the day. After lunch, each child is asked to spend time relaxing quietly on a cozy resting cot. During the beginning of the rest period a teacher may read aloud, sing, or play soft music. Then children will be given some time to rest independently, and sleep if they need. Towards the end of the rest period, children who are awake will be invited to do some quiet work on their cot, which might include reading books, writing in a journal, drawing, or working on a puzzle. Finally, children who are awake will be asked to clean up their resting materials, and children who are asleep will be allowed to keep sleeping for a bit longer if needed.",
-			},
-		],
-	},
-	{
-		title: "Toileting",
-		content: [
-			{
-				type: "p",
-				text: "Children enrolled in the preschool program need to be able to either use the toilet or change their own pull-up diapers independently, with very limited reminders or support from the teachers, for both urination and bowel movements.",
-			},
-			{
-				type: "p",
-				text: "Children who use the toilet independently are those who are aware of when they need to eliminate and can clearly communicate this to a teacher. As we are often outside, they also need to be able to \"hold it\" for 5-10 minutes while a teacher gathers a group of children and brings them inside to the bathroom. These children can generally go more than an hour without needing to use the toilet, and willingly take the opportunity when needed to use the toilet before going outside or laying down for rest. They will also be able to clean their own bodies with toilet paper or wipes after both urination and bowel movements.",
-			},
-			{
-				type: "p",
-				text: "We do respect the complicated task of mastering the use of the toilet, and will never respond with disgust or an attempt to shame or embarrass children who may have an accident. We consider children to be toileting independently if they are having no more than 1 accident per month.",
-			},
-			{
-				type: "p",
-				text: "Children who are diapering independently are those who can remove their own clothes and soiled pull-up diaper, clean their own bodies with wipes for both urine and bowel movements, and redress with a clean pull-up diaper.",
-			},
-			{
-				type: "p",
-				text: "If you'd like to transition your child out of diapers during the school year, we recommend doing it over a long break so they are ready to toilet independently upon their return. It's absolutely fine if your child needs to wear a pull-up diaper only during rest but is able to toilet independently during the time they're awake.",
-			},
-			{
-				type: "p",
-				text: "We practice Elimination Communication. Human waste will be discussed as a normal, everyday part of life, and children will learn about elimination as a biological response to the many functions of our amazing bodies. We will use the actual names of body parts involved with elimination, including penis, urethra, vulva, and anus.",
-			},
-		],
-	},
-	{
-		title: "Outside Time",
-		content: [
-			{
-				type: "p",
-				text: "We believe that children of all ages need time to learn and explore outside every day, rain or shine. All children are expected to have appropriate gear for the weather so they can be comfortable and safe while we're out. We provide a detailed list of gear suggestions in the family handbook.",
-			},
-		],
-	},
-];
+import ServicePage6 from "../../components/starwind-pro/service-page-06/ServicePage6.astro";
 ---
 
 <AboutLayout title="Preschool | Wild Pear Preschool & Summer Camp">
-	<section class="mx-auto max-w-3xl px-4 py-16">
-		<span class="text-primary-accent text-sm font-semibold tracking-widest uppercase">
-			Ages 3-5
-		</span>
-		<h1 class="mt-3 text-4xl font-semibold">Preschool</h1>
+	<ServicePage6
+		title="Preschool"
+		description="A reliable daily rhythm for ages 3-5, blending indoor learning, outdoor exploration, and hands-on connection to food and nature."
+		badge="Ages 3-5"
+		image="/images/kristin-brown-3kBtYrZ0-hw-unsplash.jpg"
+		imageWidth={1920}
+		imageHeight={1298}
+		highlights={[
+			{ label: "Ages", value: "3-5" },
+			{ label: "Hours", value: "7:30am-5:30pm, Mon-Fri" },
+		]}
+		ctaText="View the Handbook"
+		ctaHref="/handbook/preschool"
+	>
+		<h2>Learning Space</h2>
+		<p>
+			We have two indoor classroom spaces: the daylight basement and the main floor
+			living/dining room. Our outdoor covered area is home to our parent sign-in space, hooks
+			for the children's backpacks and gear, along with the tables and hand-washing space where
+			we eat our meals and snacks year-round. We also have a fenced space we call "the upper
+			yard," measuring just over 500 square feet, that includes a massive sandbox and several
+			covered spaces. At times we've used this space as an outdoor classroom for focused
+			activities, and other times for open-ended free play. Our fully fenced "lower yard" spans
+			about half an acre and provides ample space for children to run, dig, climb, build, and
+			slide. We have five garden boxes and several fruiting trees in the lower yard, along with
+			our friendly laying hens. All of this borders Johnson Creek, which we can see and hear
+			while we play.
+		</p>
+		<p>
+			Families who have been with us for years can tell you that our space is constantly
+			evolving and adapting — being transformed by the children, and for the children, as their
+			needs and interests grow and change. We also modify things as the weather changes
+			throughout the year.
+		</p>
 
-		<div class="mt-8">
-			<Accordion items={sections} defaultValue="item-1" />
+		<h2>Daily Schedule</h2>
+		<p>
+			Our schedule is meant to provide children with a reliable rhythm during their time with
+			us. This allows children to know what to expect ahead of time and focus on the learning at
+			hand. We also know that children's needs and focused learning fluctuate, so you may find
+			that we make modifications.
+		</p>
+		<div class="overflow-x-auto">
+			<table>
+				<thead>
+					<tr>
+						<th>Time</th>
+						<th>Activity</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>7:30</td>
+						<td>Open, before care available</td>
+					</tr>
+					<tr>
+						<td>8:30</td>
+						<td>All children have arrived! Breakfast</td>
+					</tr>
+					<tr>
+						<td>8:50</td>
+						<td>Welcome circle, classroom work</td>
+					</tr>
+					<tr>
+						<td>10:00</td>
+						<td>Outdoor learning</td>
+					</tr>
+					<tr>
+						<td>12:00</td>
+						<td>Lunch</td>
+					</tr>
+					<tr>
+						<td>12:45</td>
+						<td>Rest</td>
+					</tr>
+					<tr>
+						<td>3:30</td>
+						<td>Snack</td>
+					</tr>
+					<tr>
+						<td>3:45</td>
+						<td>Afternoon play</td>
+					</tr>
+					<tr>
+						<td>5:30</td>
+						<td>Closed</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-	</section>
+		<p>
+			With the exception of planned appointments and true emergencies, we expect all children to
+			be at school, ready to learn, and transitioned into the group by 8:30. We also ask that
+			pick-ups happen before or after the lunch/rest period so we can focus all our energy on
+			smooth transitions and a peaceful rest time from 12-3.
+		</p>
+
+		<h2>Meals</h2>
+		<p>
+			While at school, children are served breakfast, lunch, and an afternoon snack. These meals
+			are included with tuition, and per USDA food program guidelines, each meal includes an
+			age-appropriate portion of various food groups.
+		</p>
+		<p>
+			The food is cooked onsite by the teachers, and seasonal, local, and organic food is
+			prioritized, as well as food grown onsite. We eat "family style," and children assist in
+			setting the table, serving themselves, and clearing their place when they're finished
+			eating. Meals are a social time, when teachers eat with children and everyone is
+			encouraged to enjoy the food and time together.
+		</p>
+		<p>
+			During meals, children are all asked to join the group at the table and put some of each
+			type of food on their plates. However, children always get to decide which foods they try
+			and how much they eat. At each meal we learn about the foods being served, including the
+			nutritional benefit of choosing to eat it. We always encourage children to listen to their
+			bodies, especially when it comes to eating and feeling full. Everyone clears their own
+			space after meals: composting uneaten food, stacking dirty dishes, cleaning up spills, and
+			washing their hands and faces.
+		</p>
+		<p>
+			We will work together with families to make a plan for a child that has a dietary
+			restriction due to allergies, medical conditions, or moral or religious exemptions.
+		</p>
+
+		<h2>Rest Time</h2>
+		<p>
+			Engaged learning can be exhausting, and a mid-day rest is the way we honor the hard work
+			our bodies and brains do during the day. After lunch, each child is asked to spend time
+			relaxing quietly on a cozy resting cot. During the beginning of the rest period a teacher
+			may read aloud, sing, or play soft music. Then children will be given some time to rest
+			independently, and sleep if they need. Towards the end of the rest period, children who
+			are awake will be invited to do some quiet work on their cot, which might include reading
+			books, writing in a journal, drawing, or working on a puzzle. Finally, children who are
+			awake will be asked to clean up their resting materials, and children who are asleep will
+			be allowed to keep sleeping for a bit longer if needed.
+		</p>
+
+		<h2>Toileting</h2>
+		<p>
+			Children enrolled in the preschool program need to be able to either use the toilet or
+			change their own pull-up diapers independently, with very limited reminders or support
+			from the teachers, for both urination and bowel movements.
+		</p>
+		<p>
+			Children who use the toilet independently are those who are aware of when they need to
+			eliminate and can clearly communicate this to a teacher. As we are often outside, they
+			also need to be able to "hold it" for 5-10 minutes while a teacher gathers a group of
+			children and brings them inside to the bathroom. These children can generally go more than
+			an hour without needing to use the toilet, and willingly take the opportunity when needed
+			to use the toilet before going outside or laying down for rest. They will also be able to
+			clean their own bodies with toilet paper or wipes after both urination and bowel
+			movements.
+		</p>
+		<p>
+			We do respect the complicated task of mastering the use of the toilet, and will never
+			respond with disgust or an attempt to shame or embarrass children who may have an
+			accident. We consider children to be toileting independently if they are having no more
+			than 1 accident per month.
+		</p>
+		<p>
+			Children who are diapering independently are those who can remove their own clothes and
+			soiled pull-up diaper, clean their own bodies with wipes for both urine and bowel
+			movements, and redress with a clean pull-up diaper.
+		</p>
+		<p>
+			If you'd like to transition your child out of diapers during the school year, we recommend
+			doing it over a long break so they are ready to toilet independently upon their return.
+			It's absolutely fine if your child needs to wear a pull-up diaper only during rest but is
+			able to toilet independently during the time they're awake.
+		</p>
+		<p>
+			We practice Elimination Communication. Human waste will be discussed as a normal,
+			everyday part of life, and children will learn about elimination as a biological response
+			to the many functions of our amazing bodies. We will use the actual names of body parts
+			involved with elimination, including penis, urethra, vulva, and anus.
+		</p>
+
+		<h2>Outside Time</h2>
+		<p>
+			We believe that children of all ages need time to learn and explore outside every day,
+			rain or shine. All children are expected to have appropriate gear for the weather so they
+			can be comfortable and safe while we're out. We provide a detailed list of gear
+			suggestions in the family handbook.
+		</p>
+	</ServicePage6>
 
 	<ScheduleTour />
 

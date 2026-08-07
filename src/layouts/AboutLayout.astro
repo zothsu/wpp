@@ -3,6 +3,7 @@ import "../styles/starwind.css";
 import Navbar4, { type NavLink } from "../components/starwind-pro/navbar-04/Navbar4.astro";
 import SectionSwitcher from "../components/SectionSwitcher.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import ShaderSilkRibbon from "../components/starwind-pro/shader-silk-ribbon/ShaderSilkRibbon.astro";
 import IconPear from "../icons/pear.svg";
 
 interface Props {
@@ -36,16 +37,22 @@ const links: NavLink[] = [
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<Navbar4 siteName="Wild Pear" links={links} ctaText="Contact" ctaHref="/contact">
-			<a href="/" slot="logo" class="flex items-center gap-2 text-lg font-semibold">
-				<IconPear class="size-6" />
-				Wild Pear
-			</a>
-			<SectionSwitcher current="about" id="section-switcher-desktop" slot="section-switcher" />
-			<SectionSwitcher current="about" id="section-switcher-mobile" slot="section-switcher-mobile" />
-		</Navbar4>
-		<slot />
-		<SiteFooter />
+	<body class="relative">
+		<ShaderSilkRibbon
+			primaryRibbonColor="var(--color-primary)"
+			secondaryRibbonColor="var(--color-primary-accent)"
+		/>
+		<div class="relative z-10">
+			<Navbar4 siteName="Wild Pear" links={links} ctaText="Contact" ctaHref="/contact">
+				<a href="/" slot="logo" class="flex items-center gap-2 text-lg font-semibold">
+					<IconPear class="size-6" />
+					Wild Pear
+				</a>
+				<SectionSwitcher current="about" id="section-switcher-desktop" slot="section-switcher" />
+				<SectionSwitcher current="about" id="section-switcher-mobile" slot="section-switcher-mobile" />
+			</Navbar4>
+			<slot />
+			<SiteFooter />
+		</div>
 	</body>
 </html>

@@ -1,0 +1,90 @@
+---
+/**
+ * Service Page 6 - Sidebar Info
+ *
+ * A two-column service page with main content and a sticky sidebar with image, highlights, and CTA.
+ *
+ * Usage:
+ * 1. Use the starwind cli to add this component: `npx starwind@latest add @starwind-pro/service-page-06`
+ * 2. Import the `ServicePage6` component and pass your service data + slot content
+ *
+ * Props:
+ * - title: string (required)
+ * - description: string (required)
+ * - image?: string
+ * - badge?: string
+ * - ctaText?: string
+ * - ctaHref?: string
+ * - highlights?: Highlight[]
+ * - <slot /> for rendered content
+ */
+import ServicePage6, { type Highlight } from "./ServicePage6.astro";
+
+const highlights: Highlight[] = [
+  { label: "Timeline", value: "2–6 weeks" },
+  { label: "Team Size", value: "2–4 engineers" },
+  { label: "Support", value: "12 months included" },
+  { label: "Methodology", value: "Agile / Kanban" },
+];
+---
+
+<div class="h-[80vh] w-full overflow-y-auto">
+  <ServicePage6
+    title="DevOps & Automation"
+    description="We streamline your development lifecycle with automated pipelines, infrastructure as code, and monitoring that catches issues before your users do."
+    badge="Operations"
+    image="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop"
+    ctaText="Schedule a Review"
+    ctaHref="#"
+    highlights={highlights}
+  >
+    <h2>Why DevOps Matters</h2>
+    <p>
+      Manual deployments, fragile environments, and slow feedback loops drain your team's energy and
+      slow your release cadence. We implement <strong>automation that compounds</strong> — every pipeline
+      we build saves hundreds of hours over its lifetime.
+    </p>
+
+    <h2>What We Automate</h2>
+
+    <h3>Continuous Integration</h3>
+    <p>
+      Every commit triggers automated builds, linting, type checking, and test suites. Broken code
+      never reaches your main branch. We configure parallel test execution to keep feedback loops
+      under 5 minutes.
+    </p>
+
+    <h3>Continuous Deployment</h3>
+    <p>
+      From staging to production with confidence. Blue-green deployments, canary releases, and
+      automatic rollbacks ensure zero-downtime releases. Feature flags let you decouple deployment
+      from release.
+    </p>
+
+    <h3>Infrastructure as Code</h3>
+    <p>
+      Your entire infrastructure defined in version-controlled Terraform or Pulumi configurations.
+      Spin up identical environments on demand. Audit every change. Roll back in minutes.
+    </p>
+
+    <h3>Monitoring & Alerting</h3>
+    <p>
+      Structured logging, distributed tracing, and custom metrics dashboards that surface the
+      signals that matter. Alerts are routed intelligently — no alert fatigue, no missed incidents.
+    </p>
+
+    <blockquote>
+      <p>
+        Automation isn't about replacing people. It's about freeing them to work on problems that
+        actually require human judgment.
+      </p>
+    </blockquote>
+
+    <h2>Results You Can Measure</h2>
+    <p>
+      Our clients typically see deployment frequency increase by <strong>5–10x</strong> while change failure
+      rate drops below <strong>5%</strong>. Mean time to recovery goes from hours to minutes. These
+      aren't aspirational targets — they're the baseline we deliver.
+    </p>
+  </ServicePage6>
+</div>

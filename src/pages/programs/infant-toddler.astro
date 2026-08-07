@@ -1,76 +1,90 @@
 ---
-import Accordion, { type AccordionItem } from "../../components/Accordion.astro";
 import AboutLayout from "../../layouts/AboutLayout.astro";
 import Cta10 from "../../components/starwind-pro/cta-10/Cta10.astro";
 import ScheduleTour from "../../components/ScheduleTour.astro";
-
-const sections: AccordionItem[] = [
-	{
-		title: "Meals",
-		content: [
-			{
-				type: "p",
-				text: "Family preference and the USDA food program requirements will help guide our approach to offering children milk and food. We will use the baby led weaning approach with solid foods to help children be as independent as possible with their food consumption. As they are able to join, children are served healthy, homemade family style meals for breakfast and lunch. They're also offered a protein rich afternoon snack. Infants are offered a small morning snack as well.",
-			},
-			{
-				type: "p",
-				text: "The food, which is typically vegetarian, is cooked onsite by the teachers and seasonal, local and organic food is prioritized as well as food grown onsite. We eat \"family style\" and children assist in setting the table, serving themselves and clearing their place when they're finished eating. Meals are a social time, when teachers eat with children and everyone is encouraged to enjoy the food and time together.",
-			},
-			{
-				type: "p",
-				text: "During meals, children always get to decide which foods they try and how much they eat. At each meal we learn about the foods being served, including the nutritional benefit of choosing to eat it. We always encourage children to listen to their bodies, especially when it comes to eating and feeling full. Everyone helps clear their own space after meals: composting uneaten food, stacking dirty dishes, cleaning up spills, and washing their hands and faces.",
-			},
-			{
-				type: "p",
-				text: "We will work together with families to make a plan for any child that has a dietary restriction due to allergies, medical conditions, or moral or religious exemptions.",
-			},
-		],
-	},
-	{
-		title: "Rest Time",
-		content: [
-			{
-				type: "p",
-				text: "Engaged learning can be exhausting! Ideally, all children will sleep during the afternoon rest time from 12:30-3:00. We understand that one year old children may still need a morning nap, and when that need arises we will provide them with a safe and cozy space to rest as long as they need (either their nap cot inside or a wonder wagon outside).",
-			},
-		],
-	},
-	{
-		title: "Diapering & Toileting",
-		content: [
-			{
-				type: "p",
-				text: "During diaper changes, teachers will gently explain to children what is happening with their bodies and encourage them to be an active participant in the diaper change. We practice Elimination Communication (EC). Human waste will be discussed as a normal, everyday part of life, and children will learn about elimination as a biological response to the many functions of our amazing bodies. We will use the actual names of body parts involved with elimination, including penis, urethra, vulva, and anus. As children gain confidence in their ability to stand, we will transition them to stand-up diaper changes, which allow them to better see and participate in the process. As soon as they are interested in the toilet, they will be invited to flush, lift the lid, climb up and sit down, and eventually let their pee and poop go into the toilet too. Diapers, wipes, and diapering cream are provided by us and included in your tuition.",
-			},
-			{
-				type: "p",
-				text: "We will also respect the complicated task of mastering the use of the toilet and will never respond with disgust or an attempt to shame or embarrass children who are still working towards consistent toilet use.",
-			},
-		],
-	},
-	{
-		title: "Outside Time",
-		content: [
-			{
-				type: "p",
-				text: "We believe that children of all ages need time to learn and explore outside every day, rain or shine. All children are expected to have appropriate gear for the weather so they can be comfortable and safe while we're out. We provide a detailed list of gear suggestions in the family handbook.",
-			},
-		],
-	},
-];
+import ServicePage6 from "../../components/starwind-pro/service-page-06/ServicePage6.astro";
 ---
 
 <AboutLayout title="Infants & Toddlers | Wild Pear Preschool & Summer Camp">
-	<section class="mx-auto max-w-3xl px-4 py-16">
-		<span class="text-primary-accent text-sm font-semibold tracking-widest uppercase">
-			Ages 0-2
-		</span>
-		<h1 class="mt-3 text-4xl font-semibold">Infants & Toddlers</h1>
+	<ServicePage6
+		title="Infants & Toddlers"
+		description="Individualized care for our youngest community members, with gentle rhythms around meals, rest, and daily outdoor time."
+		badge="Ages 0-2"
+		image="/images/todler.jpg"
+		imageWidth={4480}
+		imageHeight={6720}
+		highlights={[
+			{ label: "Ages", value: "0-2" },
+			{ label: "Hours", value: "M-Fri 7:30am-5:30pm" },
+		]}
+		ctaText="View the Handbook"
+		ctaHref="/handbook/infant-toddler"
+	>
+		<h2>Meals</h2>
+		<p>
+			Family preference and the USDA food program requirements will help guide our approach to
+			offering children milk and food. We will use the baby led weaning approach with solid foods
+			to help children be as independent as possible with their food consumption. As they are
+			able to join, children are served healthy, homemade family style meals for breakfast and
+			lunch. They're also offered a protein rich afternoon snack. Infants are offered a small
+			morning snack as well.
+		</p>
+		<p>
+			The food, which is typically vegetarian, is cooked onsite by the teachers and seasonal,
+			local and organic food is prioritized as well as food grown onsite. We eat "family style"
+			and children assist in setting the table, serving themselves and clearing their place when
+			they're finished eating. Meals are a social time, when teachers eat with children and
+			everyone is encouraged to enjoy the food and time together.
+		</p>
+		<p>
+			During meals, children always get to decide which foods they try and how much they eat. At
+			each meal we learn about the foods being served, including the nutritional benefit of
+			choosing to eat it. We always encourage children to listen to their bodies, especially when
+			it comes to eating and feeling full. Everyone helps clear their own space after meals:
+			composting uneaten food, stacking dirty dishes, cleaning up spills, and washing their hands
+			and faces.
+		</p>
+		<p>
+			We will work together with families to make a plan for any child that has a dietary
+			restriction due to allergies, medical conditions, or moral or religious exemptions.
+		</p>
 
-		<div class="mt-8">
-			<Accordion items={sections} defaultValue="item-1" />
-		</div>
-	</section>
+		<h2>Rest Time</h2>
+		<p>
+			Engaged learning can be exhausting! Ideally, all children will sleep during the afternoon
+			rest time from 12:30-3:00. We understand that one year old children may still need a
+			morning nap, and when that need arises we will provide them with a safe and cozy space to
+			rest as long as they need (either their nap cot inside or a wonder wagon outside).
+		</p>
+
+		<h2>Diapering & Toileting</h2>
+		<p>
+			During diaper changes, teachers will gently explain to children what is happening with
+			their bodies and encourage them to be an active participant in the diaper change. We
+			practice Elimination Communication (EC). Human waste will be discussed as a normal,
+			everyday part of life, and children will learn about elimination as a biological response
+			to the many functions of our amazing bodies. We will use the actual names of body parts
+			involved with elimination, including penis, urethra, vulva, and anus. As children gain
+			confidence in their ability to stand, we will transition them to stand-up diaper changes,
+			which allow them to better see and participate in the process. As soon as they are
+			interested in the toilet, they will be invited to flush, lift the lid, climb up and sit
+			down, and eventually let their pee and poop go into the toilet too. Diapers, wipes, and
+			diapering cream are provided by us and included in your tuition.
+		</p>
+		<p>
+			We will also respect the complicated task of mastering the use of the toilet and will
+			never respond with disgust or an attempt to shame or embarrass children who are still
+			working towards consistent toilet use.
+		</p>
+
+		<h2>Outside Time</h2>
+		<p>
+			We believe that children of all ages need time to learn and explore outside every day,
+			rain or shine. All children are expected to have appropriate gear for the weather so they
+			can be comfortable and safe while we're out. We provide a detailed list of gear
+			suggestions in the family handbook.
+		</p>
+	</ServicePage6>
 
 	<ScheduleTour />
 

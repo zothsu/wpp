@@ -1,0 +1,144 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+import { Card, CardContent } from "@/components/starwind/card";
+import { Image } from "@/components/starwind/image";
+import { Prose } from "@/components/starwind/prose";
+import { Separator } from "@/components/starwind/separator";
+
+/** Highlight item for the sidebar */
+export interface Highlight {
+  /** Highlight label */
+  label: string;
+  /** Highlight value */
+  value: string;
+}
+
+interface Props extends HTMLAttributes<"article"> {
+  /** Service page title */
+  title: string;
+  /** Service description / subtitle */
+  description: string;
+  /** Optional image URL (rendered small in sidebar) */
+  image?: string;
+  /** Intrinsic image width, required for local /public images */
+  imageWidth?: number;
+  /** Intrinsic image height, required for local /public images */
+  imageHeight?: number;
+  /** Optional badge/eyebrow text above the title */
+  badge?: string;
+  /** Optional CTA button text */
+  ctaText?: string;
+  /** Optional CTA button href */
+  ctaHref?: string;
+  /** Optional sidebar highlights */
+  highlights?: Highlight[];
+}
+
+const sectionStyles = tv({
+  base: "@container mx-auto w-full max-w-6xl px-4 py-24",
+});
+
+const {
+  title,
+  description,
+  image,
+  imageWidth,
+  imageHeight,
+  badge,
+  ctaText,
+  ctaHref = "#",
+  highlights = [],
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<article class={sectionStyles({ class: className })} {...rest}>
+  <!-- Header (full width) -->
+  <header class="mb-12">
+    <!-- Badge -->
+    {
+      badge && (
+        <div class="mb-4">
+          <Badge variant="primary">{badge}</Badge>
+        </div>
+      )
+    }
+
+    <!-- Title -->
+    <h1 class="font-heading text-3xl font-bold tracking-tight @xl:text-4xl @3xl:text-5xl">
+      {title}
+    </h1>
+
+    <!-- Description -->
+    <p class="text-muted-foreground mt-4 max-w-3xl text-lg text-pretty">
+      {description}
+    </p>
+  </header>
+
+  <!-- Two-column layout -->
+  <div class="grid gap-10 @3xl:grid-cols-[1fr_320px]">
+    <!-- Main content -->
+    <div>
+      <Prose class="max-w-none @3xl:text-lg">
+        <slot />
+      </Prose>
+    </div>
+
+    <!-- Sticky sidebar -->
+    <aside class="@3xl:sticky @3xl:top-8 @3xl:self-start">
+      <Card>
+        <CardContent class="space-y-6">
+          <!-- Sidebar image -->
+          {
+            image && (
+              <div class="overflow-hidden rounded-lg">
+                <Image
+                  src={image}
+                  alt={title}
+                  width={imageWidth}
+                  height={imageHeight}
+                  class="h-auto w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )
+          }
+
+          <!-- Highlights -->
+          {
+            highlights.length > 0 && (
+              <div class="space-y-3">
+                {highlights.map((item, i) => (
+                  <>
+                    {i > 0 && <Separator />}
+                    <div class="flex items-center justify-between gap-4">
+                      <span class="text-muted-foreground text-sm">{item.label}</span>
+                      <span class="text-sm font-medium">{item.value}</span>
+                    </div>
+                  </>
+                ))}
+              </div>
+            )
+          }
+
+          <!-- CTA -->
+          {
+            ctaText && (
+              <>
+                <Separator />
+                <Button variant="primary" href={ctaHref} class="w-full">
+                  {ctaText}
+                </Button>
+              </>
+            )
+          }
+        </CardContent>
+      </Card>
+    </aside>
+  </div>
+</article>
