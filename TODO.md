@@ -5,6 +5,7 @@
 - [ ] Build the placeholder pages linked from nav/footer that currently 404: `/forms` (+ `/forms/enrollment`, `/forms/other`). (`/resources` is now built and linked directly from the nav; the old Videos/Tax Info dropdown items were removed since we didn't need them.)
 - [ ] Reformat `/enrollment-information` page: needs centering and rewording of copy.
 - [ ] Navbar: active/current page link should render in the accent color, not the default muted-foreground style.
+- [ ] `Enrollment.astro` "Submit Your Application" step has a placeholder `href="#"` — swap in the real application form URL once it's ready.
 
 ## Photos needing replacement
 
