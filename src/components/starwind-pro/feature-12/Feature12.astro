@@ -1,0 +1,84 @@
+---
+import IconCode from "@tabler/icons/outline/code.svg";
+import IconPalette from "@tabler/icons/outline/palette.svg";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/starwind/tabs";
+
+export interface FeatureTab {
+  id: string;
+  label: string;
+  icon: any;
+  title?: string;
+  description?: string;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Section tagline */
+  tagline?: string;
+  /** Section heading */
+  heading?: string;
+  /** Array of feature tabs */
+  tabs?: FeatureTab[];
+}
+
+const feature12Styles = tv({
+  base: "@container mx-auto w-full max-w-6xl px-4 py-24",
+});
+
+const {
+  tagline = "Powerful Features",
+  heading = "Everything you need to build amazing products",
+  tabs = [
+    {
+      id: "development",
+      label: "Develop",
+      icon: IconCode,
+    },
+    {
+      id: "design",
+      label: "Design",
+      icon: IconPalette,
+    },
+  ],
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={feature12Styles({ class: className })} {...rest}>
+  <div class="mb-16 text-center">
+    <div class="text-primary-accent mb-4 text-sm font-medium">
+      {tagline}
+    </div>
+    <h2 class="mx-auto max-w-3xl">{heading}</h2>
+  </div>
+
+  <Tabs defaultValue={tabs[0].id} class="w-full">
+    <TabsList class="bg-muted/50 mb-12 grid @xs:w-full @xs:grid-cols-2">
+      {
+        tabs.map((tab) => (
+          <TabsTrigger value={tab.id} class="gap-2">
+            <tab.icon class="size-4" aria-hidden="true" />
+            <span>{tab.label}</span>
+          </TabsTrigger>
+        ))
+      }
+    </TabsList>
+
+    {
+      tabs.map((tab) => (
+        <TabsContent value={tab.id}>
+          {tab.title && (
+            <h3 class="font-heading mb-4 text-2xl font-semibold @xl:text-3xl">{tab.title}</h3>
+          )}
+          {tab.description && (
+            <p class="text-muted-foreground mb-8 text-pretty @lg:text-lg">{tab.description}</p>
+          )}
+          <slot name={`tab-${tab.id}`} />
+        </TabsContent>
+      ))
+    }
+  </Tabs>
+</section>

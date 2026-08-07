@@ -1,247 +1,283 @@
 ---
+import IconSchool from "@tabler/icons/outline/school.svg";
+import IconSeedling from "@tabler/icons/outline/seedling.svg";
+
 import Enrollment from "../components/Enrollment.astro";
 import StillHaveQuestions from "../components/forms-questionGeneral.astro";
+import Feature12 from "../components/starwind-pro/feature-12/Feature12.astro";
 import AboutLayout from "../layouts/AboutLayout.astro";
 ---
 
 <AboutLayout title="Enrollment Information | Wild Pear Preschool & Summer Camp">
-	<section class="mx-auto max-w-3xl px-4 py-16">
-		<h1 class="text-4xl font-semibold">Enrollment Information</h1>
-		<div class="border-primary-accent bg-muted mt-4 rounded-lg border-l-4 p-4">
-			<p class="font-medium text-pretty">
-				We are currently enrolling and have full time and part time slots available! See below
-				for our hours, tuition, and enrollment process.
-			</p>
-		</div>
-	</section>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <h1>Enrollment Information</h1>
+  </section>
 
-	<Enrollment />
+  <Enrollment />
 
-	<section class="mx-auto max-w-3xl space-y-12 px-4 pb-16">
-		<div>
-			<h2 class="text-2xl font-semibold">School Year Hours and Dates of Operation</h2>
-			<div class="text-muted-foreground mt-4 space-y-4 text-pretty">
-				<p>
-					Wild Pear offers childcare for up to 16 children, ages 1-5 years old, during the school
-					year. We are open Monday through Friday from 7:30am to 5:30pm.
-				</p>
-				<p>
-					Our school year typically begins in early September on the Thursday after Labor Day and
-					runs until mid-June. During this time we are closed for two weeks of winter break, one
-					week of spring break, along with two family conference days, two inservice days, and all
-					major holidays. A calendar of specific closure dates is given to families when they
-					enroll and can be found in our family handbook.
-				</p>
-			</div>
-		</div>
+  <section class="mx-auto max-w-3xl space-y-12 px-4 pb-16">
+    <div>
+      <h2 class="text-2xl font-semibold">
+        School Year Hours and Dates of Operation
+      </h2>
+      <div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+        <p>
+          Wild Pear offers childcare for up to 16 children, ages 1-5 years old,
+          during the school year. We are open Monday through Friday from 7:30am
+          to 5:30pm.
+        </p>
+        <p>
+          Our school year typically begins in early September on the Thursday
+          after Labor Day and runs until mid-June. During this time we are
+          closed for two weeks of winter break, one week of spring break, along
+          with two family conference days, two inservice days, and all major
+          holidays. A calendar of specific closure dates is given to families
+          when they enroll and can be found in our family handbook.
+        </p>
+      </div>
+    </div>
 
-		<div>
-			<h2 class="text-2xl font-semibold">School Year Tuition</h2>
-			<div class="text-muted-foreground mt-4 space-y-4 text-pretty">
-				<p>
-					During the school year, tuition is paid for 9.5 months and is due on the 15th of the
-					month before care is given. Families pay to reserve their slot for the upcoming month,
-					and tuition remains the same regardless of attendance changes due to illness, vacations,
-					holidays, or school closures.
-				</p>
-				<p>
-					We encourage everyone to pay online through Zelle by tagging our email address. (It may
-					show up as Wild Primrose Preschool, that's still us!) We also accept personal checks and
-					cashier's checks, which can be placed in the check box.
-				</p>
-				<p>
-					Tuition rates include meals, snacks, and sunscreen for all children, along with diapers,
-					wipes, and diaper cream for children who need them.
-				</p>
-				<p>
-					We know childcare is expensive and we gladly welcome families enrolled in the ERDC
-					program or who plan to pay for childcare using another government subsidy. If your
-					family does not qualify for ERDC but you still struggle to afford tuition, we may be
-					able to help you with a partial scholarship — please ask us for more information.
-					Unfortunately, as we are located in Clackamas County, we are not eligible for Preschool
-					For All.
-				</p>
+    <div>
+      <h2 class="text-2xl font-semibold">School Year Tuition</h2>
+      <div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+        <p>
+          During the school year, tuition is paid for 9.5 months and is due on
+          the 15th of the month before care is given. Families pay to reserve
+          their slot for the upcoming month, and tuition remains the same
+          regardless of attendance changes due to illness, vacations, holidays,
+          or school closures.
+        </p>
+        <p>
+          We encourage everyone to pay online through Zelle by tagging our email
+          address. (It may show up as Wild Primrose Preschool, that's still us!)
+          We also accept personal checks and cashier's checks, which can be
+          placed in the check box.
+        </p>
+        <p>
+          Tuition rates include meals, snacks, and sunscreen for all children,
+          along with diapers, wipes, and diaper cream for children who need
+          them.
+        </p>
+        <p>
+          We know childcare is expensive and we gladly welcome families enrolled
+          in the ERDC program or who plan to pay for childcare using another
+          government subsidy. If your family does not qualify for ERDC but you
+          still struggle to afford tuition, we may be able to help you with a
+          partial scholarship — please ask us for more information.
+          Unfortunately, as we are located in Clackamas County, we are not
+          eligible for Preschool For All.
+        </p>
 
-				<h3 class="text-foreground text-lg font-semibold">
-					2026-27 tuition rates for the Preschool cohorts (children ages 3-5)
-				</h3>
-				<div class="overflow-x-auto rounded-lg border">
-					<table class="w-full text-sm">
-						<thead>
-							<tr class="border-b">
-								<th class="text-foreground px-4 py-2 text-left font-semibold">Schedule</th>
-								<th class="text-foreground px-4 py-2 text-left font-semibold">Monthly Rate</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="border-b">
-								<td class="px-4 py-2">Five days</td>
-								<td class="px-4 py-2">$1,725</td>
-							</tr>
-							<tr class="border-b">
-								<td class="px-4 py-2">Four days</td>
-								<td class="px-4 py-2">$1,575</td>
-							</tr>
-							<tr class="border-b">
-								<td class="px-4 py-2">Three days</td>
-								<td class="px-4 py-2">$1,425</td>
-							</tr>
-							<tr class="border-b last:border-b-0">
-								<td class="px-4 py-2">Two days</td>
-								<td class="px-4 py-2">$1,275</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+        <Feature12
+          tagline="Rates for 2025 - 2026"
+          heading="Tuition Rates"
+          tabs={[
+            { id: "sprouts", label: "Sprouts", icon: IconSeedling },
+            { id: "preschool", label: "Preschool", icon: IconSchool },
+          ]}
+        >
+          <div slot="tab-sprouts" class="overflow-x-auto rounded-lg border">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b">
+                  <th class="text-foreground px-4 py-2 text-left font-semibold"
+                    >Schedule</th
+                  >
+                  <th class="text-foreground px-4 py-2 text-left font-semibold"
+                    >Monthly Rate</th
+                  >
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="px-4 py-2">Five days</td>
+                  <td class="px-4 py-2">$2,225</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-2">Four days</td>
+                  <td class="px-4 py-2">$2,075</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-2">Three days</td>
+                  <td class="px-4 py-2">$1,825</td>
+                </tr>
+                <tr class="border-b last:border-b-0">
+                  <td class="px-4 py-2">Two days</td>
+                  <td class="px-4 py-2">$1,775</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-				<h3 class="text-foreground text-lg font-semibold">
-					2025-26 tuition rates for the Sprouts cohorts (children under 36 months)
-				</h3>
-				<div class="overflow-x-auto rounded-lg border">
-					<table class="w-full text-sm">
-						<thead>
-							<tr class="border-b">
-								<th class="text-foreground px-4 py-2 text-left font-semibold">Schedule</th>
-								<th class="text-foreground px-4 py-2 text-left font-semibold">Monthly Rate</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="border-b">
-								<td class="px-4 py-2">Five days</td>
-								<td class="px-4 py-2">$2,225</td>
-							</tr>
-							<tr class="border-b">
-								<td class="px-4 py-2">Four days</td>
-								<td class="px-4 py-2">$2,075</td>
-							</tr>
-							<tr class="border-b">
-								<td class="px-4 py-2">Three days</td>
-								<td class="px-4 py-2">$1,825</td>
-							</tr>
-							<tr class="border-b last:border-b-0">
-								<td class="px-4 py-2">Two days</td>
-								<td class="px-4 py-2">$1,775</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+          <div slot="tab-preschool" class="overflow-x-auto rounded-lg border">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b">
+                  <th class="text-foreground px-4 py-2 text-left font-semibold"
+                    >Schedule</th
+                  >
+                  <th class="text-foreground px-4 py-2 text-left font-semibold"
+                    >Monthly Rate</th
+                  >
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="px-4 py-2">Five days</td>
+                  <td class="px-4 py-2">$1,725</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-2">Four days</td>
+                  <td class="px-4 py-2">$1,575</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-2">Three days</td>
+                  <td class="px-4 py-2">$1,425</td>
+                </tr>
+                <tr class="border-b last:border-b-0">
+                  <td class="px-4 py-2">Two days</td>
+                  <td class="px-4 py-2">$1,275</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Feature12>
 
-				<p>We raise our rates annually in September to account for cost of living increases and inflation.</p>
-			</div>
-		</div>
+        <p>
+          We raise our rates annually in September to account for cost of living
+          increases and inflation.
+        </p>
+      </div>
+    </div>
 
-		<div>
-			<h2 class="text-2xl font-semibold">Enrollment Process</h2>
+    <div>
+      <h2 class="text-2xl font-semibold">Enrollment Process</h2>
 
-			<div class="mt-6">
-				<h3 class="text-foreground text-lg font-semibold">Application</h3>
-				<div class="text-muted-foreground mt-2 space-y-4 text-pretty">
-					<p>
-						Families wishing to enroll their child at Wild Pear can submit a simple application,
-						which includes a completed Application for Enrollment and a non-refundable $20 fee.
-						Applying for enrollment does not guarantee enrollment at a later date. It does,
-						however, guarantee that the child will be invited for a tour and be considered for
-						enrollment in open slots as they become available.
-					</p>
-					<p>
-						We do not enroll on a first-come-first-served basis. Instead, we have a goal to
-						create well-balanced and diverse cohorts of children while striving to coordinate
-						each family's preferred schedule. For this reason, we do ask that parents give us as
-						much information as possible on their application form and notify us of any changes
-						that come up. Since we can't possibly weigh and balance all the potential cohort
-						variations until after we hold tours, we are unable to tell families the "odds" of
-						them being accepted. Some families get invited to enroll right after applying, and
-						for others it may take a few years.
-					</p>
-				</div>
-			</div>
+      <div class="mt-6">
+        <h3 class="text-foreground text-lg font-semibold">Tour</h3>
+        <div class="text-muted-foreground mt-2 space-y-4 text-pretty">
+          <p>
+            Wild Pear does not enroll families without a tour. We want to show
+            you around and be able to chat and answer any questions you may
+            have. It's also very important for us to meet the child (or
+            children) you are hoping to enroll in our program (with an
+            exception, of course, for children yet to be born).
+          </p>
+          <p>
+            All families who have applied will be invited to come out and join
+            one of multiple group tours offered in early spring (generally in
+            the first few weekends of April). Typically, this is where we meet
+            all the families that we end up enrolling for the upcoming school
+            year. Should a slot become available mid-school-year, we will
+            consider which family would be the best fit and reach out to them
+            directly to schedule a tour. Because tours take significant time and
+            energy, we are often unable to coordinate individual tours for
+            families who are unable to make it to the group tours in spring.
+          </p>
+        </div>
+      </div>
 
-			<div class="mt-6">
-				<h3 class="text-foreground text-lg font-semibold">Tour</h3>
-				<div class="text-muted-foreground mt-2 space-y-4 text-pretty">
-					<p>
-						Wild Pear does not enroll families without a tour. We want to show you around and be
-						able to chat and answer any questions you may have. It's also very important for us
-						to meet the child (or children) you are hoping to enroll in our program (with an
-						exception, of course, for children yet to be born).
-					</p>
-					<p>
-						All families who have applied will be invited to come out and join one of multiple
-						group tours offered in early spring (generally in the first few weekends of April).
-						Typically, this is where we meet all the families that we end up enrolling for the
-						upcoming school year. Should a slot become available mid-school-year, we will
-						consider which family would be the best fit and reach out to them directly to
-						schedule a tour. Because tours take significant time and energy, we are often unable
-						to coordinate individual tours for families who are unable to make it to the group
-						tours in spring.
-					</p>
-				</div>
-			</div>
+      <div class="mt-6">
+        <h3 class="text-foreground text-lg font-semibold">Application</h3>
+        <div class="text-muted-foreground mt-2 space-y-4 text-pretty">
+          <p>
+            Families wishing to enroll their child at Wild Pear can submit a
+            simple application, which includes a completed Application for
+            Enrollment and a non-refundable $20 fee. Applying for enrollment
+            does not guarantee enrollment at a later date. It does, however,
+            guarantee that the child will be invited for a tour and be
+            considered for enrollment in open slots as they become available.
+          </p>
+          <p>
+            We do not enroll on a first-come-first-served basis. Instead, we
+            have a goal to create well-balanced and diverse cohorts of children
+            while striving to coordinate each family's preferred schedule. For
+            this reason, we do ask that parents give us as much information as
+            possible on their application form and notify us of any changes that
+            come up. Since we can't possibly weigh and balance all the potential
+            cohort variations until after we hold tours, we are unable to tell
+            families the "odds" of them being accepted. Some families get
+            invited to enroll right after applying, and for others it may take a
+            few years.
+          </p>
+        </div>
+      </div>
 
-			<div class="mt-6">
-				<h3 class="text-foreground text-lg font-semibold">Enrollment</h3>
-				<div class="text-muted-foreground mt-2 space-y-4 text-pretty">
-					<p>
-						We enroll children into cohorts based on how old they will be by September 1st. They
-						will move through Wild Pear together with this cohort and eventually graduate and
-						move to kindergarten at the same time. Our infant cohort might have 1-2 children who
-						will all be 1 by September and turn 2 during the school year. Our toddler cohort will
-						have between 2-4 children who will all be 2 by September and turn 3 during the school
-						year. Our younger preschool cohort will have 5-6 children who will all be 3 by
-						September and turn 4 during the school year, and the older preschool cohort will have
-						5-6 children who will all be 4 turning 5.
-					</p>
-					<p>
-						Typically, families are notified of their enrollment status by mid-May. Once offered
-						a slot, families will need to choose to either enroll or pass. If they choose to
-						pass, the slot will be offered to another family. In most cases, families will have
-						up to one week to decide if they want the available slot. If they decide to enroll,
-						they will need to pay a $500 non-refundable deposit, which will hold their slot until
-						September 1st. $300 of the deposit will cover the annual enrollment fee, while $200
-						will be applied to September's tuition.
-					</p>
-					<p>
-						Anyone who does not get an offer to enroll will continue to be considered for any
-						unexpected mid-year openings that arise, and will be invited to attend a group tour
-						again the following spring.
-					</p>
-				</div>
-			</div>
-		</div>
 
-		<div>
-			<h2 class="text-2xl font-semibold">Fees and Deposits</h2>
-			<div class="text-muted-foreground mt-4 space-y-4 text-pretty">
-				<p>
-					We encourage everyone to pay online through Zelle by tagging our email address. (It may
-					show up as Wild Primrose Preschool, that's still us!) We also accept personal checks and
-					cashier's checks, which can be placed in the mail box.
-				</p>
-			</div>
-		</div>
+      <div class="mt-6">
+        <h3 class="text-foreground text-lg font-semibold">Enrollment</h3>
+        <div class="text-muted-foreground mt-2 space-y-4 text-pretty">
+          <p>
+            We enroll children into cohorts based on how old they will be by
+            September 1st. They will move through Wild Pear together with this
+            cohort and eventually graduate and move to kindergarten at the same
+            time. Our infant cohort might have 1-2 children who will all be 1 by
+            September and turn 2 during the school year. Our toddler cohort will
+            have between 2-4 children who will all be 2 by September and turn 3
+            during the school year. Our younger preschool cohort will have 5-6
+            children who will all be 3 by September and turn 4 during the school
+            year, and the older preschool cohort will have 5-6 children who will
+            all be 4 turning 5.
+          </p>
+          <p>
+            Typically, families are notified of their enrollment status by
+            mid-May. Once offered a slot, families will need to choose to either
+            enroll or pass. If they choose to pass, the slot will be offered to
+            another family. In most cases, families will have up to one week to
+            decide if they want the available slot. If they decide to enroll,
+            they will need to pay a $500 non-refundable deposit, which will hold
+            their slot until September 1st. $300 of the deposit will cover the
+            annual enrollment fee, while $200 will be applied to September's
+            tuition.
+          </p>
+          <p>
+            Anyone who does not get an offer to enroll will continue to be
+            considered for any unexpected mid-year openings that arise, and will
+            be invited to attend a group tour again the following spring.
+          </p>
+        </div>
+      </div>
+    </div>
 
-		<div>
-			<h2 class="text-2xl font-semibold">Changing Schedules & Adding Siblings</h2>
-			<div class="text-muted-foreground mt-4 space-y-4 text-pretty">
-				<p>
-					We know that sometimes families may be willing to accept a slot that isn't totally
-					ideal, or may need to change their enrollment schedule mid-school-year. Anytime a family
-					wants to decrease the number of days they are enrolled, they will need to give 30 days'
-					written notice and can shift to their new schedule after the 30 days is up. If a family
-					wants to swap days or increase their enrollment, they need to send us an email right
-					away, and their schedule request will be put on top of a list for consideration should
-					anything shift mid-school-year.
-				</p>
-				<p>
-					When enrolling new students, priority is given to families with siblings who are
-					currently enrolled at Wild Pear and/or alumni families. If you'd like to enroll a
-					sibling, please fill out an Application Form and turn it in right away — no fee is
-					required! If the sibling you'd like to enroll will be under 12 months in September,
-					please know we may be able to make an exception for your family, so please ask.
-				</p>
-			</div>
-		</div>
-	</section>
+    <div>
+      <h2 class="text-2xl font-semibold">Fees and Deposits</h2>
+      <div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+        <p>
+          We encourage everyone to pay online through Zelle by tagging our email
+          address. (It may show up as Wild Primrose Preschool, that's still us!)
+          We also accept personal checks and cashier's checks, which can be
+          placed in the mail box.
+        </p>
+      </div>
+    </div>
 
-	<StillHaveQuestions />
+    <div>
+      <h2 class="text-2xl font-semibold">
+        Changing Schedules & Adding Siblings
+      </h2>
+      <div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+        <p>
+          We know that sometimes families may be willing to accept a slot that
+          isn't totally ideal, or may need to change their enrollment schedule
+          mid-school-year. Anytime a family wants to decrease the number of days
+          they are enrolled, they will need to give 30 days' written notice and
+          can shift to their new schedule after the 30 days is up. If a family
+          wants to swap days or increase their enrollment, they need to send us
+          an email right away, and their schedule request will be put on top of
+          a list for consideration should anything shift mid-school-year.
+        </p>
+        <p>
+          When enrolling new students, priority is given to families with
+          siblings who are currently enrolled at Wild Pear and/or alumni
+          families. If you'd like to enroll a sibling, please fill out an
+          Application Form and turn it in right away — no fee is required! If
+          the sibling you'd like to enroll will be under 12 months in September,
+          please know we may be able to make an exception for your family, so
+          please ask.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <StillHaveQuestions />
 </AboutLayout>
