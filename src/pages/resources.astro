@@ -1,0 +1,142 @@
+---
+import EnrolledLayout from "../layouts/EnrolledLayout.astro";
+import Blog2, { type BlogPost } from "../components/starwind-pro/blog-02/Blog2.astro";
+import { getOgImage } from "../lib/utils/ogImage";
+
+const posts: BlogPost[] = [
+	{
+		title: "Family Handbooks",
+		description: "Our full set of program handbooks — schedules, policies, and what to expect.",
+		categories: [{ name: "Handbook" }],
+		href: "/handbooks",
+	},
+	{
+		title: "Oregon State Rules and Regulations",
+		description: "The certified family child care home rules (OCC-0085) we're licensed under.",
+		categories: [{ name: "Official" }],
+		href: "https://oregonearlylearning.com/",
+	},
+	{
+		title: "File an Official Complaint",
+		description: "Oregon Department of Early Learning and Care's process for licensing complaints.",
+		categories: [{ name: "Official" }],
+		href: "https://oregonearlylearning.com/parents-families/making-a-complaint/",
+	},
+	{
+		title: "USDA Food Program Nondiscrimination Statement",
+		description: "The USDA's nondiscrimination policy that governs our food program.",
+		categories: [{ name: "Official" }],
+		href: "https://nwnutritionservice.com/",
+	},
+	{
+		title: "Tuition & Family Information",
+		description: "Rates, payment info, and other details for currently enrolled families.",
+		categories: [{ name: "Official" }],
+		href: "/tuition",
+	},
+	{
+		title: "Good Inside",
+		description: "Dr. Becky Kennedy's parenting membership and app, grounded in child development research.",
+		categories: [{ name: "App" }],
+		href: "https://www.goodinside.com/",
+	},
+	{
+		title: "1000 Hours Outside",
+		description: "A challenge and resource hub encouraging families to spend more time outdoors.",
+		categories: [{ name: "Inspo" }],
+		href: "https://www.1000hoursoutside.com/",
+	},
+	{
+		title: "Teaching for Change (Anti-Bias Education)",
+		description: "Resources for anti-bias, social justice-centered education.",
+		categories: [{ name: "Inspo" }],
+		href: "https://www.teachingforchange.org/",
+	},
+	{
+		title: "Kids Eat in Color",
+		description: "Practical, judgment-free advice on feeding young kids.",
+		categories: [{ name: "Inspo" }],
+		href: "https://kidseatincolor.com/",
+	},
+	{
+		title: "Mr. Chazz",
+		description: "Early childhood educator sharing classroom ideas and read-alouds.",
+		categories: [{ name: "Instagram" }],
+		href: "https://www.instagram.com/mrchazz/",
+	},
+	{
+		title: "Learning for Justice",
+		description: "Free classroom resources for teaching about identity, diversity, and justice.",
+		categories: [{ name: "Inspo" }],
+		href: "https://www.learningforjustice.org/",
+	},
+	{
+		title: "Hand in Hand Parenting",
+		description: "A connection-based approach to parenting through big feelings and behavior.",
+		categories: [{ name: "Inspo" }],
+		href: "https://www.handinhandparenting.org/",
+	},
+	{
+		title: "Janet Lansbury",
+		description: "Respectful, RIE-based parenting guidance for infants and toddlers.",
+		categories: [{ name: "Inspo" }],
+		href: "https://www.janetlansbury.com/",
+	},
+	{
+		title: "The Curiosity Approach",
+		description: "Inspiration for calm, curiosity-driven early learning environments.",
+		categories: [{ name: "Inspo" }],
+		href: "https://www.thecuriosityapproach.com/",
+	},
+	{
+		title: "Generation Mindful",
+		description: "Tools and visuals for teaching emotional regulation to young children.",
+		categories: [{ name: "Inspo" }],
+		href: "https://genmindful.com/",
+	},
+	{
+		title: "Explorations Early Learning",
+		description: "Practical ideas for play-based, nature-inspired early learning activities.",
+		categories: [{ name: "Inspo" }],
+		href: "https://www.explorationsearlylearning.com/",
+	},
+	{
+		title: "Teacher Tom",
+		description: "A veteran preschool teacher's blog on play-based, child-led learning.",
+		categories: [{ name: "Inspo" }],
+		href: "https://teachertomsblog.blogspot.com/",
+	},
+	{
+		title: "Fairy Dust Teaching",
+		description: "Reggio-inspired ideas for wonder-filled early childhood classrooms.",
+		categories: [{ name: "Inspo" }],
+		href: "https://fairydustteaching.com/",
+	},
+	{
+		title: "WPP Pinterest",
+		description: "Our own board of activity ideas, gear inspiration, and classroom setups.",
+		categories: [{ name: "Pinterest" }],
+		href: "https://www.pinterest.com/primrosepdx/",
+	},
+];
+
+const FALLBACK_IMAGE = "/images/temp-blog.png";
+const FALLBACK_IMAGE_OFFICIAL = "/images/temp-blog-or.png";
+
+const heroImages = await Promise.all(
+	posts.map((post) => (post.href.startsWith("http") ? getOgImage(post.href) : null)),
+);
+posts.forEach((post, i) => {
+	const isOfficial = post.categories.some((category) => category.name === "Official");
+	post.heroImage = heroImages[i] ?? (isOfficial ? FALLBACK_IMAGE_OFFICIAL : FALLBACK_IMAGE);
+});
+---
+
+<EnrolledLayout title="Resources | Wild Pear Preschool & Summer Camp">
+	<Blog2
+		label="Resources"
+		heading="Links and reading we love"
+		posts={posts}
+		class="py-16"
+	/>
+</EnrolledLayout>

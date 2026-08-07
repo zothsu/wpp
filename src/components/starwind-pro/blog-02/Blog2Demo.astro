@@ -1,0 +1,125 @@
+---
+/**
+ * Blog 2 - Featured Masonry
+ *
+ * A masonry-style blog grid with a featured hero post spanning the full row.
+ *
+ * Usage:
+ * 1. Use the starwind cli to add this component: `npx starwind@latest add @starwind-pro/blog-02`
+ * 2. Import the `Blog2` component and pass your posts array
+ *
+ * Props:
+ * - label: string (default: "Our blog")
+ * - heading: string (default: "Blog posts to help you...")
+ * - posts: BlogPost[] (required) - First post is featured
+ * - class: string
+ */
+import Blog2, { type BlogPost } from "./Blog2.astro";
+
+const posts: BlogPost[] = [
+  {
+    title: "The Future of Web Development in 2025",
+    description:
+      "Exploring emerging trends, technologies, and paradigms that will shape how we build for the web in the coming years. From AI-assisted development to edge computing.",
+    pubDate: "Mar 20, 2024",
+    author: {
+      name: "Sarah Chen",
+      image: "https://i.pravatar.cc/150?u=sarah",
+      href: "#",
+    },
+    categories: [
+      { name: "Web Dev", href: "#" },
+      { name: "Trends", href: "#" },
+    ],
+    heroImage:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+    href: "#",
+  },
+  {
+    title: "Mastering Git Workflows",
+    pubDate: "Mar 19, 2024",
+    author: {
+      name: "Mike Ross",
+      image: "https://i.pravatar.cc/150?u=mike",
+      href: "#",
+    },
+    categories: [
+      { name: "Git", href: "#" },
+      { name: "DevOps", href: "#" },
+    ],
+    heroImage:
+      "https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=2076&auto=format&fit=crop",
+    href: "#",
+  },
+  {
+    title: "Component-Driven Development",
+    pubDate: "Mar 18, 2024",
+    author: {
+      name: "Alex Morgan",
+      image: "https://i.pravatar.cc/150?u=alex",
+      href: "#",
+    },
+    categories: [
+      { name: "UI", href: "#" },
+      { name: "Architecture", href: "#" },
+    ],
+    heroImage:
+      "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?q=80&w=2064&auto=format&fit=crop",
+    href: "#",
+  },
+  {
+    title: "Security Best Practices",
+    pubDate: "Mar 17, 2024",
+    author: {
+      name: "Sarah Chen",
+      image: "https://i.pravatar.cc/150?u=sarah",
+      href: "#",
+    },
+    categories: [{ name: "Security", href: "#" }],
+    heroImage:
+      "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop",
+    href: "#",
+  },
+  {
+    title: "Testing Strategies",
+    pubDate: "Mar 16, 2024",
+    author: {
+      name: "Mike Ross",
+      image: "https://i.pravatar.cc/150?u=mike",
+      href: "#",
+    },
+    categories: [{ name: "Testing", href: "#" }],
+    heroImage:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
+    href: "#",
+  },
+  {
+    title: "Modern Authentication Patterns",
+    pubDate: "Mar 15, 2024",
+    author: {
+      name: "Alex Morgan",
+      image: "https://i.pravatar.cc/150?u=alex",
+      href: "#",
+    },
+    categories: [{ name: "Security", href: "#" }],
+    heroImage:
+      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop",
+    href: "#",
+  },
+  {
+    title: "Building Responsive Layouts",
+    pubDate: "Mar 14, 2024",
+    author: {
+      name: "Sarah Chen",
+      image: "https://i.pravatar.cc/150?u=sarah",
+      href: "#",
+    },
+    categories: [{ name: "CSS", href: "#" }],
+    heroImage:
+      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop",
+    href: "#",
+  },
+];
+---
+
+<Blog2 posts={posts} class="py-24" />
