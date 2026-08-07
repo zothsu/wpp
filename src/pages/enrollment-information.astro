@@ -1,5 +1,6 @@
 ---
 import Enrollment from "../components/Enrollment.astro";
+import StillHaveQuestions from "../components/forms-questionGeneral.astro";
 import AboutLayout from "../layouts/AboutLayout.astro";
 ---
 
@@ -14,7 +15,7 @@ import AboutLayout from "../layouts/AboutLayout.astro";
 		</div>
 	</section>
 
-	<Enrollment />
+	<Enrollment showQuestions={false} />
 
 	<section class="mx-auto max-w-3xl space-y-12 px-4 pb-16">
 		<div>
@@ -241,4 +242,6 @@ import AboutLayout from "../layouts/AboutLayout.astro";
 			</div>
 		</div>
 	</section>
+
+	<StillHaveQuestions />
 </AboutLayout>

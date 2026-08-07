@@ -1,6 +1,7 @@
 ---
 import Accordion, { type AccordionItem } from "../../components/Accordion.astro";
 import AboutLayout from "../../layouts/AboutLayout.astro";
+import Cta10 from "../../components/starwind-pro/cta-10/Cta10.astro";
 import ScheduleTour from "../../components/ScheduleTour.astro";
 
 const sections: AccordionItem[] = [
@@ -72,4 +73,10 @@ const sections: AccordionItem[] = [
 	</section>
 
 	<ScheduleTour />
+
+	<Cta10
+		title="Read the Infant & Toddler Handbook"
+		description="Our Infant & Toddler (Sprouts) Handbook covers daily schedules, health and safety policies, and what to expect while your child is in our care."
+		primaryButton={{ text: "View the Infant & Toddler Handbook", href: "/handbook/infant-toddler" }}
+	/>
 </AboutLayout>

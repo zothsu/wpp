@@ -1,0 +1,46 @@
+---
+import EnrolledLayout from "../../layouts/EnrolledLayout.astro";
+
+const handbooks = [
+	{
+		title: "Preschool Handbook",
+		description: "For families in our Preschool program.",
+		href: "/handbook/preschool",
+	},
+	{
+		title: "Infant & Toddler (Sprouts) Handbook",
+		description: "For families in our Infant & Toddler program.",
+		href: "/handbook/infant-toddler",
+	},
+	{
+		title: "School Age Summer Camp Handbook",
+		description: "For families joining us for summer camp.",
+		href: "/handbook/summer-camp",
+	},
+];
+---
+
+<EnrolledLayout title="Family Handbooks | Wild Pear Preschool & Summer Camp">
+	<section class="mx-auto max-w-3xl px-4 py-16">
+		<h1 class="text-4xl font-semibold">Family Handbooks</h1>
+		<p class="text-muted-foreground mt-4 text-pretty">
+			Each program has its own handbook. Choose the one that matches your child's program below.
+		</p>
+
+		<ul class="mt-8 space-y-4">
+			{
+				handbooks.map((handbook) => (
+					<li>
+						<a
+							href={handbook.href}
+							class="border-border hover:border-primary-accent block rounded-lg border p-4 transition-colors"
+						>
+							<h2 class="text-lg font-semibold">{handbook.title}</h2>
+							<p class="text-muted-foreground mt-1 text-sm">{handbook.description}</p>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</EnrolledLayout>

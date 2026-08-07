@@ -14,16 +14,29 @@ interface Props extends HTMLAttributes<"article"> {
   pubDate: string;
   /** Last updated date string */
   updatedDate?: string;
+  /** Use the body font instead of the heading font for all headings in this page */
+  bodyHeadings?: boolean;
+  /** Label shown before the pubDate, e.g. "Effective" or "Last Updated" */
+  pubDateLabel?: string;
 }
 
 const sectionStyles = tv({
   base: "@container mx-auto w-full max-w-6xl px-4 py-24",
 });
 
-const { title, description, pubDate, updatedDate, class: className, ...rest } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  bodyHeadings = false,
+  pubDateLabel = "Effective",
+  class: className,
+  ...rest
+} = Astro.props;
 ---
 
-<article class={sectionStyles({ class: className })} {...rest}>
+<article class={sectionStyles({ class: className })} data-body-headings={bodyHeadings} {...rest}>
   <!-- Header -->
   <header class="max-w-3xl">
     <h1 class="font-heading text-3xl font-bold tracking-tight @xl:text-4xl @3xl:text-5xl">
@@ -35,7 +48,7 @@ const { title, description, pubDate, updatedDate, class: className, ...rest } = 
     </p>
 
     <div class="text-muted-foreground mt-4 flex items-center gap-1.5 text-sm">
-      <span>Effective</span>
+      <span>{pubDateLabel}</span>
       <time datetime={pubDate}>{pubDate}</time>
       {
         updatedDate && (
@@ -72,6 +85,13 @@ const { title, description, pubDate, updatedDate, class: className, ...rest } = 
     </aside>
   </div>
 </article>
+
+<style>
+  article[data-body-headings="true"] h1,
+  article[data-body-headings="true"] :global(.sw-prose :is(h1, h2, h3, h4, h5, h6)) {
+    font-family: inherit;
+  }
+</style>
 
 <script>
   function initLegalPage02Toc() {

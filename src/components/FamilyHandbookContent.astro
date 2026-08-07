@@ -1,0 +1,517 @@
+---
+interface Props {
+	program: "preschool" | "sprouts";
+}
+
+const { program } = Astro.props;
+---
+
+<p>
+	It is a joy to welcome you into our program! Please take some time to read through this
+	handbook so you understand our expectations for our time together. A hard copy also lives in
+	the policy notebook on the parent counter, along with more detailed information on certain
+	topics. As always, if you have any questions or concerns, please let us know — we would love
+	to talk with you more about our policies and procedures.
+</p>
+
+<h2>Mission</h2>
+<p>
+	At Wild Pear, our goal is to meet children where they are at developmentally and encourage
+	them to move forward in their own unique way. With an emphasis on social and emotional
+	health and grounded in a foundation of connected relationships, we engage in activities that
+	invite children to practice a wide range of skill building. Providing time away from a busy
+	fast-paced life, we offer space and time for holistic, multifaceted education inspired by direct
+	experiences with food, gardens, and nature.
+</p>
+
+<h2>Inclusion and Anti-Bias Policy</h2>
+<p>
+	Wild Pear Preschool is an inclusive and welcoming school, meaning your family will be accepted
+	and valued here. We will see and honor you and your child's race, religion, gender, ability,
+	orientation, class, country of origin, immigration status, language, and education level. We
+	respect all family structures; whether you are connected by blood, or law, or love alone, you
+	are welcome here.
+</p>
+<p>
+	We actively teach anti-bias curriculum at WPP, presented and discussed in an age-appropriate
+	and relevant manner. Anti-bias work, like most work with young children, is ongoing, ever
+	growing, and requires intentional self-work on the part of the adults entrusted to teach them. If
+	you ever feel that a part of your or your child's identity is being disrespected, ignored, or
+	uncelebrated, please bring it to our attention and we will find a way to correct it.
+</p>
+
+<h2>Hours, Calendar, and Closures</h2>
+<p>
+	We are open Monday through Friday, 7:30am until 5:30pm. Our school year begins in September
+	and runs until mid-June. We remain open and offer weekly summer camps for school-age
+	children (5-10 years old) during June, July, and August, and try hard to offer a handful of
+	summer camp slots to the currently enrolled younger siblings of school-age children who will be
+	attending camp.
+</p>
+<p>
+	Our full 2025-2026 calendar — including staff meeting early closures, family conferences,
+	holidays, and seasonal breaks — is shared with enrolled families and posted in the policy
+	notebook. A few highlights: the school year begins September 4th, 2025, we close for Fall
+	Break (Nov 27-28), Winter Break (Dec 22-Jan 2), Spring Break (Mar 23-27), and the last day of
+	the school year is June 12th, 2026, with School Age Summer Camp beginning June 22nd, 2026.
+</p>
+<p>
+	<strong>Winter weather:</strong> we love having children at school on snowy days and will gear up
+	and play outside as long as it's safe to do so. If roads are dangerously icy in the morning we may
+	have a delayed start; if a winter storm presents a likely risk of power outages or falling trees, we
+	will be closed. <strong>Summer weather and smoke:</strong> if the air quality is 150-200 (red) we will
+	be open for a half day only (7:30-12:45), with pickup directly after lunch. If the AQ is above 200
+	(purple or maroon) we will be closed. If both Portland Public Schools and North Clackamas
+	School District are delayed, closing early, or closed all day due to extreme weather, we will do
+	the same.
+</p>
+<p>
+	We understand that for many families, preschool is critical child care, not just an enrichment
+	activity. In the rare case of an unscheduled closure we will notify you as soon as possible, but it
+	is your responsibility to arrange for back-up care in the event we need to close unexpectedly.
+</p>
+
+{
+	program === "preschool" ? (
+		<>
+			<h2>Preschool Daily Schedule</h2>
+			<p>
+				Our school year schedule provides children with a reliable rhythm, so they know what to
+				expect and can focus on the learning at hand. A typical day: children begin arriving at
+				7:30, school starts with welcome circle at 8:30 (all children need to be at school, ready
+				to learn, by this time), breakfast at 9:00, centers and inside work at 9:30, outside work
+				around 10:30-11:00, lunch and rest starting around 12:30-1:00, afternoon snack at 3:30, and
+				outside work as children begin leaving from 3:45 until we close at 5:30.
+			</p>
+			<p>
+				If your child needs the focused support of a teacher to transition into their day, we
+				recommend dropping off before 8:15, while the group is still small. To help protect the
+				tranquility of rest time, we ask that pickups happen either before lunch (12:00) or after
+				snack (3:15) whenever possible.
+			</p>
+		</>
+	) : (
+		<>
+			<h2>Sprouts Daily Schedule</h2>
+			<p>
+				Our Sprouts program nurtures our youngest community members with softer, more
+				individualized scheduling than our Preschool program. Children under 12 months are on an
+				individual schedule based on their own needs and their parents' preferences — bottles and
+				solids are offered on a schedule and also made available on demand, and children sleep
+				when tired. Children between 12 and 24 months are gently nudged toward a regular schedule.
+			</p>
+			<p>
+				Once a child is over 24 months, they follow a more consistent daily rhythm: arriving from
+				7:30, welcome circle at 8:30, breakfast at 9:00, centers and inside work at 9:30, outside
+				work around 10:30-11:00, lunch and rest starting around 12:30-1:00, afternoon snack at
+				3:30, and outside work as children begin leaving from 3:45 until we close at 5:30. Even in
+				Sprouts, we ask that all children arrive by 8:30 and that pickups be avoided between noon
+				and 3:15.
+			</p>
+		</>
+	)
+}
+
+<h2>Wild Pear Campus</h2>
+<p>
+	You're welcome to park in our small lot, in the two side-by-side driveways, on our side of the
+	street, or in the church parking lot. We have three large fenced play yards on campus: the
+	"Lower Yard" beside the blue house, the "Sprouts Yard" directly behind the white house, and the
+	"School Age Yard" behind the Sprouts Yard near the teal garage.
+</p>
+<p>
+	Please help us protect the plants and wildlife on the property by staying on the graveled,
+	bark-chipped, or paved paths outside the designated play yards, and help us teach children that
+	"gates are for grown-ups," making sure all gates are closed securely behind you. For everyone's
+	safety, children under age 5 are never permitted to move around campus without an adult
+	directly accompanying them, including going between sites or to the bathroom — and please
+	never leave a child under 5 alone in a car, even briefly.
+</p>
+
+<h2>Family Expectations for Arrival and Departure</h2>
+<p>
+	Most days, children are dropped off outside in their play yard, where you'll sign them in using
+	our app. Before you leave, make sure your child is set for the weather, and that a teacher knows
+	you are passing off your child. If your child needs extra support during separation, please plan
+	to arrive before 8:15 — once the school day starts, teachers need to shift their attention to
+	breakfast and circle time. Children may not arrive after 8:30 without a prior arrangement or a
+	true emergency.
+</p>
+<p>
+	If your child has a hard time separating, that's completely typical! You're welcome to stay for a
+	few minutes and play, invite your child to wave through the fence, let them hold a family photo,
+	or ask a teacher to hold your child's hand while you leave. We find it's best to give your child a
+	clear, confident goodbye rather than lingering, which can be confusing for both children and
+	teachers.
+</p>
+<p>
+	At pickup, you'll sign your child out using the app and make sure a teacher knows you're leaving
+	together. Children are only released to custodial parents or legal guardians unless you've
+	specified otherwise on your enrollment forms; anyone unfamiliar to the teacher may be asked to
+	show ID. We ask that visiting time at pickup be kept to about 10 minutes, and that any concerns
+	about another child be brought to a teacher rather than handled directly, out of respect for that
+	family's privacy and our supervision responsibilities. Please don't take photos or videos while
+	you're here, since many children have specific photo-release plans in place. If your child is not
+	picked up on time, a $1.00-per-minute late fee applies past 5:30pm, based on the teacher's
+	clock.
+</p>
+
+{
+	program === "preschool" ? (
+		<>
+			<h2>The FIVE Things to Bring From Home</h2>
+			<p>
+				Each day (or each week, for gear) your child needs the following, all labeled with their
+				name:
+			</p>
+			<ol>
+				<li>
+					<strong>A wet bag</strong> with clean and soiled-clothes pockets — we'll provide it, and
+					it needs to come back and forth daily.
+				</li>
+				<li>
+					<strong>Extra clothes</strong> — at least two full seasonally-appropriate changes,
+					including socks, stored in a labeled bin at school.
+				</li>
+				<li>
+					<strong>Outdoor gear for the weather</strong>, sized to fit in your child's blue bag —
+					layers, a waterproof jacket and rain pants (or a rain suit), and boots, adjusted
+					seasonally.
+				</li>
+				<li>
+					<strong>Rest items</strong> — at minimum a crib sheet and blanket, with an optional small
+					pillow and one stuffy, sent home weekly for washing.
+				</li>
+				<li>
+					<strong>A labeled water bottle</strong> your child can open and close independently.
+				</li>
+			</ol>
+			<p>
+				We ask families to leave personal toys, games, jewelry, complicated shoe buckles, and any
+				food or drinks at home. Topical medications like sunscreen or chapstick need to be labeled
+				and given directly to a teacher rather than kept in your child's bag.
+			</p>
+		</>
+	) : (
+		<>
+			<h2>The FIVE Things to Bring From Home</h2>
+			<p>
+				Each day (or each week, for gear) your child needs the following, all labeled with their
+				name:
+			</p>
+			<ol>
+				<li>
+					<strong>Diapers and any preferred wipes or cream</strong> — we provide diapers, Kirkland
+					wipes, and diapering cream, but you're welcome to send your own if you prefer a
+					different brand (a fee applies for families who want water wipes instead of the
+					provided ones).
+				</li>
+				<li>
+					<strong>Bottles and food</strong> as needed for your child's individual schedule, labeled
+					with their name.
+				</li>
+				<li>
+					<strong>Extra clothes</strong> — at least two full seasonally-appropriate changes,
+					including socks, stored in a labeled bin at school.
+				</li>
+				<li>
+					<strong>Outdoor gear for the weather</strong>, sized to fit in your child's blue bag —
+					layers, a waterproof jacket and rain pants (or a rain suit — a one-piece suit is often
+					easiest for children who are still crawling or toddling), and boots, adjusted
+					seasonally.
+				</li>
+				<li>
+					<strong>Rest items</strong> — for children under 12 months, a crib sheet only (Oregon
+					Safe Sleep Law doesn't allow loose blankets in infant sleep spaces, though a wearable
+					blanket is fine); older Sprouts can bring a crib sheet and small blanket. If your child
+					uses a pacifier, send it without any attached clips or stuffies.
+				</li>
+			</ol>
+			<p>
+				We ask families to leave personal toys, games, jewelry, complicated shoe buckles, and any
+				outside food or drinks at home (aside from labeled bottles or food for your child's
+				schedule). Topical medications like diaper cream, lotion, or sunscreen need to be labeled
+				and given directly to a teacher rather than kept in your child's bag.
+			</p>
+		</>
+	)
+}
+
+<h2>Outdoor Policy and Gear Info</h2>
+<p>
+	We are outside most of the day, in all kinds of weather, year-round, so having the right gear —
+	and being able to put it on and take it off independently — is essential. The most important
+	things to consider are keeping your child dry and giving them layering options. It's your
+	responsibility to make sure your child has appropriate gear for the day; out of respect for
+	prepared families, we're not able to stay inside because one family forgot their gear.
+</p>
+<p>
+	Clothes should be comfortable, easy to move in, and easy for your child to put on and take off
+	independently (please avoid snaps, buttons, and buckles for children over 18 months). We
+	recommend keeping a backup pair of shoes at school, and boots plus several pairs of wool-blend
+	socks for the wetter months. A medium/light layer like a hoodie or fleece should stay at school
+	for cooler mornings, and rain gear should be clearly labeled waterproof — either a one-piece
+	suit or a two-piece rain jacket and pants combo.
+</p>
+
+<h2>Tuition and Fees</h2>
+<p>
+	Enrollment for the school year begins with a $500 deposit that holds your child's slot. Tuition
+	is due on the 1st of the month; payments not made in full by the 5th accrue a $25 late fee, and
+	accounts unpaid by the 10th may result in your child being unable to return to care until the
+	account is current. The first two weeks of care are a trial period during which either party may
+	terminate without advance notice; after that, any changes to your contract, including
+	termination, require 30 days' written notice.
+</p>
+<p>
+	Children cannot be dropped off before 7:30am and must be picked up before 5:30pm; late
+	pickups accrue a $1-per-minute fee. If you refer a family who enrolls, you'll receive a $50 credit
+	during their second month of enrollment.
+</p>
+
+<h2>WPP Trading Days Policy</h2>
+<p>
+	We know families can't always attend on their scheduled days, and may sometimes need care on
+	an unscheduled one. Through a day trader app built in partnership with one of our preschool
+	families, you can freely buy, sell, or trade days directly with other families in our community.
+	The transaction happens entirely between families — WPP simply needs to be notified once a day
+	changes hands (either through the app or a message from the selling family) so we can update
+	our attendance records accordingly. A child may only attend on a day they currently own.
+</p>
+
+<h2>Waitlist</h2>
+<p>
+	Families can be placed on our waitlist by submitting a completed application and a
+	non-refundable $20 fee. Being waitlisted doesn't guarantee enrollment, but it does guarantee
+	priority for open slots as they become available; we consider each family on the list with a goal
+	of creating well-balanced cohorts and coordinating preferred schedules. Once offered a slot,
+	families typically have up to a week to decide, and a $500 non-refundable deposit holds the slot
+	for up to three weeks. Currently enrolled families have priority for schedule changes or enrolling
+	a sibling, and aren't required to pay the $20 fee.
+</p>
+
+<h2>Health Policy</h2>
+<p>
+	Our health policy complies with the Oregon Health Department and Early Learning Department.
+	We can care for mildly ill children, but there will be times your child can't attend, or needs to be
+	picked up immediately after developing symptoms in care. In general, children need to stay
+	home with a fever of 100.4°F or higher, diarrhea, vomiting, severe or persistent coughing or
+	wheezing, an unmanageable runny nose, open sores discharging fluids, pink or crusty eyes, a new
+	rash, extreme fatigue, or head lice. Return-to-school guidelines vary by symptom — generally 24
+	to 48 hours symptom-free without medication, or a negative COVID test where applicable, or a
+	doctor's note. We ask families to message us through our app with symptoms any time a child is
+	kept home sick.
+</p>
+<p>
+	We are no longer operating as Emergency Childcare as we were during the COVID pandemic, but
+	we continue to maintain diligent handwashing, environmental sanitation, and extended time
+	outdoors and with fresh air circulation, and we comply with current Oregon Health Authority and
+	Child Care Division guidance on excluding children who are symptomatic or have been exposed.
+</p>
+
+<h2>Illness and Injury Policy</h2>
+<p>
+	It's likely that your child will pick up small cuts, scrapes, bumps, or bruises while in our care.
+	Our general protocol is to wash cuts and scrapes with soap and water, apply Bactine and a
+	bandage as needed, and use a cold washcloth or ice pack for bumps, bruises, or minor burns.
+	Children developing a fever, vomiting, diarrhea, a new rash, or pink/gooey eyes while in care will
+	be isolated from other children and you'll be asked to pick them up right away. We'll send minor
+	incident reports through the app with a photo; any serious illness, injury, or incident will always
+	be communicated with a phone call.
+</p>
+
+<h2>Immunization</h2>
+<p>
+	We require all students to be up to date on their required immunizations unless they have a
+	medical waiver. Our program's vaccination rates are publicly available through Oregon's Child
+	Care Vaccination Rates lookup tool by searching "Wild Pear Preschool."
+</p>
+
+<h2>Medication Policy</h2>
+<p>
+	We only administer prescription rescue medication (like inhalers, epi-pens, or Benadryl), brought
+	in its original container with a completed Authorization for Medication Form. We do not
+	administer non-rescue prescription or over-the-counter medication — parents are always welcome
+	to come administer these on-site. We do ask families to sign an annual blanket permission slip
+	for common topical items we apply frequently, like sunscreen (reapplied after nap on warm days),
+	lotion, and Bactine for small cuts and scrapes. All medications are given to a teacher or director
+	directly by a legal guardian and stored out of children's reach.
+</p>
+
+{
+	program === "preschool" ? (
+		<>
+			<h2>Toileting/Diapering Policy</h2>
+			<p>
+				We welcome children at all levels of toileting mastery and practice Elimination
+				Communication. Children are encouraged to participate in and learn skills related to
+				toileting as they're able, and we never respond with disgust or shame toward a child still
+				working towards consistent toilet use. We won't coerce or bribe a child to use the toilet
+				on a schedule — while we understand and respect that families may have strong preferences
+				about toileting method or frequency, the choice will ultimately be the child's while at
+				school. If your child isn't fully toilet-trained, please send at least one extra change of
+				clothes each day. By age 4, children are expected to handle most of their own
+				toileting independently.
+			</p>
+		</>
+	) : (
+		<>
+			<h2>Toileting/Diapering Policy</h2>
+			<p>
+				We welcome children at all levels of toileting mastery and practice Elimination
+				Communication — even during diaper changes, we talk with children about what's happening
+				and involve them as they're able, whether that's removing their own clothes, helping clean
+				up, or (once walking) transitioning from lay-down to stand-up changes. We never respond
+				with disgust or shame toward a child working towards consistent toilet use.
+			</p>
+			<p>
+				Diapers are always changed in the bathroom at school, using the same stand-up or lay-down
+				method described in our policy notebook. We provide diapers, wipes, and diapering cream —
+				families will need to authorize which diapering cream(s) we can use, and families who
+				prefer water wipes instead of our provided wipes pay a small additional annual fee. We'll
+				keep your child clean and comfortable between changes, and will reach out if your child
+				is consistently refusing changes so we can problem-solve together.
+			</p>
+		</>
+	)
+}
+
+<h2>Rest Time Policy</h2>
+<p>
+	After lunch, each child spends time resting on a cozy cot with a sheet and blanket. We begin
+	with a read-aloud or quiet music, then give children time to rest independently and sleep if they
+	need to; children who wake early may do quiet activities on their mat. As with toileting, we
+	won't coerce a child to sleep or wake them early — our consistent message is that they don't
+	have to sleep, but do need to rest quietly so their friends can. Families send a crib sheet and
+	small blanket weekly, which we wash and return.
+</p>
+
+<h2>Meal Information</h2>
+<p>
+	Children are served breakfast, lunch, and an afternoon snack, included with tuition as part of
+	our Food and Nutrition Curriculum, following USDA food program portion guidelines. Food is
+	cooked onsite, prioritizing seasonal, local, and organic ingredients — including food grown
+	onsite — and children participate in food prep, family-style serving, and clean-up. Children are
+	always asked to try a small taste of each food offered, but ultimately decide what and how
+	much they eat.
+</p>
+<p>
+	We're happy to work with families on a plan for dietary restrictions due to allergies, medical
+	conditions, or moral, cultural, or religious reasons. Modified meals confirmed necessary by a
+	doctor for an allergy or medical condition are fully covered; other substitution requests are
+	worked out collaboratively with the family.
+</p>
+
+<h2>Rules and Discipline Approach</h2>
+<p>
+	At Wild Pear we have four rules: Be Safe, Be Respectful, Be Kind, and Be Responsible. We believe
+	there's no such thing as a "bad kid" or "bad behavior" — we view behavior as a child's attempt
+	to get a need met, and partner with children to shift their expression toward what's safe and
+	appropriate for school. We will never use corporal punishment, verbal assault, shaming, guilting,
+	coercion, threats, or isolation to change a child's behavior, and don't use time-outs or bribes.
+</p>
+<p>
+	Instead, we help children build a strong understanding of how to express needs and feelings and
+	stay aware of others'. When conflicts arise between children, teachers stay close by to support
+	restorative conversations, often centered on three simple questions: "Are you okay?", "What do
+	you need to feel better?", and "Did that fix it?" If a child's behavior is regularly unsafe or
+	requires excessive one-on-one attention, we'll work closely with the family to build a sustainable
+	plan so the child can remain enrolled; if no workable plan can be found, we may need to
+	unenroll the child.
+</p>
+
+<h2>Family Communication</h2>
+<p>
+	Our app is the best way to reach your child's teachers during the day — for planned absences,
+	early pickups, questions about your child's day, or photo and incident updates. For anything
+	more urgent, please text the directors on our shared family text line, which is provided directly
+	to enrolled families; we'll use texting for unplanned closures and time-sensitive updates. For
+	tuition matters, policy questions, or longer conversations, email or a scheduled meeting works
+	best. We regularly send group emails with information you'll be responsible for knowing, so
+	please make sure they aren't landing in your spam folder.
+</p>
+<p>
+	We share photos of your child and their peers through the app and occasionally a shared Google
+	Photos album, and let us know right away if you have any concerns about your child's photo
+	being shared outside our currently enrolled community.
+</p>
+
+<h2>Family Involvement</h2>
+<p>
+	Your family is the number one source of education for your child, and we love partnering with
+	you throughout the year. We host two family conferences (currently held over video call), occasional
+	volunteer days to help keep our environment in great shape, and several fun, free family events
+	including a Pumpkin Patch trip, a Parent's Night Out, Spring Fling, an end-of-year Campfire
+	Night, and a beloved annual camping trip.
+</p>
+
+<h2>Birthdays at Wild Pear Preschool</h2>
+<p>
+	We celebrate each child's birthday with a special 15-20 minute birthday circle, walking the
+	birthday child around a globe representing a trip around the sun for each year of their life while
+	reflecting on photos and milestones from each age. Families are welcome, though not required,
+	to attend — on the day of the circle, please send along a photo from each year of your child's
+	life so far.
+</p>
+
+<h2>Plan for Meeting Potential Emergencies</h2>
+<p>
+	We stay alert to emergency warnings and follow the instructions of law enforcement and other
+	designated authorities, using our training and best judgment to keep children safe until they can
+	be reunited with parents. In any disaster or emergency, we first gather and account for all
+	children in a safe space, then contact emergency services and text and call all custodial parents.
+	If phones aren't working, we'll send emails and post updates on Facebook. The nearest hospital
+	available to us is Providence Milwaukie Hospital (10150 SE 32nd Ave, Milwaukie, OR 97222,
+	(503) 513-8300).
+</p>
+<p>
+	<strong>Medical emergency:</strong> we contact emergency services, perform first aid/CPR, and ensure
+	a teacher or parent stays with the child at all times, including during hospital transport, while
+	other teachers keep the rest of the group safe and calm.
+</p>
+<p>
+	<strong>Shelter in place:</strong> used for events like severe storms, power outages, or earthquakes.
+	Teachers remain on-site with students, with access to attendance records, emergency paperwork,
+	rescue medication, and an emergency supply kit, until children are picked up by a parent or
+	authorized adult.
+</p>
+<p>
+	<strong>Evacuation:</strong> used for events like flood, fire, or gas leak. Short-term evacuations move
+	the group to a covered outdoor area on campus; longer evacuations move to a nearby site, with a
+	note posted at the school, or to the Milwaukie City Planning Building (6101 SE Johnson Creek
+	Blvd, Portland, OR 97206) or the Wichita Center (6031 SE King Rd, Milwaukie, OR 97222).
+</p>
+<p>
+	<strong>Earthquake:</strong> we drop and take cover until shaking stops, then follow the evacuation
+	procedure above. <strong>Lock down:</strong> used for an escalated threat where children may be in
+	direct danger — children are moved into the building, lights turned off, and doors locked, while
+	we follow the shelter-in-place procedure. <strong>Weather emergencies:</strong> we closely monitor
+	extreme heat, cold, and air quality, bringing children inside or closing early as conditions
+	require.
+</p>
+
+<h2>Certificates and Affiliations</h2>
+<p>
+	Our lead educators hold degrees in Early and Elementary Education, are Master Trainers with
+	OCCD, and maintain current Infant and Child First Aid/CPR certification and food handler
+	licensing. Wild Pear Preschool is certified by the Oregon Department of Early Education, holds a
+	City of Milwaukie business license, is Clackamas County health inspected, and participates in the
+	USDA Food Program. We're also affiliated with the Oregon Family Child Care Network, the
+	Professional Resource Organization, and the Oregon Association for the Education of Young
+	Children.
+</p>
+
+<h2>Mandated Reporting</h2>
+<p>
+	All teachers and directors are legally required to report concerns of child abuse and neglect,
+	which includes children under age 5 being left alone in a car for any reason.
+</p>
+
+<h2>File a Complaint</h2>
+<p>
+	We are licensed as a Certified Family Child Care and abide by applicable Oregon State Rules and
+	Regulations, available for review on request. If you have a question, complaint, or a problem, we
+	would love to have a discussion with you directly. If you're not comfortable with that, or feel the
+	matter is serious, you may make an official complaint to the Office of Child Care's Central Office
+	at 1-800-556-6616, who will refer your information to a local child care licensing specialist.
+</p>

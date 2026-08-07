@@ -1,0 +1,48 @@
+---
+import IconCalendar from "@tabler/icons/outline/calendar.svg";
+import IconClipboardCheck from "@tabler/icons/outline/clipboard-check.svg";
+import IconHammer from "@tabler/icons/outline/hammer.svg";
+import IconThumbUp from "@tabler/icons/outline/thumb-up.svg";
+
+import Services8, { type ProcessStep } from "./Services8.astro";
+
+const steps: ProcessStep[] = [
+  {
+    icon: IconCalendar,
+    title: "Schedule Consultation",
+    description:
+      "Book a free consultation at a time that works for you. We'll discuss your project needs and answer any questions.",
+    href: "#",
+  },
+  {
+    icon: IconClipboardCheck,
+    title: "Get Your Quote",
+    description:
+      "Receive a detailed, transparent quote with no hidden fees. We break down all costs so you know exactly what to expect.",
+    href: "#",
+  },
+  {
+    icon: IconHammer,
+    title: "Expert Installation",
+    description:
+      "Our certified technicians complete the work efficiently and professionally, keeping you informed every step of the way.",
+    href: "#",
+  },
+  {
+    icon: IconThumbUp,
+    title: "Quality Guarantee",
+    description:
+      "We stand behind our work with a satisfaction guarantee. If you're not happy, we'll make it right.",
+    href: "#",
+  },
+];
+---
+
+<Services8
+  badge="How We Work"
+  heading="Simple 4-Step Process"
+  description="From first contact to project completion, we make the process easy and stress-free. Here's what to expect when you work with us."
+  steps={steps}
+  ctaText="Schedule Your Free Consultation"
+  ctaHref="#"
+/>

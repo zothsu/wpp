@@ -1,6 +1,7 @@
 ---
 import "../styles/starwind.css";
 import SiteFooter from "../components/SiteFooter.astro";
+import ShaderSilkRibbon from "../components/starwind-pro/shader-silk-ribbon/ShaderSilkRibbon.astro";
 
 interface Props {
 	title: string;
@@ -18,8 +19,14 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
-		<SiteFooter />
+	<body class="relative">
+		<ShaderSilkRibbon
+			primaryRibbonColor="var(--color-primary)"
+			secondaryRibbonColor="var(--color-primary-accent)"
+		/>
+		<div class="relative z-10">
+			<slot />
+			<SiteFooter />
+		</div>
 	</body>
 </html>

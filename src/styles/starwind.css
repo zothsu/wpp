@@ -89,6 +89,9 @@
 }
 
 @layer base {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
   * {
     @apply border-border outline-outline/50;
   }

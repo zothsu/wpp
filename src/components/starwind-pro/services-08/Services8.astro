@@ -1,0 +1,121 @@
+---
+import IconArrowRight from "@tabler/icons/outline/arrow-right.svg";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Badge } from "@/components/starwind/badge";
+import { Button } from "@/components/starwind/button";
+
+/** Process step configuration */
+export interface ProcessStep {
+  /** Step number (auto-generated if not provided) */
+  number?: number;
+  /** Icon component (SVG) */
+  icon: astroHTML.JSX.Element;
+  /** Step title */
+  title: string;
+  /** Step description */
+  description: string;
+  /** Optional link for more details */
+  href?: string;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Badge/eyebrow text */
+  badge?: string;
+  /** Section heading */
+  heading?: string;
+  /** Section description */
+  description?: string;
+  /** Process steps */
+  steps?: ProcessStep[];
+  /** CTA button text */
+  ctaText?: string;
+  /** CTA button href */
+  ctaHref?: string;
+}
+
+const sectionStyles = tv({
+  base: "@container mx-auto w-full max-w-7xl px-4 py-24",
+});
+
+const {
+  badge = "Our Process",
+  heading = "How It Works",
+  description = "A simple, straightforward process to get you the results you need.",
+  steps = [],
+  ctaText,
+  ctaHref = "#",
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={sectionStyles({ class: className })} {...rest}>
+  <div class="mx-auto mb-16 max-w-3xl text-center">
+    <Badge variant="primary">{badge}</Badge>
+    <h2 class="font-heading mt-4 text-3xl font-semibold tracking-tight @xl:text-4xl @3xl:text-5xl">
+      {heading}
+    </h2>
+    <p class="text-muted-foreground mt-4 text-pretty @xl:text-lg">
+      {description}
+    </p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="relative">
+    <!-- Connecting line (hidden on mobile) -->
+    <div
+      class="from-primary-accent via-primary-accent/50 to-primary-accent absolute top-12 left-0 hidden h-0.5 w-full bg-linear-to-r @3xl:block"
+    >
+    </div>
+
+    <div class="grid gap-8 @xl:grid-cols-2 @3xl:grid-cols-4">
+      {
+        steps.map((step, index) => {
+          const stepNumber = step.number || index + 1;
+          return (
+            <div class="group relative">
+              {/* */}
+              <div class="relative z-10 mb-6 flex items-center gap-4 @2xl:flex-col @2xl:text-center">
+                <div class="bg-background border-primary-accent group-hover:bg-muted flex size-24 shrink-0 items-center justify-center rounded-full border-3 transition-all duration-300 group-hover:shadow-lg @2xl:mx-auto">
+                  <div class="text-primary-accent transition-colors">
+                    <step.icon class="size-10" />
+                  </div>
+                </div>
+                <span class="bg-primary text-primary-foreground absolute -top-2 left-16 flex size-8 items-center justify-center rounded-full text-sm font-bold duration-300 @2xl:top-0 @2xl:-right-2 @2xl:left-auto">
+                  {stepNumber}
+                </span>
+              </div>
+
+              {/* Content */}
+              <div class="@2xl:text-center">
+                <h3 class="font-heading text-lg font-semibold">{step.title}</h3>
+                <p class="text-muted-foreground mt-2 text-sm text-pretty">{step.description}</p>
+                {step.href && (
+                  <a
+                    href={step.href}
+                    class="text-primary-accent mt-3 inline-flex items-center gap-1 text-sm font-medium transition-colors hover:underline"
+                  >
+                    Learn more
+                    <IconArrowRight class="size-4" />
+                  </a>
+                )}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  {
+    ctaText && (
+      <div class="mt-16 text-center">
+        <Button variant="primary" size="lg" href={ctaHref}>
+          {ctaText}
+        </Button>
+      </div>
+    )
+  }
+</section>
