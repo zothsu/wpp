@@ -7,7 +7,8 @@ Tracks working sessions on this project — when, how long, and what got done �
 | Date       | Time (approx.)      | Duration (approx.) | Summary                                                                                                                                                                                                     |
 | :--------- | :------------------- | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-08-04 | ~11:33 PM             | not tracked          | Initial project scaffold: Astro + Starwind UI setup, base pages (home, learn-about-us, our-approach, who-we-are, enrollment, privacy, terms), starter content/images. ("initial commit, day 1")            |
-| 2026-08-05 | ~11:20 AM – 12:20 PM+ (ongoing) | ~1 hr so far          | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-05 | ~11:20 AM – 4:35 PM   | ~5 hrs               | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-06 | ~1:00 PM – 5:30 PM    | ~4 hrs                | See breakdown below.                                                                                                                                                                                        |
 
 ## 2026-08-05 session detail
 
@@ -20,3 +21,20 @@ Tracks working sessions on this project — when, how long, and what got done �
 - Brainstormed 12 hero headline options (baby-led care / emotional intelligence / outdoor play / play-builds-the-brain themes); picked "Rooted in nature, ready for the world" and updated the eyebrow to "Wild Pear Preschool & Summer Camp for All."
 - Added a Sitemap section to `README.md` listing all routes, and preserved the full headline list there for future reference.
 - Started this work log.
+- Wrapped program cards in `ul`/`li` for group semantics.
+- Added `/programs/infant-toddler`, `/programs/preschool`, `/programs/summer-camp` detail pages (each with a program-specific accordion, a schedule table for preschool, and a Request a Tour form); matched Hero22's button styling to the homepage hero; moved FAQ to the end of the footer's "Learn About Us" column; added `TODO.md` as a durable, repo-tracked to-do list.
+- Set `--primary-accent` to orange-400 globally (replacing hardcoded per-element orange); documented the "prefer global style/token changes" preference in `CLAUDE.md`; removed dead social-icon code from Team1; small copy fix.
+- Trimmed a redundant "Send a Message" header and renamed the submit button to "Request a tour."
+- Added the `Enrollment.astro` 3-step "How to Enroll" timeline component and a "Still have questions?" block; built a new `/contact` page with an FAQ accordion (extracted shared FAQ data into `src/data/faqs.ts`); reworked `/enrollment-information`; fixed nav/footer contact links; added a reusable "accent" button variant.
+- Added `/tuition` page; expanded `/who-we-are` with the real founding story and fuller bios; restricted the display heading font to h1/h2 only (h3-h6 use the body font sitewide); decided against publishing real phone/email anywhere on the site (contact form stays the only channel).
+
+## 2026-08-06 session detail
+
+- Rebuilt `/our-approach`: swapped in an image-based FAQ layout and image-based "Our Approach to Learning" theme sections (placeholder photos, tracked in `TODO.md`), replaced the enrolling callout with a centered CTA card, cleaned up a vendor component, and corrected the summer camp age range to 5-10.
+- Built the `/handbook` hub plus Preschool, Sprouts (infant/toddler), and Summer Camp handbook pages from the family handbook and summer camp PDFs; extracted a shared `FamilyHandbookContent` component that branches per program only where content actually differs (daily schedule, what to bring, toileting/diapering).
+- Added a reusable `AlertWarning` callout and used it throughout the handbooks for actionable, must-know rules.
+- Wired the shader-silk-ribbon animated background into the base `Layout`.
+- Scoped handbook headings to the body font and relabeled "Effective" to "Last Updated," without touching `/privacy` or `/terms`.
+- Fixed a site-wide anchor-scroll bug (jump-to-section links landing behind the sticky nav) with a single `scroll-padding-top` rule.
+- Caught and corrected a program-naming mistake: there is no "Kindergarten" class at Wild Pear — renamed that handbook to Infant & Toddler (Sprouts) and updated the hub, nav, and program-page CTA links accordingly.
+- Linked each program page's CTA directly to its own handbook instead of the generic hub; moved "Still have questions?" to the end of the enrollment info page.
