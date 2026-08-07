@@ -36,7 +36,7 @@ interface Props extends HTMLAttributes<"footer"> {
 }
 
 const footer3Styles = tv({
-  base: "@container w-full border-t py-12",
+  base: "@container flex min-h-screen w-full flex-col justify-center border-t py-12",
 });
 
 const {
@@ -88,7 +88,19 @@ const currentYear = new Date().getFullYear();
       <div class="@lg:max-w-sm @lg:shrink-0">
         <div class="mb-4 flex items-center gap-2">
           <LogoIcon class="text-primary-accent size-8" aria-hidden="true" />
-          <span class="text-xl font-semibold">{companyName}</span>
+          <span class="text-xl font-semibold">
+            {
+              companyName.includes("&") ? (
+                <>
+                  {companyName.split("&")[0].trim()}
+                  <br class="@lg:hidden" />
+                  {`& ${companyName.split("&")[1].trim()}`}
+                </>
+              ) : (
+                companyName
+              )
+            }
+          </span>
         </div>
         <p class="text-muted-foreground mb-6 text-sm text-justify">
           {description}
