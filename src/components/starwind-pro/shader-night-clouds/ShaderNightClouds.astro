@@ -1,0 +1,110 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+interface Props extends HTMLAttributes<"div"> {
+  /** Cloud drift multiplier. */
+  cloudDrift?: number;
+  /** Cloud field scale. */
+  cloudScale?: number;
+  /** Overall cloud depth and glow. */
+  moonlitDepth?: number;
+  /** Sets the overall opacity of the shader background wrapper. */
+  opacity?: number;
+  /** Caps device pixel ratio for sharper output without runaway GPU cost. */
+  maxDpr?: number;
+  /** Caps the animation frame rate for performance-sensitive pages. */
+  maxFps?: 30 | 45 | 60;
+  /** Sky field color as a CSS color or normalized RGB. */
+  skyColor?: string;
+  /** Cloud layer color as a CSS color or normalized RGB. */
+  cloudColor?: string;
+  /** Horizon warmth color as a CSS color or normalized RGB. */
+  horizonColor?: string;
+}
+
+const backgroundStyles = tv({
+  base: "pointer-events-none fixed inset-0 overflow-hidden",
+});
+
+const {
+  cloudDrift = 0.4,
+  cloudScale = 2.4,
+  moonlitDepth = 0.84,
+  opacity = 0.96,
+  maxDpr = 1.5,
+  maxFps = 60,
+  skyColor = "rgb(11,22,1)",
+  cloudColor = "rgb(0,112,19",
+  horizonColor = "rgb(0,0,0)",
+  class: className,
+  style,
+  ...rest
+} = Astro.props;
+
+const inlineStyle = [`opacity: ${opacity}`, style].filter(Boolean).join("; ");
+---
+
+<div
+  class={backgroundStyles({ class: className })}
+  data-shader-night-clouds
+  data-shader-state="loading"
+  aria-hidden="true"
+  {...rest}
+  style={inlineStyle}
+>
+  <div class="shader-night-clouds-fallback absolute inset-0"></div>
+  <canvas
+    class="absolute inset-0 size-full"
+    data-shader-night-clouds-canvas
+    data-shader-cloud-color={cloudColor}
+    data-shader-cloud-drift={cloudDrift}
+    data-shader-cloud-scale={cloudScale}
+    data-shader-horizon-color={horizonColor}
+    data-shader-max-dpr={maxDpr}
+    data-shader-max-fps={maxFps}
+    data-shader-moonlit-depth={moonlitDepth}
+    data-shader-sky-color={skyColor}></canvas>
+</div>
+
+<script>
+  import { initShaderNightCloudsBackgrounds } from "./shaders";
+
+  initShaderNightCloudsBackgrounds();
+  document.addEventListener(
+    "astro:after-swap",
+    initShaderNightCloudsBackgrounds,
+  );
+</script>
+
+<style>
+  .shader-night-clouds-fallback {
+    background-color: rgb(8 10 17);
+    background:
+      radial-gradient(
+        circle at 16% 18%,
+        rgb(148 171 205 / 0.18),
+        transparent 34%
+      ),
+      linear-gradient(180deg, rgb(10 12 22), rgb(16 23 35) 58%, rgb(6 8 14));
+  }
+
+  [data-shader-night-clouds] canvas,
+  .shader-night-clouds-fallback {
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+
+  [data-shader-night-clouds][data-shader-state="running"] canvas {
+    opacity: 1;
+  }
+
+  [data-shader-night-clouds][data-shader-state="fallback"] canvas {
+    display: none;
+  }
+
+  [data-shader-night-clouds][data-shader-state="fallback"]
+    .shader-night-clouds-fallback {
+    opacity: 1;
+  }
+</style>
