@@ -14,6 +14,7 @@ import {
 	AccordionTrigger,
 } from "@/components/starwind/accordion";
 import { Button } from "@/components/starwind/button";
+import { Card, CardContent } from "@/components/starwind/card";
 import { Input } from "@/components/starwind/input";
 import { Label } from "@/components/starwind/label";
 import { RadioGroup, RadioGroupItem } from "@/components/starwind/radio-group";
@@ -53,186 +54,198 @@ const {
 ---
 
 <section class={sectionStyles({ class: className })} {...rest}>
-	<div class="overflow-hidden rounded-3xl border">
-		<div class="grid @3xl:grid-cols-5">
-			<!-- Left Column - Dark Info Panel -->
-			<div class="bg-foreground text-background p-8 @xl:p-10 @3xl:col-span-2 @3xl:p-12">
-				<!-- Contact Methods -->
-				{
-					(phone || email) && (
-						<div class="mt-10 space-y-6">
-							{phone && (
-								<a
-									href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
-									class="hover:bg-background/10 flex items-center gap-4 rounded-xl p-3 transition-colors"
-								>
-									<div class="bg-background/10 flex size-12 items-center justify-center rounded-xl">
-										<IconPhone class="size-5" />
-									</div>
-									<div>
-										<p class="text-background/60 text-sm">Call Us</p>
-										<p class="font-semibold">{phone}</p>
-									</div>
-								</a>
-							)}
+	<div class="mb-12 text-center">
+		<h2>{heading}</h2>
+		<p class="text-muted-foreground mx-auto mt-4 max-w-2xl text-lg">
+			{description}
+		</p>
+	</div>
 
-							{email && (
-								<a
-									href={`mailto:${email}`}
-									class="hover:bg-background/10 flex items-center gap-4 rounded-xl p-3 transition-colors"
-								>
-									<div class="bg-background/10 flex size-12 items-center justify-center rounded-xl">
-										<IconMail class="size-5" />
-									</div>
-									<div>
-										<p class="text-background/60 text-sm">Email Us</p>
-										<p class="font-semibold">{email}</p>
-									</div>
-								</a>
-							)}
+	<div class="grid gap-8 @3xl:grid-cols-5">
+		<!-- Left Column - Dark Info Panel -->
+		<div
+			class="bg-foreground text-background overflow-hidden rounded-2xl p-8 @xl:p-10 @3xl:col-span-2 @3xl:p-12"
+		>
+			<!-- Contact Methods -->
+			{
+				(phone || email) && (
+					<div class="mt-10 space-y-6">
+						{phone && (
+							<a
+								href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
+								class="hover:bg-background/10 flex items-center gap-4 rounded-xl p-3 transition-colors"
+							>
+								<div class="bg-background/10 flex size-12 items-center justify-center rounded-xl">
+									<IconPhone class="size-5" />
+								</div>
+								<div>
+									<p class="text-background/60 text-sm">Call Us</p>
+									<p class="font-semibold">{phone}</p>
+								</div>
+							</a>
+						)}
+
+						{email && (
+							<a
+								href={`mailto:${email}`}
+								class="hover:bg-background/10 flex items-center gap-4 rounded-xl p-3 transition-colors"
+							>
+								<div class="bg-background/10 flex size-12 items-center justify-center rounded-xl">
+									<IconMail class="size-5" />
+								</div>
+								<div>
+									<p class="text-background/60 text-sm">Email Us</p>
+									<p class="font-semibold">{email}</p>
+								</div>
+							</a>
+						)}
+					</div>
+				)
+			}
+
+			<!-- Business Hours -->
+			{
+				businessHours.length > 0 && (
+					<div class="mt-10">
+						<div class="mb-4 flex items-center gap-2">
+							<IconClock class="text-background/60 size-5" />
+							<h3 class="font-semibold">Business Hours</h3>
 						</div>
-					)
-				}
+						<div class="flex flex-col gap-1">
+							{businessHours.map((item) => (
+								<div class="flex justify-between text-sm">
+									<span class="text-background/70">{item.day}</span>
+									<span class:list={[item.closed ? "text-background/40" : ""]}>
+										{item.closed ? "Closed" : item.hours}
+									</span>
+								</div>
+							))}
+						</div>
+					</div>
+				)
+			}
 
-				<!-- Business Hours -->
-				{
-					businessHours.length > 0 && (
-						<div class="mt-10">
-							<div class="mb-4 flex items-center gap-2">
-								<IconClock class="text-background/60 size-5" />
-								<h3 class="font-semibold">Business Hours</h3>
+			<!-- Emergency Banner -->
+			{
+				emergencyText && (
+					<div class="mt-10 flex items-center gap-3 rounded-xl bg-green-300/20 p-4 text-green-200 dark:text-green-950">
+						<IconCalendar class="size-5 shrink-0" />
+						<span class="text-sm font-medium">{emergencyText}</span>
+					</div>
+				)
+			}
+
+			<!-- FAQs -->
+			{
+				faqs.length > 0 && (
+					<div>
+						<h2
+							class="text-2xl tracking-tight @xl:text-2xl"
+							style="font-family: 'Poppins', var(--font-sans);"
+						>
+							Frequently Asked Questions
+						</h2>
+						<Accordion class="mt-4">
+							{faqs.map((item, idx) => (
+								<AccordionItem value={`contact-faq-${idx + 1}`} class="border-background/20">
+									<h3>
+										<AccordionTrigger class="hover:text-background/70">
+											{item.title}
+										</AccordionTrigger>
+									</h3>
+									<AccordionContent class="text-background/70">{item.content}</AccordionContent>
+								</AccordionItem>
+							))}
+						</Accordion>
+					</div>
+				)
+			}
+		</div>
+
+		<!-- Right Column - Form -->
+		<div class="@3xl:col-span-3">
+			<Card class="h-full">
+				<CardContent class="flex h-full flex-col">
+					<form class="@container/form flex flex-1 flex-col space-y-5" id="contact-form-us" name="contact-form">
+						<div class="grid gap-5 @md/form:grid-cols-2">
+							<div class="flex flex-col gap-1">
+								<Label for="contact-name-us" class="flex items-center gap-1.5">
+									<IconUser class="size-4" /> Name
+								</Label>
+								<Input id="contact-name-us" name="name" type="text" placeholder="Your full name" required />
 							</div>
 							<div class="flex flex-col gap-1">
-								{businessHours.map((item) => (
-									<div class="flex justify-between text-sm">
-										<span class="text-background/70">{item.day}</span>
-										<span class:list={[item.closed ? "text-background/40" : ""]}>
-											{item.closed ? "Closed" : item.hours}
-										</span>
-									</div>
-								))}
+								<Label for="contact-phone-us" class="flex items-center gap-1.5">
+									<IconPhone class="size-4" /> Number
+								</Label>
+								<Input
+									id="contact-phone-us"
+									name="phone"
+									type="tel"
+									placeholder="(555) 123-4567"
+								/>
 							</div>
 						</div>
-					)
-				}
 
-				<!-- Emergency Banner -->
-				{
-					emergencyText && (
-						<div class="mt-10 flex items-center gap-3 rounded-xl bg-green-300/20 p-4 text-green-200 dark:text-green-950">
-							<IconCalendar class="size-5 shrink-0" />
-							<span class="text-sm font-medium">{emergencyText}</span>
-						</div>
-					)
-				}
-
-				<!-- FAQs -->
-				{
-					faqs.length > 0 && (
-						<div>
-							<h2 class="text-2xl font-bold tracking-tight @xl:text-3xl">
-								Frequently Asked Questions
-							</h2>
-							<Accordion class="mt-4">
-								{faqs.map((item, idx) => (
-									<AccordionItem value={`contact-faq-${idx + 1}`} class="border-background/20">
-										<h3>
-											<AccordionTrigger class="hover:text-background/70">
-												{item.title}
-											</AccordionTrigger>
-										</h3>
-										<AccordionContent class="text-background/70">{item.content}</AccordionContent>
-									</AccordionItem>
-								))}
-							</Accordion>
-						</div>
-					)
-				}
-			</div>
-
-			<!-- Right Column - Form -->
-			<div class="bg-background p-8 @xl:p-10 @3xl:col-span-3 @3xl:p-12">
-				<h3 class="text-foreground mb-6 text-xl font-semibold">Send Us a Message</h3>
-
-				<form class="@container/form space-y-5" id="contact-form-us" name="contact-form">
-					<div class="grid gap-5 @md/form:grid-cols-2">
 						<div class="flex flex-col gap-1">
-							<Label for="contact-name-us" class="flex items-center gap-1.5">
-								<IconUser class="size-4" /> Name
-							</Label>
-							<Input id="contact-name-us" name="name" type="text" placeholder="Your full name" required />
-						</div>
-						<div class="flex flex-col gap-1">
-							<Label for="contact-phone-us" class="flex items-center gap-1.5">
-								<IconPhone class="size-4" /> Number
+							<Label for="contact-email-us" class="flex items-center gap-1.5">
+								<IconMail class="size-4" /> Email
 							</Label>
 							<Input
-								id="contact-phone-us"
-								name="phone"
-								type="tel"
-								placeholder="(555) 123-4567"
+								id="contact-email-us"
+								name="email"
+								type="email"
+								placeholder="you@example.com"
+								required
 							/>
 						</div>
-					</div>
 
-					<div class="flex flex-col gap-1">
-						<Label for="contact-email-us" class="flex items-center gap-1.5">
-							<IconMail class="size-4" /> Email
-						</Label>
-						<Input
-							id="contact-email-us"
-							name="email"
-							type="email"
-							placeholder="you@example.com"
-							required
-						/>
-					</div>
+						<div class="flex flex-1 flex-col gap-1">
+							<Label for="contact-message-us">What question can we answer for you?</Label>
+							<Textarea
+								id="contact-message-us"
+								name="message"
+								placeholder="What's your question?"
+								class="min-h-[100px] resize-none"
+								required
+							/>
+						</div>
 
-					<div class="flex flex-col gap-1">
-						<Label for="contact-message-us">What question can we answer for you?</Label>
-						<Textarea
-							id="contact-message-us"
-							name="message"
-							placeholder="What's your question?"
-							rows={4}
-							required
-						/>
-					</div>
+						<div class="flex flex-col gap-2">
+							<Label>Preferred Contact Method</Label>
+							<p class="text-muted-foreground -mt-1 text-sm">How would you like us to follow up with you?</p>
+							<RadioGroup
+								name="contactMethod"
+								defaultValue="email"
+								orientation="horizontal"
+								legend="Preferred contact method"
+								class="flex flex-wrap gap-4"
+							>
+								<div class="flex items-center gap-2">
+									<RadioGroupItem id="contact-method-phone-us" value="phone" name="contactMethod" />
+									<Label for="contact-method-phone-us" class="cursor-pointer font-normal">
+										Phone
+									</Label>
+								</div>
+								<div class="flex items-center gap-2">
+									<RadioGroupItem id="contact-method-email-us" value="email" name="contactMethod" />
+									<Label for="contact-method-email-us" class="cursor-pointer font-normal">
+										Email
+									</Label>
+								</div>
+								<div class="flex items-center gap-2">
+									<RadioGroupItem id="contact-method-text-us" value="text" name="contactMethod" />
+									<Label for="contact-method-text-us" class="cursor-pointer font-normal">
+										Text
+									</Label>
+								</div>
+							</RadioGroup>
+						</div>
 
-					<div class="flex flex-col gap-2">
-						<Label>Preferred Contact Method</Label>
-						<p class="text-muted-foreground -mt-1 text-sm">How would you like us to follow up with you?</p>
-						<RadioGroup
-							name="contactMethod"
-							defaultValue="email"
-							orientation="horizontal"
-							legend="Preferred contact method"
-							class="flex flex-wrap gap-4"
-						>
-							<div class="flex items-center gap-2">
-								<RadioGroupItem id="contact-method-phone-us" value="phone" name="contactMethod" />
-								<Label for="contact-method-phone-us" class="cursor-pointer font-normal">
-									Phone
-								</Label>
-							</div>
-							<div class="flex items-center gap-2">
-								<RadioGroupItem id="contact-method-email-us" value="email" name="contactMethod" />
-								<Label for="contact-method-email-us" class="cursor-pointer font-normal">
-									Email
-								</Label>
-							</div>
-							<div class="flex items-center gap-2">
-								<RadioGroupItem id="contact-method-text-us" value="text" name="contactMethod" />
-								<Label for="contact-method-text-us" class="cursor-pointer font-normal">
-									Text
-								</Label>
-							</div>
-						</RadioGroup>
-					</div>
-
-					<Button variant="accent" type="submit" class="w-full"> Send Message </Button>
-				</form>
-			</div>
+						<Button variant="accent" type="submit" class="w-full"> Send Message </Button>
+					</form>
+				</CardContent>
+			</Card>
 		</div>
 	</div>
 </section>
