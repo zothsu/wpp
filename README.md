@@ -43,10 +43,9 @@ All commands are run from the root of the project, from a terminal:
 | Route                       | Page                                | Notes                                          |
 | :--------------------------- | :------------------------------------ | :----------------------------------------------- |
 | `/`                          | Home                                  |                                                 |
-| `/learn-about-us`            | Learn About Us                        | Hero (hero-22)                                 |
+| `/learn-about-us`            | Learn About Us                        | Hero (hero-22) + Programs grid + 3-step enroll timeline + Schedule a Tour form |
 | `/our-approach`              | Our Approach                          |                                                 |
 | `/who-we-are`                | Who We Are                            |                                                 |
-| `/programs`                  | Our Programs                          | Programs grid + Schedule a Tour form           |
 | `/programs/infant-toddler`   | Infant/Toddler program detail         | ServicePage6                                   |
 | `/programs/preschool`        | Preschool program detail              | ServicePage6                                   |
 | `/programs/summer-camp`      | School Age Summer Camp detail         | ServicePage6                                   |

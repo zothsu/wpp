@@ -1,7 +1,9 @@
 ---
 import AboutLayout from "../layouts/AboutLayout.astro";
 import Hero22 from "../components/starwind-pro/hero-22/Hero22.astro";
-import Programs from "../components/Programs.astro"
+import Programs from "../components/Programs.astro";
+import Enrollment from "../components/Enrollment.astro";
+import ScheduleTour from "../components/ScheduleTour.astro";
 ---
 
 <AboutLayout title="Learn About Us | Wild Pear Preschool & Summer Camp">
@@ -9,7 +11,7 @@ import Programs from "../components/Programs.astro"
 		eyebrow="Wild Pear Preschool & Summer Camp for All"
 		heading="Rooted in nature, ready for the world"
 		primaryButtonText="Schedule a Tour"
-		primaryButtonHref="/programs"
+		primaryButtonHref="#request-tour"
 		secondaryLinkText="Learn About Our Approach"
 		secondaryLinkHref="/our-approach"
 		image={{
@@ -20,4 +22,6 @@ import Programs from "../components/Programs.astro"
 		}}
 	/>
 	<Programs />
+	<Enrollment />
+	<ScheduleTour />
 </AboutLayout>
