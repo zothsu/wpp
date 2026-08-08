@@ -1,81 +1,165 @@
 ---
 import AboutLayout from "../../layouts/AboutLayout.astro";
+import Blog6, {
+  type BlogPost,
+} from "../../components/starwind-pro/blog-06/Blog6.astro";
 import Cta10 from "../../components/starwind-pro/cta-10/Cta10.astro";
-import ScheduleTour from "../../components/ScheduleTour.astro";
+import Contact from "../../components/form-contactus.astro";
 import ServicePage6 from "../../components/starwind-pro/service-page-06/ServicePage6.astro";
+
+const summerWeeks: BlogPost[] = [
+  {
+    title: "Fiber Arts",
+    startDate: "June 22",
+    endDate: "26, 2026",
+    description:
+      "As this week LOOMS ahead, we will see if we can avoid getting too tangled and knotted as we WEAVE our way through some activities that we FELT are SEW to DYE for.",
+    heroImage: "/images/wk1.webp",
+  },
+  {
+    title: "Backyard Habitats",
+    startDate: "June 29",
+    endDate: "July 2, 2026",
+    description:
+      "This week campers will explore the many different types of living things sharing the yard with us. After identifying what the flora and fauna need to thrive, we will creatively find ways to enhance their habitats. This is a short camp week, no camp on July 4th!",
+    heroImage: "/images/wk2.webp",
+    closureNote: "*Closed 7/4/26",
+  },
+  {
+    title: "To Infinity and Beyond",
+    startDate: "July 6",
+    endDate: "9, 2026",
+    description:
+      "Even though they're far away, the sun, moon and planets have a huge impact on us! Along with learning some out-of-this-world facts about the solar system, we will explore gravity, light, and try our hand at cooking using the power of the sun!",
+    heroImage: "/images/wk3.webp",
+    closureNote: "*Closed 7/10/26",
+  },
+  {
+    title: "Beautiful Mess",
+    startDate: "July 13",
+    endDate: "17, 2026",
+    description:
+      "Making a mess is always fun, but some messes actually end up being quite beautiful! This week we will turn muck and gunk into useful and beautiful creations!",
+    heroImage: "/images/wk4.webp",
+  },
+  {
+    title: "Insects, Bugs and Creepy Crawlies",
+    startDate: "July 20",
+    endDate: "24, 2026",
+    description:
+      "We will learn about many different types of bugs, insects and other small creatures that share our yard with us. By learning to encourage the creatures that support our gardens and ecosystems and discourage the ones that are less helpful, campers will soon understand why bugs don't bug us at Wild Pear.",
+    heroImage: "/images/wk5.webp",
+  },
+  {
+    title: "Nature Potions",
+    startDate: "July 27",
+    endDate: "31, 2026",
+    description:
+      "This week we will invite campers to think outside the box when it comes to creating and mixing potions from natural ingredients. We will encourage them to explore the many interesting changes that occur when different materials are brought together, maybe even discovering something new and magical.",
+    heroImage: "/images/wk6.webp",
+  },
+  {
+    title: "Mystery Week",
+    startDate: "August 3",
+    endDate: "7, 2026",
+    description:
+      "We can't give too much away about the mysteries this camp week will hold. Campers will have to follow clues, decipher codes, and solve mysterious puzzles to uncover various treasures and rewards. This is a short week and there is no camp on Friday, August 8th!",
+    heroImage: "/images/wk7.webp",
+  },
+  {
+    title: "Creek Week",
+    startDate: "August 10",
+    endDate: "14, 2026",
+    description:
+      "This week we will be ankle deep in the waters of Johnson Creek! We will observe and identify plants and animals that live in the creek habitat, collect and test water samples, and do some water flow activities.",
+    heroImage: "/images/wk8.webp",
+  },
+  {
+    title: "The Show Must Go On",
+    startDate: "August 17",
+    endDate: "21, 2026",
+    description:
+      "This week we will work together to create a child-led production including characters, costumes, music, and a set to make a spectacular show! Families will be invited to attend our performance on Friday afternoon.",
+    heroImage: "/images/wk9.webp",
+  },
+];
 ---
 
 <AboutLayout title="School Age Summer Camp | Wild Pear Preschool & Summer Camp">
-	<ServicePage6
-		title="School Age Summer Camp"
-		description="Are you looking for fun, safe, outdoor camp-style care for your child? Wild Pear is thrilled to offer weekly science, art, and nature-based camps throughout the summer. Kids have plenty of time to play and enjoy their days while also diving into hands-on exploration of a variety of exciting topics."
-		badge="Ages 5-10"
-		image="/images/alexandr-podvalny-bh476ojZw2g-unsplash.jpg"
-		imageWidth={6000}
-		imageHeight={4000}
-		highlights={[
-			{ label: "Cost", value: "$350/week" },
-			{ label: "Schedule", value: "Mon-Fri, 8:30am-3:00pm" },
-		]}
-		ctaText="Request a Tour"
-		ctaHref="#request-tour"
-	>
-		<h2>Cost & Schedule</h2>
-		<ul>
-			<li>
-				Each week costs $350 and runs Monday-Friday, 8:30-3:00, with the exception of closures
-				on July 3rd and July 10th.
-			</li>
-			<li>
-				Free, flexible drop-off starts at 7:30 each morning, and a free morning snack is
-				provided every day.
-			</li>
-			<li>
-				Optional aftercare is available from 3:00-5:00 every day camp is open, and includes an
-				afternoon snack. Aftercare costs $175 per week, or $50 for a single afternoon.
-			</li>
-			<li>
-				Families wishing to use DHS/ERDC will need to pay for camp at the time of reservation;
-				we will reimburse you after DHS pays us.
-			</li>
-		</ul>
+  <ServicePage6
+    title="School Age Summer Camp"
+    description="Are you looking for fun, safe, outdoor camp-style care for your child? Wild Pear is thrilled to offer weekly science, art, and nature-based camps throughout the summer. Kids have plenty of time to play and enjoy their days while also diving into hands-on exploration of a variety of exciting topics."
+    badge="Ages 5-10"
+    image="/images/alexandr-podvalny-bh476ojZw2g-unsplash.jpg"
+    imageWidth={6000}
+    imageHeight={4000}
+    highlights={[
+      { label: "Cost", value: "$350/week" },
+      { label: "Schedule", value: "Mon-Fri, 8:30am-3:00pm" },
+    ]}
+    ctaText="Request a Tour"
+    ctaHref="#request-tour"
+  >
+    <h2>Cost & Schedule</h2>
+    <ul>
+      <li>
+        Each week is $350 and runs Monday-Friday, 8:30-3:00.
+        <ul>
+          <li>
+            Drop-off starts at 7:30 each morning, followed by a complimentary
+            morning snack.
+          </li>
 
-		<h2>Cancellation Policy</h2>
-		<p>
-			We understand that sometimes plans change. You can cancel your camp enrollment for a full
-			refund before May 1st. After that, you can cancel 6 weeks before camp for a 50% refund. We
-			are unable to offer refunds for cancellations made less than 6 weeks before the start
-			date, due to staffing commitments.
-		</p>
+          <li>
+            Aftercare is available from 3-5pm for $175/week or $50/day and
+            includes an afternoon snack.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Families wishing to use DHS/ERDC will need to pay for camp at the time
+        of reservation; we will reimburse you after DHS pays us.
+      </li>
+    </ul>
 
-		<h2>What to Expect</h2>
-		<p>
-			Camps will be offered for nine weeks this summer. Each week, children will be outside all
-			day and will have abundant opportunities to choose their own adventures: arts and crafts,
-			building and tinkering, games and puzzles, gardening and food projects, sports and water
-			play, and just enjoying being a kid outside in the summer. Each week also has its own
-			theme, giving us a chance for some exciting, focused exploration of a particular topic.
-		</p>
+    <h2>Registration</h2>
+    <p>
+      Registration opens annually on March 1st. <em
+        >Please note: the "Younger Sibling Camp" and "Junior Camp Counselor"
+        programs are only available to currently enrolled Wild Pear children
+        (siblings) or Wild Pear alumni (counselors).
+      </em>
+    </p>
 
-		<h2>Registration</h2>
-		<p>
-			Summer 2026 School Age Camp registration opens March 1st. Each camp's sign-up page, along
-			with the School Age Summer Camp Handbook and enrollment form, will be linked here once
-			registration is live.
-		</p>
-		<p>
-			Please note: the "Younger Sibling Camp" and "Junior Camp Counselor" programs are only
-			available to currently enrolled Wild Pear children (siblings) or Wild Pear alumni
-			(counselors). Both the School Age K/1 and 2-5 sign-ups are open to everyone: current
-			families, alumni, and new friends!
-		</p>
-	</ServicePage6>
+    <h2>What to Expect</h2>
+    <p>
+      Camp is offered for nine weeks during the summer. Each week, children are
+      outside all day and have abundant opportunities to choose their
+      own adventures: arts and crafts, building and tinkering, games and
+      puzzles, gardening and food projects, sports and water play, and just
+      enjoying being a kid outside in the summer. Each week also has its own
+      theme, giving us a chance for some exciting, focused exploration of a
+      particular topic.
+    </p>
 
-	<Cta10
-		title="Read the Summer Camp Handbook"
-		description="Our School Age Summer Camp Handbook covers daily schedules, health and safety policies, and what to expect while your child is in our care."
-		primaryButton={{ text: "View the Summer Camp Handbook", href: "/handbooks/summer-camp" }}
-	/>
+    <h2>Cancellation Policy</h2>
+    <p>
+      We understand that sometimes plans change. You can cancel your camp
+      enrollment for a full refund before May 1st. After that, you can cancel 6
+      weeks before camp for a 50% refund. We are unable to offer refunds for
+      cancellations made less than 6 weeks before the start date, due to
+      staffing commitments.
+    </p>
+  </ServicePage6>
+  <Cta10
+    title="Registration Reopens March 1, 2027"
+    description="Summer 2026 registration has closed. Reach out and we'll add you to the list to be notified as soon as Summer 2027 camp details and registration go live."
+    primaryButton={{
+      text: "Get Notified",
+      href: "/contact",
+    }}
+  />
+  <Blog6 heading="2026 Weekly Themes" posts={summerWeeks} class="py-16" />
 
-	<ScheduleTour />
+  <Contact />
 </AboutLayout>

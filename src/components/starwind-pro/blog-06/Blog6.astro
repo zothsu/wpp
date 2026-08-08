@@ -1,0 +1,85 @@
+---
+import ArrowRightIcon from "@tabler/icons/outline/arrow-right.svg";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+import { Card, CardTitle } from "@/components/starwind/card";
+
+export interface BlogPost {
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  heroImage: string;
+  href?: string;
+  closureNote?: string;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Section heading */
+  heading?: string;
+  /** Array of blog posts */
+  posts: BlogPost[];
+}
+
+const blog6Styles = tv({
+  base: "@container mx-auto w-full max-w-5xl px-4",
+});
+
+const { heading = "Recent Stories", posts, class: className, ...rest } = Astro.props;
+---
+
+<section class={blog6Styles({ class: className })} {...rest}>
+  <div class="mb-10">
+    <h2 class="font-heading text-3xl font-semibold tracking-tight @xl:text-4xl @3xl:text-5xl">
+      {heading}
+    </h2>
+  </div>
+
+  <div class="flex flex-col gap-6">
+    {
+      posts.map((post) => (
+        <article class="group relative isolate block">
+          {post.href && (
+            <a class="absolute inset-0 z-1" href={post.href}>
+              <span class="sr-only">{post.title}</span>
+            </a>
+          )}
+          <Card class="overflow-hidden py-0">
+            <div class="flex flex-col @2xl:h-40 @2xl:flex-row">
+              <div class="h-40 w-full shrink-0 overflow-hidden @2xl:h-full @2xl:w-48">
+                <img src={post.heroImage} alt={post.title} class="size-full object-cover" />
+              </div>
+              <div class="flex flex-1 flex-col justify-center gap-1.5 p-4">
+                <time datetime={post.startDate} class="text-muted-foreground text-xs">
+                  {post.startDate} – {post.endDate}
+                </time>
+                <CardTitle class="text-lg">{post.title}</CardTitle>
+                <p
+                  class:list={[
+                    "text-muted-foreground text-sm",
+                    post.closureNote ? "line-clamp-1" : "line-clamp-2",
+                  ]}
+                >
+                  {post.description}
+                </p>
+                {post.closureNote && (
+                  <p class="text-primary-accent text-xs font-medium">{post.closureNote}</p>
+                )}
+                {post.href && (
+                  <div class="mt-2 flex items-center justify-end">
+                    <Button variant="ghost" size="sm" class="pointer-events-none gap-2">
+                      Read Article
+                      <ArrowRightIcon class="size-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </Card>
+        </article>
+      ))
+    }
+  </div>
+</section>
