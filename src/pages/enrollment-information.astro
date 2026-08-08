@@ -1,6 +1,6 @@
 ---
 import Enrollment from "../components/Enrollment.astro";
-import StillHaveQuestions from "../components/forms-questionGeneral.astro";
+import ScheduleTour from "../components/ScheduleTour.astro";
 import Tuition from "../components/Tuition.astro";
 import AboutLayout from "../layouts/AboutLayout.astro";
 ---
@@ -8,6 +8,20 @@ import AboutLayout from "../layouts/AboutLayout.astro";
 <AboutLayout title="Enrollment Information | Wild Pear Preschool & Summer Camp">
   <section class="mx-auto max-w-3xl px-4 py-16">
     <h1>Enrollment Information</h1>
+    <div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+      <p>
+        Enrolling at Wild Pear starts with getting to know each other, not paperwork. Below
+        you'll find everything you need in one place: our hours and school year calendar,
+        current tuition rates, and a full walkthrough of the enrollment process from your first
+        tour to your child's first day. We don't enroll on a first-come-first-served basis, so
+        there's no need to rush; we take time to build small, well-balanced classroom cohorts and
+        are happy to answer questions along the way. If anything below is unclear, <a
+          href="/contact"
+          class="text-primary-accent underline underline-offset-4 hover:no-underline"
+          >just reach out</a
+        > and we'll walk you through it.
+      </p>
+    </div>
   </section>
 
   <Enrollment />
@@ -165,5 +179,5 @@ import AboutLayout from "../layouts/AboutLayout.astro";
     </div>
   </section>
 
-  <StillHaveQuestions />
+  <ScheduleTour />
 </AboutLayout>

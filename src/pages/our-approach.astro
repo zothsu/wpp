@@ -4,7 +4,6 @@ import Cta10 from "../components/starwind-pro/cta-10/Cta10.astro";
 import FormTourRequest, { type ServiceOption } from "../components/form-tourRequest.astro";
 import Feature8 from "../components/starwind-pro/feature-08/Feature8.astro";
 import Feature10, { type FeatureSection } from "../components/starwind-pro/feature-10/Feature10.astro";
-import Tuition from "../components/Tuition.astro";
 import { faqs } from "../data/faqs";
 import AboutLayout from "../layouts/AboutLayout.astro";
 
@@ -119,10 +118,6 @@ const tourMapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(tou
 			accordionItems={faqAccordionItems}
 			class="relative z-10"
 		/>
-
-		<section class="relative z-10 mx-auto max-w-3xl px-4 pb-16">
-			<Tuition />
-		</section>
 
 		<Cta10
 			id="enrollment-information"
