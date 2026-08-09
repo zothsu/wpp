@@ -3,6 +3,11 @@ import EnrolledLayout from "../../layouts/EnrolledLayout.astro";
 
 const handbooks = [
 	{
+		title: "Family Handbook",
+		description: "The full 2025-2026 Family Handbook, covering every program.",
+		href: "/handbooks/family",
+	},
+	{
 		title: "Preschool Handbook",
 		description: "For families in our Preschool program.",
 		href: "/handbooks/preschool",
@@ -33,10 +38,20 @@ const handbooks = [
 					<li>
 						<a
 							href={handbook.href}
-							class="border-border hover:border-primary-accent block rounded-lg border bg-black/40 p-4 transition-colors"
+							class="border-border hover:border-primary-accent flex items-center gap-4 rounded-lg border bg-black/40 p-4 transition-colors"
 						>
-							<h2 class="text-lg font-semibold">{handbook.title}</h2>
-							<p class="text-muted-foreground mt-1 text-sm">{handbook.description}</p>
+							<img
+								src="/images/handbook.svg"
+								alt=""
+								aria-hidden="true"
+								width="1280"
+								height="660"
+								class="h-10 w-auto shrink-0 invert"
+							/>
+							<div>
+								<h2 class="text-lg font-semibold">{handbook.title}</h2>
+								<p class="text-muted-foreground mt-1 text-sm">{handbook.description}</p>
+							</div>
 						</a>
 					</li>
 				))
