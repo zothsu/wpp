@@ -59,7 +59,8 @@ All commands are run from the root of the project, from a terminal:
 | `/handbooks/summer-camp`     | School Age Summer Camp Handbook       |                                                 |
 | `/privacy`                   | Privacy Policy                        |                                                 |
 | `/terms`                     | Terms                                 |                                                 |
-| `/forms/enrollment`          | Summer Camp Enrollment Form           | Multi-step form, stubbed submit — see [`docs/enrollment-form-plan.md`](docs/enrollment-form-plan.md) |
+| `/forms/enrollment-summer`   | Summer Camp Enrollment Form           | Multi-step form, stubbed submit — see [`docs/enrollment-form-plan.md`](docs/enrollment-form-plan.md) |
+| `/forms/enrollment-sprouts`  | Sprouts Enrollment Form               | Multi-step form for infants/toddlers, stubbed submit |
 | `/forms/other`               | Other Forms                           | Linked from nav/footer, not built yet (404)    |
 | `/resources/videos`          | Video Resources                       | Linked from nav/footer, not built yet (404)    |
 | `/resources/tax-info`        | Tax Info                              | Linked from nav/footer, not built yet (404)    |

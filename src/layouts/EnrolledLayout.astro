@@ -4,6 +4,7 @@ import Navbar4, { type NavLink } from "../components/starwind-pro/navbar-04/Navb
 import SectionSwitcher from "../components/SectionSwitcher.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import ShaderNightClouds from "../components/starwind-pro/shader-night-clouds/ShaderNightClouds.astro";
+import IconPear from "../icons/pear.svg";
 
 interface Props {
 	title: string;
@@ -15,8 +16,17 @@ const links: NavLink[] = [
 	{
 		label: "Forms",
 		children: [
-			{ label: "Enrollment", href: "/forms/enrollment" },
-			{ label: "Other Forms", href: "/forms/other" },
+			{ label: "Summer Camp Enrollment", href: "/forms/enrollment-summer" },
+			{ label: "Sprouts Enrollment", href: "/forms/enrollment-sprouts" },
+		],
+	},
+	{
+		label: "Handbooks",
+		children: [
+			{ label: "Family Handbook", href: "/handbooks/family" },
+			{ label: "Preschool Handbook", href: "/handbooks/preschool" },
+			{ label: "Infant & Toddler (Sprouts) Handbook", href: "/handbooks/infant-toddler" },
+			{ label: "School Age Summer Camp Handbook", href: "/handbooks/summer-camp" },
 		],
 	},
 	{ label: "Tuition", href: "/tuition" },
@@ -36,6 +46,10 @@ const links: NavLink[] = [
 	<body>
 		<ShaderNightClouds />
 		<Navbar4 siteName="Wild Pear" links={links} ctaText="Contact" ctaHref="/contact">
+			<a href="/" slot="logo" class="font-heading flex items-center gap-2 text-2xl font-semibold">
+				<IconPear class="size-6" />
+				Wild Pear
+			</a>
 			<SectionSwitcher current="enrolled" id="section-switcher-desktop" slot="section-switcher" />
 			<SectionSwitcher
 				current="enrolled"

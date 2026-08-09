@@ -1,0 +1,753 @@
+---
+import IconArrowLeft from "@tabler/icons/outline/arrow-left.svg";
+import IconArrowRight from "@tabler/icons/outline/arrow-right.svg";
+import IconCheck from "@tabler/icons/outline/check.svg";
+import IconClipboardCheck from "@tabler/icons/outline/clipboard-check.svg";
+import IconSignature from "@tabler/icons/outline/signature.svg";
+import IconStethoscope from "@tabler/icons/outline/stethoscope.svg";
+import IconUser from "@tabler/icons/outline/user.svg";
+import IconUsers from "@tabler/icons/outline/users.svg";
+import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+import { Card, CardContent } from "@/components/starwind/card";
+import { Checkbox } from "@/components/starwind/checkbox";
+import { checkbox as checkboxVariants } from "@/components/starwind/checkbox/variants";
+import { Input } from "@/components/starwind/input";
+import { Label } from "@/components/starwind/label";
+import { Textarea } from "@/components/starwind/textarea";
+
+const sectionStyles = tv({
+  base: "@container mx-auto w-full max-w-4xl px-4 py-24",
+});
+
+const { base, input, icon, label: agreementLabel } = checkboxVariants();
+
+const steps = [
+  { number: 1, label: "Child", icon: IconUser },
+  { number: 2, label: "Contacts", icon: IconUsers },
+  { number: 3, label: "Medical", icon: IconStethoscope },
+  { number: 4, label: "Agreements", icon: IconClipboardCheck },
+  { number: 5, label: "Finish", icon: IconSignature },
+];
+
+const today = new Date().toISOString().slice(0, 10);
+---
+
+<section class={sectionStyles()}>
+  <div class="mb-10 text-center">
+    <span
+      class="bg-primary text-primary-foreground inline-block rounded-full px-4 py-1.5 text-sm font-medium"
+    >
+      Sprouts 2026-2027
+    </span>
+    <h2 class="font-heading mt-6 text-3xl font-bold tracking-tight @xl:text-4xl">
+      Sprouts Enrollment Form for Infants and Toddlers
+    </h2>
+    <p class="text-muted-foreground mt-3 text-lg">
+      Fill this out once per child. It should take about 10 minutes.
+    </p>
+  </div>
+
+  <Card class="border-2 pt-0">
+    <div class="bg-muted/50 rounded-t-xl border-b px-6 py-4">
+      <div class="flex items-center justify-between">
+        {
+          steps.map((step, index) => (
+            <>
+              <button
+                type="button"
+                class="group flex items-center gap-3"
+                data-step-indicator={step.number}
+              >
+                <div
+                  class="data-[active=true]:border-primary data-[complete=true]:border-primary data-[active=true]:bg-primary data-[complete=true]:bg-primary data-[active=true]:text-primary-foreground data-[complete=true]:text-primary-foreground flex size-10 shrink-0 items-center justify-center rounded-full border-2 transition-colors"
+                  data-active="false"
+                  data-complete="false"
+                >
+                  <span class="data-[complete=true]:hidden" data-complete="false">
+                    {step.number}
+                  </span>
+                  <IconCheck
+                    class="hidden size-5 data-[complete=true]:block"
+                    data-complete="false"
+                  />
+                </div>
+                <span class="text-muted-foreground data-[active=true]:text-foreground hidden text-sm font-medium transition-colors @2xl:block">
+                  {step.label}
+                </span>
+              </button>
+              {index < steps.length - 1 && (
+                <div
+                  class="bg-border data-[complete=true]:bg-primary mx-2 h-0.5 flex-1 @xl:mx-4"
+                  data-step-line={index + 1}
+                />
+              )}
+            </>
+          ))
+        }
+      </div>
+    </div>
+
+    <CardContent>
+      <form id="enroll-form" name="sprouts-enrollment">
+        <!-- Step 1: Child Info -->
+        <div class="space-y-5" data-step="1">
+          <div class="flex flex-col gap-1">
+            <Label for="enroll-child-name">Child's Full Name</Label>
+            <Input id="enroll-child-name" name="childFullName" type="text" required />
+          </div>
+
+          <div class="grid gap-5 @xl:grid-cols-2">
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-child-dob">Date of Birth</Label>
+              <Input id="enroll-child-dob" name="childDob" type="date" required />
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-child-nickname">Nickname (optional)</Label>
+              <Input id="enroll-child-nickname" name="childNickname" type="text" />
+            </div>
+          </div>
+
+          <div class="grid gap-5 @xl:grid-cols-2">
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-child-age">Age in September</Label>
+              <Input
+                id="enroll-child-age"
+                name="childAgeInSeptember"
+                type="text"
+                placeholder="e.g. 8 months, 1.5 years, 2 years"
+                required
+              />
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-child-pronouns">Child's Pronouns (optional)</Label>
+              <Input
+                id="enroll-child-pronouns"
+                name="childPronouns"
+                type="text"
+                placeholder="she/her, he/him, they/them..."
+              />
+            </div>
+          </div>
+
+          <fieldset class="border-border flex flex-col gap-3 rounded-md border p-4">
+            <legend class="text-foreground px-1 text-sm font-medium">
+              Does your child have any allergies, health concerns, or special needs?
+            </legend>
+            <div class="grid gap-2 @xl:grid-cols-2">
+              <Checkbox
+                id="enroll-health-food"
+                name="healthConcerns"
+                value="food-allergy"
+                label="Food allergy"
+              />
+              <Checkbox
+                id="enroll-health-insect"
+                name="healthConcerns"
+                value="insect-sting"
+                label="Insect sting / bee allergy"
+              />
+              <Checkbox
+                id="enroll-health-asthma"
+                name="healthConcerns"
+                value="asthma"
+                label="Asthma"
+              />
+              <Checkbox
+                id="enroll-health-seizures"
+                name="healthConcerns"
+                value="seizures"
+                label="Seizures / epilepsy"
+              />
+              <Checkbox
+                id="enroll-health-adhd"
+                name="healthConcerns"
+                value="adhd"
+                label="ADHD / ADD"
+              />
+              <Checkbox
+                id="enroll-health-other"
+                name="healthConcerns"
+                value="other"
+                label="Other medical, behavioral, or developmental need"
+              />
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-health-details">Details (optional)</Label>
+              <Textarea
+                id="enroll-health-details"
+                name="healthConcernsDetails"
+                placeholder="Tell us as much or as little as you'd like here — we'll follow up with any additional paperwork that's needed."
+                rows={3}
+              />
+            </div>
+            <p class="text-muted-foreground text-sm">
+              If you select anything above, our team will reach out with any additional required
+              paperwork, some of which may need to be completed by your child's physician, before
+              your child can attend camp.
+            </p>
+          </fieldset>
+        </div>
+
+        <!-- Step 2: Guardians -->
+        <div class="hidden space-y-6" data-step="2">
+          <div class="space-y-4">
+            <h3 class="text-foreground font-semibold">Primary Parent/Guardian</h3>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-g1-name">Name</Label>
+              <Input id="enroll-g1-name" name="guardian1Name" type="text" required />
+            </div>
+            <div class="grid gap-5 @xl:grid-cols-2">
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g1-relationship">Relationship to Child</Label>
+                <Input
+                  id="enroll-g1-relationship"
+                  name="guardian1Relationship"
+                  type="text"
+                  placeholder="Mother, Father, Guardian..."
+                  required
+                />
+              </div>
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g1-pronouns">Pronouns (optional)</Label>
+                <Input id="enroll-g1-pronouns" name="guardian1Pronouns" type="text" />
+              </div>
+            </div>
+            <div class="grid gap-5 @xl:grid-cols-2">
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g1-phone">Phone Number</Label>
+                <Input id="enroll-g1-phone" name="guardian1Phone" type="tel" required />
+              </div>
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g1-email">Email</Label>
+                <Input id="enroll-g1-email" name="guardian1Email" type="email" required />
+              </div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-g1-address">Address (optional)</Label>
+              <Input id="enroll-g1-address" name="guardian1Address" type="text" />
+            </div>
+          </div>
+
+          <div class="border-border space-y-4 border-t pt-6">
+            <h3 class="text-foreground font-semibold">
+              Secondary Parent/Guardian <span class="text-muted-foreground font-normal">(optional)</span>
+            </h3>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-g2-name">Name</Label>
+              <Input id="enroll-g2-name" name="guardian2Name" type="text" />
+            </div>
+            <div class="grid gap-5 @xl:grid-cols-2">
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g2-relationship">Relationship to Child</Label>
+                <Input
+                  id="enroll-g2-relationship"
+                  name="guardian2Relationship"
+                  type="text"
+                  placeholder="Mother, Father, Guardian..."
+                />
+              </div>
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g2-pronouns">Pronouns (optional)</Label>
+                <Input id="enroll-g2-pronouns" name="guardian2Pronouns" type="text" />
+              </div>
+            </div>
+            <div class="grid gap-5 @xl:grid-cols-2">
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g2-phone">Phone Number</Label>
+                <Input id="enroll-g2-phone" name="guardian2Phone" type="tel" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-g2-email">Email</Label>
+                <Input id="enroll-g2-email" name="guardian2Email" type="email" />
+              </div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-g2-address">Address (optional)</Label>
+              <Input id="enroll-g2-address" name="guardian2Address" type="text" />
+            </div>
+          </div>
+
+          <div class="border-border space-y-4 border-t pt-6">
+            <h3 class="text-foreground font-semibold">Emergency Contact</h3>
+            <p class="text-muted-foreground text-sm">
+              This should be someone other than the guardians listed above, in case we can't reach
+              either of them.
+            </p>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-ec-name">Name</Label>
+              <Input id="enroll-ec-name" name="emergencyName" type="text" required />
+            </div>
+            <div class="grid gap-5 @xl:grid-cols-2">
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-ec-relationship">Relationship to Child</Label>
+                <Input
+                  id="enroll-ec-relationship"
+                  name="emergencyRelationship"
+                  type="text"
+                  required
+                />
+              </div>
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-ec-pronouns">Pronouns (optional)</Label>
+                <Input id="enroll-ec-pronouns" name="emergencyPronouns" type="text" />
+              </div>
+            </div>
+            <div class="grid gap-5 @xl:grid-cols-2">
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-ec-phone">Phone Number</Label>
+                <Input id="enroll-ec-phone" name="emergencyPhone" type="tel" required />
+              </div>
+              <div class="flex flex-col gap-1">
+                <Label for="enroll-ec-email">Email (optional)</Label>
+                <Input id="enroll-ec-email" name="emergencyEmail" type="email" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Medical Contact Info -->
+        <div class="hidden space-y-5" data-step="3">
+          <p class="text-muted-foreground text-sm">
+            Everything on this page is optional. It's fine to submit your enrollment without it
+            and add it later.
+          </p>
+          <div class="flex flex-col gap-1">
+            <Label for="enroll-med-insurance">Insurance Provider</Label>
+            <Input id="enroll-med-insurance" name="insuranceProvider" type="text" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <Label for="enroll-med-physician">Primary Physician Name</Label>
+            <Input id="enroll-med-physician" name="physicianName" type="text" />
+          </div>
+          <div class="grid gap-5 @xl:grid-cols-2">
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-med-office">Office/Practice Name</Label>
+              <Input id="enroll-med-office" name="physicianOffice" type="text" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="enroll-med-phone">Office Phone Number</Label>
+              <Input id="enroll-med-phone" name="physicianPhone" type="tel" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Agreements -->
+        <div class="hidden space-y-4" data-step="4">
+          <p class="text-muted-foreground text-sm">
+            Please read and check each item below.
+          </p>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-handbook"
+              name="agreeHandbook"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-handbook" class={agreementLabel({ class: "font-normal" })}>
+              I have read the <a
+                href="/handbooks/summer-camp"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >summer camp handbook</a
+              > and understand the information within. I agree to follow the policies and procedures
+              outlined there.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input type="checkbox" id="enroll-agree-slot" name="agreeSlot" required class={input()} />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-slot" class={agreementLabel({ class: "font-normal" })}>
+              I understand that I am reserving a camp slot for my child and will still need to pay
+              for that slot regardless of whether or not my child attends (for example, if they
+              stay home sick or go on vacation), per Wild Pear's <a
+                href="/programs/summer-camp#cancellation-policy"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >cancellation policy</a
+              >.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-dropoff"
+              name="agreeDropoff"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-dropoff" class={agreementLabel({ class: "font-normal" })}>
+              I understand that I may not <a
+                href="/handbooks/summer-camp#drop-off"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >drop my child off</a
+              > before 7:30am.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-pickup"
+              name="agreePickup"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-pickup" class={agreementLabel({ class: "font-normal" })}>
+              I understand that <a
+                href="/handbooks/summer-camp#pick-up"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >pickup</a
+              > begins at 2:30pm and runs until 3:00pm. I will be charged $1.00 for every minute past
+              3:00pm (without aftercare) or 5:00pm (with aftercare) that my child remains in care,
+              based on the school's clock, and that I will need to pay the late fee before my child
+              can attend camp the following day.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-programs"
+              name="agreePrograms"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-programs" class={agreementLabel({ class: "font-normal" })}>
+              I understand that I am simultaneously enrolling my child in all of Wild Pear's
+              childcare programs and agree that they may move between facilities as the teachers
+              see fit.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-fieldtrips"
+              name="agreeFieldTrips"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-fieldtrips" class={agreementLabel({ class: "font-normal" })}>
+              I give permission for Wild Pear to take my child on walking field trips.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input type="checkbox" id="enroll-agree-photo" name="agreePhoto" required class={input()} />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-photo" class={agreementLabel({ class: "font-normal" })}>
+              I give permission for Wild Pear to take respectful photos/videos of my child, and for
+              those images to be shared and used in a professional manner, as described in our <a
+                href="/privacy#photo-video-sharing"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >privacy policy</a
+              >.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-health-policy"
+              name="agreeHealthPolicy"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-health-policy" class={agreementLabel({ class: "font-normal" })}>
+              I understand Wild Pear's <a
+                href="/handbooks/family#health-policy-and-flow-chart"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >health policy</a
+              >.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-immunizations"
+              name="agreeImmunizations"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-immunizations" class={agreementLabel({ class: "font-normal" })}>
+              My child is up to date on their <a
+                href="/handbooks/family#immunization"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >immunizations</a
+              >.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-keep-home-sick"
+              name="agreeKeepHomeSick"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label
+              for="enroll-agree-keep-home-sick"
+              class={agreementLabel({ class: "font-normal" })}
+            >
+              I will keep my child home as <a
+                href="/handbooks/family#health-policy-and-flow-chart"
+                target="_blank"
+                rel="noreferrer"
+                class="text-primary-accent underline underline-offset-4 hover:no-underline"
+                >needed when sick</a
+              >.
+            </label>
+          </div>
+
+          <div class={base()}>
+            <input
+              type="checkbox"
+              id="enroll-agree-emergency"
+              name="agreeEmergencyCare"
+              required
+              class={input()}
+            />
+            <IconCheck class={icon()} />
+            <label for="enroll-agree-emergency" class={agreementLabel({ class: "font-normal" })}>
+              In an emergency, Wild Pear (Wild Pear Preschool CF503407 and Wild Pear Sprouts
+              CF052125) has my permission to perform first aid/CPR, call an ambulance, or take my
+              child to any available physician or hospital at my expense to obtain medical
+              treatment.
+            </label>
+          </div>
+        </div>
+
+        <!-- Step 5: Finish -->
+        <div class="hidden space-y-5" data-step="5">
+          <div class="bg-muted/50 rounded-md border p-4 text-sm">
+            <p class="text-foreground font-medium">Almost done!</p>
+            <p class="text-muted-foreground mt-1">
+              Type your name below to confirm everything above is accurate. We're still setting up
+              formal e-signatures, if a signed copy ends up being required, we'll follow up with a
+              link to complete that separately. Submitting this form is enough for now.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="enroll-sign-name">Parent/Guardian Name</Label>
+            <Input id="enroll-sign-name" name="signatureName" type="text" required />
+          </div>
+          <div class="flex flex-col gap-1">
+            <Label for="enroll-sign-date">Date</Label>
+            <Input id="enroll-sign-date" name="signatureDate" value={today} type="date" required />
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-2">
+          <Button type="button" variant="outline" id="enroll-prev" class="invisible">
+            <IconArrowLeft class="size-4" />
+            Previous
+          </Button>
+
+          <Button type="button" variant="primary" id="enroll-next">
+            Next Step
+            <IconArrowRight class="size-4" />
+          </Button>
+
+          <Button type="submit" variant="primary" id="enroll-submit" class="hidden">
+            Submit Enrollment
+            <IconCheck class="size-4" />
+          </Button>
+        </div>
+      </form>
+    </CardContent>
+  </Card>
+
+  <p class="text-muted-foreground mt-6 text-center text-sm">
+    Questions about any of this? <a
+      href="/contact"
+      class="text-primary-accent underline underline-offset-4 hover:no-underline">Reach out</a
+    > and we're happy to help.
+  </p>
+</section>
+
+<style is:global>
+  /* Shared with src/components/starwind/checkbox/Checkbox.astro so the manually
+     built agreement checkboxes below match the styled ones exactly. */
+  .starwind-checkbox input[type="checkbox"]:checked {
+    background-image: none;
+  }
+
+  .starwind-check-icon {
+    stroke-dasharray: 65;
+    stroke-dashoffset: 65;
+    opacity: 0;
+  }
+
+  .starwind-checkbox input[type="checkbox"]:checked + .starwind-check-icon {
+    animation: draw-check 0.3s ease forwards;
+    animation-delay: 0.15s;
+  }
+
+  @keyframes draw-check {
+    0% {
+      stroke-dashoffset: 65;
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  function initEnrollmentForm() {
+    const form = document.querySelector("#enroll-form") as HTMLFormElement;
+    if (!form) return;
+
+    let currentStep = 1;
+    const totalSteps = document.querySelectorAll("[data-step]").length;
+
+    const prevBtn = document.querySelector("#enroll-prev") as HTMLButtonElement;
+    const nextBtn = document.querySelector("#enroll-next") as HTMLButtonElement;
+    const submitBtn = document.querySelector("#enroll-submit") as HTMLButtonElement;
+
+    function updateStepVisibility() {
+      document.querySelectorAll("[data-step]").forEach((panel) => {
+        const stepNum = parseInt((panel as HTMLElement).dataset.step || "0");
+        panel.classList.toggle("hidden", stepNum !== currentStep);
+      });
+
+      document.querySelectorAll("[data-step-indicator]").forEach((indicator) => {
+        const stepNum = parseInt((indicator as HTMLElement).dataset.stepIndicator || "0");
+        const circle = indicator.querySelector("div");
+        const checkIcon = indicator.querySelector("svg");
+        const numberSpan = indicator.querySelector("span:first-of-type") as HTMLElement;
+        const labelSpan = indicator.querySelector("span:last-of-type") as HTMLElement;
+
+        if (circle) {
+          circle.dataset.active = String(stepNum === currentStep);
+          circle.dataset.complete = String(stepNum < currentStep);
+        }
+        if (checkIcon) {
+          checkIcon.dataset.complete = String(stepNum < currentStep);
+        }
+        if (numberSpan) {
+          numberSpan.dataset.complete = String(stepNum < currentStep);
+        }
+        if (labelSpan) {
+          labelSpan.dataset.active = String(stepNum === currentStep);
+        }
+      });
+
+      document.querySelectorAll("[data-step-line]").forEach((line) => {
+        const lineNum = parseInt((line as HTMLElement).dataset.stepLine || "0");
+        (line as HTMLElement).dataset.complete = String(lineNum < currentStep);
+      });
+
+      prevBtn.classList.toggle("invisible", currentStep === 1);
+      nextBtn.classList.toggle("hidden", currentStep === totalSteps);
+      submitBtn.classList.toggle("hidden", currentStep !== totalSteps);
+      submitBtn.classList.toggle("flex", currentStep === totalSteps);
+
+      form.querySelector(`[data-step="${currentStep}"] input, [data-step="${currentStep}"] select`)
+        ?.scrollIntoView?.({ block: "nearest" });
+    }
+
+    function validateCurrentStep(): boolean {
+      const currentPanel = document.querySelector(`[data-step="${currentStep}"]`);
+      if (!currentPanel) return true;
+
+      const inputs = currentPanel.querySelectorAll(
+        "input[required], textarea[required], select[required]",
+      );
+      let valid = true;
+
+      inputs.forEach((el) => {
+        const field = el as HTMLInputElement;
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          valid = false;
+        }
+      });
+
+      return valid;
+    }
+
+    prevBtn?.addEventListener("click", () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepVisibility();
+      }
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      if (validateCurrentStep() && currentStep < totalSteps) {
+        currentStep++;
+        updateStepVisibility();
+      }
+    });
+
+    document.querySelectorAll("[data-step-indicator]").forEach((indicator) => {
+      indicator.addEventListener("click", () => {
+        const targetStep = parseInt((indicator as HTMLElement).dataset.stepIndicator || "0");
+        if (targetStep < currentStep) {
+          currentStep = targetStep;
+          updateStepVisibility();
+        }
+      });
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!validateCurrentStep()) return;
+
+      const formData = new FormData(form);
+      const formValues: Record<string, FormDataEntryValue | FormDataEntryValue[]> = {};
+
+      formData.forEach((value, key) => {
+        if (key in formValues) {
+          const existing = formValues[key];
+          formValues[key] = Array.isArray(existing) ? [...existing, value] : [existing, value];
+        } else {
+          formValues[key] = value;
+        }
+      });
+
+      // STUB: this just logs the payload for now. Swap this for a fetch() POST
+      // to the n8n webhook once it's live — see docs/enrollment-form-plan.md.
+      console.log("Sprouts enrollment submission:", formValues);
+    });
+
+    updateStepVisibility();
+  }
+
+  initEnrollmentForm();
+
+  document.addEventListener("astro:after-swap", initEnrollmentForm);
+</script>
