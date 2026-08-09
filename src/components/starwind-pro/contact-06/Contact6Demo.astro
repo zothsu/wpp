@@ -1,0 +1,32 @@
+---
+import Contact6, { type PropertyType, type ServiceOption } from "./Contact6.astro";
+
+const services: ServiceOption[] = [
+  { value: "plumbing-repair", label: "Plumbing Repair" },
+  { value: "plumbing-install", label: "New Plumbing Installation" },
+  { value: "drain-cleaning", label: "Drain Cleaning" },
+  { value: "water-heater", label: "Water Heater Service" },
+  { value: "hvac-repair", label: "HVAC Repair" },
+  { value: "hvac-install", label: "HVAC Installation" },
+  { value: "maintenance", label: "Preventive Maintenance" },
+  { value: "inspection", label: "Home Inspection" },
+  { value: "other", label: "Other Service" },
+];
+
+const propertyTypes: PropertyType[] = [
+  { value: "single-family", label: "Single Family Home" },
+  { value: "condo", label: "Condo / Townhouse" },
+  { value: "apartment", label: "Apartment" },
+  { value: "commercial", label: "Commercial Property" },
+  { value: "multi-family", label: "Multi-Family Property" },
+  { value: "other", label: "Other" },
+];
+---
+
+<Contact6
+  badge="Free Estimate"
+  heading="Tell Us About Your Project"
+  description="Complete this quick form and receive a detailed estimate within 24 hours. No obligation, no hassle."
+  services={services}
+  propertyTypes={propertyTypes}
+/>

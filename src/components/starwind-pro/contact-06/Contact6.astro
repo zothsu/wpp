@@ -1,0 +1,449 @@
+---
+import IconArrowLeft from "@tabler/icons/outline/arrow-left.svg";
+import IconArrowRight from "@tabler/icons/outline/arrow-right.svg";
+import IconBriefcase from "@tabler/icons/outline/briefcase.svg";
+import IconCheck from "@tabler/icons/outline/check.svg";
+import IconMessage from "@tabler/icons/outline/message.svg";
+import IconUser from "@tabler/icons/outline/user.svg";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+import { Card, CardContent } from "@/components/starwind/card";
+import { Input } from "@/components/starwind/input";
+import { Label } from "@/components/starwind/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/starwind/select";
+import { Textarea } from "@/components/starwind/textarea";
+
+/** Service option for the select dropdown */
+export interface ServiceOption {
+  value: string;
+  label: string;
+}
+
+/** Property type option */
+export interface PropertyType {
+  value: string;
+  label: string;
+}
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Badge/eyebrow text */
+  badge?: string;
+  /** Section heading */
+  heading?: string;
+  /** Section description */
+  description?: string;
+  /** Service options for dropdown */
+  services?: ServiceOption[];
+  /** Property type options */
+  propertyTypes?: PropertyType[];
+}
+
+const sectionStyles = tv({
+  base: "@container mx-auto w-full max-w-4xl px-4 py-24",
+});
+
+const {
+  badge = "Get Started",
+  heading = "Request a Free Estimate",
+  description = "Complete the form below and we'll provide a detailed quote within 24 hours.",
+  services = [],
+  propertyTypes = [],
+  class: className,
+  ...rest
+} = Astro.props;
+
+const steps = [
+  { number: 1, label: "Your Info", icon: IconUser },
+  { number: 2, label: "Project", icon: IconBriefcase },
+  { number: 3, label: "Details", icon: IconMessage },
+];
+---
+
+<section class={sectionStyles({ class: className })} {...rest}>
+  <!-- Header -->
+  <div class="mb-10 text-center">
+    <span
+      class="bg-primary text-primary-foreground inline-block rounded-full px-4 py-1.5 text-sm font-medium"
+    >
+      {badge}
+    </span>
+    <h2 class="font-heading mt-6 text-3xl font-bold tracking-tight @xl:text-4xl">
+      {heading}
+    </h2>
+    <p class="text-muted-foreground mt-3 text-lg">
+      {description}
+    </p>
+  </div>
+
+  <Card class="border-2 pt-0">
+    <!-- Step Indicator -->
+    <div class="bg-muted/50 rounded-t-xl border-b px-6 py-4">
+      <div class="flex items-center justify-between">
+        {
+          steps.map((step, index) => (
+            <>
+              <button
+                type="button"
+                class="group flex items-center gap-3"
+                data-step-indicator={step.number}
+              >
+                <div
+                  class="data-[active=true]:border-primary data-[complete=true]:border-primary data-[active=true]:bg-primary data-[complete=true]:bg-primary data-[active=true]:text-primary-foreground data-[complete=true]:text-primary-foreground flex size-10 items-center justify-center rounded-full border-2 transition-colors"
+                  data-active="false"
+                  data-complete="false"
+                >
+                  <span class="data-[complete=true]:hidden" data-complete="false">
+                    {step.number}
+                  </span>
+                  <IconCheck
+                    class="hidden size-5 data-[complete=true]:block"
+                    data-complete="false"
+                  />
+                </div>
+                <span class="text-muted-foreground data-[active=true]:text-foreground hidden text-sm font-medium transition-colors @xl:block">
+                  {step.label}
+                </span>
+              </button>
+              {index < steps.length - 1 && (
+                <div
+                  class="bg-border data-[complete=true]:bg-primary mx-4 h-0.5 flex-1"
+                  data-step-line={index + 1}
+                />
+              )}
+            </>
+          ))
+        }
+      </div>
+    </div>
+
+    <CardContent>
+      <form id="contact-form-06" name="contact-form">
+        <!-- Step 1: Personal Info -->
+        <div class="space-y-5" data-step="1">
+          <div class="grid gap-5 @xl:grid-cols-2">
+            <div class="flex flex-col gap-1">
+              <Label for="contact-firstname-06">First Name</Label>
+              <Input
+                id="contact-firstname-06"
+                name="firstName"
+                type="text"
+                placeholder="John"
+                required
+              />
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="contact-lastname-06">Last Name</Label>
+              <Input
+                id="contact-lastname-06"
+                name="lastName"
+                type="text"
+                placeholder="Doe"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-email-06">Email Address</Label>
+            <Input
+              id="contact-email-06"
+              name="email"
+              type="email"
+              placeholder="john@example.com"
+              required
+            />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-phone-06">Phone Number</Label>
+            <Input
+              id="contact-phone-06"
+              name="phone"
+              type="tel"
+              placeholder="(555) 123-4567"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Step 2: Project Info -->
+        <div class="hidden space-y-5" data-step="2">
+          <div class="flex flex-col gap-1">
+            <Label for="contact-service-06">Service Needed</Label>
+            <Select id="contact-service-06" name="service" required>
+              <SelectTrigger class="w-full">
+                <SelectValue placeholder="Select a service" />
+              </SelectTrigger>
+              <SelectContent class="min-w-full">
+                <SelectGroup>
+                  {
+                    services.map((service) => (
+                      <SelectItem value={service.value}>{service.label}</SelectItem>
+                    ))
+                  }
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-property-06">Property Type</Label>
+            <Select id="contact-property-06" name="propertyType">
+              <SelectTrigger class="w-full">
+                <SelectValue placeholder="Select property type" />
+              </SelectTrigger>
+              <SelectContent class="min-w-full">
+                <SelectGroup>
+                  {
+                    propertyTypes.map((type) => (
+                      <SelectItem value={type.value}>{type.label}</SelectItem>
+                    ))
+                  }
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-address-06">Service Address</Label>
+            <Input
+              id="contact-address-06"
+              name="address"
+              type="text"
+              placeholder="123 Main St, Anytown, ST 12345"
+            />
+          </div>
+
+          <div class="grid gap-5 @xl:grid-cols-2">
+            <div class="flex flex-col gap-1">
+              <Label for="contact-date-06">Preferred Date</Label>
+              <Input id="contact-date-06" name="preferredDate" type="date" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <Label for="contact-time-06">Preferred Time</Label>
+              <Select id="contact-time-06" name="preferredTime">
+                <SelectTrigger class="w-full">
+                  <SelectValue placeholder="Select time" />
+                </SelectTrigger>
+                <SelectContent class="min-w-full">
+                  <SelectGroup>
+                    <SelectItem value="morning">Morning (8am - 12pm)</SelectItem>
+                    <SelectItem value="afternoon">Afternoon (12pm - 5pm)</SelectItem>
+                    <SelectItem value="evening">Evening (5pm - 8pm)</SelectItem>
+                    <SelectItem value="flexible">Flexible</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Additional Details -->
+        <div class="hidden space-y-5" data-step="3">
+          <div class="flex flex-col gap-1">
+            <Label for="contact-message-06">Project Description</Label>
+            <Textarea
+              id="contact-message-06"
+              name="message"
+              placeholder="Please describe your project in detail. Include any specific requirements, concerns, or questions you have..."
+              rows={5}
+              required
+            />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-budget-06">Estimated Budget (Optional)</Label>
+            <Select id="contact-budget-06" name="budget">
+              <SelectTrigger class="w-full">
+                <SelectValue placeholder="Select budget range" />
+              </SelectTrigger>
+              <SelectContent class="min-w-full">
+                <SelectGroup>
+                  <SelectItem value="under-500">Under $500</SelectItem>
+                  <SelectItem value="500-1000">$500 - $1,000</SelectItem>
+                  <SelectItem value="1000-2500">$1,000 - $2,500</SelectItem>
+                  <SelectItem value="2500-5000">$2,500 - $5,000</SelectItem>
+                  <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
+                  <SelectItem value="over-10000">Over $10,000</SelectItem>
+                  <SelectItem value="unsure">Not Sure</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <Label for="contact-referral-06">How Did You Hear About Us?</Label>
+            <Select id="contact-referral-06" name="referral">
+              <SelectTrigger class="w-full">
+                <SelectValue placeholder="Select an option" />
+              </SelectTrigger>
+              <SelectContent class="min-w-full">
+                <SelectGroup>
+                  <SelectItem value="google">Google Search</SelectItem>
+                  <SelectItem value="social">Social Media</SelectItem>
+                  <SelectItem value="referral">Friend/Family Referral</SelectItem>
+                  <SelectItem value="yelp">Yelp</SelectItem>
+                  <SelectItem value="nextdoor">Nextdoor</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-2">
+          <Button type="button" variant="outline" id="contact-prev-06" class="invisible">
+            <IconArrowLeft class="size-4" />
+            Previous
+          </Button>
+
+          <Button type="button" variant="primary" id="contact-next-06">
+            Next Step
+            <IconArrowRight class="size-4" />
+          </Button>
+
+          <Button type="submit" variant="primary" id="contact-submit-06" class="hidden">
+            Submit Request
+            <IconCheck class="size-4" />
+          </Button>
+        </div>
+      </form>
+    </CardContent>
+  </Card>
+
+  <p class="text-muted-foreground mt-6 text-center text-sm">
+    Your information is secure and will never be shared with third parties.
+  </p>
+</section>
+
+<script>
+  function initMultiStepForm() {
+    const form = document.querySelector("#contact-form-06") as HTMLFormElement;
+    if (!form) return;
+
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    const prevBtn = document.querySelector("#contact-prev-06") as HTMLButtonElement;
+    const nextBtn = document.querySelector("#contact-next-06") as HTMLButtonElement;
+    const submitBtn = document.querySelector("#contact-submit-06") as HTMLButtonElement;
+
+    function updateStepVisibility() {
+      // Update step panels
+      document.querySelectorAll("[data-step]").forEach((panel) => {
+        const stepNum = parseInt((panel as HTMLElement).dataset.step || "0");
+        panel.classList.toggle("hidden", stepNum !== currentStep);
+      });
+
+      // Update step indicators
+      document.querySelectorAll("[data-step-indicator]").forEach((indicator) => {
+        const stepNum = parseInt((indicator as HTMLElement).dataset.stepIndicator || "0");
+        const circle = indicator.querySelector("div");
+        const checkIcon = indicator.querySelector("svg");
+        const numberSpan = indicator.querySelector("span:first-of-type") as HTMLElement;
+        const labelSpan = indicator.querySelector("span:last-of-type") as HTMLElement;
+
+        if (circle) {
+          circle.dataset.active = String(stepNum === currentStep);
+          circle.dataset.complete = String(stepNum < currentStep);
+        }
+        if (checkIcon) {
+          checkIcon.dataset.complete = String(stepNum < currentStep);
+        }
+        if (numberSpan) {
+          numberSpan.dataset.complete = String(stepNum < currentStep);
+        }
+        if (labelSpan) {
+          labelSpan.dataset.active = String(stepNum === currentStep);
+        }
+      });
+
+      // Update step lines
+      document.querySelectorAll("[data-step-line]").forEach((line) => {
+        const lineNum = parseInt((line as HTMLElement).dataset.stepLine || "0");
+        (line as HTMLElement).dataset.complete = String(lineNum < currentStep);
+      });
+
+      // Update button visibility
+      prevBtn.classList.toggle("invisible", currentStep === 1);
+      nextBtn.classList.toggle("hidden", currentStep === totalSteps);
+      submitBtn.classList.toggle("hidden", currentStep !== totalSteps);
+      submitBtn.classList.toggle("flex", currentStep === totalSteps);
+    }
+
+    function validateCurrentStep(): boolean {
+      const currentPanel = document.querySelector(`[data-step="${currentStep}"]`);
+      if (!currentPanel) return true;
+
+      const inputs = currentPanel.querySelectorAll(
+        "input[required], textarea[required], select[required]",
+      );
+      let valid = true;
+
+      inputs.forEach((input) => {
+        if (!(input as HTMLInputElement).checkValidity()) {
+          (input as HTMLInputElement).reportValidity();
+          valid = false;
+        }
+      });
+
+      return valid;
+    }
+
+    prevBtn?.addEventListener("click", () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepVisibility();
+      }
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      if (validateCurrentStep() && currentStep < totalSteps) {
+        currentStep++;
+        updateStepVisibility();
+      }
+    });
+
+    // Handle step indicator clicks
+    document.querySelectorAll("[data-step-indicator]").forEach((indicator) => {
+      indicator.addEventListener("click", () => {
+        const targetStep = parseInt((indicator as HTMLElement).dataset.stepIndicator || "0");
+        if (targetStep < currentStep) {
+          currentStep = targetStep;
+          updateStepVisibility();
+        }
+      });
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const formValues = Object.fromEntries(formData.entries());
+
+      // demo form data logging
+      console.log("Contact form:", formValues);
+
+      // You can add additional logic here like:
+      // - Form validation
+      // - API submission
+      // - Success/error handling
+    });
+
+    // Initialize
+    updateStepVisibility();
+  }
+
+  initMultiStepForm();
+
+  document.addEventListener("astro:after-swap", initMultiStepForm);
+</script>

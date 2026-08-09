@@ -52,14 +52,14 @@ All commands are run from the root of the project, from a terminal:
 | `/enrollment-information`    | Enrollment Information                |                                                 |
 | `/contact`                   | Contact                               |                                                 |
 | `/tuition`                   | Tuition                               | Enrolled-family layout                         |
-| `/enrolled-students`         | Enrolled Students                     |                                                 |
+| `/enrolled-students`         | Wild Pear Calendar                    | 2025-2026 school year calendar, moved here from the family handbook |
 | `/handbooks`                 | Family Handbooks hub                  |                                                 |
 | `/handbooks/preschool`       | Preschool Handbook                    |                                                 |
 | `/handbooks/infant-toddler`  | Infant & Toddler (Sprouts) Handbook   |                                                 |
 | `/handbooks/summer-camp`     | School Age Summer Camp Handbook       |                                                 |
 | `/privacy`                   | Privacy Policy                        |                                                 |
 | `/terms`                     | Terms                                 |                                                 |
-| `/forms/enrollment`          | Enrollment Forms                      | Linked from nav/footer, not built yet (404)    |
+| `/forms/enrollment`          | Summer Camp Enrollment Form           | Multi-step form, stubbed submit — see [`docs/enrollment-form-plan.md`](docs/enrollment-form-plan.md) |
 | `/forms/other`               | Other Forms                           | Linked from nav/footer, not built yet (404)    |
 | `/resources/videos`          | Video Resources                       | Linked from nav/footer, not built yet (404)    |
 | `/resources/tax-info`        | Tax Info                              | Linked from nav/footer, not built yet (404)    |

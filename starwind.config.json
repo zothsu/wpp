@@ -87,6 +87,10 @@
     {
       "name": "tabs",
       "version": "1.4.3"
+    },
+    {
+      "name": "checkbox",
+      "version": "1.4.3"
     }
   ]
 }

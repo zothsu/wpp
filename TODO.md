@@ -6,6 +6,7 @@
 - [ ] Reformat `/enrollment-information` page: needs centering and rewording of copy.
 - [ ] Navbar: active/current page link should render in the accent color, not the default muted-foreground style.
 - [ ] `Enrollment.astro` "Submit Your Application" step has a placeholder `href="#"` — swap in the real application form URL once it's ready.
+- [ ] Summer camp enrollment form (`/forms/enrollment`) has a stubbed submit (logs to console, no backend). Wiring it up to n8n/EspoCRM and picking a signature method is tracked in [`docs/enrollment-form-plan.md`](docs/enrollment-form-plan.md).
 
 ## Photos needing replacement
 
