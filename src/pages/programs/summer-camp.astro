@@ -3,9 +3,9 @@ import AboutLayout from "../../layouts/AboutLayout.astro";
 import Blog6, {
   type BlogPost,
 } from "../../components/starwind-pro/blog-06/Blog6.astro";
-import Cta10 from "../../components/starwind-pro/cta-10/Cta10.astro";
 import Contact from "../../components/form-contactus.astro";
 import ServicePage6 from "../../components/starwind-pro/service-page-06/ServicePage6.astro";
+import SignupNewsletter from "../../components/SignupNewsletter.astro";
 
 const summerWeeks: BlogPost[] = [
   {
@@ -96,7 +96,7 @@ const summerWeeks: BlogPost[] = [
     highlights={[
       { label: "Ages", value: "5-10" },
       { label: "Hours", value: "7:30am-3:00pm" },
-      { label: "Schedule", value: "June 22 - August 21, 2026" },
+      { label: "Weekly", value: "June 22 - August 21, 2026" },
     ]}
     ctaText="Request a Tour"
     ctaHref="#request-tour"
@@ -166,12 +166,11 @@ const summerWeeks: BlogPost[] = [
       staffing commitments.
     </p>
   </ServicePage6>
-  <Cta10
+  <SignupNewsletter
     id="registration-notify"
     title="Registration Reopens March 1, 2027"
     description="Summer 2026 registration has closed. Reach out and we'll add you to the list to be notified as soon as Summer 2027 camp details and registration go live."
-    showEmailForm    
-    }}
+    buttonText="Get Notified"
   />
   <Blog6 heading="2026 Weekly Themes" posts={summerWeeks} class="py-16" />
 

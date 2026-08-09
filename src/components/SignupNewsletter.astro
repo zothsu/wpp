@@ -1,0 +1,86 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+import { Input } from "@/components/starwind/input";
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Main heading text */
+  title?: string;
+  /** Description text */
+  description?: string;
+  /** Submit button text */
+  buttonText?: string;
+}
+
+const signupNewsletterStyles = tv({
+  base: "@container mx-auto w-full max-w-7xl px-4 py-24",
+});
+
+const {
+  title = "Sign up for updates",
+  description = "Enter your email and we'll let you know as soon as we have news to share.",
+  buttonText = "Sign Up",
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={signupNewsletterStyles({ class: className })} {...rest}>
+  <div class="group relative p-1">
+    <!-- Glow Effect -->
+    <div
+      class="absolute -inset-1 translate-x-0 translate-y-[0.01px] transform-gpu bg-linear-to-r from-orange-600 via-yellow-600 to-red-600 opacity-40 blur transition duration-700 group-hover:opacity-100 group-hover:duration-200 dark:opacity-50"
+    >
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="bg-card relative w-full overflow-hidden rounded-sm">
+      <div class="z-10 mx-auto max-w-3xl px-4 py-16 text-center @lg:py-24">
+        <h2 class="mb-4">{title}</h2>
+        <p class="text-muted-foreground mx-auto mb-10 max-w-xl text-lg">
+          {description}
+        </p>
+        <div class="relative mx-auto w-full max-w-[18rem]">
+          <div class="@container">
+            <form id="newsletter-form" class="flex flex-row gap-2 @xs:flex-row">
+              <Input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                class="flex-1"
+                aria-label="Email address"
+              />
+              <Button type="submit" class="@xs:w-auto">
+                {buttonText}
+              </Button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function handleNewsletterSubmit() {
+    const form = document.querySelector("#newsletter-form") as HTMLFormElement;
+
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const formValues = Object.fromEntries(formData.entries());
+
+        // demo form data logging
+        console.log("Newsletter signup:", formValues);
+      });
+    }
+  }
+
+  handleNewsletterSubmit();
+
+  document.addEventListener("astro:after-swap", handleNewsletterSubmit);
+</script>
