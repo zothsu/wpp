@@ -42,7 +42,7 @@ const { class: className, ...rest } = Astro.props;
     /* ===================
      * Colors
      * =================== */
-    --sw-prose-color: var(--prose-color, --alpha(var(--color-foreground) / 80%));
+    --sw-prose-color: var(--prose-color, var(--color-muted-foreground));
     --sw-prose-heading-color: var(--prose-heading-color, var(--color-foreground));
     --sw-prose-list-marker-color: var(--prose-list-marker-color, var(--color-muted-foreground));
 
