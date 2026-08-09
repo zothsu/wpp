@@ -102,41 +102,50 @@ const summerWeeks: BlogPost[] = [
     ctaHref="#request-tour"
   >
     <h2>Cost & Schedule</h2>
-    <h3>Dates</h3>
-    <p>
-      Camp runs from weekly from June 22 - August 21, 2026. Registration for Wild Pear
-      Summer Camp 2027 opens March 1st 2027. Get <a href="#registration-notify">notified</a> when
-      our schedule reopens.
-    </p>
-    <h3>Hours</h3>
-    <p>
-      Wild Pear's Summer Camp hours are 7:30am-3:00pm. Camp opens at 7:30am, we close our doors at 8:30am to allow
-      for us all to start our day together with a morning snack provided by Wild
-      Pear.
-    </p>
-    <p>
-      * Aftercare is available from 3-5pm for $175/week or $50/day and includes an
-      afternoon snack.
-    </p>
-    <h3>Cost</h3>
-    <p>
-      Summer camp at Wild Pear is $350/week. With optional aftercare from 3-5pm
-      for $175/wk or $50/day.
-    </p>
-    <p>
-      Families wishing to use DHS/ERDC will need to pay for camp at the time of
-      reservation; Wild Pear will reimburse you after DHS reimburses the facility.
-    </p>
+    <div class="bg-accent/70 border-primary-accent my-8 border-l-4 p-[2em]">
 
-    <h2>Registration</h2>
-    <p>
-      Registration opens annually on March 1st. <em
+      <h3>Dates</h3>
+      <p>
+        Camp runs from weekly from June 22 - August 21, 2026. Registration for Wild Pear
+        Summer Camp 2027 opens March 1st 2027. Get <a href="#registration-notify">notified</a> when
+        our schedule reopens.
+      </p>
+      <h3>Hours</h3>
+      <p>
+        Wild Pear's Summer Camp hours are 7:30am-3:00pm. 
+      </p>
+        <p>
+
+          Camp opens at 7:30am, we close our doors at 8:30am to allow
+          for us all to start our day together with a morning snack provided by Wild
+          Pear.
+        </p>
+      <p>
+        * Aftercare is available from 3-5pm, the cost is $175/week or $50/day and includes an
+        afternoon snack.
+      </p>
+      <h3>Cost</h3>
+      <p>
+        Summer camp at Wild Pear is $350/week. 
+      </p>
+      <p>
+        Optional aftercare available from 3-5pm for $175/wk or $50/day.
+      </p>
+      <p>
+        Families wishing to use DHS/ERDC will need to pay for camp at the time of
+        reservation; Wild Pear will reimburse you after DHS reimburses the facility.
+      </p>
+    </div>
+      
+      <h2>Registration</h2>
+      <p>
+        Registration opens annually on March 1st. <em
         >Please note: the "Younger Sibling Camp" and "Junior Camp Counselor"
         programs are only available to currently enrolled Wild Pear children
         (siblings) or Wild Pear alumni (counselors).
       </em>
     </p>
-
+    
     <h2>What to Expect</h2>
     <p>
       Camp is offered for nine weeks during the summer. Each week, children are
@@ -161,9 +170,7 @@ const summerWeeks: BlogPost[] = [
     id="registration-notify"
     title="Registration Reopens March 1, 2027"
     description="Summer 2026 registration has closed. Reach out and we'll add you to the list to be notified as soon as Summer 2027 camp details and registration go live."
-    primaryButton={{
-      text: "Get Notified",
-      href: "/contact",
+    showEmailForm    
     }}
   />
   <Blog6 heading="2026 Weekly Themes" posts={summerWeeks} class="py-16" />

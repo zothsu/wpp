@@ -3,6 +3,7 @@ import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
 
 import { Button } from "@/components/starwind/button";
+import { Input } from "@/components/starwind/input";
 
 export interface ButtonConfig {
   text: string;
@@ -16,6 +17,8 @@ interface Props extends HTMLAttributes<"section"> {
   description?: string;
   /** Primary button configuration */
   primaryButton?: ButtonConfig;
+  /** Render an email-capture form instead of a plain link button */
+  showEmailForm?: boolean;
 }
 
 const cta10Styles = tv({
@@ -26,6 +29,7 @@ const {
   title = "Supercharge your SaaS launch",
   description = "Get the tools you need to take your SaaS to the next level. Everything you need to deploy faster and gain your time back.",
   primaryButton = { text: "Get Supercharged", href: "#" },
+  showEmailForm = false,
   class: className,
   ...rest
 } = Astro.props;
@@ -35,7 +39,7 @@ const {
   <div class="group relative p-1">
     <!-- Glow Effect -->
     <div
-      class="absolute -inset-1 translate-x-0 translate-y-[0.01px] transform-gpu bg-linear-to-r from-blue-600 via-cyan-600 to-emerald-600 opacity-40 blur transition duration-700 group-hover:opacity-100 group-hover:duration-200 dark:opacity-50"
+      class="absolute -inset-1 translate-x-0 translate-y-[0.01px] transform-gpu bg-linear-to-r from-orange-600 via-yellow-600 to-red-600 opacity-40 blur transition duration-700 group-hover:opacity-100 group-hover:duration-200 dark:opacity-50"
     >
     </div>
 
@@ -47,11 +51,61 @@ const {
           {description}
         </p>
         <div class="relative mx-auto w-full max-w-[18rem]">
-          <Button variant="default" size="lg" class="relative w-full" href={primaryButton.href}>
-            {primaryButton.text}
-          </Button>
+          {
+            showEmailForm ? (
+              <div class="@container">
+                <form id="newsletter-form" class="flex flex-row gap-2 @xs:flex-row">
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                    class="flex-1"
+                    aria-label="Email address"
+                  />
+                  <Button type="submit" class="@xs:w-auto">
+                    {primaryButton.text}
+                  </Button>
+                </form>
+              </div>
+            ) : (
+              <Button
+                variant="default"
+                size="lg"
+                class="relative w-full"
+                href={primaryButton.href}
+              >
+                {primaryButton.text}
+              </Button>
+            )
+          }
         </div>
       </div>
     </div>
   </div>
 </section>
+
+{
+  showEmailForm && (
+    <script>
+      function handleNewsletterSubmit() {
+        const form = document.querySelector("#newsletter-form") as HTMLFormElement;
+
+        if (form) {
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const formValues = Object.fromEntries(formData.entries());
+
+            // demo form data logging
+            console.log("Newsletter signup:", formValues);
+          });
+        }
+      }
+
+      handleNewsletterSubmit();
+
+      document.addEventListener("astro:after-swap", handleNewsletterSubmit);
+    </script>
+  )
+}
