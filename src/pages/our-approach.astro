@@ -13,8 +13,9 @@ const faqAccordionItems = faqs.map((item, idx) => ({
 	answer: item.content,
 }));
 
-// TODO: placeholder image for all 7 themes - swap each for a real
-// Wild Pear classroom/outdoor photo.
+// TODO: still need real photos for Ability to Clearly Communicate, Ability to
+// Care for Oneself, and Anti-Bias Mindset - no good match among the photos we
+// have yet, so those three stay on the placeholder for now.
 const placeholderImage = {
 	src: "/images/temp1.jpg",
 	alt: "Placeholder image - swap for real photo",
@@ -27,31 +28,56 @@ const approachThemes: FeatureSection[] = [
 		heading: "Emotional Safety and Confidence",
 		description:
 			"Young children are doing the critical work of figuring out who they are and what the world is about — and that comes with a lot of feelings! Teachers help guide children to safely feel and release emotions through movement, sensory experiences, and communication, building the emotional intelligence, self-regulation, perspective-taking, and empathy that comes from truly understanding our feelings.",
-		image: placeholderImage,
+		image: {
+			src: "/images/img_20230728_125229.webp",
+			alt: "Two campers laughing outside with googly-eye stickers stuck to their faces",
+			width: 686,
+			height: 515,
+		},
 	},
 	{
 		heading: "Ability to Clearly Communicate",
 		description:
 			"Communication is one of our best tools to connect with others, and children are eager to develop their skill set. We expose children to a wide variety of words, signs, symbols, and body language so they can express their needs, emotions, and ideas — and understand others' — building skills useful for following directions, reporting events, and building relationships.",
-		image: placeholderImage,
+		image: {
+			src: "/images/communicate.webp",
+			alt: "Two campers leaning in together over a table, discussing flowers and craft materials",
+			width: 450,
+			height: 600,
+		},
 	},
 	{
 		heading: "Ability to Care for Oneself",
 		description:
 			"We help children develop agency, assertiveness, and active participation in their own lives. From the earliest years, children take an active role in their own feeding, diapering/toileting, resting, and dressing — building the self-awareness, self-advocacy, and bodily autonomy that comes from being trusted and encouraged to take care of themselves.",
-		image: placeholderImage,
+		image: {
+			src: "/images/care.webp",
+			alt: "A toddler in a high chair feeding themselves",
+			width: 318,
+			height: 424,
+		},
 	},
 	{
 		heading: "Social Skills",
 		description:
 			"Group care gives children the chance to learn and grow alongside their age mates, moving from independent and onlooker play into side-by-side, associative, and eventually cooperative play. We explicitly teach children how to invite others into play, navigate conflict, ask for consent, set personal boundaries, and build a caring community together.",
-		image: placeholderImage,
+		image: {
+			src: "/images/img_9502.webp",
+			alt: "A group of campers smiling together inside a playhouse structure",
+			width: 778,
+			height: 1037,
+		},
 	},
 	{
 		heading: "Executive Functioning",
 		description:
 			"The prefrontal cortex — responsible for connecting our feelings, instincts, and thinking — begins developing around age 4 and continues into our early twenties. We give children ample opportunity and space to practice focus and self-control, making connections, critical thinking, taking on challenges, and self-directed engaged learning, building an essential foundation for their continued development.",
-		image: placeholderImage,
+		image: {
+			src: "/images/img_1569.webp",
+			alt: "Campers deeply focused together on a collaborative sidewalk chalk drawing",
+			width: 3024,
+			height: 4032,
+		},
 	},
 	{
 		heading: "Anti-Bias Mindset",
@@ -63,7 +89,12 @@ const approachThemes: FeatureSection[] = [
 		heading: "Enjoyment of Being Outside",
 		description:
 			"We consider ourselves a nature school, and while our indoor classroom reflects that focus, our outdoor classroom is even richer. Every day, rain or shine, we dress for the weather and head outside — exploring wood, rock, water, and soil, discovering ecosystems and life cycles, and tending our greenhouse, garden beds, laying hens, and fruiting trees.",
-		image: placeholderImage,
+		image: {
+			src: "/images/summer.webp",
+			alt: "Campers laughing during outdoor water play",
+			width: 834,
+			height: 1112,
+		},
 	},
 ];
 

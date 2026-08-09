@@ -7,7 +7,8 @@
 - [ ] Navbar: active/current page link should render in the accent color, not the default muted-foreground style.
 - [ ] `Enrollment.astro` "Submit Your Application" step has a placeholder `href="#"` — swap in the real application form URL once it's ready.
 - [ ] Summer camp enrollment form (`/forms/enrollment-summer`) and Sprouts enrollment form (`/forms/enrollment-sprouts`) both have stubbed submits (log to console, no backend). Wiring them up to n8n/EspoCRM and picking a signature method is tracked in [`docs/enrollment-form-plan.md`](docs/enrollment-form-plan.md).
+
 ## Photos needing replacement
 
 - [ ] `/our-approach` FAQ section (`temp1.jpg`) — unlicensed iStock preview image (visible "Credit: cienpies" watermark), used as a placeholder for the Feature8 question-marks graphic.
-- [ ] `/our-approach` "Our Approach to Learning" 7-theme section (Feature10) — all 7 themes reuse the same `temp1.jpg` placeholder image right now. Needs 7 distinct, real Wild Pear classroom/outdoor photos, one per theme (Emotional Safety, Communication, Self-Care, Social Skills, Executive Functioning, Anti-Bias, Outside Time).
+- [ ] `/our-approach` "Our Approach to Learning" 7-theme section (Feature10) — 6 of 7 themes now have real photos (Emotional Safety, Ability to Clearly Communicate, Ability to Care for Oneself, Social Skills, Executive Functioning, Enjoyment of Being Outside). Still need a real Wild Pear photo for Anti-Bias Mindset (still on the `temp1.jpg` placeholder). `public/images/img_2982.webp` (chickens) is unused and available if it fits.
