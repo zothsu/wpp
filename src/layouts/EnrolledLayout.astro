@@ -12,7 +12,6 @@ interface Props {
 const { title } = Astro.props;
 
 const links: NavLink[] = [
-	{ label: "Tuition", href: "/tuition" },
 	{
 		label: "Forms",
 		children: [
@@ -20,6 +19,7 @@ const links: NavLink[] = [
 			{ label: "Other Forms", href: "/forms/other" },
 		],
 	},
+	{ label: "Tuition", href: "/tuition" },
 	{ label: "Resources", href: "/resources" },
 ];
 ---
