@@ -1,4 +1,6 @@
 ---
+import AlertWarning from "./AlertWarning.astro";
+
 interface Props {
 	program: "preschool" | "sprouts";
 }
@@ -10,9 +12,12 @@ const { program } = Astro.props;
 	It is a joy to welcome you into our program! Please take some time to read through this
 	handbook so you understand our expectations for our time together. A hard copy also lives in
 	the policy notebook on the parent counter, along with more detailed information on certain
-	topics. As always, if you have any questions or concerns, please let us know — we would love
-	to talk with you more about our policies and procedures.
+	topics.
 </p>
+	<p>
+		As always, if you have any questions or concerns, please let us know — we would love
+		to talk with you more about our policies and procedures.
+	</p>
 
 <h2>Mission</h2>
 <p>
@@ -43,28 +48,24 @@ const { program } = Astro.props;
 <h2>Hours, Calendar, and Closures</h2>
 <p>
 	We are open Monday through Friday, 7:30am until 5:30pm. Our school year begins in September
-	and runs until mid-June. We remain open and offer weekly summer camps for school-age
-	children (5-10 years old) during June, July, and August, and try hard to offer a handful of
-	summer camp slots to the currently enrolled younger siblings of school-age children who will be
-	attending camp.
+	and runs until mid-June. We reopen at the end of June to welcome the children back for summer camp!
 </p>
 <p>
-	Our full 2025-2026 calendar — including staff meeting early closures, family conferences,
+	Our full calendar — including staff meeting early closures, family conferences,
 	holidays, and seasonal breaks — is shared with enrolled families and posted in the policy
-	notebook. A few highlights: the school year begins September 4th, 2025, we close for Fall
-	Break (Nov 27-28), Winter Break (Dec 22-Jan 2), Spring Break (Mar 23-27), and the last day of
-	the school year is June 12th, 2026, with School Age Summer Camp beginning June 22nd, 2026.
+	notebook. 
 </p>
-<p>
-	<strong>Winter weather:</strong> we love having children at school on snowy days and will gear up
-	and play outside as long as it's safe to do so. If roads are dangerously icy in the morning we may
-	have a delayed start; if a winter storm presents a likely risk of power outages or falling trees, we
-	will be closed. <strong>Summer weather and smoke:</strong> if the air quality is 150-200 (red) we will
-	be open for a half day only (7:30-12:45), with pickup directly after lunch. If the AQ is above 200
-	(purple or maroon) we will be closed. If both Portland Public Schools and North Clackamas
-	School District are delayed, closing early, or closed all day due to extreme weather, we will do
-	the same.
-</p>
+	<p>
+		A few highlights: the school year begins September 4th, 2025, we close for Fall
+		Break (Nov 27-28), Winter Break (Dec 22-Jan 2), Spring Break (Mar 23-27), and the last day of
+		the school year is June 12th, 2026.
+	</p>
+
+<AlertWarning title="Winter Weather">
+	We love having children at school on snowy days and will gear up and play outside as long as
+	it's safe to do so. If roads are dangerously icy in the morning we may have a delayed start; if a
+	winter storm presents a likely risk of power outages or falling trees, we will be closed.
+</AlertWarning>
 <p>
 	We understand that for many families, preschool is critical child care, not just an enrichment
 	activity. In the rare case of an unscheduled closure we will notify you as soon as possible, but it
@@ -77,12 +78,57 @@ const { program } = Astro.props;
 			<h2>Preschool Daily Schedule</h2>
 			<p>
 				Our school year schedule provides children with a reliable rhythm, so they know what to
-				expect and can focus on the learning at hand. A typical day: children begin arriving at
-				7:30, school starts with welcome circle at 8:30 (all children need to be at school, ready
-				to learn, by this time), breakfast at 9:00, centers and inside work at 9:30, outside work
-				around 10:30-11:00, lunch and rest starting around 12:30-1:00, afternoon snack at 3:30, and
-				outside work as children begin leaving from 3:45 until we close at 5:30.
+				expect and can focus on the learning at hand. All children need to be at school, ready to
+				learn, by 8:30.
 			</p>
+			<div class="overflow-x-auto">
+				<table>
+					<thead>
+						<tr>
+							<th class="text-center!">Time</th>
+							<th>Activity</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center">7:30</td>
+							<td>Children begin arriving</td>
+						</tr>
+						<tr>
+							<td class="text-center">8:30</td>
+							<td>Welcome circle</td>
+						</tr>
+						<tr>
+							<td class="text-center">9:00</td>
+							<td>Breakfast</td>
+						</tr>
+						<tr>
+							<td class="text-center">9:30</td>
+							<td>Centers and inside work</td>
+						</tr>
+						<tr>
+							<td class="text-center">10:30-11:00</td>
+							<td>Outside work</td>
+						</tr>
+						<tr>
+							<td class="text-center">12:30-1:00</td>
+							<td>Lunch and rest</td>
+						</tr>
+						<tr>
+							<td class="text-center">3:30</td>
+							<td>Afternoon snack</td>
+						</tr>
+						<tr>
+							<td class="text-center">3:45</td>
+							<td>Outside work, children begin leaving</td>
+						</tr>
+						<tr>
+							<td class="text-center">5:30</td>
+							<td>Closed</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			<p>
 				If your child needs the focused support of a teacher to transition into their day, we
 				recommend dropping off before 8:15, while the group is still small. To help protect the
@@ -101,12 +147,59 @@ const { program } = Astro.props;
 				when tired. Children between 12 and 24 months are gently nudged toward a regular schedule.
 			</p>
 			<p>
-				Once a child is over 24 months, they follow a more consistent daily rhythm: arriving from
-				7:30, welcome circle at 8:30, breakfast at 9:00, centers and inside work at 9:30, outside
-				work around 10:30-11:00, lunch and rest starting around 12:30-1:00, afternoon snack at
-				3:30, and outside work as children begin leaving from 3:45 until we close at 5:30. Even in
-				Sprouts, we ask that all children arrive by 8:30 and that pickups be avoided between noon
-				and 3:15.
+				Once a child is over 24 months, they follow a more consistent daily rhythm.
+			</p>
+			<div class="overflow-x-auto">
+				<table>
+					<thead>
+						<tr>
+							<th class="text-center!">Time</th>
+							<th>Activity</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center">7:30</td>
+							<td>Children begin arriving</td>
+						</tr>
+						<tr>
+							<td class="text-center">8:30</td>
+							<td>Welcome circle</td>
+						</tr>
+						<tr>
+							<td class="text-center">9:00</td>
+							<td>Breakfast</td>
+						</tr>
+						<tr>
+							<td class="text-center">9:30</td>
+							<td>Centers and inside work</td>
+						</tr>
+						<tr>
+							<td class="text-center">10:30-11:00</td>
+							<td>Outside work</td>
+						</tr>
+						<tr>
+							<td class="text-center">12:30-1:00</td>
+							<td>Lunch and rest</td>
+						</tr>
+						<tr>
+							<td class="text-center">3:30</td>
+							<td>Afternoon snack</td>
+						</tr>
+						<tr>
+							<td class="text-center">3:45</td>
+							<td>Outside work, children begin leaving</td>
+						</tr>
+						<tr>
+							<td class="text-center">5:30</td>
+							<td>Closed</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p>
+				Even in Sprouts, we ask that all children arrive by 8:30 and that pickups be avoided
+				between noon and 3:15.
 			</p>
 		</>
 	)
