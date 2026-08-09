@@ -11,4 +11,4 @@
 ## Photos needing replacement
 
 - [ ] `/our-approach` FAQ section (`temp1.jpg`) — unlicensed iStock preview image (visible "Credit: cienpies" watermark), used as a placeholder for the Feature8 question-marks graphic.
-- [ ] `/our-approach` "Our Approach to Learning" 7-theme section (Feature10) — 6 of 7 themes now have real photos (Emotional Safety, Ability to Clearly Communicate, Ability to Care for Oneself, Social Skills, Executive Functioning, Enjoyment of Being Outside). Still need a real Wild Pear photo for Anti-Bias Mindset (still on the `temp1.jpg` placeholder). `public/images/img_2982.webp` (chickens) is unused and available if it fits.
+- [ ] `/our-approach` "Our Approach to Learning" now has 8 themes (added "Caring for Animals and Growing Food" using the real `img_2982.webp` chicken photo). 6 of 8 themes have real photos. Anti-Bias Mindset is **temporarily** using an unlicensed Dreamstime preview (`world-children-10847851.jpg`, asset ID 10847851, contributor Mitch1921, visible watermark) for internal review only — before this goes live, either buy the Dreamstime license for that asset ID or swap in a free/real photo instead.

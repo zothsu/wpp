@@ -22,6 +22,11 @@ export interface SocialLink {
   icon: any;
 }
 
+export interface AttributionLink {
+  label: string;
+  href: string;
+}
+
 interface Props extends HTMLAttributes<"footer"> {
   /** Company name */
   companyName?: string;
@@ -33,6 +38,8 @@ interface Props extends HTMLAttributes<"footer"> {
   columns?: FooterColumn[];
   /** Array of social media links */
   socialLinks?: SocialLink[];
+  /** Third-party asset credits required by their license (e.g. stock illustrations) */
+  attributionLinks?: AttributionLink[];
 }
 
 const footer3Styles = tv({
@@ -74,6 +81,7 @@ const {
     { name: "GitHub", href: "https://github.com", icon: IconBrandGithub },
     { name: "LinkedIn", href: "https://linkedin.com", icon: IconBrandLinkedin },
   ],
+  attributionLinks = [],
   class: className,
   ...rest
 } = Astro.props;
@@ -166,6 +174,16 @@ const currentYear = new Date().getFullYear();
         >
           Terms of Service
         </a>
+        {
+          attributionLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+            >
+              {link.label}
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>

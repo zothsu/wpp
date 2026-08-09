@@ -20,6 +20,11 @@ export interface ImageSource {
   width?: number;
   /** Intrinsic height, required for local /public images */
   height?: number;
+  /**
+   * "cover" (default) crops to fill the 4:3 frame. "contain" fits the whole
+   * image without cropping, filling any leftover space with the accent color.
+   */
+  fit?: "cover" | "contain";
 }
 
 export interface FeatureSection {
@@ -89,13 +94,22 @@ const {
             {/* Media */}
             <div class:list={[{ "@3xl:order-first": isEven }]}>
               {section.image ? (
-                <AspectRatio ratio={4 / 3} class="overflow-hidden rounded-xl border">
+                <AspectRatio
+                  ratio={4 / 3}
+                  class:list={[
+                    "overflow-hidden rounded-xl border",
+                    { "bg-accent": section.image.fit === "contain" },
+                  ]}
+                >
                   <Image
                     src={section.image.src}
                     alt={section.image.alt}
                     width={section.image.width}
                     height={section.image.height}
-                    class="size-full object-cover"
+                    class:list={[
+                      "size-full",
+                      section.image.fit === "contain" ? "object-contain" : "object-cover",
+                    ]}
                     loading="lazy"
                   />
                 </AspectRatio>
