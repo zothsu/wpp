@@ -2,7 +2,17 @@
 import IconPear from "../icons/pear.svg";
 import Footer3, { type FooterColumn } from "./starwind-pro/footer-03/Footer3.astro";
 
-const columns: FooterColumn[] = [
+interface Props {
+	/** Which portal this footer renders in. Each portal is deployed to its own
+	 * subdomain, so the footer must only link to pages that exist in that
+	 * deployment - "none" is used on the shared chooser/legal pages, which are
+	 * duplicated across both portal deployments and so can't link into either. */
+	portal?: "about" | "enrolled" | "none";
+}
+
+const { portal = "none" } = Astro.props;
+
+const aboutColumns: FooterColumn[] = [
 	{
 		title: "Learn About Us",
 		links: [
@@ -21,6 +31,9 @@ const columns: FooterColumn[] = [
 			{ label: "Enrollment Information", href: "/enrollment-information" },
 		],
 	},
+];
+
+const enrolledColumns: FooterColumn[] = [
 	{
 		title: "Currently Enrolled Student(s)",
 		links: [
@@ -32,6 +45,9 @@ const columns: FooterColumn[] = [
 		],
 	},
 ];
+
+const columns: FooterColumn[] =
+	portal === "about" ? aboutColumns : portal === "enrolled" ? enrolledColumns : [];
 ---
 
 <Footer3

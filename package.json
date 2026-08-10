@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "split-deploy": "node scripts/split-deploy.mjs"
   },
   "dependencies": {
     "@fontsource/gochi-hand": "^5.3.0",
