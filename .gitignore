@@ -24,3 +24,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .env.local
+
+# claude code worktrees
+.claude/worktrees/
