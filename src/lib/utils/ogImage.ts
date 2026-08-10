@@ -1,7 +1,11 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
-const CACHE_PATH = fileURLToPath(new URL("../../data/og-image-cache.json", import.meta.url));
+// Resolved from the project root (not import.meta.url) because Astro bundles
+// this module into dist/.prerender/chunks/ at build time, which would
+// otherwise point the cache at a nonexistent path under dist/ and abort the
+// build with ENOENT.
+const CACHE_PATH = join(process.cwd(), "src/data/og-image-cache.json");
 
 interface CacheEntry {
 	image: string | null;
