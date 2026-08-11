@@ -98,6 +98,7 @@
   body {
     @apply bg-background text-foreground scheme-light dark:scheme-dark;
     font-family: "Poppins", var(--font-sans);
+    font-size: 1.125rem; /* 18px */
   }
   button {
     @apply cursor-pointer;
