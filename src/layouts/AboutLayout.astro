@@ -1,50 +1,65 @@
 ---
 import "../styles/starwind.css";
-import Navbar4, { type NavLink } from "../components/starwind-pro/navbar-04/Navbar4.astro";
+import Navbar4, {
+  type NavLink,
+} from "../components/starwind-pro/navbar-04/Navbar4.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import ShaderNightClouds from "../components/starwind-pro/shader-night-clouds/ShaderNightClouds.astro";
 import IconPear from "../icons/pear.svg";
 
 interface Props {
-	title: string;
+  title: string;
+  /** Render the nav as a transparent overlay, hidden until the user scrolls
+   * past the first viewport height - for pages with a full-screen hero. */
+  overlayNav?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, overlayNav = false } = Astro.props;
 
 const links: NavLink[] = [
-	{
-		label: "Our Programs",
-		href: "/learn-about-us#our-programs",
-		children: [
-			{ label: "Infant/Toddler", href: "/programs/infant-toddler" },
-			{ label: "Preschool", href: "/programs/preschool" },
-			{ label: "School Age Summer Camp", href: "/programs/summer-camp" },
-		],
-	},
-	{ label: "Enrollment Information", href: "/enrollment-information" },
-	{ label: "Our Approach", href: "/our-approach" },
-	{ label: "Who We Are", href: "/who-we-are" },
+  {
+    label: "Our Programs",
+    href: "/#our-programs",
+    children: [
+      { label: "Infant/Toddler", href: "/programs/infant-toddler" },
+      { label: "Preschool", href: "/programs/preschool" },
+      { label: "School Age Summer Camp", href: "/programs/summer-camp" },
+    ],
+  },
+  { label: "Enrollment Information", href: "/enrollment-information" },
+  { label: "Our Approach", href: "/our-approach" },
+  { label: "Who We Are", href: "/who-we-are" },
 ];
 ---
 
 <html lang="en" class="dark">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<ShaderNightClouds />
-		<Navbar4 siteName="Wild Pear" links={links} ctaText="Contact" ctaHref="/contact">
-			<a href="/" slot="logo" class="font-heading flex items-center gap-2 text-2xl font-semibold">
-				<IconPear class="size-6" />
-				Wild Pear
-			</a>
-		</Navbar4>
-		<slot />
-		<SiteFooter portal="about" />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <ShaderNightClouds />
+    <Navbar4
+      siteName="Wild Pear"
+      links={links}
+      ctaText="Contact"
+      ctaHref="/contact"
+      overlay={overlayNav}
+    >
+      <a
+        href="/"
+        slot="logo"
+        class="font-heading flex items-center gap-2 text-2xl font-semibold"
+      >
+        <IconPear class="size-6" />
+        Wild Pear
+      </a>
+    </Navbar4>
+    <slot />
+    <SiteFooter portal="about" />
+  </body>
 </html>

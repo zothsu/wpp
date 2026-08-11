@@ -51,10 +51,23 @@ interface Props extends HTMLAttributes<"nav"> {
   secondaryText?: string;
   /** Secondary button href */
   secondaryHref?: string;
+  /** Render as a fixed transparent overlay, hidden until the user scrolls
+   * past the first viewport height, then faded in - for pages with a
+   * full-screen hero the nav should sit on top of instead of pushing down. */
+  overlay?: boolean;
 }
 
 const navStyles = tv({
-  base: "data-scrolled:bg-background/40 sticky @container inset-x-0 top-0 z-50 border-transparent transition-all duration-300 border-b group data-scrolled:border-border data-scrolled:backdrop-blur",
+  base: "data-scrolled:bg-background/40 @container inset-x-0 top-0 z-50 border-transparent transition-all duration-300 border-b group data-scrolled:border-border data-scrolled:backdrop-blur",
+  variants: {
+    overlay: {
+      true: "fixed -translate-y-2 pointer-events-none opacity-0 data-revealed:pointer-events-auto data-revealed:translate-y-0 data-revealed:opacity-100",
+      false: "sticky",
+    },
+  },
+  defaultVariants: {
+    overlay: false,
+  },
 });
 
 const {
@@ -64,12 +77,18 @@ const {
   ctaHref = "#",
   secondaryText,
   secondaryHref = "#",
+  overlay = false,
   class: className,
   ...rest
 } = Astro.props;
 ---
 
-<nav class={navStyles({ class: className })} data-navbar-4 {...rest}>
+<nav
+  class={navStyles({ overlay, class: className })}
+  data-navbar-4
+  data-overlay={overlay || undefined}
+  {...rest}
+>
   <div
     class="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 transition-[height] duration-300 group-data-scrolled:h-14"
   >
@@ -344,4 +363,31 @@ const {
 
   initNavbarScroll();
   document.addEventListener("astro:after-swap", initNavbarScroll);
+
+  // Reveal the overlay navbar once the user scrolls past the first viewport height
+  function initNavbarReveal() {
+    const navbar = document.querySelector("[data-navbar-4][data-overlay]");
+    if (!navbar) return;
+
+    const scrollContainer = navbar.closest(".overflow-y-auto, .overflow-y-scroll") || window;
+
+    const updateRevealState = () => {
+      const scrollTop =
+        scrollContainer === window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
+      const threshold = window.innerHeight * 0.9;
+
+      if (scrollTop > threshold) {
+        navbar.setAttribute("data-revealed", "");
+      } else {
+        navbar.removeAttribute("data-revealed");
+      }
+    };
+
+    updateRevealState();
+    scrollContainer.addEventListener("scroll", updateRevealState, { passive: true });
+    window.addEventListener("resize", updateRevealState);
+  }
+
+  initNavbarReveal();
+  document.addEventListener("astro:after-swap", initNavbarReveal);
 </script>
