@@ -100,7 +100,7 @@ const currentYear = new Date().getFullYear();
             {
               companyName.includes("&") ? (
                 <>
-                  {companyName.split("&")[0].trim()}
+                  {companyName.split("&")[0].trim()}{" "}
                   <br class="@lg:hidden" />
                   {`& ${companyName.split("&")[1].trim()}`}
                 </>
