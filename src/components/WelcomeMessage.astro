@@ -1,36 +1,46 @@
 ---
 import { Image } from "@/components/starwind/image";
-
-interface Props {
-  image?: {
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
-  };
-  message?: string;
-}
-
-const {
-  image = {
-    src: "/images/intro.webp",
-    alt: "A Wild Pear student outdoors",
-    width: 166,
-    height: 221,
-  },
-  message = "Cultivating connections between self, one another, and the natural world.",
-} = Astro.props;
 ---
 
 <section class="@container mx-auto max-w-6xl px-4 py-24">
-  <div class="flex flex-col items-center gap-8 @lg:flex-row">
+  <div class="flex flex-col items-center gap-8 @lg:flex-row @lg:items-start">
     <Image
-      src={image.src}
-      alt={image.alt}
-      width={image.width}
-      height={image.height}
-      class="rounded-2xl"
+      src="/images/intro.webp"
+      alt="A Wild Pear student outdoors"
+      width={166}
+      height={221}
+      class="w-full max-w-xs rounded-2xl @lg:shrink-0"
     />
-    <p class="text-muted-foreground text-xl text-pretty">{message}</p>
+    <div class="@lg:pt-2">
+      <h2>Welcome to Wild Pear!</h2>
+      <div class="text-muted-foreground mt-4 space-y-4 text-pretty">
+        <p>
+          We are currently enrolling, navigate to our{" "}
+          <a
+            href="/enrollment-information"
+            class="text-primary-accent underline underline-offset-4 hover:no-underline"
+          >
+            enrollment tab
+          </a>{" "}
+          for more info. At our school we get our hands dirty, we jump in puddles, we tell
+          stories, we create things that have never existed, we cook and eat delicious food, we
+          share and support feelings (even the big hard ones), we explore tirelessly, sing
+          enthusiastically, and try new things everyday. Most of all, we want to be together, and
+          we'd like to be with you too.
+        </p>
+        <p>
+          If you are interested in enrolling your child, please look through the rest of our
+          website to see if our school feels like a good fit for your family. Waitlist and
+          touring information can be found in the{" "}
+          <a
+            href="/enrollment-information"
+            class="text-primary-accent underline underline-offset-4 hover:no-underline"
+          >
+            enrollment tab
+          </a>
+          . Thank you!
+        </p>
+      </div>
+    </div>
   </div>
 </section>
