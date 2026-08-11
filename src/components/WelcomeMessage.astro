@@ -1,0 +1,36 @@
+---
+import { Image } from "@/components/starwind/image";
+
+interface Props {
+  image?: {
+    src: string;
+    alt: string;
+    width?: number;
+    height?: number;
+  };
+  message?: string;
+}
+
+const {
+  image = {
+    src: "/images/intro.webp",
+    alt: "A Wild Pear student outdoors",
+    width: 166,
+    height: 221,
+  },
+  message = "Cultivating connections between self, one another, and the natural world.",
+} = Astro.props;
+---
+
+<section class="@container mx-auto max-w-6xl px-4 py-24">
+  <div class="flex flex-col items-center gap-8 @lg:flex-row">
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      class="rounded-2xl"
+    />
+    <p class="text-muted-foreground text-xl text-pretty">{message}</p>
+  </div>
+</section>
