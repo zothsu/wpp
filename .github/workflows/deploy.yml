@@ -8,9 +8,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
 
@@ -19,7 +19,7 @@ jobs:
       - run: npm run split-deploy
 
       - name: Install SSH key
-        uses: webfactory/ssh-agent@v0.9.0
+        uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{ secrets.HOSTINGER_SSH_KEY }}
 
@@ -28,23 +28,16 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p "${{ secrets.HOSTINGER_SSH_PORT }}" "${{ secrets.HOSTINGER_SSH_HOST }}" >> ~/.ssh/known_hosts
 
-      # wildpear.school, learn.wildpear.school, and enrolled.wildpear.school
-      # share one hosting account, and learn/ and enrolled/ are SUBFOLDERS of
-      # the main site's public_html/. The --exclude flags on the main deploy
-      # are required: without them, --delete would wipe out the other two
-      # portals every time the chooser homepage deploys.
+      # wildpear.school and enrolled.wildpear.school share one hosting account,
+      # and enrolled/ is a SUBFOLDER of the main site's public_html/. The
+      # --exclude flag on the main deploy is required: without it, --delete
+      # would wipe out the enrolled portal every time the main site deploys.
       - name: Deploy main (wildpear.school)
         run: |
           rsync -avz --delete \
-            --exclude=learn --exclude=enrolled \
+            --exclude=enrolled \
             -e "ssh -p ${{ secrets.HOSTINGER_SSH_PORT }}" \
             deploy/main/ u634839907@${{ secrets.HOSTINGER_SSH_HOST }}:domains/wildpear.school/public_html/
-
-      - name: Deploy learn.wildpear.school
-        run: |
-          rsync -avz --delete \
-            -e "ssh -p ${{ secrets.HOSTINGER_SSH_PORT }}" \
-            deploy/learn/ u634839907@${{ secrets.HOSTINGER_SSH_HOST }}:domains/wildpear.school/public_html/learn/
 
       - name: Deploy enrolled.wildpear.school
         run: |

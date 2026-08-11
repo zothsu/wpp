@@ -3,8 +3,7 @@
  * Splits a completed `astro build` output (dist/) into three upload-ready
  * folders, one per Hostinger subdomain:
  *
- *   deploy/main/      -> wildpear.school            (chooser homepage only)
- *   deploy/learn/     -> learn.wildpear.school      (prospective-parent portal)
+ *   deploy/main/      -> wildpear.school            (chooser homepage + about pages)
  *   deploy/enrolled/  -> enrolled.wildpear.school    (enrolled-student portal;
  *                                                     password-protect this
  *                                                     folder in hPanel)
@@ -41,21 +40,8 @@ const sharedPages = ["privacy", "terms", "attributions"];
 const targets = {
 	main: {
 		domain: "wildpear.school",
-		pages: [],
+		pages: ["enrollment-information", "our-approach", "who-we-are", "programs", "contact"],
 		// The chooser homepage is dist/index.html itself, handled separately below.
-	},
-	learn: {
-		domain: "learn.wildpear.school",
-		pages: [
-			"learn-about-us",
-			"enrollment-information",
-			"our-approach",
-			"who-we-are",
-			"programs",
-			"contact",
-		],
-		// This page's content becomes the subdomain's own root "/".
-		rootPage: "learn-about-us",
 	},
 	enrolled: {
 		domain: "enrolled.wildpear.school",
