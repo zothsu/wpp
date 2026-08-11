@@ -1,11 +1,13 @@
 import { tv } from "tailwind-variants";
 
-export const collapsible = tv({ base: "starwind-collapsible" });
+export const collapsible = tv({
+  base: "",
+});
 
 export const collapsibleContent = tv({
-  base: "starwind-collapsible-content",
+  base: "",
 });
 
 export const collapsibleTrigger = tv({
-  base: "starwind-collapsible-trigger",
+  base: "",
 });

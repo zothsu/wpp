@@ -1,41 +1,20 @@
 ---
+import CollapsiblePrimitive from "@starwind-ui/astro/collapsible";
 import type { HTMLAttributes } from "astro/types";
-
 import { collapsibleTrigger } from "./variants";
 
 type Props = HTMLAttributes<"button"> & {
-  /**
-   * When true, renders as a wrapper div instead of a button,
-   * allowing a custom trigger element as a child
-   */
   asChild?: boolean;
 };
 
-const { class: className, asChild = false, ...rest } = Astro.props;
-
-let hasChildren = false;
-if (Astro.slots.has("default")) {
-  hasChildren = true;
-}
+const { asChild = false, class: className, ...rest } = Astro.props;
 ---
 
-{
-  asChild && hasChildren ? (
-    <div
-      class={collapsibleTrigger({ class: className })}
-      data-slot="collapsible-trigger"
-      data-as-child
-    >
-      <slot />
-    </div>
-  ) : (
-    <button
-      type="button"
-      class={collapsibleTrigger({ class: className })}
-      {...rest}
-      data-slot="collapsible-trigger"
-    >
-      <slot />
-    </button>
-  )
-}
+<CollapsiblePrimitive.Trigger
+  class={collapsibleTrigger({ class: className })}
+  asChild={asChild}
+  {...rest}
+  data-slot="collapsible-trigger"
+>
+  <slot />
+</CollapsiblePrimitive.Trigger>

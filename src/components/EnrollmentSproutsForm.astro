@@ -12,7 +12,10 @@ import { tv } from "tailwind-variants";
 import { Button } from "@/components/starwind/button";
 import { Card, CardContent } from "@/components/starwind/card";
 import { Checkbox } from "@/components/starwind/checkbox";
-import { checkbox as checkboxVariants } from "@/components/starwind/checkbox/variants";
+import {
+  checkboxLabel as agreementLabel,
+  checkboxWrapper as base,
+} from "@/components/starwind/checkbox/variants";
 import { Input } from "@/components/starwind/input";
 import { Label } from "@/components/starwind/label";
 import { Textarea } from "@/components/starwind/textarea";
@@ -20,8 +23,6 @@ import { Textarea } from "@/components/starwind/textarea";
 const sectionStyles = tv({
   base: "@container mx-auto w-full max-w-4xl px-4 py-24",
 });
-
-const { base, input, icon, label: agreementLabel } = checkboxVariants();
 
 const steps = [
   { number: 1, label: "Child", icon: IconUser },
@@ -340,14 +341,7 @@ const today = new Date().toISOString().slice(0, 10);
           </p>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-handbook"
-              name="agreeHandbook"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-handbook" name="agreeHandbook" required />
             <label for="enroll-agree-handbook" class={agreementLabel({ class: "font-normal" })}>
               I have read the <a
                 href="/handbooks/summer-camp"
@@ -361,8 +355,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input type="checkbox" id="enroll-agree-slot" name="agreeSlot" required class={input()} />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-slot" name="agreeSlot" required />
             <label for="enroll-agree-slot" class={agreementLabel({ class: "font-normal" })}>
               I understand that I am reserving a camp slot for my child and will still need to pay
               for that slot regardless of whether or not my child attends (for example, if they
@@ -377,14 +370,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-dropoff"
-              name="agreeDropoff"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-dropoff" name="agreeDropoff" required />
             <label for="enroll-agree-dropoff" class={agreementLabel({ class: "font-normal" })}>
               I understand that I may not <a
                 href="/handbooks/summer-camp#drop-off"
@@ -397,14 +383,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-pickup"
-              name="agreePickup"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-pickup" name="agreePickup" required />
             <label for="enroll-agree-pickup" class={agreementLabel({ class: "font-normal" })}>
               I understand that <a
                 href="/handbooks/summer-camp#pick-up"
@@ -420,14 +399,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-programs"
-              name="agreePrograms"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-programs" name="agreePrograms" required />
             <label for="enroll-agree-programs" class={agreementLabel({ class: "font-normal" })}>
               I understand that I am simultaneously enrolling my child in all of Wild Pear's
               childcare programs and agree that they may move between facilities as the teachers
@@ -436,22 +408,14 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-fieldtrips"
-              name="agreeFieldTrips"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-fieldtrips" name="agreeFieldTrips" required />
             <label for="enroll-agree-fieldtrips" class={agreementLabel({ class: "font-normal" })}>
               I give permission for Wild Pear to take my child on walking field trips.
             </label>
           </div>
 
           <div class={base()}>
-            <input type="checkbox" id="enroll-agree-photo" name="agreePhoto" required class={input()} />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-photo" name="agreePhoto" required />
             <label for="enroll-agree-photo" class={agreementLabel({ class: "font-normal" })}>
               I give permission for Wild Pear to take respectful photos/videos of my child, and for
               those images to be shared and used in a professional manner, as described in our <a
@@ -465,14 +429,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-health-policy"
-              name="agreeHealthPolicy"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-health-policy" name="agreeHealthPolicy" required />
             <label for="enroll-agree-health-policy" class={agreementLabel({ class: "font-normal" })}>
               I understand Wild Pear's <a
                 href="/handbooks/family#health-policy-and-flow-chart"
@@ -485,14 +442,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-immunizations"
-              name="agreeImmunizations"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-immunizations" name="agreeImmunizations" required />
             <label for="enroll-agree-immunizations" class={agreementLabel({ class: "font-normal" })}>
               My child is up to date on their <a
                 href="/handbooks/family#immunization"
@@ -505,14 +455,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-keep-home-sick"
-              name="agreeKeepHomeSick"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-keep-home-sick" name="agreeKeepHomeSick" required />
             <label
               for="enroll-agree-keep-home-sick"
               class={agreementLabel({ class: "font-normal" })}
@@ -528,14 +471,7 @@ const today = new Date().toISOString().slice(0, 10);
           </div>
 
           <div class={base()}>
-            <input
-              type="checkbox"
-              id="enroll-agree-emergency"
-              name="agreeEmergencyCare"
-              required
-              class={input()}
-            />
-            <IconCheck class={icon()} />
+            <Checkbox id="enroll-agree-emergency" name="agreeEmergencyCare" required />
             <label for="enroll-agree-emergency" class={agreementLabel({ class: "font-normal" })}>
               In an emergency, Wild Pear (Wild Pear Preschool CF503407 and Wild Pear Sprouts
               CF052125) has my permission to perform first aid/CPR, call an ambulance, or take my

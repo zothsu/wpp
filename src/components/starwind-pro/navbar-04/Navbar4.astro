@@ -14,7 +14,7 @@ import {
 import {
   Dropdown,
   DropdownContent,
-  DropdownItem,
+  DropdownLinkItem,
   DropdownTrigger,
 } from "@/components/starwind/dropdown";
 import { Separator } from "@/components/starwind/separator";
@@ -221,9 +221,9 @@ const {
                       </DropdownTrigger>
                       <DropdownContent align="start">
                         {link.children.map((child) => (
-                          <DropdownItem as="a" href={child.href}>
+                          <DropdownLinkItem href={child.href}>
                             {child.label}
-                          </DropdownItem>
+                          </DropdownLinkItem>
                         ))}
                       </DropdownContent>
                     </Dropdown>
@@ -244,9 +244,9 @@ const {
                   </DropdownTrigger>
                   <DropdownContent align="start">
                     {link.children.map((child) => (
-                      <DropdownItem as="a" href={child.href}>
+                      <DropdownLinkItem href={child.href}>
                         {child.label}
-                      </DropdownItem>
+                      </DropdownLinkItem>
                     ))}
                   </DropdownContent>
                 </Dropdown>
