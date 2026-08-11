@@ -1,0 +1,53 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm run split-deploy
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.HOSTINGER_SSH_KEY }}
+
+      - name: Trust Hostinger host key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ secrets.HOSTINGER_SSH_PORT }}" "${{ secrets.HOSTINGER_SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      # wildpear.school, learn.wildpear.school, and enrolled.wildpear.school
+      # share one hosting account, and learn/ and enrolled/ are SUBFOLDERS of
+      # the main site's public_html/. The --exclude flags on the main deploy
+      # are required: without them, --delete would wipe out the other two
+      # portals every time the chooser homepage deploys.
+      - name: Deploy main (wildpear.school)
+        run: |
+          rsync -avz --delete \
+            --exclude=learn --exclude=enrolled \
+            -e "ssh -p ${{ secrets.HOSTINGER_SSH_PORT }}" \
+            deploy/main/ u634839907@${{ secrets.HOSTINGER_SSH_HOST }}:domains/wildpear.school/public_html/
+
+      - name: Deploy learn.wildpear.school
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p ${{ secrets.HOSTINGER_SSH_PORT }}" \
+            deploy/learn/ u634839907@${{ secrets.HOSTINGER_SSH_HOST }}:domains/wildpear.school/public_html/learn/
+
+      - name: Deploy enrolled.wildpear.school
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p ${{ secrets.HOSTINGER_SSH_PORT }}" \
+            deploy/enrolled/ u634839907@${{ secrets.HOSTINGER_SSH_HOST }}:domains/wildpear.school/public_html/enrolled/
