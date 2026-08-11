@@ -93,6 +93,7 @@
 @layer base {
   html {
     scroll-padding-top: 5.5rem;
+    overflow-x: hidden;
   }
   * {
     @apply border-border outline-outline/50;
