@@ -71,9 +71,9 @@ const {
       <!-- Badge -->
       <a
         href={badgeHref}
-        class="text-foreground border-foreground/20 hover:bg-muted dark:hover:bg-input/50 bg-input/30 focus-visible:ring-outline/50 focus-visible:border-outline mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border px-3 py-0.5 text-[clamp(1rem,1.8vw,1.125rem)] backdrop-blur-sm transition-all outline-none focus-visible:ring-3"
+        class="text-foreground border-foreground/20 hover:bg-muted dark:hover:bg-input/50 bg-input/30 focus-visible:ring-outline/50 focus-visible:border-outline mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border px-3 py-0.5 text-[clamp(1.15rem,1.8vw,1.125rem)] backdrop-blur-sm transition-all outline-none focus-visible:ring-3"
       >
-        <BadgeIcon class="size-4" />
+        <BadgeIcon class="size-8" />
         <span>{badgeText}</span>
       </a>
 
@@ -95,7 +95,7 @@ const {
 
       <!-- Buttons -->
       <div class="mx-auto mt-8 flex flex-wrap justify-center gap-4">
-        <Button href={primaryButtonHref} class="text-[clamp(1rem,1.8vw,1.25rem)]">
+        <Button href={primaryButtonHref} class="text-[clamp(1.5rem,1.8vw,1.65rem)]">
           {primaryButtonText}
         </Button>
         {
@@ -103,7 +103,7 @@ const {
             <Button
               variant="accent"
               href={secondaryButtonHref}
-              class="text-[clamp(1rem,1.8vw,1.25rem)]"
+              class="text-[clamp(1.5rem,1.8vw,1.65rem)]"
             >
               {secondaryButtonText}
             </Button>
