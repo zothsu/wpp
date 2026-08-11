@@ -74,7 +74,7 @@ const {
             <h3 class="font-heading mb-4 text-2xl font-semibold @xl:text-3xl">{tab.title}</h3>
           )}
           {tab.description && (
-            <p class="text-muted-foreground mb-8 text-pretty @lg:text-lg">{tab.description}</p>
+            <p class="text-muted-foreground mb-8 text-pretty">{tab.description}</p>
           )}
           <slot name={`tab-${tab.id}`} />
         </TabsContent>

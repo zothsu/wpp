@@ -71,15 +71,15 @@ const {
       <!-- Badge -->
       <a
         href={badgeHref}
-        class="text-foreground border-foreground/20 hover:bg-muted dark:hover:bg-input/50 bg-input/30 focus-visible:ring-outline/50 focus-visible:border-outline mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border px-3 py-0.5 text-sm backdrop-blur-sm transition-all outline-none focus-visible:ring-3"
+        class="text-foreground border-foreground/20 hover:bg-muted dark:hover:bg-input/50 bg-input/30 focus-visible:ring-outline/50 focus-visible:border-outline mx-auto mb-12 flex w-fit items-center gap-2 rounded-full border px-3 py-0.5 text-[clamp(1.15rem,1.8vw,1.125rem)] backdrop-blur-sm transition-all outline-none focus-visible:ring-3"
       >
-        <BadgeIcon class="size-4" />
+        <BadgeIcon class="size-8" />
         <span>{badgeText}</span>
       </a>
 
       <!-- Heading -->
       <h1
-        class="from-foreground font-heading to-foreground/70 bg-linear-to-b bg-clip-text text-4xl font-extralight tracking-tighter text-pretty whitespace-pre-line text-transparent uppercase @xl:text-5xl @3xl:text-7xl"
+        class="from-foreground font-heading to-foreground/70 bg-linear-to-b bg-clip-text text-[clamp(3rem,7vw,5.5rem)] font-extralight tracking-tighter text-pretty whitespace-pre-line text-transparent uppercase"
       >
         {heading}
       </h1>
@@ -87,18 +87,27 @@ const {
       <!-- Description -->
       {
         description && (
-          <p class="text-foreground/90 mx-auto mt-6 max-w-2xl text-pretty @3xl:text-lg">
+          <p class="text-foreground/90 mx-auto mt-6 max-w-2xl text-pretty">
             {description}
           </p>
         )
       }
 
       <!-- Buttons -->
-      <div class="mx-auto mt-8 flex flex-wrap justify-center gap-4">
-        <Button href={primaryButtonHref}>{primaryButtonText}</Button>
+      <div class="mx-auto mt-10 flex flex-wrap justify-center gap-4">
+        <Button
+          href={primaryButtonHref}
+          class="h-auto border border-transparent px-8 py-4 text-[clamp(1.5rem,1.8vw,1.65rem)] hover:border-orange-700 hover:bg-primary-accent hover:text-white"
+        >
+          {primaryButtonText}
+        </Button>
         {
           secondaryButtonText && (
-            <Button variant="accent" href={secondaryButtonHref}>
+            <Button
+              variant="accent"
+              href={secondaryButtonHref}
+              class="h-auto px-8 py-4 text-[clamp(1.5rem,1.8vw,1.65rem)] hover:bg-primary-accent/40"
+            >
               {secondaryButtonText}
             </Button>
           )

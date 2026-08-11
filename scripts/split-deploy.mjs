@@ -4,7 +4,7 @@
  * folders, one per Hostinger subdomain:
  *
  *   deploy/main/      -> wildpear.school            (chooser homepage only)
- *   deploy/about/     -> lookingat.wildpear.school   (prospective-parent portal)
+ *   deploy/learn/     -> learn.wildpear.school      (prospective-parent portal)
  *   deploy/enrolled/  -> enrolled.wildpear.school    (enrolled-student portal;
  *                                                     password-protect this
  *                                                     folder in hPanel)
@@ -44,8 +44,8 @@ const targets = {
 		pages: [],
 		// The chooser homepage is dist/index.html itself, handled separately below.
 	},
-	about: {
-		domain: "lookingat.wildpear.school",
+	learn: {
+		domain: "learn.wildpear.school",
 		pages: [
 			"learn-about-us",
 			"enrollment-information",
