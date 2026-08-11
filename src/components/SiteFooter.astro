@@ -3,32 +3,41 @@ import IconPear from "../icons/pear.svg";
 import Footer3, { type FooterColumn } from "./starwind-pro/footer-03/Footer3.astro";
 
 interface Props {
-	/** Which portal this footer renders in. Each portal is deployed to its own
-	 * subdomain, so the footer must only link to pages that exist in that
-	 * deployment - "none" is used on the shared chooser/legal pages, which are
-	 * duplicated across both portal deployments and so can't link into either. */
-	portal?: "about" | "enrolled" | "none";
+	/** Which portal this footer renders in. "about" covers wildpear.school
+	 * (chooser + about pages, including the shared legal pages, which are also
+	 * duplicated onto enrolled.wildpear.school - the about column links are
+	 * absolute so they still resolve correctly from there). */
+	portal?: "about" | "enrolled";
 }
 
-const { portal = "none" } = Astro.props;
+const { portal = "about" } = Astro.props;
 
 const aboutColumns: FooterColumn[] = [
 	{
 		title: "Learn About Us",
 		links: [
-			{ label: "Our Approach to Learning", href: "/our-approach" },
-			{ label: "Enrollment Information", href: "/enrollment-information" },
-			{ label: "Who We Are", href: "/who-we-are" },
-			{ label: "FAQ", href: "/our-approach#faq" },
+			{ label: "Our Approach to Learning", href: "https://wildpear.school/our-approach" },
+			{
+				label: "Enrollment Information",
+				href: "https://wildpear.school/enrollment-information",
+			},
+			{ label: "Who We Are", href: "https://wildpear.school/who-we-are" },
+			{ label: "FAQ", href: "https://wildpear.school/our-approach#faq" },
 		],
 	},
 	{
 		title: "Our Programs",
 		links: [
-			{ label: "Infant/Toddler", href: "/programs/infant-toddler" },
-			{ label: "Preschool", href: "/programs/preschool" },
-			{ label: "School Age Summer Camp", href: "/programs/summer-camp" },
-			{ label: "Enrollment Information", href: "/enrollment-information" },
+			{ label: "Infant/Toddler", href: "https://wildpear.school/programs/infant-toddler" },
+			{ label: "Preschool", href: "https://wildpear.school/programs/preschool" },
+			{
+				label: "School Age Summer Camp",
+				href: "https://wildpear.school/programs/summer-camp",
+			},
+			{
+				label: "Enrollment Information",
+				href: "https://wildpear.school/enrollment-information",
+			},
 		],
 	},
 ];
@@ -46,8 +55,7 @@ const enrolledColumns: FooterColumn[] = [
 	},
 ];
 
-const columns: FooterColumn[] =
-	portal === "about" ? aboutColumns : portal === "enrolled" ? enrolledColumns : [];
+const columns: FooterColumn[] = portal === "enrolled" ? enrolledColumns : aboutColumns;
 ---
 
 <Footer3
