@@ -1,46 +1,16 @@
----
-import { Image } from "@/components/starwind/image";
----
-
 <section class="@container mx-auto max-w-6xl px-4 py-24">
-  <div class="flex flex-col items-center gap-8 @lg:flex-row @lg:items-start">
-    <Image
-      src="/images/intro.webp"
-      alt="A Wild Pear student outdoors"
-      width={166}
-      height={221}
-      class="w-full max-w-xs rounded-2xl @lg:shrink-0"
-    />
-    <div class="@lg:pt-2">
-      <h2>Welcome to Wild Pear!</h2>
-      <div class="text-muted-foreground mt-4 space-y-4 text-pretty">
-        <p>
-          We are currently enrolling, navigate to our{" "}
-          <a
-            href="/enrollment-information"
-            class="text-primary-accent underline underline-offset-4 hover:no-underline"
-          >
-            enrollment tab
-          </a>{" "}
-          for more info. At our school we get our hands dirty, we jump in puddles, we tell
-          stories, we create things that have never existed, we cook and eat delicious food, we
-          share and support feelings (even the big hard ones), we explore tirelessly, sing
-          enthusiastically, and try new things everyday. Most of all, we want to be together, and
-          we'd like to be with you too.
-        </p>
-        <p>
-          If you are interested in enrolling your child, please look through the rest of our
-          website to see if our school feels like a good fit for your family. Waitlist and
-          touring information can be found in the{" "}
-          <a
-            href="/enrollment-information"
-            class="text-primary-accent underline underline-offset-4 hover:no-underline"
-          >
-            enrollment tab
-          </a>
-          . Thank you!
-        </p>
-      </div>
+  <div class="mx-auto max-w-5xl text-center">
+    <h2>Welcome to Wild Pear!</h2>
+    <div class="text-muted-foreground mt-4 space-y-4 text-justify text-pretty">
+      <p>
+        At our school we get our hands dirty, we jump in puddles, we tell
+        stories, we create things that have never existed, we cook and eat delicious food, we
+        share and support feelings (even the big hard ones), we explore tirelessly, sing
+        enthusiastically, and try new things everyday. Most of all, we want to be together, and
+        we'd like to be with you too.
+      </p>
+      <p>Thank you!</p>
+      <p class="font-signature text-3xl">Jeanie & Susan</p>
     </div>
   </div>
 </section>

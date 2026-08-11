@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@fontsource/gochi-hand";
+@import "@fontsource/reenie-beanie";
 @plugin "@tailwindcss/forms";
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -35,6 +36,7 @@
   --radius: 0.625rem;
   --spacing: 0.25rem;
   --font-heading: "Gochi Hand", var(--font-sans);
+  --font-signature: "Reenie Beanie", var(--font-sans);
   --font-mono: "JetBrains Mono Variable", monospace;
 
   /* sidebar variables */
@@ -177,6 +179,7 @@
   --radius-3xl: calc(var(--radius) + 1rem);
 
   --font-heading: var(--font-heading);
+  --font-signature: var(--font-signature);
   --font-mono: var(--font-mono);
 
   --color-sidebar: var(--sidebar-background);
