@@ -71,7 +71,7 @@ const {
       <!-- Badge -->
       <a
         href={badgeHref}
-        class="text-foreground border-foreground/20 hover:bg-muted dark:hover:bg-input/50 bg-input/30 focus-visible:ring-outline/50 focus-visible:border-outline mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border px-3 py-0.5 text-sm backdrop-blur-sm transition-all outline-none focus-visible:ring-3"
+        class="text-foreground border-foreground/20 hover:bg-muted dark:hover:bg-input/50 bg-input/30 focus-visible:ring-outline/50 focus-visible:border-outline mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border px-3 py-0.5 text-[clamp(0.9375rem,1.8vw,1.125rem)] backdrop-blur-sm transition-all outline-none focus-visible:ring-3"
       >
         <BadgeIcon class="size-4" />
         <span>{badgeText}</span>
@@ -79,7 +79,7 @@ const {
 
       <!-- Heading -->
       <h1
-        class="from-foreground font-heading to-foreground/70 bg-linear-to-b bg-clip-text text-4xl font-extralight tracking-tighter text-pretty whitespace-pre-line text-transparent uppercase @xl:text-5xl @3xl:text-7xl"
+        class="from-foreground font-heading to-foreground/70 bg-linear-to-b bg-clip-text text-[clamp(3rem,7vw,5.5rem)] font-extralight tracking-tighter text-pretty whitespace-pre-line text-transparent uppercase"
       >
         {heading}
       </h1>
@@ -95,10 +95,16 @@ const {
 
       <!-- Buttons -->
       <div class="mx-auto mt-8 flex flex-wrap justify-center gap-4">
-        <Button href={primaryButtonHref}>{primaryButtonText}</Button>
+        <Button href={primaryButtonHref} class="text-[clamp(1rem,1.8vw,1.25rem)]">
+          {primaryButtonText}
+        </Button>
         {
           secondaryButtonText && (
-            <Button variant="accent" href={secondaryButtonHref}>
+            <Button
+              variant="accent"
+              href={secondaryButtonHref}
+              class="text-[clamp(1rem,1.8vw,1.25rem)]"
+            >
               {secondaryButtonText}
             </Button>
           )
