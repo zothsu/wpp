@@ -1,0 +1,5 @@
+Contact: https://wildpear.school/contact
+Expires: 2027-08-12T00:00:00.000Z
+Canonical: https://wildpear.school/.well-known/security.txt
+Canonical: https://enrolled.wildpear.school/.well-known/security.txt
+Preferred-Languages: en

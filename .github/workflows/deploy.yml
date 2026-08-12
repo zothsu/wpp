@@ -28,14 +28,18 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p "${{ secrets.HOSTINGER_SSH_PORT }}" "${{ secrets.HOSTINGER_SSH_HOST }}" >> ~/.ssh/known_hosts
 
-      # wildpear.school and enrolled.wildpear.school share one hosting account,
-      # and enrolled/ is a SUBFOLDER of the main site's public_html/. The
-      # --exclude flag on the main deploy is required: without it, --delete
-      # would wipe out the enrolled portal every time the main site deploys.
+      # wildpear.school, enrolled.wildpear.school, and crm.wildpear.school all
+      # share one hosting account and are SUBFOLDERS of the main site's
+      # public_html/. Every one of them MUST be excluded here: without it,
+      # --delete wipes that folder out on the next push to main (this is not
+      # hypothetical - it happened to crm/ on 2026-08-12 because this list
+      # wasn't updated when the CRM was set up). If another folder/subdomain
+      # gets added under public_html/ in the future, add it here too.
       - name: Deploy main (wildpear.school)
         run: |
           rsync -avz --delete \
             --exclude=enrolled \
+            --exclude=crm \
             -e "ssh -p ${{ secrets.HOSTINGER_SSH_PORT }}" \
             deploy/main/ u634839907@${{ secrets.HOSTINGER_SSH_HOST }}:domains/wildpear.school/public_html/
 

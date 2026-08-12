@@ -1,0 +1,25 @@
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<IfModule mod_headers.c>
+  # HSTS. includeSubDomains/preload deliberately left off until HTTPS is
+  # confirmed working on every wildpear.school subdomain (crm, enrolled) -
+  # once confirmed, this is safe to widen but is hard to undo (browsers
+  # cache it), so opt in on purpose rather than by default.
+  Header always set Strict-Transport-Security "max-age=15552000"
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # Built from an audit of actual site usage (2026-08-12): no live page
+  # loads scripts/styles/images from a third-party host. frame-src covers
+  # the Google Maps tour-request embed and the YouTube (nocookie) embed
+  # used by Feature10. connect-src will need the n8n webhook origin added
+  # once enrollment forms are wired up to submit there (see
+  # docs/enrollment-form-plan.md).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; frame-src https://www.youtube-nocookie.com https://www.google.com https://maps.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+</IfModule>
