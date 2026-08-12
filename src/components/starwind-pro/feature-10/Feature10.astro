@@ -28,6 +28,8 @@ export interface ImageSource {
 }
 
 export interface FeatureSection {
+  /** Optional anchor id, so other pages can link straight to this section */
+  id?: string;
   heading: string;
   description: string;
   /** Either an image or a video may be supplied; image takes priority if both are set */
@@ -84,7 +86,10 @@ const {
           : "Video player";
 
         return (
-          <div class="@container grid gap-12 @3xl:grid-cols-2 @3xl:items-center @3xl:gap-16">
+          <div
+            id={section.id}
+            class="@container grid gap-12 @3xl:grid-cols-2 @3xl:items-center @3xl:gap-16"
+          >
             {/* Content */}
             <div class:list={[{ "@3xl:order-last": isEven }]}>
               <h2 class="mb-4">{section.heading}</h2>

@@ -1,0 +1,138 @@
+---
+import IconHeart from "@tabler/icons/outline/heart.svg";
+import IconUsers from "@tabler/icons/outline/users.svg";
+
+import { Image } from "@/components/starwind/image";
+
+interface PhotoCard {
+  size: "large";
+  image: string;
+  heading: string;
+  teaser: string;
+  href: string;
+  /** Move to the end of the stack on mobile, then back to normal position at @xl+ */
+  mobileOrderLast?: boolean;
+}
+
+interface IconCard {
+  size: "small";
+  icon: astroHTML.JSX.Element;
+  heading: string;
+  teaser: string;
+  href: string;
+  /** Move to the end of the stack on mobile, then back to normal position at @xl+ */
+  mobileOrderLast?: boolean;
+}
+
+type Card = PhotoCard | IconCard;
+
+const cards: Card[] = [
+  {
+    size: "large",
+    image: "/images/summer.webp",
+    heading: "Enjoyment of Being Outside",
+    teaser:
+      "Rain or shine, we head outside every day — exploring wood, rock, water, and soil, and tending our garden and greenhouse.",
+    href: "/our-approach#outside-time",
+  },
+  {
+    size: "small",
+    icon: IconHeart,
+    heading: "Emotional Safety and Confidence",
+    teaser:
+      "We help children safely feel and express their emotions, building emotional intelligence, empathy, and self-regulation.",
+    href: "/our-approach#emotional-safety",
+  },
+  {
+    size: "small",
+    icon: IconUsers,
+    heading: "Social Skills",
+    teaser:
+      "Group care lets children learn alongside their age mates, building community and the skills to navigate conflict together.",
+    href: "/our-approach#social-skills",
+    mobileOrderLast: true,
+  },
+  {
+    size: "large",
+    image: "/images/img_2982.webp",
+    heading: "Caring for Animals and Growing Food",
+    teaser:
+      "From laying hens to garden beds, children take part in the daily rhythms of caring for our animals and growing food.",
+    href: "/our-approach#animals-and-food",
+  },
+];
+---
+
+<section class="@container mx-auto max-w-6xl px-4 py-24">
+  <div>
+    <h2>Learn About Our Approach</h2>
+    <p class="text-muted-foreground mt-4 text-pretty">
+      Our curriculum is rooted in long stretches of uninterrupted play and
+      guided by child interest. Here's a glimpse of a few of our central
+      themes.{" "}
+      <a
+        href="/our-approach"
+        class="text-primary-accent font-medium hover:underline"
+      >
+        Read more
+      </a>
+    </p>
+  </div>
+
+  <ul class="mt-12 grid gap-6 @xl:grid-cols-3">
+    {
+      cards.map((card) =>
+        card.size === "large" ? (
+          <li
+            class:list={[
+              "@xl:col-span-2",
+              { "order-last @xl:order-none": card.mobileOrderLast },
+            ]}
+          >
+            <a
+              href={card.href}
+              class="group border-4 border-transparent relative flex aspect-16/10 flex-col justify-end overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:border-primary-accent"
+            >
+              <Image
+                src={card.image}
+                alt={card.heading}
+                width={1000}
+                height={625}
+                class="absolute inset-0 size-full object-cover"
+              />
+              <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+              <div class="relative p-6">
+                <h3 class="text-xl font-semibold text-white">
+                  {card.heading}
+                </h3>
+                <p class="mt-2 text-sm text-pretty text-white/80">
+                  {card.teaser}
+                </p>
+              </div>
+            </a>
+          </li>
+        ) : (
+          <li
+            class:list={[
+              "@xl:col-span-1",
+              { "order-last @xl:order-none": card.mobileOrderLast },
+            ]}
+          >
+            <a
+              href={card.href}
+              class="group bg-muted border-border hover:border-primary-accent flex aspect-16/10 flex-col justify-center gap-3 rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02] @xl:aspect-auto @xl:h-full"
+            >
+              <div class="bg-background flex size-12 items-center justify-center rounded-lg border">
+                <card.icon class="text-primary-accent size-6" />
+              </div>
+              <h3 class="text-lg font-semibold">{card.heading}</h3>
+              <p class="text-muted-foreground text-sm text-pretty">
+                {card.teaser}
+              </p>
+            </a>
+          </li>
+        ),
+      )
+    }
+  </ul>
+</section>
