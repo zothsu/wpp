@@ -1,0 +1,99 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+
+interface Props extends HTMLAttributes<"section"> {
+  /** Main heading text */
+  heading?: string;
+  /** Description text, shown as a subheading under the H1 */
+  description?: string;
+  /** Primary button text */
+  primaryButtonText?: string;
+  /** Primary button href */
+  primaryButtonHref?: string;
+  /** Secondary button text */
+  secondaryButtonText?: string;
+  /** Secondary button href */
+  secondaryButtonHref?: string;
+  /** Background image configuration */
+  backgroundImage?: {
+    src: string;
+    alt: string;
+  };
+}
+
+const heroMainStyles = tv({
+  base: "dark bg-background text-foreground @container relative h-screen w-full overflow-hidden",
+});
+
+const {
+  heading = "Accelerate Your Development Workflow",
+  description,
+  primaryButtonText = "Start Free Trial",
+  primaryButtonHref = "#",
+  secondaryButtonText,
+  secondaryButtonHref = "#",
+  backgroundImage = {
+    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&auto=format&fit=crop&q=80",
+    alt: "Mountain landscape",
+  },
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<section class={heroMainStyles({ class: className })} {...rest}>
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src={backgroundImage.src}
+      alt={backgroundImage.alt}
+      class="size-full min-h-[500px] object-cover"
+    />
+    <div class="absolute inset-0 h-full w-full bg-black/50"></div>
+  </div>
+
+  <!-- Content Overlay -->
+  <div class="absolute inset-0 flex items-center">
+    <div class="mx-auto w-full max-w-5xl px-4 text-center @xl:px-8">
+      <!-- Heading -->
+      <h1
+        class="from-foreground font-heading to-foreground/70 bg-linear-to-b bg-clip-text text-[clamp(3rem,7vw,5.5rem)] font-extralight tracking-tighter text-pretty whitespace-pre-line text-transparent uppercase"
+      >
+        {heading}
+      </h1>
+
+      <!-- Description -->
+      {
+        description && (
+          <p class="text-foreground/90 mx-auto mt-6 max-w-2xl text-pretty">
+            {description}
+          </p>
+        )
+      }
+
+      <!-- Buttons -->
+      <div class="mx-auto mt-10 flex flex-wrap justify-center gap-4">
+        <Button
+          href={primaryButtonHref}
+          class="h-auto border border-transparent px-8 py-4 text-[clamp(1.5rem,1.8vw,1.65rem)] hover:border-orange-700 hover:bg-primary-accent hover:text-white"
+        >
+          {primaryButtonText}
+        </Button>
+        {
+          secondaryButtonText && (
+            <Button
+              variant="accent"
+              href={secondaryButtonHref}
+              class="h-auto px-8 py-4 text-[clamp(1.5rem,1.8vw,1.65rem)] hover:bg-primary-accent/40"
+            >
+              {secondaryButtonText}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
