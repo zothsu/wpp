@@ -56,10 +56,10 @@ const {
   </div>
 
   <Tabs defaultValue={tabs[0].id} class="w-full">
-    <TabsList class="bg-muted/50 mb-12 grid @xs:w-full @xs:grid-cols-2">
+    <TabsList class="bg-muted/50 mx-auto mb-12 grid max-w-md @xs:w-full @xs:grid-cols-2">
       {
         tabs.map((tab) => (
-          <TabsTrigger value={tab.id} class="gap-2">
+          <TabsTrigger value={tab.id} class="w-full gap-2">
             <tab.icon class="size-4" aria-hidden="true" />
             <span>{tab.label}</span>
           </TabsTrigger>

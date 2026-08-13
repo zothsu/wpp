@@ -13,7 +13,7 @@ import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
     { id: "preschool", label: "Preschool", icon: IconSchool },
   ]}
 >
-  <div slot="tab-sprouts" class="overflow-x-auto rounded-lg border">
+  <div slot="tab-sprouts" class="mx-auto max-w-md overflow-x-auto rounded-lg border">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b">
@@ -42,7 +42,7 @@ import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
     </table>
   </div>
 
-  <div slot="tab-preschool" class="overflow-x-auto rounded-lg border">
+  <div slot="tab-preschool" class="mx-auto max-w-md overflow-x-auto rounded-lg border">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b">
@@ -70,4 +70,68 @@ import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
       </tbody>
     </table>
   </div>
+
 </Feature12>
+
+<div class="mx-auto mt-12 max-w-xl text-center">
+  <h3 class="font-heading text-3xl font-semibold md:text-4xl lg:text-5xl">Summer Camp Rates</h3>
+  <p class="text-muted-foreground mt-2 text-sm">
+    Camp runs 7:30am-3:00pm; aftercare available 3:00pm-5:00pm. All rates are per week.
+  </p>
+  <div class="mt-4 overflow-x-auto rounded-lg border text-left">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b">
+          <th class="text-foreground px-4 py-2 text-left font-semibold">Group</th>
+          <th class="text-foreground px-4 py-2 text-left font-semibold">Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b">
+          <td class="px-4 py-2">
+            Humming Birds
+            <span class="text-muted-foreground block text-xs">
+              Younger Sibling Camp, WP Sprouts
+            </span>
+          </td>
+          <td class="px-4 py-2">$430/week</td>
+        </tr>
+        <tr class="border-b">
+          <td class="px-4 py-2">
+            Chickadees
+            <span class="text-muted-foreground block text-xs">
+              School Age Camp K/1, WP Preschool
+            </span>
+          </td>
+          <td class="px-4 py-2">$350/week</td>
+        </tr>
+        <tr class="border-b">
+          <td class="px-4 py-2">
+            Robins
+            <span class="text-muted-foreground block text-xs">
+              School Age Camp 2nd-5th, WP Back Lot
+            </span>
+          </td>
+          <td class="px-4 py-2">$350/week</td>
+        </tr>
+        <tr class="border-b">
+          <td class="px-4 py-2">
+            Junior Counselors
+            <span class="text-muted-foreground block text-xs">
+              Middle School Camp (alumni only), WP Back Lot
+            </span>
+          </td>
+          <td class="px-4 py-2">$300/week</td>
+        </tr>
+        <tr class="border-b">
+          <td class="px-4 py-2">Aftercare (3-5pm)</td>
+          <td class="px-4 py-2">$175/week</td>
+        </tr>
+        <tr class="border-b last:border-b-0">
+          <td class="px-4 py-2">Aftercare, single day</td>
+          <td class="px-4 py-2">$50/day</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -13,15 +13,7 @@ const { title } = Astro.props;
 
 const links: NavLink[] = [
 	{ label: "Forms", href: "/enrolled-students#forms" },
-	{
-		label: "Handbooks",
-		children: [
-			{ label: "Family Handbook", href: "/handbooks/family" },
-			{ label: "Preschool Handbook", href: "/handbooks/preschool" },
-			{ label: "Infant & Toddler (Sprouts) Handbook", href: "/handbooks/infant-toddler" },
-			{ label: "School Age Summer Camp Handbook", href: "/handbooks/summer-camp" },
-		],
-	},
+	{ label: "Handbooks", href: "/enrolled-students#handbooks" },
 	{ label: "Tuition", href: "/tuition" },
 	{ label: "Resources", href: "/resources" },
 ];
