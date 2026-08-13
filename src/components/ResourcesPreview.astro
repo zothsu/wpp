@@ -1,5 +1,4 @@
 ---
-import IconBulb from "@tabler/icons/outline/bulb.svg";
 import IconLeaf from "@tabler/icons/outline/leaf.svg";
 
 import { getOgImage } from "../lib/utils/ogImage";
@@ -20,16 +19,26 @@ interface IconCard {
   href: string;
 }
 
-type Card = PhotoCard | IconCard;
+interface SmallImageCard {
+  size: "small-image";
+  image: string;
+  heading: string;
+  teaser: string;
+  href: string;
+}
+
+type Card = PhotoCard | IconCard | SmallImageCard;
 
 const FALLBACK_IMAGE = "/images/temp-blog.png";
 
 const generationMindfulHref = "https://genmindful.com/";
 const thousandHoursHref = "https://www.1000hoursoutside.com/";
+const kidsEatInColorHref = "https://kidseatincolor.com/";
 
-const [generationMindfulImage, thousandHoursImage] = await Promise.all([
+const [generationMindfulImage, thousandHoursImage, kidsEatInColorImage] = await Promise.all([
   getOgImage(generationMindfulHref),
   getOgImage(thousandHoursHref),
+  getOgImage(kidsEatInColorHref),
 ]);
 
 const cards: Card[] = [
@@ -48,18 +57,18 @@ const cards: Card[] = [
     href: "https://www.explorationsearlylearning.com/",
   },
   {
-    size: "small",
-    icon: IconBulb,
-    heading: "The Curiosity Approach",
-    teaser: "Inspiration for calm, curiosity-driven early learning environments.",
-    href: "https://www.thecuriosityapproach.com/",
-  },
-  {
-    size: "large",
+    size: "small-image",
     image: thousandHoursImage ?? FALLBACK_IMAGE,
     heading: "1000 Hours Outside",
     teaser: "A challenge and resource hub encouraging families to spend more time outdoors.",
     href: thousandHoursHref,
+  },
+  {
+    size: "large",
+    image: kidsEatInColorImage ?? FALLBACK_IMAGE,
+    heading: "Kids Eat In Color",
+    teaser: "A dietitian's practical, judgment-free approach to feeding picky eaters.",
+    href: kidsEatInColorHref,
   },
 ];
 ---
@@ -97,6 +106,21 @@ const cards: Card[] = [
                 <h3 class="text-xl font-semibold text-white">{card.heading}</h3>
                 <p class="mt-2 text-sm text-pretty text-white/80">{card.teaser}</p>
               </div>
+            </a>
+          </li>
+        ) : card.size === "small-image" ? (
+          <li class="@xl:col-span-1">
+            <a
+              href={card.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group bg-muted border-border hover:border-primary-accent flex aspect-16/10 flex-col justify-center gap-3 rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.02] @xl:aspect-auto @xl:h-full"
+            >
+              <div class="flex items-center justify-center">
+                <img src={card.image} alt="" aria-hidden="true" class="object-contain" />
+              </div>
+              <h3 class="text-lg font-semibold">{card.heading}</h3>
+              <p class="text-muted-foreground text-sm text-pretty">{card.teaser}</p>
             </a>
           </li>
         ) : (
