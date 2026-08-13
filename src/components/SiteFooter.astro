@@ -1,5 +1,7 @@
 ---
 import IconPear from "../icons/pear.svg";
+import { Button } from "./starwind/button";
+import { Popover, PopoverContent, PopoverTitle, PopoverTrigger } from "./starwind/popover";
 import Footer3, { type FooterColumn } from "./starwind-pro/footer-03/Footer3.astro";
 import Login1 from "./starwind-pro/login-01/Login1.astro";
 
@@ -65,17 +67,33 @@ const columns: FooterColumn[] = portal === "enrolled" ? enrolledColumns : aboutC
 	logoIcon={IconPear}
 	columns={columns}
 	socialLinks={[]}
-	attributionLinks={[{ label: "Attributions", href: "/attributions" }]}
 >
 	{
 		portal !== "enrolled" && (
-			<Login1
-				slot="middle"
-				compact
-				heading="Family Login"
-				description="Sign in to access your enrolled family portal."
-				showCreateAccount={false}
-			/>
+			<Popover slot="middle" class="flex w-full justify-center">
+				<PopoverTrigger asChild>
+					<Button
+						variant="accent"
+						size="lg"
+						class="min-h-14 h-auto w-4/5 border border-transparent py-3 text-center hover:border-orange-700 hover:bg-primary-accent hover:text-white"
+					>
+						Sign In to the Enrolled Portal
+					</Button>
+				</PopoverTrigger>
+				<PopoverContent
+					id="footer-login-popover-content"
+					side="top"
+					class="w-72 border-none bg-transparent p-0 shadow-none"
+				>
+					<PopoverTitle class="sr-only">Enrolled Family Login</PopoverTitle>
+					<Login1
+						compact
+						heading="Enrolled Family Login"
+						description="Sign in to access the enrolled student portal, where you'll find forms, calendar, and resources from our teachers."
+						showCreateAccount={false}
+					/>
+				</PopoverContent>
+			</Popover>
 		)
 	}
 </Footer3>

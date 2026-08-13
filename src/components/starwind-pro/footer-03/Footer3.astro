@@ -22,11 +22,6 @@ export interface SocialLink {
   icon: any;
 }
 
-export interface AttributionLink {
-  label: string;
-  href: string;
-}
-
 interface Props extends HTMLAttributes<"footer"> {
   /** Company name */
   companyName?: string;
@@ -38,8 +33,6 @@ interface Props extends HTMLAttributes<"footer"> {
   columns?: FooterColumn[];
   /** Array of social media links */
   socialLinks?: SocialLink[];
-  /** Third-party asset credits required by their license (e.g. stock illustrations) */
-  attributionLinks?: AttributionLink[];
 }
 
 const footer3Styles = tv({
@@ -81,7 +74,6 @@ const {
     { name: "GitHub", href: "https://github.com", icon: IconBrandGithub },
     { name: "LinkedIn", href: "https://linkedin.com", icon: IconBrandLinkedin },
   ],
-  attributionLinks = [],
   class: className,
   ...rest
 } = Astro.props;
@@ -94,8 +86,8 @@ const hasMiddleSlot = Astro.slots.has("middle");
   <div class="mx-auto w-full max-w-7xl px-4">
     <div class="flex flex-col gap-12 @lg:flex-row @lg:items-start @lg:justify-between">
       <!-- Brand Column -->
-      <div class={columns.length > 0 ? "@lg:max-w-sm @lg:shrink-0" : "w-full items-center text-center"}>
-        <div class={`mb-4 flex items-center gap-2 ${columns.length > 0 ? "" : "justify-center"}`}>
+      <div class={columns.length > 0 ? "text-center @lg:max-w-sm @lg:shrink-0 @lg:text-left" : "w-full items-center text-center"}>
+        <div class={`mb-4 flex items-center justify-center gap-2 ${columns.length > 0 ? "@lg:justify-start" : ""}`}>
           <LogoIcon class="text-primary-accent size-8" aria-hidden="true" />
           <span class="text-xl font-semibold">
             {
@@ -112,11 +104,11 @@ const hasMiddleSlot = Astro.slots.has("middle");
           </span>
         </div>
         <p
-          class={`text-muted-foreground mb-6 text-sm ${columns.length > 0 ? "text-justify" : "mx-auto max-w-2xl text-center"}`}
+          class={`text-muted-foreground mb-6 text-sm ${columns.length > 0 ? "text-center @lg:text-justify" : "mx-auto max-w-2xl text-center"}`}
         >
           {description}
         </p>
-        <div class={`flex gap-4 ${columns.length > 0 ? "" : "justify-center"}`}>
+        <div class={`flex justify-center gap-4 ${columns.length > 0 ? "@lg:justify-start" : ""}`}>
           {
             socialLinks.map((social) => (
               <a
@@ -136,7 +128,7 @@ const hasMiddleSlot = Astro.slots.has("middle");
       <!-- Middle Slot (e.g. a login form) -->
       {
         hasMiddleSlot && (
-          <div class="flex w-full justify-center @lg:w-auto @lg:shrink-0 @lg:justify-start">
+          <div class="mx-auto flex w-full max-w-xs items-center justify-center @lg:mx-0 @lg:shrink-0 @lg:self-center">
             <slot name="middle" />
           </div>
         )
@@ -178,38 +170,21 @@ const hasMiddleSlot = Astro.slots.has("middle");
     </div>
 
     <!-- Bottom Section -->
-    <div
-      class={`mt-12 flex flex-col gap-4 border-t pt-8 @md:flex-row @md:items-center ${columns.length > 0 ? "@md:justify-between" : "@md:justify-center"}`}
-    >
+    <div class="mt-12 flex flex-col items-center gap-4 border-t pt-8 text-center">
       <p class="text-muted-foreground text-sm">
-        © {currentYear} {companyName}.{" "}
-        <br class="@md:hidden" />
-        All rights reserved.
+        © {currentYear} {companyName}. All rights reserved.
       </p>
-      <div class="flex gap-6">
+      <p class="text-muted-foreground max-w-2xl text-sm">
+        This site has been built with accessibility in mind, and it's important to me that all
+        visitors can access it. If for any reason you're unable to navigate this site due to an
+        accessibility need, please{" "}
         <a
-          href="/privacy"
-          class="text-muted-foreground hover:text-foreground text-sm transition-colors"
+          href="mailto:a11y@wildpear.school"
+          class="hover:text-foreground underline transition-colors"
         >
-          Privacy Policy
-        </a>
-        <a
-          href="/terms"
-          class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-        >
-          Terms of Service
-        </a>
-        {
-          attributionLinks.map((link) => (
-            <a
-              href={link.href}
-              class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >
-              {link.label}
-            </a>
-          ))
-        }
-      </div>
+          reach out to me, the web developer
+        </a>.
+      </p>
     </div>
   </div>
 </footer>
