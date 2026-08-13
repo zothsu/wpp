@@ -1,8 +1,5 @@
 ---
-import IconSchool from "@tabler/icons/outline/school.svg";
-import IconSeedling from "@tabler/icons/outline/seedling.svg";
-
-import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
+import TuitionRates from "./TuitionRates.astro";
 ---
 
 <div>
@@ -36,79 +33,6 @@ import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
       eligible for Preschool For All.
     </p>
 
-    <Feature12
-      tagline="2025 - 2026"
-      heading="Tuition Rates"
-      tabs={[
-        { id: "sprouts", label: "Sprouts", icon: IconSeedling },
-        { id: "preschool", label: "Preschool", icon: IconSchool },
-      ]}
-    >
-      <div slot="tab-sprouts" class="overflow-x-auto rounded-lg border">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-b">
-              <th class="text-foreground px-4 py-2 text-left font-semibold"
-                >Schedule</th
-              >
-              <th class="text-foreground px-4 py-2 text-left font-semibold"
-                >Monthly Rate</th
-              >
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b">
-              <td class="px-4 py-2">Five days</td>
-              <td class="px-4 py-2">$2,225</td>
-            </tr>
-            <tr class="border-b">
-              <td class="px-4 py-2">Four days</td>
-              <td class="px-4 py-2">$2,075</td>
-            </tr>
-            <tr class="border-b">
-              <td class="px-4 py-2">Three days</td>
-              <td class="px-4 py-2">$1,825</td>
-            </tr>
-            <tr class="border-b last:border-b-0">
-              <td class="px-4 py-2">Two days</td>
-              <td class="px-4 py-2">$1,775</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div slot="tab-preschool" class="overflow-x-auto rounded-lg border">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-b">
-              <th class="text-foreground px-4 py-2 text-left font-semibold"
-                >Schedule</th
-              >
-              <th class="text-foreground px-4 py-2 text-left font-semibold"
-                >Monthly Rate</th
-              >
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b">
-              <td class="px-4 py-2">Five days</td>
-              <td class="px-4 py-2">$1,725</td>
-            </tr>
-            <tr class="border-b">
-              <td class="px-4 py-2">Four days</td>
-              <td class="px-4 py-2">$1,575</td>
-            </tr>
-            <tr class="border-b">
-              <td class="px-4 py-2">Three days</td>
-              <td class="px-4 py-2">$1,425</td>
-            </tr>
-            <tr class="border-b last:border-b-0">
-              <td class="px-4 py-2">Two days</td>
-              <td class="px-4 py-2">$1,275</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </Feature12>
+    <TuitionRates />
   </div>
 </div>

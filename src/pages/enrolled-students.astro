@@ -4,7 +4,7 @@ import WelcomeEnrolled from "../components/WelcomeEnrolled.astro";
 import PreviewResources from "../components/preview-resources.astro";
 import PreviewHandbooks from "../components/preview-handbooks.astro";
 import PreviewForms from "../components/preview-forms.astro";
-import Cta10 from "../components/starwind-pro/cta-10/Cta10.astro";
+import PreviewTuition from "../components/preview-tuition.astro";
 import EnrolledLayout from "../layouts/EnrolledLayout.astro";
 ---
 
@@ -157,11 +157,7 @@ import EnrolledLayout from "../layouts/EnrolledLayout.astro";
 		</Prose>
 	</section>
 	<PreviewResources />
-	<Cta10
-		title="Tuition"
-		description="Rates, payment info, and other details for currently enrolled families."
-		primaryButton={{ text: "View Tuition", href: "/tuition" }}
-	/>
+	<PreviewTuition />
 	<PreviewHandbooks />
 	<PreviewForms />
 </EnrolledLayout>
