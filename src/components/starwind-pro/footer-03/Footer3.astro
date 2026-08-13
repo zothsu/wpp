@@ -87,6 +87,7 @@ const {
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
+const hasMiddleSlot = Astro.slots.has("middle");
 ---
 
 <footer class={footer3Styles({ class: className })} {...rest}>
@@ -131,6 +132,15 @@ const currentYear = new Date().getFullYear();
           }
         </div>
       </div>
+
+      <!-- Middle Slot (e.g. a login form) -->
+      {
+        hasMiddleSlot && (
+          <div class="flex w-full justify-center @lg:w-auto @lg:shrink-0 @lg:justify-start">
+            <slot name="middle" />
+          </div>
+        )
+      }
 
       <!-- Link Columns -->
       {

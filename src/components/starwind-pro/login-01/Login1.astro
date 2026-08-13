@@ -1,0 +1,97 @@
+---
+import { Button } from "@/components/starwind/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
+import { Input } from "@/components/starwind/input";
+import { Label } from "@/components/starwind/label";
+
+interface Props {
+  /** Render as a bare compact card (e.g. for placement inside the footer) instead of a full centered page section. */
+  compact?: boolean;
+  heading?: string;
+  description?: string;
+  showCreateAccount?: boolean;
+  createAccountLabel?: string;
+  createAccountHref?: string;
+}
+
+const {
+  compact = false,
+  heading = "Welcome Back",
+  description = "Sign in to access your premium benefits.",
+  showCreateAccount = true,
+  createAccountLabel = "Create Account",
+  createAccountHref = "/sign-up/",
+} = Astro.props;
+---
+
+<div class:list={[compact ? "w-full" : "container mx-auto flex items-center justify-center px-4 py-24"]}>
+  <Card class:list={[compact ? "w-full" : "w-full max-w-[380px]"]}>
+    <CardHeader>
+      <CardTitle>{heading}</CardTitle>
+      <CardDescription>{description}</CardDescription>
+    </CardHeader>
+    <form id="signin-form-01" name="signin-form">
+      <CardContent class="flex flex-col gap-4">
+        <div class="flex w-full flex-col gap-1">
+          <Label for="login-email-01">Email</Label>
+          <Input
+            type="email"
+            id="login-email-01"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="flex w-full flex-col gap-1">
+          <Label for="login-password-01">Password</Label>
+          <Input
+            type="password"
+            id="login-password-01"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+      </CardContent>
+      <CardFooter class:list={["mt-4 border-t-0 bg-transparent", showCreateAccount ? "justify-between" : "justify-end"]}>
+        {showCreateAccount && (
+          <Button type="button" variant="outline" href={createAccountHref}>{createAccountLabel}</Button>
+        )}
+        <Button type="submit" id="login-submit-btn-01">Sign In</Button>
+      </CardFooter>
+    </form>
+  </Card>
+</div>
+
+<script>
+  function handleFormSubmit() {
+    const form = document.querySelector("#signin-form-01") as HTMLFormElement;
+
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const formValues = Object.fromEntries(formData.entries());
+
+        // demo form data logging
+        console.log("Login form:", formValues);
+
+        // You can add additional logic here like:
+        // - Form validation
+        // - API submission
+        // - Success/error handling
+      });
+    }
+  }
+
+  handleFormSubmit();
+
+  document.addEventListener("astro:after-swap", handleFormSubmit);
+</script>

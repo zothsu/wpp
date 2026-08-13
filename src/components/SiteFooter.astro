@@ -1,6 +1,7 @@
 ---
 import IconPear from "../icons/pear.svg";
 import Footer3, { type FooterColumn } from "./starwind-pro/footer-03/Footer3.astro";
+import Login1 from "./starwind-pro/login-01/Login1.astro";
 
 interface Props {
 	/** Which portal this footer renders in. "about" covers wildpear.school
@@ -65,4 +66,16 @@ const columns: FooterColumn[] = portal === "enrolled" ? enrolledColumns : aboutC
 	columns={columns}
 	socialLinks={[]}
 	attributionLinks={[{ label: "Attributions", href: "/attributions" }]}
-/>
+>
+	{
+		portal !== "enrolled" && (
+			<Login1
+				slot="middle"
+				compact
+				heading="Family Login"
+				description="Sign in to access your enrolled family portal."
+				showCreateAccount={false}
+			/>
+		)
+	}
+</Footer3>
