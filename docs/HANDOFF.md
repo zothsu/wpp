@@ -6,14 +6,43 @@ in Quire** (project "WPP", https://quire.io/w/Z86504), not here. This file
 will go stale; Quire won't. Check Quire's "Website Design" and "CRM/Database"
 sections for what's actually open.
 
-## Where things stand (as of 2026-08-11 night)
+## Where things stand (as of 2026-08-13)
 
 **Website**: fully live on wildpear.school + enrolled.wildpear.school via the
-GitHub Actions deploy pipeline (push to `main` auto-deploys). Recent work:
-migrated the whole Starwind UI component library to its v2 registry (needed
-to add the `carousel` component - see the commit for what broke and how it
-was fixed), added a photo carousel + WelcomeMessage section to the homepage,
-gave Programs cards a hover effect.
+GitHub Actions deploy pipeline (push to `main` auto-deploys; local `main` is
+currently 1 commit ahead of `origin/main` - unpushed). Recent work:
+
+- Migrated the whole Starwind UI component library to its v2 registry (needed
+  to add the `carousel` component - see the commit for what broke and how it
+  was fixed), added a photo carousel + WelcomeMessage section to the
+  homepage, gave Programs cards a hover effect. (2026-08-11)
+- Added baseline security hardening: `public/.well-known/security.txt`
+  (RFC 9116) and `public/.htaccess` with HTTPS redirect, HSTS, and a CSP
+  audited against actual embeds (Google Maps + YouTube-nocookie only).
+  **Also fixed a real incident**: the CI deploy workflow's rsync
+  `--exclude` list was missing `crm/`, so `--delete` was wiping the
+  EspoCRM install out of `public_html` on every deploy. Fixed in the same
+  commit. (2026-08-12)
+- Forked Hero11 into a project-owned `HeroMain` component (badge dropped,
+  moved into the Welcome section as an intro line) specifically so it
+  won't get clobbered by future Starwind migrations the way things have
+  before. Also centered the "How to Enroll" step cards on mobile.
+  (2026-08-12)
+- Added `ApproachTeaser`, a bento-grid homepage section linking to anchored
+  sections on `/our-approach` (added stable `id`s to all 8 Feature10
+  theme sections for this). Gave the Welcome section its own full-bleed
+  green-900 background. (2026-08-12)
+- Fixed `Footer3`'s link-columns grid to size to the actual column count
+  instead of always reserving 3 (was leaving a big empty gap on the
+  enrolled portal, which only has 1 column). (2026-08-12)
+- Styled the Welcome section's tagline as an accent-bordered italic
+  blockquote; centered it and the Programs/ApproachTeaser section intros
+  to match how How to Enroll / Request a Tour already render. (2026-08-12)
+- Parameterized `WelcomeMessage` (heading/quote/body/signoff/signature
+  props, defaults preserve the homepage copy) and added a tailored Welcome
+  section to the enrolled-students calendar page. (2026-08-13)
+- Reordered the homepage so `Enrollment` renders before `PhotoCarousel`.
+  (2026-08-13, uncommitted-message commit "change layout")
 
 **CRM (EspoCRM)**: installed and running at crm.wildpear.school on the same
 Hostinger account (shared/Business hosting, LAMP - not Docker; Docker is
@@ -30,6 +59,9 @@ reserved for n8n on a separate Oracle Cloud VM, see
   per-child roster) and **Enrollment** (one record per submission, links to
   Kiddo). Full field list in `docs/espocrm-data-model.md` - this is the spec
   to build from, don't re-derive it.
+
+No CRM work has happened since 2026-08-11 (the 08-12/08-13 sessions were all
+website work) other than the deploy-wipe fix below.
 
 **Not yet done on the CRM**:
 
@@ -58,7 +90,15 @@ reserved for n8n on a separate Oracle Cloud VM, see
   the one component you ask for. It already caused one real outage (broke
   the homepage hero) before being fixed properly. If a future component add
   is needed, expect this and budget time to fix fallout, or ask the user
-  first given the blast radius.
+  first given the blast radius. `HeroMain` (forked from Hero11) was created
+  partly to get the homepage hero out from under this risk going forward -
+  it won't be touched by future `starwind add` migrations.
+- **The CI deploy's rsync `--exclude` list controls what survives on the
+  server.** It's easy to forget something there and have `--delete` wipe it
+  - this already happened once to the live EspoCRM install at
+  `public_html/crm/` (fixed 2026-08-12, `crm/` is now excluded). If you add
+  another out-of-band directory on the server, add it to the exclude list
+  in `.github/workflows/deploy.yml` / `scripts/split-deploy.mjs` too.
 - **Time tracking**: logged in Quire via `add_task_timelog` against specific
   tasks (not project-level or section-level - sections silently accept but
   never actually store timelogs, learned that one the hard way too). Ask the
