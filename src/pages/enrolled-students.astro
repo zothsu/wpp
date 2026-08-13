@@ -1,9 +1,9 @@
 ---
 import { Prose } from "../components/starwind/prose";
 import WelcomeEnrolled from "../components/WelcomeEnrolled.astro";
-import ResourcesPreview from "../components/ResourcesPreview.astro";
-import HandbooksPreview from "../components/HandbooksPreview.astro";
-import FormsPreview from "../components/FormsPreview.astro";
+import PreviewResources from "../components/preview-resources.astro";
+import PreviewHandbooks from "../components/preview-handbooks.astro";
+import PreviewForms from "../components/preview-forms.astro";
 import Cta10 from "../components/starwind-pro/cta-10/Cta10.astro";
 import EnrolledLayout from "../layouts/EnrolledLayout.astro";
 ---
@@ -156,12 +156,12 @@ import EnrolledLayout from "../layouts/EnrolledLayout.astro";
 			</section>
 		</Prose>
 	</section>
-	<ResourcesPreview />
+	<PreviewResources />
 	<Cta10
 		title="Tuition"
 		description="Rates, payment info, and other details for currently enrolled families."
 		primaryButton={{ text: "View Tuition", href: "/tuition" }}
 	/>
-	<HandbooksPreview />
-	<FormsPreview />
+	<PreviewHandbooks />
+	<PreviewForms />
 </EnrolledLayout>
