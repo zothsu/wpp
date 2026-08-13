@@ -19,6 +19,8 @@ interface Props extends HTMLAttributes<"section"> {
   tagline?: string;
   /** Section heading */
   heading?: string;
+  /** Optional description below the heading */
+  description?: string;
   /** Array of feature tabs */
   tabs?: FeatureTab[];
 }
@@ -30,6 +32,7 @@ const feature12Styles = tv({
 const {
   tagline = "Powerful Features",
   heading = "Everything you need to build amazing products",
+  description,
   tabs = [
     {
       id: "development",
@@ -49,10 +52,14 @@ const {
 
 <section class={feature12Styles({ class: className })} {...rest}>
   <div class="mb-16 text-center">
-    <div class="text-primary-accent mb-4 text-sm font-medium">
+    <div class="text-primary-accent mb-4 text-lg font-medium">
       {tagline}
     </div>
     <h2 class="mx-auto max-w-3xl">{heading}</h2>
+    {description && (
+      <p class="text-muted-foreground mx-auto mt-4 max-w-2xl text-pretty">{description}</p>
+    )}
+    <slot name="description" />
   </div>
 
   <Tabs defaultValue={tabs[0].id} class="w-full">

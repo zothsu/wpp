@@ -7,13 +7,38 @@ import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
 
 <Feature12
   tagline="2025 - 2026"
-  heading="Tuition Rates"
+  heading="Tuition Information"
   tabs={[
     { id: "sprouts", label: "Sprouts", icon: IconSeedling },
     { id: "preschool", label: "Preschool", icon: IconSchool },
   ]}
 >
-  <div slot="tab-sprouts" class="mx-auto max-w-md overflow-x-auto rounded-lg border">
+  <div slot="description" class="text-muted-foreground mx-auto mt-4 max-w-2xl space-y-3 text-left text-pretty">
+    <p>
+      <strong class="text-foreground font-semibold">Payment:</strong> Tuition is paid monthly
+      for the 9.5-month school year (early September through mid-June), due on the 15th of the
+      month before care is given, and stays the same regardless of illness, vacation, or
+      closures.
+    </p>
+    <p>
+      <strong class="text-foreground font-semibold">Included:</strong> Rates include meals,
+      snacks, sunscreen, and diapering supplies.
+    </p>
+    <p>
+      <strong class="text-foreground font-semibold">Assistance:</strong> We accept ERDC and
+      other subsidies, along with partial scholarships for families who qualify.
+    </p>
+    <p>
+      <strong class="text-foreground font-semibold">Hours:</strong> Monday through Friday,
+      7:30am to 5:30pm.
+    </p>
+    <p>
+      <strong class="text-foreground font-semibold">Changes:</strong> Changing or canceling a
+      schedule requires 30 days' written notice.
+    </p>
+  </div>
+
+  <div slot="tab-sprouts" class="mx-auto max-w-lg overflow-x-auto rounded-lg border">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b">
