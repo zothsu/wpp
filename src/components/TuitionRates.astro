@@ -1,17 +1,24 @@
 ---
 import IconSchool from "@tabler/icons/outline/school.svg";
 import IconSeedling from "@tabler/icons/outline/seedling.svg";
+import IconSun from "@tabler/icons/outline/sun.svg";
 
 import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
 ---
 
+<div id="tuition" class="@container mx-auto max-w-6xl px-4 pt-24 text-center">
+  <h2 class="sr-only">Tuition</h2>
+</div>
+
 <Feature12
   tagline="2025 - 2026"
   heading="Tuition Information"
+  headingLevel="h3"
   tabs={[
     { id: "sprouts", label: "Sprouts", icon: IconSeedling },
     { id: "preschool", label: "Preschool", icon: IconSchool },
   ]}
+  class="pt-0 pb-8"
 >
   <div slot="description" class="text-muted-foreground mx-auto mt-4 max-w-2xl space-y-3 text-left text-pretty">
     <p>
@@ -98,12 +105,14 @@ import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
 
 </Feature12>
 
-<div class="mx-auto mt-12 max-w-xl text-center">
-  <h3 class="font-heading text-3xl font-semibold md:text-4xl lg:text-5xl">Summer Camp Rates</h3>
-  <p class="text-muted-foreground mt-2 text-sm">
-    Camp runs 7:30am-3:00pm; aftercare available 3:00pm-5:00pm. All rates are per week.
-  </p>
-  <div class="mt-4 overflow-x-auto rounded-lg border text-left">
+<Feature12
+  heading="Summer Camp"
+  headingLevel="h3"
+  description="Camp runs 7:30am-3:00pm; aftercare available 3:00pm-5:00pm. All rates are per week."
+  tabs={[{ id: "summer-camp", label: "Summer Camp", icon: IconSun }]}
+  class="pt-8"
+>
+  <div slot="tab-summer-camp" class="mx-auto max-w-xl overflow-x-auto rounded-lg border">
     <table class="w-full text-sm">
       <thead>
         <tr class="border-b">
@@ -159,4 +168,4 @@ import Feature12 from "./starwind-pro/feature-12/Feature12.astro";
       </tbody>
     </table>
   </div>
-</div>
+</Feature12>

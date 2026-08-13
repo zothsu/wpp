@@ -21,6 +21,8 @@ interface Props extends HTMLAttributes<"section"> {
   heading?: string;
   /** Optional description below the heading */
   description?: string;
+  /** Heading tag for the section title. Use "h3" when nesting under another Feature12/h2 on the same page. */
+  headingLevel?: "h2" | "h3";
   /** Array of feature tabs */
   tabs?: FeatureTab[];
 }
@@ -30,9 +32,10 @@ const feature12Styles = tv({
 });
 
 const {
-  tagline = "Powerful Features",
+  tagline,
   heading = "Everything you need to build amazing products",
   description,
+  headingLevel = "h2",
   tabs = [
     {
       id: "development",
@@ -48,14 +51,25 @@ const {
   class: className,
   ...rest
 } = Astro.props;
+
+const HeadingTag = headingLevel;
 ---
 
 <section class={feature12Styles({ class: className })} {...rest}>
   <div class="mb-16 text-center">
-    <div class="text-primary-accent mb-4 text-lg font-medium">
-      {tagline}
-    </div>
-    <h2 class="mx-auto max-w-3xl">{heading}</h2>
+    {tagline && (
+      <div class="text-primary-accent mb-4 text-lg font-medium">
+        {tagline}
+      </div>
+    )}
+    <HeadingTag
+      class:list={[
+        "mx-auto max-w-3xl",
+        headingLevel === "h3" && "font-heading text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl",
+      ]}
+    >
+      {heading}
+    </HeadingTag>
     {description && (
       <p class="text-muted-foreground mx-auto mt-4 max-w-2xl text-pretty">{description}</p>
     )}
@@ -63,7 +77,10 @@ const {
   </div>
 
   <Tabs defaultValue={tabs[0].id} class="w-full">
-    <TabsList class="bg-muted/50 mx-auto mb-12 grid max-w-md @xs:w-full @xs:grid-cols-2">
+    <TabsList
+      class="bg-muted/50 mx-auto mb-12 grid max-w-md @xs:w-full"
+      style={`grid-template-columns: repeat(${tabs.length}, minmax(0, 1fr))`}
+    >
       {
         tabs.map((tab) => (
           <TabsTrigger value={tab.id} class="w-full gap-2">
