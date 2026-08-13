@@ -43,7 +43,12 @@ const {
       <CardTitle>{heading}</CardTitle>
       <CardDescription>{description}</CardDescription>
     </CardHeader>
-    <form id="signin-form-01" name="signin-form">
+    <form
+      id="signin-form-01"
+      name="signin-form"
+      data-shared-password={sharedPassword}
+      data-redirect-href={redirectHref}
+    >
       <CardContent class="flex flex-col gap-4">
         <div class="flex w-full flex-col gap-1">
           <Label for="login-password-01">Password</Label>
@@ -69,7 +74,7 @@ const {
   </Card>
 </div>
 
-<script define:vars={{ sharedPassword, redirectHref }}>
+<script>
   function handleFormSubmit() {
     const form = document.querySelector("#signin-form-01");
 
@@ -80,6 +85,8 @@ const {
         const password = formData.get("password");
         const errorEl = form.querySelector("#signin-error-01");
         const passwordInput = form.querySelector("#login-password-01");
+        const sharedPassword = form.dataset.sharedPassword;
+        const redirectHref = form.dataset.redirectHref;
 
         if (sharedPassword && password === sharedPassword) {
           errorEl?.classList.add("hidden");
