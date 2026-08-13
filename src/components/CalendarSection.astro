@@ -1,0 +1,77 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+
+const events = (await getCollection("calendarEvents")).sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime(),
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "numeric",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function formatEventDate(event: CollectionEntry<"calendarEvents">) {
+  if (event.data.dateDisplay) return event.data.dateDisplay;
+  if (event.data.endDate) {
+    return `${formatDate(event.data.date)} – ${formatDate(event.data.endDate)}`;
+  }
+  return formatDate(event.data.date);
+}
+
+function monthLabel(date: Date) {
+  return date.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
+}
+
+const groups: { label: string; events: CollectionEntry<"calendarEvents">[] }[] = [];
+for (const event of events) {
+  const label = monthLabel(event.data.date);
+  const lastGroup = groups.at(-1);
+  if (lastGroup?.label === label) {
+    lastGroup.events.push(event);
+  } else {
+    groups.push({ label, events: [event] });
+  }
+}
+
+const calendarId = "hello@wildpear.school";
+const calendarSrc = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(calendarId)}&ctz=${encodeURIComponent("America/Los_Angeles")}`;
+---
+
+<section class="@container mx-auto max-w-6xl px-4 py-16">
+  <h1 class="text-center">Wild Pear Calendar</h1>
+
+  <div class="mt-8 grid grid-cols-1 gap-8 @lg:grid-cols-4">
+    <div class="order-1 @lg:order-2 @lg:col-span-3">
+      <iframe
+        src={calendarSrc}
+        class="h-[500px] w-full rounded-lg border-0"
+        title="Wild Pear Google Calendar"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <div class="border-border order-2 max-h-[500px] overflow-y-auto rounded-lg border p-4 @lg:order-1 @lg:col-span-1">
+      {
+        groups.map((group) => (
+          <div class="mb-6 last:mb-0">
+            <h2 class="font-heading text-xl font-semibold">{group.label}</h2>
+            <dl class="mt-2 space-y-3">
+              {group.events.map((event) => (
+                <div>
+                  <dt class="text-primary-accent text-sm font-medium">
+                    {formatEventDate(event)}
+                  </dt>
+                  <dd class="text-muted-foreground text-sm">{event.data.label}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

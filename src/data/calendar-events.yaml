@@ -1,0 +1,145 @@
+# Wild Pear calendar events. `date` drives sorting and month grouping on the
+# enrolled-students page - keep it accurate. `endDate` is only for multi-day
+# ranges. `dateDisplay` overrides the programmatically-formatted date text
+# (used for the one TBD entry, where the exact day isn't known yet).
+- id: open-house
+  date: 2025-08-28
+  label: "Open House, 3-6pm"
+
+- id: labor-day-2025
+  date: 2025-09-01
+  label: "Closed: Labor Day"
+
+- id: slow-start-days
+  date: 2025-09-02
+  endDate: 2025-09-03
+  label: "Slow Start Days"
+
+- id: first-day-2025-2026
+  date: 2025-09-04
+  label: "First day of the 2025-2026 school year"
+
+- id: staff-meeting-2025-09-09
+  date: 2025-09-09
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: back-to-school-night
+  date: 2025-09-26
+  label: "Back to school night, 4:30-5:45p walk through and family dinner, 5:45-6:45p presentation"
+
+- id: indigenous-peoples-day
+  date: 2025-10-13
+  label: "Closed: Indigenous Peoples' Day"
+
+- id: staff-meeting-2025-10-14
+  date: 2025-10-14
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: pumpkin-patch-trip
+  date: 2025-10-24
+  label: "Closed at 2:30: Pumpkin Patch Family Trip, 3-5p"
+
+- id: staff-meeting-2025-11-11
+  date: 2025-11-11
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: family-conferences-2025-11-26
+  date: 2025-11-26
+  label: "Closed: Family Conferences"
+
+- id: fall-break
+  date: 2025-11-27
+  endDate: 2025-11-28
+  label: "Closed: Fall Break"
+
+- id: parents-night-out
+  date: 2025-12-05
+  label: "Parent's Night Out, 5:00-8:00p"
+
+- id: staff-meeting-2025-12-09
+  date: 2025-12-09
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: winter-break-2025
+  date: 2025-12-22
+  endDate: 2025-12-31
+  label: "Closed for Winter Break"
+
+- id: winter-break-2026
+  date: 2026-01-01
+  endDate: 2026-01-02
+  label: "Closed for Winter Break"
+
+- id: staff-meeting-2026-01-13
+  date: 2026-01-13
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: mlk-day
+  date: 2026-01-19
+  label: "Closed: Martin Luther King Jr. Day"
+
+- id: staff-meeting-2026-02-10
+  date: 2026-02-10
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: presidents-day
+  date: 2026-02-16
+  label: "Closed: President's Day"
+
+- id: inservice
+  date: 2026-02-23
+  endDate: 2026-02-24
+  label: "Closed: Inservice"
+
+- id: staff-meeting-2026-03-10
+  date: 2026-03-10
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: spring-break
+  date: 2026-03-23
+  endDate: 2026-03-27
+  label: "Closed for Spring Break"
+
+- id: staff-meeting-2026-04-14
+  date: 2026-04-14
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: family-conferences-2026-04-15
+  date: 2026-04-15
+  label: "Closed: Family Conferences"
+
+- id: staff-meeting-2026-05-12
+  date: 2026-05-12
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: spring-fling
+  date: 2026-05-16
+  label: "Spring Fling, time TBD"
+
+- id: memorial-day
+  date: 2026-05-25
+  label: "Closed: Memorial Day"
+
+- id: staff-meeting-2026-06-09
+  date: 2026-06-09
+  label: "Closed at 3:00: Staff Meeting"
+
+- id: last-day-2025-2026
+  date: 2026-06-12
+  label: "Last day of the school year"
+
+- id: campfire-night
+  date: 2026-06-12
+  label: "Campfire Night, 5-7pm"
+
+- id: summer-camp-begins
+  date: 2026-06-22
+  label: "School Age Summer Camp begins"
+
+# Exact date TBD - originally mislabeled "July 2025" on the site, but it's
+# listed after all the 2025-2026 school year's June 2026 events end, so this
+# is the summer 2026 camping trip.
+- id: camping-trip
+  date: 2026-07-01
+  dateDisplay: "TBD"
+  label: "Wild Pear Camping Trip"
