@@ -12,13 +12,7 @@ interface Props {
 const { title } = Astro.props;
 
 const links: NavLink[] = [
-	{
-		label: "Forms",
-		children: [
-			{ label: "Summer Camp Enrollment", href: "/forms/enrollment-summer" },
-			{ label: "Sprouts Enrollment", href: "/forms/enrollment-sprouts" },
-		],
-	},
+	{ label: "Forms", href: "/enrolled-students#forms" },
 	{
 		label: "Handbooks",
 		children: [

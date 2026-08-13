@@ -1,0 +1,65 @@
+---
+interface Handbook {
+  title: string;
+  tagline: string;
+  href: string;
+}
+
+const handbooks: Handbook[] = [
+  {
+    title: "Infant & Toddler (Sprouts) Handbook",
+    tagline: "For families in our Infant & Toddler program.",
+    href: "/handbooks/infant-toddler",
+  },
+  {
+    title: "Preschool Handbook",
+    tagline: "For families in our Preschool program.",
+    href: "/handbooks/preschool",
+  },
+  {
+    title: "School Age Summer Camp Handbook",
+    tagline: "For families joining us for summer camp.",
+    href: "/handbooks/summer-camp",
+  },
+];
+---
+
+<section id="handbooks" class="@container mx-auto max-w-6xl px-4 py-24">
+  <div class="text-center">
+    <h2>Handbooks</h2>
+    <p class="text-muted-foreground mt-4 text-pretty">
+      Each program has its own handbook. Find the one that matches your child's program below.
+    </p>
+  </div>
+
+  <ul class="mt-12 grid gap-6 @xl:grid-cols-3">
+    {
+      handbooks.map((handbook) => (
+        <li>
+          <a
+            href={handbook.href}
+            class="group border-4 border-transparent bg-muted relative block aspect-3/4 overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:border-primary-accent"
+          >
+            <div class="flex h-full w-full items-center justify-center p-10">
+              <img
+                src="/images/handbook.svg"
+                alt=""
+                aria-hidden="true"
+                width="1280"
+                height="660"
+                class="w-full invert"
+              />
+            </div>
+            <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+            <div class="absolute inset-x-0 bottom-0 p-6">
+              <p class="text-sm font-medium text-white/70">{handbook.tagline}</p>
+              <h3 class="mt-2 text-xl font-semibold text-white">
+                {handbook.title}
+              </h3>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

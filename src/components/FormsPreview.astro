@@ -1,0 +1,55 @@
+---
+import IconForms from "@tabler/icons/outline/forms.svg";
+
+interface EnrollmentForm {
+  title: string;
+  tagline: string;
+  href: string;
+}
+
+const forms: EnrollmentForm[] = [
+  {
+    title: "Summer Camp Enrollment",
+    tagline: "For School Age Summer Camp families.",
+    href: "/forms/enrollment-summer",
+  },
+  {
+    title: "Sprouts Enrollment",
+    tagline: "For Infant & Toddler families.",
+    href: "/forms/enrollment-sprouts",
+  },
+];
+---
+
+<section id="forms" class="@container mx-auto max-w-6xl px-4 py-24">
+  <div class="text-center">
+    <h2>Forms</h2>
+    <p class="text-muted-foreground mt-4 text-pretty">
+      Enrollment forms for new or returning programs.
+    </p>
+  </div>
+
+  <ul class="mt-12 grid gap-6 @lg:grid-cols-2">
+    {
+      forms.map((form) => (
+        <li>
+          <a
+            href={form.href}
+            class="group border-4 border-transparent bg-muted relative block aspect-3/4 overflow-hidden rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:border-primary-accent @lg:aspect-16/10"
+          >
+            <div class="flex h-full w-full items-center justify-center p-10">
+              <IconForms class="text-white/90 size-24" />
+            </div>
+            <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+            <div class="absolute inset-x-0 bottom-0 p-6">
+              <p class="text-sm font-medium text-white/70">{form.tagline}</p>
+              <h3 class="mt-2 text-xl font-semibold text-white">
+                {form.title}
+              </h3>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
