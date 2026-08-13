@@ -30,7 +30,15 @@ if (!existsSync(distDir)) {
 
 // Static assets and files with no portal-specific content: copied to every
 // target so each subdomain is a fully self-contained deploy.
-const sharedAssets = ["_astro", "favicon.svg", "favicon_io", "images", ".well-known", ".htaccess"];
+const sharedAssets = [
+	"_astro",
+	"favicon.svg",
+	"favicon_io",
+	"images",
+	"scripts",
+	".well-known",
+	".htaccess",
+];
 
 // Page routes (dist/<route>/) duplicated onto every target - legal pages
 // need to exist standalone on each subdomain since there are no cross-portal
