@@ -1,9 +1,14 @@
 ---
 import { Prose } from "../components/starwind/prose";
+import WelcomeMessage from "../components/WelcomeMessage.astro";
 import EnrolledLayout from "../layouts/EnrolledLayout.astro";
 ---
 
 <EnrolledLayout title="Enrolled Students | Wild Pear Preschool & Summer Camp">
+	<WelcomeMessage
+		heading="Welcome, Wild Pear Families!"
+		body="This is your home base for everything happening at Wild Pear this year — handbooks, forms, tuition, and what's coming up on the calendar. If you ever have questions, we're just a message away."
+	/>
 	<section class="mx-auto max-w-3xl px-4 py-16">
 		<h1>Wild Pear Calendar</h1>
 		<Prose class="mt-4">
