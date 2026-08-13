@@ -46,7 +46,6 @@ const aboutColumns: FooterColumn[] = [
 ];
 
 const enrolledColumns: FooterColumn[] = [
-	...aboutColumns,
 	{
 		title: "Currently Enrolled Student(s)",
 		links: [
@@ -57,20 +56,29 @@ const enrolledColumns: FooterColumn[] = [
 			{ label: "Resources", href: "/resources" },
 		],
 	},
+	...aboutColumns,
 ];
 
 const columns: FooterColumn[] = portal === "enrolled" ? enrolledColumns : aboutColumns;
 ---
 
-<Footer3
-	companyName="Wild Pear Preschool & Summer Camp"
-	description="Your family will be accepted and valued at Wild Pear Preschool regardless of you or your child's race, religion, gender, ability, orientation, class, country of origin, immigration status, language, or education level. We respect all family structures; whether you are connected by blood, or law, or love alone, you are welcome here."
-	logoIcon={IconPear}
-	columns={columns}
-	socialLinks={[]}
->
-	{
-		portal !== "enrolled" && (
+{
+	portal === "enrolled" ? (
+		<Footer3
+			companyName="Wild Pear Preschool & Summer Camp"
+			description="Your family will be accepted and valued at Wild Pear Preschool regardless of you or your child's race, religion, gender, ability, orientation, class, country of origin, immigration status, language, or education level. We respect all family structures; whether you are connected by blood, or law, or love alone, you are welcome here."
+			logoIcon={IconPear}
+			columns={columns}
+			socialLinks={[]}
+		/>
+	) : (
+		<Footer3
+			companyName="Wild Pear Preschool & Summer Camp"
+			description="Your family will be accepted and valued at Wild Pear Preschool regardless of you or your child's race, religion, gender, ability, orientation, class, country of origin, immigration status, language, or education level. We respect all family structures; whether you are connected by blood, or law, or love alone, you are welcome here."
+			logoIcon={IconPear}
+			columns={columns}
+			socialLinks={[]}
+		>
 			<Popover slot="middle" class="flex w-full justify-center">
 				<PopoverTrigger asChild>
 					<Button variant="accent" size="lg" class="min-h-14 h-auto w-4/5 py-3 text-center">
@@ -91,6 +99,6 @@ const columns: FooterColumn[] = portal === "enrolled" ? enrolledColumns : aboutC
 					/>
 				</PopoverContent>
 			</Popover>
-		)
-	}
-</Footer3>
+		</Footer3>
+	)
+}
