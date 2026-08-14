@@ -117,8 +117,8 @@
     line-height: 2.5rem;
   }
   h2 {
-    font-size: 1.875rem; /* text-3xl */
-    line-height: 2.25rem;
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem;
   }
   @media (min-width: 48rem) {
     h1 {
@@ -126,8 +126,8 @@
       line-height: 1;
     }
     h2 {
-      font-size: 2.25rem; /* text-4xl */
-      line-height: 2.5rem;
+      font-size: 3rem; /* text-5xl */
+      line-height: 1;
     }
   }
   @media (min-width: 64rem) {
@@ -136,7 +136,7 @@
       line-height: 1;
     }
     h2 {
-      font-size: 3rem; /* text-5xl */
+      font-size: 4rem;
       line-height: 1;
     }
   }
