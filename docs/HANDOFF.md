@@ -6,43 +6,80 @@ in Quire** (project "WPP", https://quire.io/w/Z86504), not here. This file
 will go stale; Quire won't. Check Quire's "Website Design" and "CRM/Database"
 sections for what's actually open.
 
-## Where things stand (as of 2026-08-13)
+## Where things stand (as of 2026-08-13 night)
 
 **Website**: fully live on wildpear.school + enrolled.wildpear.school via the
-GitHub Actions deploy pipeline (push to `main` auto-deploys; local `main` is
-currently 1 commit ahead of `origin/main` - unpushed). Recent work:
+GitHub Actions deploy pipeline (push to `main` auto-deploys). Local `main` and
+`origin/main` are in sync, everything through this note is pushed and
+deployed. Recent work, most-recent first:
 
-- Migrated the whole Starwind UI component library to its v2 registry (needed
-  to add the `carousel` component - see the commit for what broke and how it
-  was fixed), added a photo carousel + WelcomeMessage section to the
-  homepage, gave Programs cards a hover effect. (2026-08-11)
+- **Found and fixed a sitewide production bug**: Astro keeps single-use
+  component `<script>` tags inline in the built HTML by default (this is
+  independent of `define:vars` - a plain `<script>` with no `src` gets
+  inlined too if it's only used on one page/component). The production CSP
+  (`script-src 'self'`, no `unsafe-inline`) silently blocks every inline
+  script, so anything working in `astro dev` (which never enforces the
+  `.htaccess` CSP) could be silently broken in production. This turned out
+  to explain two separate-looking bug reports as one root cause: the
+  footer login form doing nothing, and `Navbar4`'s scroll/reveal styling
+  never applying (reported as "navbar disappeared on the homepage" /
+  "lost its background on the enrolled portal" - the nav was rendering
+  fine, just permanently stuck in its pre-scroll/pre-reveal state since
+  the script that flips `data-scrolled`/`data-revealed` never ran).
+  Audited every built page (`npm run build` + grep `dist/**/*.html` for
+  inline `<script type="module">`) and found 8 total affected components.
+  **Fix pattern**: move the script's logic to a plain file under
+  `public/scripts/*.js` (stripping TS-only syntax - it's not processed
+  through Astro/esbuild anymore) and reference it with
+  `<script is:inline src="/scripts/name.js">`. `is:inline` is required -
+  without it, Astro still intercepts even a `src`-attributed tag. See the
+  README's "A note on `<script>` tags" section for the short version, and
+  the 08-13 commits from "Fix login form..." through "Fix every remaining
+  CSP-blocked inline script sitewide" for the full incident.
+  Also fixed along the way: the shared login password (now `pass`,
+  was `changeme`), the login's redirect target (was a relative
+  `/enrolled-students` path resolving against the wrong domain, now
+  `https://enrolled.wildpear.school/`), and a related deploy bug where the
+  new `public/scripts/` directory was silently dropped by
+  `split-deploy.mjs`'s asset allowlist - same failure class as the `crm/`
+  rsync-exclude incident below, now flagged explicitly in that file's
+  comments.
+- Rebuilt `/enrolled-students` from a single hardcoded calendar page into
+  a full portal hub: `ResourcesPreview`, `HandbooksPreview`, `FormsPreview`
+  (Programs-card-style teasers), and `TuitionRates` (Sprouts/Preschool
+  tabs + a separate Summer Camp rates block), all anchor-linked from the
+  enrolled-portal nav instead of dropdowns/standalone pages. Replaced the
+  hardcoded calendar list with a `calendarEvents` Astro content collection
+  (`src/content.config.ts` + `src/data/calendar-events.yaml`) rendered
+  next to a native Google Calendar embed (`hello@wildpear.school` - a
+  freshly-created calendar, currently empty; the scrollable list is
+  separate hand-maintained data and already has the real 2025-2026 dates).
+- Added the `@starwind-pro/login-01` block as a "Family Login" popover in
+  the main site's footer (client-side shared-password gate only - not
+  real auth, see the security note in `Login1.astro`'s props). Migrated
+  Starwind to v3 first (confirmed safe: `starwind migrate` found nothing
+  to convert, the project's config was already Runtime-based).
+- Replaced the footer's Privacy Policy/Terms/Attributions links with an
+  accessibility statement (mailto, no visible email address - the user
+  has a standing preference against exposing raw phone/email on the site,
+  contact form only).
+- Removed a gradient-clip-text effect from the homepage h1 (it was fading
+  to 70% opacity at the bottom, reading dimmer than the surrounding UI).
+- Forked `WelcomeMessage` into `WelcomeHomepage` and `WelcomeEnrolled` so
+  the two no longer share one prop-threaded component.
 - Added baseline security hardening: `public/.well-known/security.txt`
   (RFC 9116) and `public/.htaccess` with HTTPS redirect, HSTS, and a CSP
-  audited against actual embeds (Google Maps + YouTube-nocookie only).
-  **Also fixed a real incident**: the CI deploy workflow's rsync
-  `--exclude` list was missing `crm/`, so `--delete` was wiping the
-  EspoCRM install out of `public_html` on every deploy. Fixed in the same
-  commit. (2026-08-12)
-- Forked Hero11 into a project-owned `HeroMain` component (badge dropped,
-  moved into the Welcome section as an intro line) specifically so it
-  won't get clobbered by future Starwind migrations the way things have
-  before. Also centered the "How to Enroll" step cards on mobile.
-  (2026-08-12)
-- Added `ApproachTeaser`, a bento-grid homepage section linking to anchored
-  sections on `/our-approach` (added stable `id`s to all 8 Feature10
-  theme sections for this). Gave the Welcome section its own full-bleed
-  green-900 background. (2026-08-12)
-- Fixed `Footer3`'s link-columns grid to size to the actual column count
-  instead of always reserving 3 (was leaving a big empty gap on the
-  enrolled portal, which only has 1 column). (2026-08-12)
-- Styled the Welcome section's tagline as an accent-bordered italic
-  blockquote; centered it and the Programs/ApproachTeaser section intros
-  to match how How to Enroll / Request a Tour already render. (2026-08-12)
-- Parameterized `WelcomeMessage` (heading/quote/body/signoff/signature
-  props, defaults preserve the homepage copy) and added a tailored Welcome
-  section to the enrolled-students calendar page. (2026-08-13)
-- Reordered the homepage so `Enrollment` renders before `PhotoCarousel`.
-  (2026-08-13, uncommitted-message commit "change layout")
+  audited against actual embeds. **Also fixed a real incident**: the CI
+  deploy workflow's rsync `--exclude` list was missing `crm/`, so
+  `--delete` was wiping the EspoCRM install out of `public_html` on every
+  deploy. (2026-08-12)
+- Forked Hero11 into a project-owned `HeroMain` component specifically so
+  it won't get clobbered by future Starwind migrations. (2026-08-12)
+- Added `ApproachTeaser`, a bento-grid homepage section linking to
+  anchored sections on `/our-approach`. (2026-08-12)
+
+Full day-by-day detail (including 08-10 and 08-11, not summarized above)
+is in `WORK_LOG.md`.
 
 **CRM (EspoCRM)**: installed and running at crm.wildpear.school on the same
 Hostinger account (shared/Business hosting, LAMP - not Docker; Docker is
@@ -99,6 +136,23 @@ website work) other than the deploy-wipe fix below.
   `public_html/crm/` (fixed 2026-08-12, `crm/` is now excluded). If you add
   another out-of-band directory on the server, add it to the exclude list
   in `.github/workflows/deploy.yml` / `scripts/split-deploy.mjs` too.
+- **Any interactive `<script>` in a `.astro` component needs
+  `is:inline src="/scripts/your-file.js"` pointing at a real file under
+  `public/scripts/`, not a plain inline `<script>` block.** Astro keeps
+  single-use component scripts inline in the built HTML by default
+  (`define:vars` isn't the deciding factor - even a plain script gets
+  inlined), and the production CSP blocks all inline scripts. This one bit
+  8 different components before it was caught (2026-08-13) - see the
+  README's "A note on `<script>` tags" section for the full pattern. Test
+  a new interactive component against the actual deployed site, not just
+  `astro dev` - dev never enforces `.htaccess`, so this class of bug is
+  invisible locally.
+- **`scripts/split-deploy.mjs`'s `sharedAssets` array is a separate
+  allowlist from the rsync `--exclude` list above** - it controls which
+  top-level `dist/` folders get copied into each portal's `deploy/`
+  output in the first place. A new static asset directory (like
+  `public/scripts/`, added 2026-08-13) needs to be added here too, or it
+  silently won't ship at all, independent of the rsync gotcha.
 - **Time tracking**: logged in Quire via `add_task_timelog` against specific
   tasks (not project-level or section-level - sections silently accept but
   never actually store timelogs, learned that one the hard way too). Ask the

@@ -11,7 +11,11 @@ Tracks working sessions on this project — when, how long, and what got done �
 | 2026-08-06 | ~1:00 PM – 5:30 PM, ~8:00 PM – 10:00 PM | ~6.5 hrs | See breakdown below.                                                                                                                                                                                        |
 | 2026-08-07 | ~9:45 AM – 1:40 PM   | ~4 hrs               | See breakdown below.                                                                                                                                                                                        |
 | 2026-08-08 | ~11:15 AM – 11:35 AM, ~4:00 PM – 7:30 PM | ~4.5 hrs | See breakdown below.                                                                                                                                                                                        |
-| 2026-08-09 | ~11:45 AM – (in progress) | TBD | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-09 | ~11:45 AM start noted, no commits found | unknown | Session started per an earlier note in this log, but no commits exist for this date - can't reconstruct what happened. Flagging rather than dropping the row; adjust/remove when the actual time is known. |
+| 2026-08-10 | ~2:00 PM – 4:40 PM, ~7:20 PM – 9:15 PM | ~4.5 hrs | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-11 | ~12:15 PM – 1:25 PM, ~10:15 PM – 10:30 PM+ | ~1.25 hrs of commits, plus an EspoCRM install/config session that night with no corresponding commits (server-side work) - see handoff doc for that portion | See breakdown below. |
+| 2026-08-12 | ~3:30 PM – 5:10 PM | ~1.5 hrs | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-13 | ~9:25 AM – 4:45 PM | ~7.5 hrs | See breakdown below.                                                                                                                                                                                        |
 
 ## 2026-08-05 session detail
 
@@ -69,3 +73,43 @@ Tracks working sessions on this project — when, how long, and what got done �
 - Extracted a dedicated `SignupNewsletter` component instead of overloading the shared `Cta10` component with an opt-in email-capture form (which would have affected 3 other pages using `Cta10` as a plain link button).
 - Added a third "Dates" highlight (September - June) to the Preschool and Infant/Toddler program pages; renamed "Cost" to "Tuition" in the summer camp heading; cleaned up leftover copy-pasted content on the Preschool page.
 - Restructured handbook content: moved winter weather into an `AlertWarning` callout, removed irrelevant summer-camp/summer-weather mentions from the shared Preschool/Sprouts content, converted both daily schedules from prose into Time/Activity tables, and gave the `/handbooks` hub cards a background treatment.
+
+## 2026-08-10 session detail
+
+- Split the site into two independent portals with a chooser homepage (later folded back into one on 08-11 - see below); this landed via PR #1 on the `worktree-two-portal-split` branch.
+- Renamed the prospective-parent subdomain from `lookingat` to `learn`.
+- Set the sitewide body default font size to 18px and removed now-redundant `text-lg` overrides scattered across components.
+- Switched the homepage hero's heading/badge/button text to fluid `clamp()` sizing instead of fixed breakpoint steps; iterated on hero height (capped at 80vh, then restored to full-screen), badge/heading spacing, and button padding to match the larger fluid text.
+- Styled the primary hero button's hover as solid accent-orange with white text, and increased the secondary button's hover opacity.
+- Fixed Footer3: removed a stray `min-h-screen` so it sizes to its actual content instead of always filling the viewport, fixed a missing space before the "&" in the company name, and made the brand column span full width and center when there are no link columns.
+- Made "All rights reserved." break onto its own line on small screens.
+- Added the GitHub Actions workflow that auto-deploys to Hostinger on every push to `main` - this is the deploy pipeline everything since has shipped through.
+
+## 2026-08-11 session detail
+
+- Folded the `learn.wildpear.school` deploy target back into `wildpear.school` and simplified `SiteFooter` to a single default portal - reversing the two-portal split from the day before in favor of merging the `learn-about-us` content straight into the homepage.
+- Added a `WelcomeMessage` component and wired it into the homepage below the hero; styled it (dropped its image, widened and justified the text, added a signature line in a new `--font-signature` token).
+- Upgraded the whole Starwind UI component library to its v2 registry (needed to add the `carousel` component), added a photo carousel to the homepage below the welcome message, and gave the Programs cards a hover effect (scale up, accent border).
+- Untracked a stray `.claude/worktrees/two-portal-split` gitlink that had been accidentally committed.
+- That evening (~10:15-10:30pm+, no corresponding commits since this was server-side infrastructure, not repo changes): installed and configured EspoCRM at `crm.wildpear.school` on the same Hostinger account - MySQL database + user provisioned, PHP/permissions verified, cron job installed, admin login fixed, and designed the Kiddo/Enrollment custom-entity data model (documented in `docs/espocrm-data-model.md`). Wrote up `docs/HANDOFF.md` at the end of the session to capture all of this before it went stale.
+
+## 2026-08-12 session detail
+
+- Added baseline security hardening: `public/.well-known/security.txt` (RFC 9116) and `public/.htaccess` with an HTTPS redirect, HSTS, and a CSP audited against actual embeds (Google Maps + YouTube-nocookie). Also fixed a real incident in the same commit: the CI deploy's rsync `--exclude` list was missing `crm/`, so `--delete` had been wiping the live EspoCRM install on every deploy.
+- Homepage hero/enrollment tweaks: dropped the hero badge (folded its copy into the Welcome section as an intro line instead), centered the "How to Enroll" step cards on mobile.
+- Added `ApproachTeaser`, a bento-grid homepage section linking to anchored sections on `/our-approach` (added stable `id`s to all 8 Feature10 theme sections for this); gave the Welcome section its own full-bleed green-900 background.
+- Fixed `Footer3`'s link-columns grid to size to the actual column count instead of always reserving 3 (was leaving a large empty gap on the enrolled portal, which only had 1 column at the time).
+- Styled the Welcome section's tagline as an accent-bordered italic blockquote; centered it and the Programs/ApproachTeaser section intros to match how How to Enroll / Request a Tour already rendered.
+
+## 2026-08-13 session detail
+
+The big one - most of a full workday, almost entirely on the enrolled-student portal and a sitewide production bug.
+
+- Forked `WelcomeMessage` into two independent components - `WelcomeHomepage` (homepage, copy unchanged) and `WelcomeEnrolled` (enrolled portal, own photo + copy) - instead of one shared component threading props through both.
+- Migrated Starwind UI to v3 (confirmed low-risk first: `starwind migrate` reported the project was already on the Runtime-based config, so nothing needed converting) and installed the free `@starwind-pro/login-01` block for a "sign in" popover in the main site's footer. Iterated through several UI directions per feedback before landing on the final one: a Sheet (slide-in drawer) was tried and rejected for feeling too heavy, replaced with a Popover (fade/zoom, anchored to the trigger button) instead. Added a global `prefers-reduced-motion` CSS rule while in there, since the animation library in use didn't respect it.
+- Replaced the footer's Privacy Policy/Terms/Attributions links with an accessibility statement (mailto link, no visible email address per a standing preference against exposing raw contact info on the site).
+- Rebuilt `/enrolled-students` from a single hardcoded calendar page into a full portal hub: added `ResourcesPreview` (bento layout, 2 image cards using cached `og:image`s + 2 icon cards, plus a 5th full-width card added mid-session), `HandbooksPreview` and `FormsPreview` (Programs-card-style teasers linking to the real pages), and a `TuitionRates` section (Sprouts/Preschool tabs plus a separate Summer Camp rates block with real per-group weekly pricing). Went through several rounds of copy/spacing/heading-level iteration on the tuition section in particular, including a heading-hierarchy fix for accessibility (wrapped "Tuition Information" and "Summer Camp" under one shared, screen-reader-only `h2` "Tuition" instead of two disconnected top-level headings).
+- Wired all four enrolled-portal nav items (Forms, Handbooks, Tuition, Resources) to anchor-link straight to their preview sections on the hub page instead of dropdown menus or standalone pages.
+- Replaced the hardcoded calendar `<dl>` block with a proper `calendarEvents` Astro content collection (`src/content.config.ts` + `src/data/calendar-events.yaml`, one entry per event) rendered as a scrollable, programmatically-sorted/grouped list, side by side with a native Google Calendar iframe embed (`hello@wildpear.school`). Caught and fixed a real content bug in the process: the last entry's "July 2025" section heading was actually July 2026 (positioned after that school year's June 2026 events).
+- Removed a gradient-clip-text effect from the homepage h1 (was fading to 70% opacity, reading dimmer than the surrounding solid-white UI).
+- **Diagnosed and fixed a sitewide production bug**: the login form worked locally but not in production; traced it to the production CSP (`script-src 'self'`, no `unsafe-inline`) silently blocking Astro's default behavior of keeping single-use component `<script>` tags inline in the built HTML. First fix attempt (dropping `define:vars`) didn't actually work - confirmed via the live site that Astro inlines these regardless. Real fix: extract to `public/scripts/*.js` + `<script is:inline src="...">`, which is the only way to get Astro to emit the tag completely untouched. Once the pattern was confirmed, audited every built page for the same issue and found 7 more affected components - notably `Navbar4`'s scroll/reveal script, which explained a second bug report ("navbar disappeared on the homepage / lost its background on the enrolled portal") as the same root cause, not a separate issue. Also fixed the login's shared password and its redirect target (was a relative path resolving to the wrong domain instead of `enrolled.wildpear.school`), and a related deploy bug where the new `public/scripts/` directory had been silently dropped by `split-deploy.mjs`'s asset allowlist (same failure class as the `crm/` rsync-exclude incident from 08-12).
