@@ -47,3 +47,24 @@ doesn't fit a real enrollment workflow, and it isn't open source.
 The Astro form is being built first with a **stubbed submit** (logs to
 console / no-op), independent of the backend. The webhook URL gets swapped in
 once n8n is live. See the todo list for sequencing.
+
+## reCAPTCHA (2026-08-14)
+
+Not part of this form, but the same webhook pattern: the **contact form**
+(`src/components/form-contactus.astro`) now has a reCAPTCHA v2 checkbox,
+wired client-side only, ahead of n8n existing.
+
+- Keys in `.env.local`: `PUBLIC_RECAPTCHA_SITE_KEY` (used client-side,
+  first `import.meta.env` usage in this repo) and `RECAPTCHA_SECRET_KEY`
+  (unused for now - no server here to verify it).
+- `public/scripts/contact-us-form.js` blocks the stub submit until the
+  widget is solved.
+- `public/.htaccess` CSP opened up for `google.com`/`gstatic.com`/
+  `recaptcha.google.com`.
+- `n8n/contact-form-recaptcha-verify.json`: ready-to-import workflow
+  (webhook -> Google `siteverify` -> success/failure branch). Success
+  branch just returns 200 for now; actually delivering the message (email
+  and/or EspoCRM record) isn't built yet.
+
+Remaining once n8n exists: point the contact form's stub `fetch()` at the
+real webhook, and import the workflow above.

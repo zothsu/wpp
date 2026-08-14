@@ -51,6 +51,8 @@ const {
 	class: className,
 	...rest
 } = Astro.props;
+
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
 <section class={sectionStyles({ class: className })} {...rest}>
@@ -242,6 +244,13 @@ const {
 							</RadioGroup>
 						</div>
 
+						<div class="flex flex-col gap-1">
+							<div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
+							<p id="recaptcha-error-us" class="text-error hidden text-sm" role="alert">
+								Please confirm you're not a robot before sending your message.
+							</p>
+						</div>
+
 						<Button variant="accent" type="submit" class="w-full"> Send Message </Button>
 					</form>
 				</CardContent>
@@ -250,4 +259,5 @@ const {
 	</div>
 </section>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script is:inline src="/scripts/contact-us-form.js"></script>
