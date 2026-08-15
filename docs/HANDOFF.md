@@ -6,13 +6,52 @@ in Quire** (project "WPP", https://quire.io/w/Z86504), not here. This file
 will go stale; Quire won't. Check Quire's "Website Design" and "CRM/Database"
 sections for what's actually open.
 
-## Where things stand (as of 2026-08-13 night)
+## Where things stand (as of 2026-08-15 evening)
 
 **Website**: fully live on wildpear.school + enrolled.wildpear.school via the
 GitHub Actions deploy pipeline (push to `main` auto-deploys). Local `main` and
-`origin/main` are in sync, everything through this note is pushed and
-deployed. Recent work, most-recent first:
+`origin/main` are in sync through 2026-08-13; the 2026-08-14 reCAPTCHA/n8n
+work and today's (2026-08-15) fixes below are not yet committed/pushed as of
+this note. Recent work, most-recent first:
 
+- **n8n is live, but not where originally planned.** It was going to run on
+  an Oracle Cloud Always Free VM; that box became unresponsive after a
+  reboot (1GB RAM wasn't enough for n8n + Caddy to restart together without
+  pegging the CPU hard enough that even SSH stopped responding). Moved
+  instead to a Hostinger KVM 1 VPS (4GB RAM, id `1905094`,
+  `srv1905094.hstgr.cloud` / `2.25.108.161`), deployed and firewalled via the
+  `hostinger-vps` MCP tools. n8n + Caddy run there as a Docker Compose
+  project at `/docker/n8n/` (`docker-compose.yml` + `.env` for secrets -
+  `N8N_ENCRYPTION_KEY` and `RECAPTCHA_SECRET_KEY` are both set there).
+  `docker exec -it n8n-n8n-1 n8n user-management:reset` is the escape hatch
+  if the owner login is ever lost - forces first-time setup again without
+  touching existing workflows. Full writeup in
+  `docs/enrollment-form-plan.md`.
+- **Contact form is wired to n8n end-to-end but has an open bug.** reCAPTCHA
+  v2 (checkbox) was added to `form-contactus.astro`, `public/scripts/contact-us-form.js`
+  posts to `https://n8n.wildpear.school/webhook/contact-form`, and the
+  imported workflow (`n8n/contact-form-recaptcha-verify.json`) is active and
+  correctly wired (confirmed live in the n8n editor: webhook -> Verify
+  reCAPTCHA -> If -> Respond Success / Respond Failure, both branches
+  present). Verified via curl that a bad/missing token correctly gets a
+  `400 {"success":false,"error":"reCAPTCHA verification failed"}` response
+  and that CORS is fine for the `wildpear.school` origin. **But** a real
+  submission with the checkbox actually solved still shows the generic
+  "Something went wrong sending your message" client-side error - since that
+  error text is shown for *any* non-2xx response, this could just be a real
+  `reCAPTCHA verification failed` server-side (e.g. site key not registered
+  for `wildpear.school` in the reCAPTCHA admin console, or site/secret key
+  mismatch), not a code bug. Next step: check the "Verify reCAPTCHA" node's
+  raw output in the n8n Executions tab for Google's `error-codes`. Tracked
+  in `TODO.md`.
+- Also fixed today: contact form's "Why 42?" message-field label (leftover
+  placeholder copy) changed to "We will try our best to answer your
+  question."
+- The workflow's success branch only returns `{"success": true}` - it
+  doesn't actually deliver the message anywhere yet (no EspoCRM record, no
+  email). Wiring that up is the next real task once the bug above is
+  resolved; needs an EspoCRM API key that doesn't exist yet. Tracked in
+  `TODO.md`.
 - **Found and fixed a sitewide production bug**: Astro keeps single-use
   component `<script>` tags inline in the built HTML by default (this is
   independent of `define:vars` - a plain `<script>` with no `src` gets
@@ -82,9 +121,10 @@ Full day-by-day detail (including 08-10 and 08-11, not summarized above)
 is in `WORK_LOG.md`.
 
 **CRM (EspoCRM)**: installed and running at crm.wildpear.school on the same
-Hostinger account (shared/Business hosting, LAMP - not Docker; Docker is
-reserved for n8n on a separate Oracle Cloud VM, see
-`docs/enrollment-form-plan.md` for why). Concretely done tonight:
+Hostinger account (shared/Business hosting, LAMP - not Docker; n8n runs
+separately on a Hostinger VPS with Docker, see the n8n bullet above and
+`docs/enrollment-form-plan.md` for why it's not on the same box). Concretely
+done that night:
 
 - MySQL database (`wildpear_crm`) + user (`crm_user`) provisioned, EspoCRM
   installed and running, PHP version/extensions verified, file permissions
@@ -109,9 +149,11 @@ website work) other than the deploy-wipe fix below.
   phases (Kiddo's fields first, since Enrollment links to it), don't try to
   dump the whole thing in one message.
 - SMTP for EspoCRM email notifications (Quire #45).
-- n8n hasn't been provisioned on Oracle Cloud yet, so nothing connects the
-  live Astro enrollment forms to EspoCRM - they still just log to console
-  (stubbed submit).
+- n8n is now live (see above), but nothing actually calls EspoCRM's API yet
+  from any workflow - the enrollment forms (`/forms/enrollment-summer`,
+  `/forms/enrollment-sprouts`) still just log to console (stubbed submit),
+  and the contact form's n8n success branch just returns 200 without
+  writing anywhere. This is the next concrete integration task.
 - Quire #48: the "Request a Tour" form should eventually feed EspoCRM too,
   not just the two full enrollment forms - noted but not started.
 
@@ -119,9 +161,17 @@ website work) other than the deploy-wipe fix below.
 
 - **MySQL DB creds vs. EspoCRM app admin creds are different systems.** Don't
   mix them up (see above).
-- **Docker doesn't work on the Hostinger side** - it's shared hosting, no
-  root. Anything Docker-based (like the `espocrm-installer` script) belongs
-  on the Oracle Cloud VM, not here.
+- **Docker doesn't work on the shared/Business Hostinger hosting** (where the
+  website and EspoCRM live) - no root there. n8n needs Docker, so it runs on
+  a separate Hostinger **VPS** instance instead (id `1905094`,
+  `2.25.108.161`, KVM 1 plan) - same account/provider, different product.
+  Reachable over SSH as `root@2.25.108.161` (password auth, not a key) or
+  via the `hostinger-vps` MCP tools (`VPS_getProjectListV1` /
+  `VPS_getProjectContainersV1` etc. for read-only status checks; those tools
+  don't support arbitrary exec/file-edit, so anything that changes files on
+  the VPS - like editing `/docker/n8n/.env` - has to be done over SSH by
+  hand). n8n's own login (`https://n8n.wildpear.school`) is a separate
+  credential from the VPS SSH login - don't confuse the two.
 - **The Starwind UI CLI (`npx starwind@latest add <component>`) force-migrates
   the entire component library to its latest registry version**, not just
   the one component you ask for. It already caused one real outage (broke

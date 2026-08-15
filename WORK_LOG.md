@@ -15,7 +15,9 @@ Tracks working sessions on this project — when, how long, and what got done �
 | 2026-08-10 | ~2:00 PM – 4:40 PM, ~7:20 PM – 9:15 PM | ~4.5 hrs | See breakdown below.                                                                                                                                                                                        |
 | 2026-08-11 | ~12:15 PM – 1:25 PM, ~10:15 PM – 10:30 PM+ | ~1.25 hrs of commits, plus an EspoCRM install/config session that night with no corresponding commits (server-side work) - see handoff doc for that portion | See breakdown below. |
 | 2026-08-12 | ~3:30 PM – 5:10 PM | ~1.5 hrs | See breakdown below.                                                                                                                                                                                        |
-| 2026-08-13 | ~9:25 AM – 4:45 PM | ~7.5 hrs | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-13 | ~9:25 AM – 8:41 PM | ~11.25 hrs | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-14 | ~12:50 PM – 6:45 PM | ~6 hrs | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-15 | ~2:00 PM – present | in progress | See breakdown below.                                                                                                                                                                                        |
 
 ## 2026-08-05 session detail
 
@@ -113,3 +115,18 @@ The big one - most of a full workday, almost entirely on the enrolled-student po
 - Replaced the hardcoded calendar `<dl>` block with a proper `calendarEvents` Astro content collection (`src/content.config.ts` + `src/data/calendar-events.yaml`, one entry per event) rendered as a scrollable, programmatically-sorted/grouped list, side by side with a native Google Calendar iframe embed (`hello@wildpear.school`). Caught and fixed a real content bug in the process: the last entry's "July 2025" section heading was actually July 2026 (positioned after that school year's June 2026 events).
 - Removed a gradient-clip-text effect from the homepage h1 (was fading to 70% opacity, reading dimmer than the surrounding solid-white UI).
 - **Diagnosed and fixed a sitewide production bug**: the login form worked locally but not in production; traced it to the production CSP (`script-src 'self'`, no `unsafe-inline`) silently blocking Astro's default behavior of keeping single-use component `<script>` tags inline in the built HTML. First fix attempt (dropping `define:vars`) didn't actually work - confirmed via the live site that Astro inlines these regardless. Real fix: extract to `public/scripts/*.js` + `<script is:inline src="...">`, which is the only way to get Astro to emit the tag completely untouched. Once the pattern was confirmed, audited every built page for the same issue and found 7 more affected components - notably `Navbar4`'s scroll/reveal script, which explained a second bug report ("navbar disappeared on the homepage / lost its background on the enrolled portal") as the same root cause, not a separate issue. Also fixed the login's shared password and its redirect target (was a relative path resolving to the wrong domain instead of `enrolled.wildpear.school`), and a related deploy bug where the new `public/scripts/` directory had been silently dropped by `split-deploy.mjs`'s asset allowlist (same failure class as the `crm/` rsync-exclude incident from 08-12).
+- Allowed `https` images in the CSP and reformatted the CSP header for readability; bumped the global `h2` size to match `h1`'s scale and raised the `lg` breakpoint's `h1` size to `4rem`; shrunk the homepage hero buttons and simplified its heading classes.
+
+## 2026-08-14 session detail
+
+- Added a reCAPTCHA v2 checkbox to the contact form (`form-contactus.astro`) and prepped the client JS for server-side verification.
+- Wired the contact form to a live n8n webhook (`https://n8n.wildpear.school/webhook/contact-form`) for reCAPTCHA verification - built and imported `n8n/contact-form-recaptcha-verify.json` (webhook -> Google `siteverify` -> success/failure branch).
+- Pre-filled the contact form's phone fields and tweaked the contact-us question label copy.
+- Passed `PUBLIC_RECAPTCHA_SITE_KEY` into the production build.
+
+## 2026-08-15 session detail
+
+- Set `RECAPTCHA_SECRET_KEY` in `/docker/n8n/.env` on the Hostinger VPS running n8n (moved there from a since-abandoned Oracle Cloud VM plan - see `docs/enrollment-form-plan.md` and `docs/HANDOFF.md` for why) and restarted the n8n container to pick it up.
+- Fixed the contact form's message-field label: was still the placeholder "Why 42?", changed to "We will try our best to answer your question."
+- Investigated a live bug: contact form submissions show a generic "Something went wrong sending your message" error even with the captcha solved. Confirmed via curl and the live n8n editor that the workflow itself is correctly wired (both success and failure branches exist and respond); root cause still open, tracked in `TODO.md` and `docs/HANDOFF.md` - next step is checking the actual "Verify reCAPTCHA" node output in n8n's Executions tab for Google's `error-codes`.
+- Confirmed the contact form's n8n success branch doesn't deliver the message anywhere yet (no EspoCRM record, no email) - scoped as the next task once the bug above is resolved.
