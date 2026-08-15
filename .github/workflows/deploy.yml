@@ -16,6 +16,8 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+        env:
+          PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.PUBLIC_RECAPTCHA_SITE_KEY }}
       - run: npm run split-deploy
 
       - name: Install SSH key
