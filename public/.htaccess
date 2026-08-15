@@ -17,19 +17,19 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # Built from an audit of actual site usage (2026-08-12, updated 2026-08-13
   # for the enrolled-students Google Calendar embed, 2026-08-13 to open
-  # img-src to any https host, and 2026-08-14 for the reCAPTCHA v2 checkbox
-  # on the contact form): the Resources page/preview renders each external
-  # link's og:image (fetched at build time, src/lib/utils/ogImage.ts)
-  # directly from its origin site, which could be anything - hence img-src
-  # allows https: broadly rather than an allowlist. frame-src covers the
-  # Google Maps tour-request embed, the YouTube (nocookie) embed used by
-  # Feature10, the Google Calendar embed on the enrolled portal, and the
-  # reCAPTCHA widget iframe. script-src/connect-src additions are for
-  # reCAPTCHA's api.js and its background verification calls (both
-  # www.google.com and recaptcha.google.com since Google load-balances the
-  # widget across both). connect-src will also need the n8n webhook origin
-  # added once enrollment forms are wired up to submit there (see
-  # docs/enrollment-form-plan.md).
+  # img-src to any https host, 2026-08-14 for the reCAPTCHA v2 checkbox on
+  # the contact form, and 2026-08-15 for the live n8n webhook): the
+  # Resources page/preview renders each external link's og:image (fetched
+  # at build time, src/lib/utils/ogImage.ts) directly from its origin site,
+  # which could be anything - hence img-src allows https: broadly rather
+  # than an allowlist. frame-src covers the Google Maps tour-request embed,
+  # the YouTube (nocookie) embed used by Feature10, the Google Calendar
+  # embed on the enrolled portal, and the reCAPTCHA widget iframe.
+  # script-src/connect-src additions are for reCAPTCHA's api.js and its
+  # background verification calls (both www.google.com and
+  # recaptcha.google.com since Google load-balances the widget across
+  # both). connect-src also allows n8n.wildpear.school - the contact form's
+  # fetch() posts there (see docs/enrollment-form-plan.md).
   Header always set Content-Security-Policy "\
     default-src 'self'; \
     script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://recaptcha.google.com/recaptcha/; \
@@ -37,7 +37,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     img-src 'self' data: https:; \
     font-src 'self' data:; \
     frame-src https://www.youtube-nocookie.com https://www.google.com https://maps.google.com https://calendar.google.com https://recaptcha.google.com; \
-    connect-src 'self' https://www.google.com https://recaptcha.google.com; \
+    connect-src 'self' https://www.google.com https://recaptcha.google.com https://n8n.wildpear.school; \
     object-src 'none'; \
     base-uri 'self'; \
     form-action 'self'; \

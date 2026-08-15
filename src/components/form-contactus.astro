@@ -251,7 +251,16 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 							</p>
 						</div>
 
-						<Button variant="accent" type="submit" class="w-full"> Send Message </Button>
+						<p id="submit-error-us" class="text-error hidden text-sm" role="alert">
+							Something went wrong sending your message. Please try again in a moment.
+						</p>
+						<p id="submit-success-us" class="text-success-foreground hidden text-sm" role="status">
+							Thanks! Your message has been sent, we'll get back to you soon.
+						</p>
+
+						<Button id="contact-submit-us" variant="accent" type="submit" class="w-full">
+							Send Message
+						</Button>
 					</form>
 				</CardContent>
 			</Card>

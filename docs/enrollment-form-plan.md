@@ -9,22 +9,23 @@ collaborator) doesn't have to re-derive them.
 ```
 Astro static form (this repo)
   -> client-side fetch() POST to an n8n Webhook
-       n8n, self-hosted on Oracle Cloud Always Free VM (Docker)
+       n8n, self-hosted on a Hostinger KVM 1 VPS (Docker Compose, n8n +
+       Caddy for automatic HTTPS - see n8n/contact-form-recaptcha-verify.json)
        -> HTTP Request node -> EspoCRM REST API
             EspoCRM, self-hosted on Hostinger Business hosting (LAMP)
             (source of truth for family/contact records)
 ```
 
-Why split across two hosts: EspoCRM is a PHP+MySQL app, so it runs fine on
-Hostinger Business shared hosting (SSH, cron jobs, choice of PHP version all
-available there). n8n is a long-running Node.js process that needs to stay up
-listening for webhooks, shared hosting can't run that, hence Oracle Cloud's
-free-tier VM (which does support Docker/persistent processes). The two talk
-over plain HTTPS + API key, so which host each lives on doesn't matter to the
-integration.
-
-Everything above is free/open-source software; the only real cost is hosting,
-and both hosts are already free tiers/plans the user has.
+n8n was originally planned for an Oracle Cloud Always Free VM
+(`VM.Standard.E2.1.Micro`, 1 OCPU/1GB RAM). That's abandoned as of
+2026-08-15: it worked initially (Docker, Caddy, and a real Let's Encrypt cert
+were all confirmed live) but became unresponsive after a reboot - 1GB RAM
+wasn't enough for n8n + Caddy to restart simultaneously without pegging the
+single CPU hard enough that even SSH stopped responding. Moved to a
+Hostinger VPS instead (KVM 1, 4GB RAM - deployed and firewalled entirely via
+the `hostinger-vps` MCP tools, no manual SSH/browser wizard needed), which
+also keeps everything (site hosting, EspoCRM, now n8n) on one provider. This
+is no longer free (a few $/month) but the Oracle box is gone, not idle.
 
 ## Signature capture (decision deferred)
 
@@ -48,23 +49,26 @@ The Astro form is being built first with a **stubbed submit** (logs to
 console / no-op), independent of the backend. The webhook URL gets swapped in
 once n8n is live. See the todo list for sequencing.
 
-## reCAPTCHA (2026-08-14)
+## reCAPTCHA (2026-08-14, live as of 2026-08-15)
 
 Not part of this form, but the same webhook pattern: the **contact form**
-(`src/components/form-contactus.astro`) now has a reCAPTCHA v2 checkbox,
-wired client-side only, ahead of n8n existing.
+(`src/components/form-contactus.astro`) has a reCAPTCHA v2 checkbox and is
+now fully wired end-to-end, not just client-side.
 
-- Keys in `.env.local`: `PUBLIC_RECAPTCHA_SITE_KEY` (used client-side,
-  first `import.meta.env` usage in this repo) and `RECAPTCHA_SECRET_KEY`
-  (unused for now - no server here to verify it).
-- `public/scripts/contact-us-form.js` blocks the stub submit until the
-  widget is solved.
-- `public/.htaccess` CSP opened up for `google.com`/`gstatic.com`/
-  `recaptcha.google.com`.
-- `n8n/contact-form-recaptcha-verify.json`: ready-to-import workflow
-  (webhook -> Google `siteverify` -> success/failure branch). Success
-  branch just returns 200 for now; actually delivering the message (email
-  and/or EspoCRM record) isn't built yet.
+- Keys in `.env.local`: `PUBLIC_RECAPTCHA_SITE_KEY` (client-side) and
+  `RECAPTCHA_SECRET_KEY` (set as an env var on the n8n host, read by the
+  workflow's `siteverify` node - not used anywhere in this repo directly).
+- `public/scripts/contact-us-form.js` posts the real form payload to
+  `https://n8n.wildpear.school/webhook/contact-form` and shows a
+  success/error message based on the response.
+- `public/.htaccess` CSP: `script-src`/`frame-src` opened for
+  `google.com`/`gstatic.com`/`recaptcha.google.com`, `connect-src` opened
+  for `n8n.wildpear.school`.
+- `n8n/contact-form-recaptcha-verify.json`: imported and **active** on the
+  live n8n instance (webhook -> Google `siteverify` -> success/failure
+  branch). Success branch still just returns 200 - actually delivering the
+  message (email and/or EspoCRM record) isn't built yet, tracked
+  separately (Quire #45, `docs/espocrm-data-model.md`).
 
-Remaining once n8n exists: point the contact form's stub `fetch()` at the
-real webhook, and import the workflow above.
+Verified live: a POST with no `g-recaptcha-response` correctly returns
+`400 {"success":false,"error":"reCAPTCHA verification failed"}`.
