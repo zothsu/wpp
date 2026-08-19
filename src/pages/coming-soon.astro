@@ -1,0 +1,26 @@
+---
+import "../styles/starwind.css";
+import ShaderNightClouds from "../components/starwind-pro/shader-night-clouds/ShaderNightClouds.astro";
+import IconPear from "../icons/pear.svg";
+---
+
+<html lang="en" class="dark">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Wild Pear Preschool & Summer Camp - Coming Soon</title>
+	</head>
+	<body class="bg-background text-foreground">
+		<ShaderNightClouds />
+		<main class="flex min-h-screen flex-col items-center justify-center gap-6 px-6 text-center">
+			<IconPear class="text-primary size-16" />
+			<h1 class="font-heading text-5xl font-semibold sm:text-6xl">Wild Pear</h1>
+			<p class="text-muted-foreground max-w-md text-lg">
+				We're getting ready to launch. Check back soon.
+			</p>
+		</main>
+	</body>
+</html>

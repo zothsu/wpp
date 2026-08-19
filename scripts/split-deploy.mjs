@@ -14,6 +14,10 @@
  *
  * Then upload the contents of each deploy/<target>/ folder to the matching
  * subdomain's document root (e.g. via hPanel File Manager or FTP/SFTP).
+ *
+ * Set PARKING_MODE=true to ship the coming-soon placeholder (src/pages/coming-soon.astro)
+ * as "/" on both subdomains instead of the full site - everything still needs
+ * a normal `npm run build` first since that's what compiles coming-soon.astro.
  */
 import { cpSync, existsSync, mkdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
@@ -60,6 +64,8 @@ const targets = {
 	},
 };
 
+const parkingMode = process.env.PARKING_MODE === "true";
+
 rmSync(deployDir, { recursive: true, force: true });
 
 for (const [name, target] of Object.entries(targets)) {
@@ -69,6 +75,17 @@ for (const [name, target] of Object.entries(targets)) {
 	for (const asset of sharedAssets) {
 		const src = join(distDir, asset);
 		if (existsSync(src)) cpSync(src, join(outDir, asset), { recursive: true });
+	}
+
+	if (parkingMode) {
+		const src = join(distDir, "coming-soon", "index.html");
+		if (!existsSync(src)) {
+			console.error('dist/coming-soon/ not found - is src/pages/coming-soon.astro missing?');
+			process.exit(1);
+		}
+		cpSync(src, join(outDir, "index.html"));
+		console.log(`deploy/${name}/  ->  ${target.domain}  (PARKING MODE - coming-soon page only)`);
+		continue;
 	}
 
 	for (const file of target.files ?? []) {

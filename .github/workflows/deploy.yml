@@ -3,6 +3,12 @@ name: Deploy to Hostinger
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      parking_mode:
+        description: "Deploy the coming-soon placeholder instead of the full site"
+        type: boolean
+        default: false
 
 jobs:
   deploy:
@@ -18,7 +24,13 @@ jobs:
       - run: npm run build
         env:
           PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.PUBLIC_RECAPTCHA_SITE_KEY }}
+      # PARKING_MODE also falls back to the repo/environment variable of the same
+      # name, so a plain push to main will keep deploying the placeholder if it
+      # was left on - flip that variable off (or run this workflow manually with
+      # parking_mode unchecked) to bring the full site back.
       - run: npm run split-deploy
+        env:
+          PARKING_MODE: ${{ (github.event_name == 'workflow_dispatch' && inputs.parking_mode) || vars.PARKING_MODE }}
 
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.10.0
