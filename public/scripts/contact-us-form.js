@@ -7,20 +7,10 @@ function handleFormSubmit() {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const recaptchaError = document.querySelector("#recaptcha-error-us");
       const submitError = document.querySelector("#submit-error-us");
       const submitSuccess = document.querySelector("#submit-success-us");
       const submitButton = document.querySelector("#contact-submit-us");
-      const recaptchaSolved =
-        typeof grecaptcha === "undefined" || grecaptcha.getResponse().length > 0;
-
-      if (recaptchaError) {
-        recaptchaError.classList.toggle("hidden", recaptchaSolved);
-      }
-
-      if (!recaptchaSolved) {
-        return;
-      }
+      const siteKey = form.dataset.recaptchaSiteKey;
 
       submitError?.classList.add("hidden");
       submitSuccess?.classList.add("hidden");
@@ -34,6 +24,17 @@ function handleFormSubmit() {
       }
 
       try {
+        if (typeof grecaptcha === "undefined" || !siteKey) {
+          throw new Error("reCAPTCHA failed to load");
+        }
+
+        const token = await new Promise((resolve, reject) => {
+          grecaptcha.ready(() => {
+            grecaptcha.execute(siteKey, { action: "contact_form" }).then(resolve, reject);
+          });
+        });
+        formValues["g-recaptcha-response"] = token;
+
         const response = await fetch(CONTACT_WEBHOOK_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -50,9 +51,6 @@ function handleFormSubmit() {
         console.error("Contact form submission failed:", err);
         submitError?.classList.remove("hidden");
       } finally {
-        if (typeof grecaptcha !== "undefined") {
-          grecaptcha.reset();
-        }
         if (submitButton) {
           submitButton.disabled = false;
           submitButton.textContent = "Send Message";

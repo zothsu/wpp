@@ -2,6 +2,7 @@
 import IconCalendar from "@tabler/icons/outline/calendar.svg";
 import IconClock from "@tabler/icons/outline/clock.svg";
 import IconMail from "@tabler/icons/outline/mail.svg";
+import IconPencil from "@tabler/icons/outline/pencil.svg";
 import IconPhone from "@tabler/icons/outline/phone.svg";
 import IconUser from "@tabler/icons/outline/user.svg";
 import type { HTMLAttributes } from "astro/types";
@@ -168,7 +169,12 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 		<div class="@3xl:col-span-3">
 			<Card class="h-full">
 				<CardContent class="flex h-full flex-col">
-					<form class="@container/form flex flex-1 flex-col space-y-5" id="contact-form-us" name="contact-form">
+					<form
+						class="@container/form flex flex-1 flex-col space-y-5"
+						id="contact-form-us"
+						name="contact-form"
+						data-recaptcha-site-key={recaptchaSiteKey}
+					>
 						<div class="grid gap-5 @md/form:grid-cols-2">
 							<div class="flex flex-col gap-1">
 								<Label for="contact-name-us" class="flex items-center gap-1.5">
@@ -204,7 +210,9 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 						</div>
 
 						<div class="flex flex-1 flex-col gap-1">
-							<Label for="contact-message-us">We will try our best to answer your question</Label>
+							<Label for="contact-message-us" class="flex items-center gap-1.5">
+							<IconPencil class="size-4" /> We will try our best to answer your question
+						</Label>
 							<Textarea
 								id="contact-message-us"
 								name="message"
@@ -245,13 +253,6 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 							</RadioGroup>
 						</div>
 
-						<div class="flex flex-col gap-1">
-							<div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
-							<p id="recaptcha-error-us" class="text-error hidden text-sm" role="alert">
-								Please confirm you're not a robot before sending your message.
-							</p>
-						</div>
-
 						<p id="submit-error-us" class="text-error hidden text-sm" role="alert">
 							Something went wrong sending your message. Please try again in a moment.
 						</p>
@@ -269,5 +270,5 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 	</div>
 </section>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`} async defer></script>
 <script is:inline src="/scripts/contact-us-form.js"></script>
