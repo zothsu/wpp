@@ -137,8 +137,13 @@ done that night:
   Kiddo). Full field list in `docs/espocrm-data-model.md` - this is the spec
   to build from, don't re-derive it.
 
-No CRM work has happened since 2026-08-11 (the 08-12/08-13 sessions were all
-website work) other than the deploy-wipe fix below.
+No CRM work happened between 2026-08-11 and 2026-08-19 (the 08-12/08-13
+sessions were all website work) other than the deploy-wipe fix below. On
+2026-08-19, outbound SMTP was configured for EspoCRM (Quire #45, done -
+this hadn't been reflected here yet). Mailboxes set up: `hello@wildpear.school`,
+`system@wildpear.school`, `susan@wildpear.school`, `jeannie@wildpear.school`.
+Not set up for Zoe's own address - not expected to be needed unless staff
+need help from inside EspoCRM itself.
 
 **Not yet done on the CRM**:
 
@@ -148,7 +153,6 @@ website work) other than the deploy-wipe fix below.
   work resumes. ~30 fields total across both entities; walk through it in
   phases (Kiddo's fields first, since Enrollment links to it), don't try to
   dump the whole thing in one message.
-- SMTP for EspoCRM email notifications (Quire #45).
 - n8n is now live (see above), but nothing actually calls EspoCRM's API yet
   from any workflow - the enrollment forms (`/forms/enrollment-summer`,
   `/forms/enrollment-sprouts`) still just log to console (stubbed submit),

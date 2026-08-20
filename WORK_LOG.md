@@ -18,6 +18,7 @@ Tracks working sessions on this project — when, how long, and what got done �
 | 2026-08-13 | ~9:25 AM – 8:41 PM | ~11.25 hrs | See breakdown below.                                                                                                                                                                                        |
 | 2026-08-14 | ~12:50 PM – 6:45 PM | ~6 hrs | See breakdown below.                                                                                                                                                                                        |
 | 2026-08-15 | ~2:00 PM – present | in progress | See breakdown below.                                                                                                                                                                                        |
+| 2026-08-19 | ~4:25 PM – 10:28 PM | ~5 hrs | See breakdown below.                                                                                                                                                                                        |
 
 ## 2026-08-05 session detail
 
@@ -130,3 +131,10 @@ The big one - most of a full workday, almost entirely on the enrolled-student po
 - Fixed the contact form's message-field label: was still the placeholder "Why 42?", changed to "We will try our best to answer your question."
 - Investigated a live bug: contact form submissions show a generic "Something went wrong sending your message" error even with the captcha solved. Confirmed via curl and the live n8n editor that the workflow itself is correctly wired (both success and failure branches exist and respond); root cause still open, tracked in `TODO.md` and `docs/HANDOFF.md` - next step is checking the actual "Verify reCAPTCHA" node output in n8n's Executions tab for Google's `error-codes`.
 - Confirmed the contact form's n8n success branch doesn't deliver the message anywhere yet (no EspoCRM record, no email) - scoped as the next task once the bug above is resolved.
+
+## 2026-08-19 session detail
+
+- Added a coming-soon parking page (`src/pages/coming-soon.astro`) and a `PARKING_MODE` deploy toggle (repo variable or manual `workflow_dispatch` input) so the whole site can be swapped to a placeholder without touching the built site; used it a few times over the course of the session to take the live site down for testing and back up again.
+- **Fixed the contact form's reCAPTCHA verification** (the bug flagged 2026-08-15) - root cause was three stacked issues found by inspecting live n8n Executions: the "Verify reCAPTCHA" node's body was in a broken/orphaned mode sending no body at all; the site had a v2/v3 key mismatch; and Google's `siteverify` endpoint needs `application/x-www-form-urlencoded`, not JSON. Also switched the site from reCAPTCHA v2 (checkbox) to v3 (invisible, score-based) with a freshly-registered key pair, which turned out to be Enterprise-backed - had to enable the reCAPTCHA Enterprise API on the associated Google Cloud project before verification would succeed. Confirmed working end-to-end with a real submission (`success: true, score: 0.9`).
+- Added a thank-you confirmation panel to the contact form that replaces the form on successful submission, instead of just an inline success line.
+- Updated `TODO.md` and `docs/HANDOFF.md` to reflect the fix and to correct stale SMTP status - SMTP for EspoCRM (Quire #45) was actually configured this session too (`hello@`, `system@`, `susan@`, `jeannie@` @wildpear.school mailboxes), which hadn't made it into the docs yet. Logged the work in Quire (#107 fix, #108 tomorrow's EspoCRM-delivery plan).
