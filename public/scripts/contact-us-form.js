@@ -8,12 +8,11 @@ function handleFormSubmit() {
       e.preventDefault();
 
       const submitError = document.querySelector("#submit-error-us");
-      const submitSuccess = document.querySelector("#submit-success-us");
+      const successPanel = document.querySelector("#contact-success-us");
       const submitButton = document.querySelector("#contact-submit-us");
       const siteKey = form.dataset.recaptchaSiteKey;
 
       submitError?.classList.add("hidden");
-      submitSuccess?.classList.add("hidden");
 
       const formData = new FormData(form);
       const formValues = Object.fromEntries(formData.entries());
@@ -46,7 +45,9 @@ function handleFormSubmit() {
         }
 
         form.reset();
-        submitSuccess?.classList.remove("hidden");
+        form.classList.add("hidden");
+        successPanel?.classList.remove("hidden");
+        successPanel?.classList.add("flex");
       } catch (err) {
         console.error("Contact form submission failed:", err);
         submitError?.classList.remove("hidden");

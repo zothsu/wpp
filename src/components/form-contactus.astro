@@ -1,6 +1,7 @@
 ---
 import IconCalendar from "@tabler/icons/outline/calendar.svg";
 import IconClock from "@tabler/icons/outline/clock.svg";
+import IconCircleCheck from "@tabler/icons/outline/circle-check.svg";
 import IconMail from "@tabler/icons/outline/mail.svg";
 import IconPencil from "@tabler/icons/outline/pencil.svg";
 import IconPhone from "@tabler/icons/outline/phone.svg";
@@ -256,14 +257,22 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 						<p id="submit-error-us" class="text-error hidden text-sm" role="alert">
 							Something went wrong sending your message. Please try again in a moment.
 						</p>
-						<p id="submit-success-us" class="text-success-foreground hidden text-sm" role="status">
-							Thanks! Your message has been sent, we'll get back to you soon.
-						</p>
 
 						<Button id="contact-submit-us" variant="accent" type="submit" class="w-full">
 							Send Message
 						</Button>
 					</form>
+					<div
+						id="contact-success-us"
+						class="hidden flex-1 flex-col items-center justify-center gap-3 text-center"
+						role="status"
+					>
+						<IconCircleCheck class="text-success size-12" />
+						<h3 class="font-heading text-2xl">Thank you!</h3>
+						<p class="text-muted-foreground">
+							Your message has been sent. We'll get back to you soon.
+						</p>
+					</div>
 				</CardContent>
 			</Card>
 		</div>
